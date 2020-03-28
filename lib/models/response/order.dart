@@ -1,4 +1,4 @@
-// Copyright (c) 2019, WooSignal.
+// Copyright (c) 2020, WooSignal.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -45,8 +45,8 @@ class Order {
   String transactionId;
   String datePaid;
   String datePaidGmt;
-  Null dateCompleted;
-  Null dateCompletedGmt;
+  String dateCompleted;
+  String dateCompletedGmt;
   String cartHash;
   List<MetaData> metaData;
   List<LineItems> lineItems;
@@ -526,7 +526,7 @@ class LineItems {
   List<Taxes> taxes;
   List<MetaData> metaData;
   String sku;
-  double price;
+  String price;
 
   LineItems(
       {this.id,
@@ -559,7 +559,7 @@ class LineItems {
     metaData =
         (json['meta_data'] as List).map((i) => MetaData.fromJson(i)).toList();
     sku = json['sku'];
-    price = double.parse(json['price'].toString());
+    price = json['price'].toString();
   }
 
   Map<String, dynamic> toJson() {

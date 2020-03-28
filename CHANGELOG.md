@@ -1,3 +1,7 @@
+## [1.0.3] - 2020-03-28
+
+* Changes to woosignal class and bug fixes
+
 ## [1.0.2] - 2019-10-31
 
 * Tweaks and bugs resolved

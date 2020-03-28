@@ -1,6 +1,6 @@
 library woosignal;
 
-// Copyright (c) 2019, WooSignal.
+// Copyright (c) 2020, WooSignal.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -135,6 +135,10 @@ class WooSignal {
     if (minPrice != null) payload["min_price"] = minPrice;
     if (maxPrice != null) payload["max_price"] = maxPrice;
     if (stockStatus != null) payload["stock_status"] = stockStatus;
+    if (exclude != null) payload["exclude"] = exclude;
+    if (parentExclude != null) payload["parent_exclude"] = parentExclude;
+    if (include != null) payload["include"] = include;
+    if (parent != null) payload["parent"] = parent;
     if (offset != null) payload["offset"] = offset;
     if (featured != null) payload["featured"] = featured;
     if (onSale != null) payload["on_sale"] = onSale;
@@ -240,6 +244,8 @@ class WooSignal {
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
     if (search != null) payload["search"] = search;
+    if (exclude != null) payload["exclude"] = exclude;
+    if (include != null) payload["include"] = include;
     if (int != null) payload["int"] = int;
     if (int != null) payload["int"] = int;
     if (order != null) payload["order"] = order;

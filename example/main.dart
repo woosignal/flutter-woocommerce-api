@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woosignal/models/response/products.dart';
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -28,19 +29,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _productName = "";
 
-  void _incrementCounter() {
-    setState(() {
-      // CONFIG FOR WOOSIGNAL
-      var wsConfig = {"appKey": "your app key", "debugMode": true};
+  _incrementCounter() async {
 
-      // CREATING AN INSTANCE
-      WooSignal.getInstance(config: wsConfig).then((wcStore) {
-        wcStore.getProducts().then((products) {
-          print(products[0].name);
-          _productName = products[0].name;
-          setState(() {});
-        });
-      });
+    // CONFIG FOR WOOSIGNAL
+    var wsConfig = {"appKey": "your app key", "debugMode": true};
+
+    // CREATING AN INSTANCE
+    WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
+
+    List<Product> products = await wooSignal.getProducts();
+    print(products[0].name);
+
+    setState(() {
+      _productName = products[0].name;
     });
   }
 
