@@ -365,20 +365,20 @@ class WooSignal {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
-    if (perPage != null) payload["per_page"] = page;
-    if (search != null) payload["search"] = page;
-    if (after != null) payload["after"] = page;
-    if (before != null) payload["before"] = page;
-    if (exclude != null) payload["exclude"] = page;
-    if (include != null) payload["include"] = page;
-    if (offset != null) payload["offset"] = page;
-    if (order != null) payload["order"] = page;
-    if (orderBy != null) payload["orderby"] = page;
-    if (reviewer != null) payload["reviewer"] = page;
-    if (reviewerExclude != null) payload["reviewer_exclude"] = page;
-    if (reviewerEmail != null) payload["reviewer_email"] = page;
-    if (product != null) payload["product"] = page;
-    if (status != null) payload["status"] = page;
+    if (perPage != null) payload["per_page"] = perPage;
+    if (search != null) payload["search"] = search;
+    if (after != null) payload["after"] = after;
+    if (before != null) payload["before"] = before;
+    if (exclude != null) payload["exclude"] = exclude;
+    if (include != null) payload["include"] = include;
+    if (offset != null) payload["offset"] = offset;
+    if (order != null) payload["order"] = order;
+    if (orderBy != null) payload["orderby"] = orderBy;
+    if (reviewer != null) payload["reviewer"] = reviewer;
+    if (reviewerExclude != null) payload["reviewer_exclude"] = reviewerExclude;
+    if (reviewerEmail != null) payload["reviewer_email"] = reviewerEmail;
+    if (product != null) payload["product"] = product;
+    if (status != null) payload["status"] = status;
 
     _printLog(payload.toString());
     payload = _standardPayload("get", payload, "products/reviews");
