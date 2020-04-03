@@ -1,3 +1,7 @@
+## [1.0.4] - 2020-04-28
+
+* bug fix for ProductReviews
+
 ## [1.0.3] - 2020-03-28
 
 * Changes to woosignal class and bug fixes
