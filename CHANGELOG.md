@@ -1,4 +1,8 @@
-## [1.0.4] - 2020-04-28
+## [1.0.5] - 2020-04-03
+
+* Tweaks to ProductReviews model
+
+## [1.0.4] - 2020-03-28
 
 * bug fix for ProductReviews
 
