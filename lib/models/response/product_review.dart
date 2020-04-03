@@ -24,7 +24,7 @@ class ProductReview {
   String review;
   int rating;
   bool verified;
-  List<Map<String, String>> reviewerAvatarUrls;
+  Map<String, String> reviewerAvatarUrls;
   Links links;
 
   ProductReview(
@@ -53,7 +53,7 @@ class ProductReview {
     rating = json['rating'];
     verified = json['verified'];
     reviewerAvatarUrls = json['reviewer_avatar_urls'] != null
-        ? json['reviewer_avatar_urls']
+        ? (json['reviewer_avatar_urls']).cast<Map<String, String>>()
         : null;
     links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
   }
