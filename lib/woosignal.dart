@@ -392,6 +392,36 @@ class WooSignal {
     return productReviews;
   }
 
+  /// https://woosignal.com/docs/api/1.0/product-reviews
+  Future<ProductReview> createProductReview(
+      {int productId,
+      int status,
+      String reviewer,
+      String reviewerEmail,
+      String review,
+      int rating,
+      bool verified}) async {
+    Map<String, dynamic> payload = {};
+
+    if (productId != null) payload['product_id'] = productId;
+    if (status != null) payload['status'] = status;
+    if (reviewer != null) payload['reviewer'] = reviewer;
+    if (reviewerEmail != null) payload['reviewer_email'] = reviewerEmail;
+    if (review != null) payload['review'] = review;
+    if (rating != null) payload['rating'] = rating;
+    if (verified != null) payload['verified'] = verified;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "products/reviews");
+
+    ProductReview productReview;
+    await _apiProvider.post("/request", payload).then((json) {
+      productReview = ProductReview.fromJson(json);
+    });
+    _printLog(productReview.toString());
+    return productReview;
+  }
+
   /// https://woosignal.com/docs/api/1.0/customers
   Future<List<Customer>> getCustomers(
       {int page,
