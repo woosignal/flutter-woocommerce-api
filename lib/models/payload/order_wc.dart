@@ -316,7 +316,7 @@ class LineItems {
   int productId;
   String name;
   int variationId;
-  String tax_class;
+  String taxClass;
   String subtotal;
   String total;
   int quantity;
@@ -325,7 +325,7 @@ class LineItems {
       {this.productId,
       this.name,
       this.variationId,
-      this.tax_class,
+      this.taxClass,
       this.subtotal,
       this.total,
       this.quantity});
@@ -334,7 +334,7 @@ class LineItems {
     productId = json['product_id'];
     name = json['name'];
     variationId = json['variation_id'];
-    tax_class = json['tax_class'];
+    taxClass = json['tax_class'];
     subtotal = json['subtotal'];
     total = json['total'];
     quantity = json['quantity'];
@@ -347,8 +347,8 @@ class LineItems {
     if (this.variationId != null) {
       data['variation_id'] = this.variationId;
     }
-    if (this.tax_class != null) {
-      data['tax_class'] = this.tax_class;
+    if (this.taxClass != null) {
+      data['tax_class'] = this.taxClass;
     }
     data['subtotal'] = this.subtotal;
     data['total'] = this.total;

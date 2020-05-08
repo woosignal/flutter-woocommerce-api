@@ -1,3 +1,7 @@
+## [1.0.7] - 2020-05-08
+
+* Tweaks and bugs resolved
+
 ## [1.0.6] - 2020-04-09
 
 * Ability to create Product reviews

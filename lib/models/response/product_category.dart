@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal.
+// Copyright (c) 2020, WooSignal Ltd
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -96,7 +96,7 @@ class Image {
     dateCreatedGmt = json['date_created_gmt'];
     dateModified = json['date_modified'];
     dateModifiedGmt = json['date_modified_gmt'];
-    src = json['src'];
+    src = (json['src'] != null && json['src'] is String) ? json['src'] : "";
     name = json['name'];
     alt = json['alt'];
   }

@@ -115,7 +115,7 @@ class ProductVariation {
         downloadExpiry = json['download_expiry'],
         taxStatus = json['tax_status'],
         taxClass = json['tax_class'],
-        manageStock = json['manage_stock'],
+        manageStock = (json['manage_stock'] != null && json['manage_stock'] is bool) ? json['manage_stock'] : false,
         stockQuantity = json['stock_quantity'],
         stockStatus = json['stock_status'],
         backorders = json['backorders'],
