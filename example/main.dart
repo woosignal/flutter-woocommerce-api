@@ -30,7 +30,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String _productName = "";
 
   _incrementCounter() async {
-
     // CONFIG FOR WOOSIGNAL
     var wsConfig = {"appKey": "your app key", "debugMode": true};
 
