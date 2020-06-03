@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal.
+// Copyright (c) 2020, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -225,8 +225,8 @@ class MetaData {
   MetaData(this.id, this.key, this.value);
 
   MetaData.fromJson(Map<String, dynamic> json)
-      : id = json['name'],
-        key = json['email'],
+      : id = json['id'],
+        key = json['key'],
         value = json['value'].toString();
 
   Map<String, dynamic> toJson() => {'id': id, 'key': key, 'value': value};

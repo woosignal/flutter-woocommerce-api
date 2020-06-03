@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^1.0.8
+  woosignal: ^1.0.9
 ```
 
 ### Usage example #
@@ -120,13 +120,6 @@ _getProducts() async {
 - Retrive a Shipping Zone Location by id
 
 [See Shipping Zone Locations API](https://woosignal.com/docs/api/1.0/shipping-zone-locations)
-
-
-#### WooCommerce - Shipping Zone Methods
-- Get Shipping Zone Methods
-- Retrive a Shipping Zone Method by id
-
-[See Shipping Zone Methods API](https://woosignal.com/docs/api/1.0/shipping-zone-methods)
 
 
 #### WooCommerce - Shipping Methods

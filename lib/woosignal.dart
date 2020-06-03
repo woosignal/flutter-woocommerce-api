@@ -1,6 +1,6 @@
 library woosignal;
 
-// Copyright (c) 2020, WooSignal.
+// Copyright (c) 2020, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -27,7 +27,6 @@ import 'package:woosignal/models/response/product_attributes.dart';
 import 'package:woosignal/models/response/product_attribute_term.dart';
 import 'package:woosignal/models/response/product_shipping_class.dart';
 import 'package:woosignal/models/response/tax_rate.dart';
-import 'package:woosignal/models/response/shipping_zone_method.dart';
 import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
@@ -588,23 +587,6 @@ class WooSignal {
     });
     _printLog(taxClasses.toString());
     return taxClasses;
-  }
-
-  /// https://woosignal.com/docs/api/1.0/shipping-zone-methods
-  Future<List<ShippingZoneMethod>> getShippingZoneMethods(int zoneId) async {
-    Map<String, dynamic> payload = {};
-
-    _printLog(payload.toString());
-    payload = _standardPayload(
-        "get", payload, "shipping/zones/" + zoneId.toString() + "/methods");
-
-    List<ShippingZoneMethod> shippingZoneMethods = [];
-    await _apiProvider.post("/request", payload).then((json) {
-      shippingZoneMethods =
-          (json as List).map((i) => ShippingZoneMethod.fromJson(i)).toList();
-    });
-    _printLog(shippingZoneMethods.toString());
-    return shippingZoneMethods;
   }
 
   /// https://woosignal.com/docs/api/1.0/shipping-methods

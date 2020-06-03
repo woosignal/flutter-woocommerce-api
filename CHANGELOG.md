@@ -1,3 +1,12 @@
+## [1.0.9] - 2020-06-03
+
+* Resolved bug with MetaData on models
+* Removed Shipping Zone Methods (use Shipping Methods going forward for WooCommerce shipping)
+
+## [1.0.8] - 2020-05-08
+
+* Readme update
+
 ## [1.0.7] - 2020-05-08
 
 * Tweaks and bugs resolved
