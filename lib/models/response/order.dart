@@ -13,6 +13,8 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:woosignal/models/meta_data.dart';
+
 class Order {
   int id;
   int parentId;
@@ -464,28 +466,6 @@ class Shipping {
     data['state'] = this.state;
     data['postcode'] = this.postcode;
     data['country'] = this.country;
-    return data;
-  }
-}
-
-class MetaData {
-  int id;
-  String key;
-  String value;
-
-  MetaData({this.id, this.key, this.value});
-
-  MetaData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    key = json['key'];
-    value = json['value'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['key'] = this.key;
-    data['value'] = this.value;
     return data;
   }
 }

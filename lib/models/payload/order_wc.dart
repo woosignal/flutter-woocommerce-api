@@ -211,6 +211,7 @@ class CouponLines {
 }
 
 class Billing {
+  String company;
   String firstName;
   String lastName;
   String address1;
@@ -223,7 +224,9 @@ class Billing {
   String phone;
 
   Billing(
-      {this.firstName,
+      {
+        this.company,
+        this.firstName,
       this.lastName,
       this.address1,
       this.address2,
@@ -235,6 +238,7 @@ class Billing {
       this.phone});
 
   Billing.fromJson(Map<String, dynamic> json) {
+    company = json['company'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     address1 = json['address_1'];
@@ -249,6 +253,7 @@ class Billing {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['company'] = this.company ?? "";
     data['first_name'] = this.firstName ?? "";
     data['last_name'] = this.lastName ?? "";
     data['address_1'] = this.address1 ?? "";
@@ -268,6 +273,7 @@ class Billing {
 }
 
 class Shipping {
+  String company;
   String firstName;
   String lastName;
   String address1;
@@ -278,7 +284,9 @@ class Shipping {
   String country;
 
   Shipping(
-      {this.firstName,
+      {
+        this.company,
+        this.firstName,
       this.lastName,
       this.address1,
       this.address2,
@@ -288,6 +296,7 @@ class Shipping {
       this.country});
 
   Shipping.fromJson(Map<String, dynamic> json) {
+    company = json['company'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     address1 = json['address_1'];
@@ -300,6 +309,7 @@ class Shipping {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['company'] = this.company ?? "";
     data['first_name'] = this.firstName ?? "";
     data['last_name'] = this.lastName ?? "";
     data['address_1'] = this.address1 ?? "";
