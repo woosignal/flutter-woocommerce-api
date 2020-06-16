@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3eeed35-acde-41db-9f60-883ce315f645" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/meta_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/meta_data.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/response/customer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/customer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/response/order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/order.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/response/product_variation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_variation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/response/products.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/products.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/woosignal.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/woosignal.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

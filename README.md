@@ -4,7 +4,7 @@
 
 Build apps for WooCommerce easier with our new package.
 Our API provides many requests types e.g. getProducts, getOrders, getCustomers and many more.
-Free to get started, see the simple examples below
+Free to get started, see the simple examples below.
 
 For help getting started with WooSignal, view our
 [online documentation](https://woosignal.com/docs/api/1.0/overview), which offers a more detail guide.
