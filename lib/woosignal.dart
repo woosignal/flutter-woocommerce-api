@@ -530,6 +530,21 @@ class WooSignal {
     return order;
   }
 
+  /// https://woosignal.com/docs/api/1.0/orders
+  Future<Order> updateOrder(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("put", payload, "orders/" + id.toString());
+
+    Order order;
+    await _apiProvider.post("/request", payload).then((json) {
+      order = Order.fromJson(json);
+    });
+    _printLog(order.toString());
+    return order;
+  }
+
   /// https://woosignal.com/docs/api/1.0/orders#create-an-order
   Future<Order> createOrder(OrderWC orderWC) async {
     Map<String, dynamic> payload = orderWC.toJson();

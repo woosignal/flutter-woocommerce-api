@@ -1,3 +1,9 @@
+## [1.1.0] - 2020-06-16
+
+* New MetaData base class for models
+* New update order method
+* Bug fixes
+
 ## [1.0.9] - 2020-06-03
 
 * Resolved bug with MetaData on models

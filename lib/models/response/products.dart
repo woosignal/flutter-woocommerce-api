@@ -13,6 +13,8 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import '../meta_data.dart';
+
 class Product {
   final int id;
   final String name;
@@ -215,21 +217,6 @@ class Tag {
         slug = json['slug'];
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'slug': slug};
-}
-
-class MetaData {
-  final int id;
-  final String key;
-  final String value;
-
-  MetaData(this.id, this.key, this.value);
-
-  MetaData.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        key = json['key'],
-        value = json['value'].toString();
-
-  Map<String, dynamic> toJson() => {'id': id, 'key': key, 'value': value};
 }
 
 class DefaultAttribute {

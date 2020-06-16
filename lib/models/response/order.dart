@@ -13,7 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'package:woosignal/models/meta_data.dart';
+import '../meta_data.dart';
 
 class Order {
   int id;
@@ -141,8 +141,10 @@ class Order {
     dateCompleted = json['date_completed'];
     dateCompletedGmt = json['date_completed_gmt'];
     cartHash = json['cart_hash'];
-    metaData =
-        (json['meta_data'] as List).map((i) => MetaData.fromJson(i)).toList();
+    if (metaData != null) {
+      metaData =
+          (json['meta_data'] as List).map((i) => MetaData.fromJson(i)).toList();
+    }
     if (json['line_items'] != null) {
       lineItems = new List<LineItems>();
       json['line_items'].forEach((v) {
