@@ -1,3 +1,7 @@
+## [1.1.1] - 2020-07-03
+
+* Fix MetaData for orders
+
 ## [1.1.0] - 2020-06-16
 
 * New MetaData base class for models

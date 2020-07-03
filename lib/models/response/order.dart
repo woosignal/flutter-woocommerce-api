@@ -141,7 +141,7 @@ class Order {
     dateCompleted = json['date_completed'];
     dateCompletedGmt = json['date_completed_gmt'];
     cartHash = json['cart_hash'];
-    if (metaData != null) {
+    if (json['meta_data'] != null) {
       metaData =
           (json['meta_data'] as List).map((i) => MetaData.fromJson(i)).toList();
     }

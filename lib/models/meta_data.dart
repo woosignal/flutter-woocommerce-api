@@ -22,7 +22,7 @@ class MetaData {
 
   MetaData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    key = json['key'];
+    key = json['key'].toString();
     value = json['value'].toString();
   }
 
