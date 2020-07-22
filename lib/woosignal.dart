@@ -681,4 +681,16 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
+
+  Future<dynamic> checkAppStatus() async {
+    Map<String, dynamic> payload = {};
+    payload = _standardPayload("get", [], "ws/app-status");
+
+    dynamic payloadRsp;
+    await _apiProvider.post("/ws/app-status", payload).then((json) {
+      payloadRsp = json;
+    });
+    _printLog(payloadRsp.toString());
+    return payloadRsp;
+  }
 }

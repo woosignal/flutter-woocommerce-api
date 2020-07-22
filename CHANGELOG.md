@@ -1,3 +1,8 @@
+## [1.1.2] - 2020-07-22
+
+* Update FreeShipping model for minimum spend
+* New endpoint for app status
+
 ## [1.1.1] - 2020-07-03
 
 * Fix MetaData for orders

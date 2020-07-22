@@ -115,14 +115,18 @@ class FreeShipping {
   String title;
   String methodId;
   String cost;
+  String minimumOrderAmount;
 
-  FreeShipping({this.id, this.title, this.methodId, this.cost});
+  FreeShipping({this.id, this.title, this.methodId, this.cost, this.minimumOrderAmount});
 
   FreeShipping.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     methodId = json['method_id'];
     cost = json['cost'];
+    if (json['cost'] != null && json['cost'] == 'min_amount') {
+      minimumOrderAmount = json['kind']['min_amount'];
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -131,6 +135,9 @@ class FreeShipping {
     data['title'] = this.title;
     data['method_id'] = this.methodId;
     data['cost'] = this.cost;
+    if (minimumOrderAmount != null) {
+      data['minimum_order_amount'] = this.minimumOrderAmount;
+    }
     return data;
   }
 }
