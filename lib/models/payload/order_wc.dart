@@ -224,9 +224,8 @@ class Billing {
   String phone;
 
   Billing(
-      {
-        this.company,
-        this.firstName,
+      {this.company,
+      this.firstName,
       this.lastName,
       this.address1,
       this.address2,
@@ -284,9 +283,8 @@ class Shipping {
   String country;
 
   Shipping(
-      {
-        this.company,
-        this.firstName,
+      {this.company,
+      this.firstName,
       this.lastName,
       this.address1,
       this.address2,

@@ -117,7 +117,8 @@ class FreeShipping {
   String cost;
   String minimumOrderAmount;
 
-  FreeShipping({this.id, this.title, this.methodId, this.cost, this.minimumOrderAmount});
+  FreeShipping(
+      {this.id, this.title, this.methodId, this.cost, this.minimumOrderAmount});
 
   FreeShipping.fromJson(Map<String, dynamic> json) {
     id = json['id'];
