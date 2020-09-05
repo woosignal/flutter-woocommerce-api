@@ -1,3 +1,7 @@
+## [1.2.0] - 2020-09-05
+
+* New method to retrieve a product
+
 ## [1.1.2] - 2020-07-22
 
 * Update FreeShipping model for minimum spend

@@ -153,6 +153,22 @@ class WooSignal {
     return products;
   }
 
+  /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
+  Future<Product> retrieveProduct(
+      {int id}) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "products/${id.toString()}");
+
+    Product product;
+    await _apiProvider.post("/request", payload).then((json) {
+      product =  Product.fromJson(json);
+    });
+    _printLog(product.toString());
+    return product;
+  }
+
   /// https://woosignal.com/docs/api/1.0/products-variations
   Future<List<ProductVariation>> getProductVariations(int productId,
       {int page,
