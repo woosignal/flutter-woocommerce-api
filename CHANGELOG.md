@@ -1,3 +1,7 @@
+## [1.2.1] - 2020-10-30
+
+* Dependency updates
+
 ## [1.2.0] - 2020-09-05
 
 * New method to retrieve a product
