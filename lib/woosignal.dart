@@ -32,6 +32,8 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/SaleReport.dart';
+import 'package:woosignal/models/response/top_seller_report.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -735,10 +737,10 @@ class WooSignal {
     String dateMax,
   }) async {
     Map<String, dynamic> payload = {};
-    if (context != null) payload['code'] = context;
-    if (period != null) payload['discount_type'] = period;
-    if (dateMin != null) payload['amount'] = dateMin;
-    if (dateMax != null) payload['individual_use'] = dateMax;
+    if (context != null) payload['context'] = context;
+    if (period != null) payload['period'] = period;
+    if (dateMin != null) payload['dateMin'] = dateMin;
+    if (dateMax != null) payload['dateMax'] = dateMax;
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "reports/sales");
 
@@ -760,10 +762,10 @@ class WooSignal {
     String dateMax,
   }) async {
     Map<String, dynamic> payload = {};
-    if (context != null) payload['code'] = context;
-    if (period != null) payload['discount_type'] = period;
-    if (dateMin != null) payload['amount'] = dateMin;
-    if (dateMax != null) payload['individual_use'] = dateMax;
+    if (context != null) payload['context'] = context;
+    if (period != null) payload['period'] = period;
+    if (dateMin != null) payload['dateMin'] = dateMin;
+    if (dateMax != null) payload['dateMax'] = dateMax;
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "reports/top_sellers");
 
