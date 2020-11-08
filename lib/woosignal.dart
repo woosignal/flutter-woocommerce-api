@@ -15,6 +15,8 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:flutter/cupertino.dart';
+import 'package:woosignal/models/response/customer_batch.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -707,5 +709,124 @@ class WooSignal {
     });
     _printLog(payloadRsp.toString());
     return payloadRsp;
+  }
+
+// Retrieve a customer
+// This API lets you retrieve and view a specific customer by ID.
+  Future<Customers> retrieveCustomer({int id}) async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "customers/${id.toString()}");
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+  // Retrieve customer downloads
+  // This API lets you retrieve customer downloads permissions.
+  Future<Customers> retrieveCustomerDownloads(
+      {@required int customerid,
+      String downloadId,
+      String downloadUrl,
+      int productId,
+      String productName,
+      String downloadName,
+      int orderId,
+      String orderKey,
+      String downloadsRemaining,
+      String accessExpires,
+      String accessExpiresGmt,
+      Map<String, String> file}) async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "customers/${customerid.toString()}/downloads");
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+  // Create a customer
+  // This API helps you to create a new customer.
+  Future<Customers> createCustomer({
+    String email,
+    String firstName,
+    String lastName,
+    String userName,
+    Map<String, dynamic> billing,
+    Map<String, dynamic> shipping,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (email != null) payload['email'] = email;
+    if (firstName != null) payload['first_name'] = firstName;
+    if (lastName != null) payload['last_name'] = lastName;
+    if (userName != null) payload['username'] = userName;
+    if (billing != null) payload['billing'] = billing;
+    if (shipping != null) payload['shipping'] = shipping;
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "customers/");
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+// Update a customer
+// This API lets you make changes to a customer.
+  Future<Customers> updateCustomer(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("put", payload, "customers/" + id.toString());
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+// Delete a customer
+// This API helps you delete a customer.
+  Future<Customers> deleteCustomer(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload, "customers/" + id.toString());
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+  // This API helps you to batch create, update and delete multiple Customers.
+  // This API helps you to batch create, update and delete multiple customers.
+// Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<CustomerBatch> batchCustomers({Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "customers/batch");
+
+    CustomerBatch customerBatch;
+    await _apiProvider.post("/request", payload).then((json) {
+      customerBatch = CustomerBatch.fromJson(json);
+    });
+    _printLog(customerBatch.toString());
+    return customerBatch;
   }
 }
