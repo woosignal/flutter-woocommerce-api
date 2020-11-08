@@ -1,132 +1,5 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:provider/provider.dart';
-// import 'package:haider_app/screens/business_overview_screen.dart';
-// import 'package:haider_app/screens/splash_screen.dart';
-
-// import './screens/login_screen.dart';
-
-// import './providers/auth.dart';
-
-// Future main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MultiProvider(
-//         providers: [
-//           ChangeNotifierProvider(
-//             create: (context) => Auth(),
-//           ),
-//         ],
-//         child: Consumer<Auth>(builder: (ctx, auth, _) {
-//           // print(auth.isAuth);
-//           return MaterialApp(
-//             debugShowCheckedModeBanner: false,
-//             title: '''Haider's App''',
-//             theme: ThemeData(
-//               scaffoldBackgroundColor: Colors.white,
-//               primaryColor: Color.fromRGBO(124, 116, 146, 1),
-//               buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
-//               appBarTheme: AppBarTheme(
-//                   color: Colors.white,
-//                   elevation: 0.0,
-//                   iconTheme:
-//                       IconThemeData(color: Color.fromRGBO(124, 116, 146, 1))),
-//             ),
-//             home: auth.isAuth
-//                 ? BusinessOverViewScreen()
-//                 : FutureBuilder(
-//                     builder: (context, authResultSnapshot) {
-//                       print(auth.isAuth);
-//                       return authResultSnapshot.connectionState ==
-//                               ConnectionState.waiting
-//                           ? SplashScreen()
-//                           : LoginScreen();
-//                     },
-//                     future: auth.tryAutoLogin(),
-//                   ),
-//             routes: {
-//               LoginScreen.routeName: (ctx) => LoginScreen(),
-//               // RegisterScreen.routeName: (ctx) => RegisterScreen(),
-//               BusinessOverViewScreen.routeName: (ctx) =>
-//                   BusinessOverViewScreen()
-//             },
-//           );
-//         }));
-//   }
-// }
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:sms_maintained/sms.dart';
-
-// Future main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-//   runApp(
-//     MaterialApp(
-//       home: SendSmsScreen(),
-//     ),
-//   );
-// }
-
-// class SendSmsScreen extends StatelessWidget {
-//   final SmsSender sender = SmsSender();
-//   final SmsMessage message = SmsMessage('03009640742', '_body');
-//   final List<SmsMessage> smsList = [
-//     SmsMessage('03009750742', 'Random'),
-//     SmsMessage('03008750742', 'Kaleem'),
-//     SmsMessage('03056750742', 'Shahryar'),
-//     SmsMessage('03127750742', 'Shahryar Zong')
-//   ];
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(),
-//         body: ListView.builder(
-//           itemCount: smsList.length,
-//           itemBuilder: (context, index) {
-//             return SingleChildScrollView(
-//               child: Column(
-//                 children: [
-//                   IconButton(
-//                     icon: Icon(Icons.send),
-//                     onPressed: () {
-//                       sender.sendSms(smsList[index]);
-//                     },
-//                   ),
-//                   StreamBuilder<SmsMessageState>(
-//                     key: GlobalKey(debugLabel: 'String $index'),
-//                     // initialData: SmsMessageState.None,
-//                     builder: (context, snapshot) {
-//                       if (snapshot.data == SmsMessageState.Sent) {
-//                         return Text('Message Sent');
-//                       }
-//                       if (snapshot.data == SmsMessageState.Delivered) {
-//                         return Text('Message Delivered');
-//                       }
-//                       if (snapshot.data == SmsMessageState.Sending) {
-//                         return Text('Sending');
-//                       }
-//                       if (snapshot.data == SmsMessageState.Fail)
-//                         return Text('Sending Failed');
-//                       return Text('Error');
-//                     },
-//                     stream: smsList[index].onStateChanged,
-//                   ),
-//                 ],
-//               ),
-//             );
-//           },
-//         ));
-//   }
-// }
 import 'package:flutter/material.dart';
-import 'package:woosignal/models/response/products.dart';
+// import 'package:woosignal/models/response/products.dart';
 import 'package:woosignal/models/response/customer_batch.dart';
 import 'package:woosignal/woosignal.dart';
 
@@ -168,11 +41,98 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    Customers coupons = await wooSignal.retrieveCustomer(id: 2);
-    print(coupons.email);
+    // Customers coupons = await wooSignal.retrieveCustomer(id: 2);
+    // Customers coupons =
+    //     await wooSignal.updateCustomer(2, data: {'first_name': 'Shahryar'});
+    // Customers coupons = await wooSignal.deleteCustomer(29, data: {
+    //   'force': true,
+    // });
+    CustomerBatch coupons = await wooSignal.batchCustomers(
+      data: {
+        "create": [
+          {
+            "email": "testexamole@example.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "test.testexamole",
+            "billing": [
+              {
+                "first_name": "John",
+                "last_name": "Doe",
+                "company": "",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US",
+                "email": "john.testexamole@example.com",
+                "phone": "(555) 555-5555"
+              }
+            ],
+            "shipping": [
+              {
+                "first_name": "John",
+                "last_name": "Doe",
+                "company": "",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US"
+              }
+            ]
+          },
+          {
+            "email": "testexamole.silva2test@example.com",
+            "first_name": "João",
+            "last_name": "Silva",
+            "username": "testexamole.silva5",
+            "billing": [
+              {
+                "first_name": "João",
+                "last_name": "Silva",
+                "company": "",
+                "address_1": "Av. Brasil, 432",
+                "address_2": "",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "postcode": "12345-000",
+                "country": "BR",
+                "email": "testexamole.silva@example.com",
+                "phone": "(55) 5555-5555"
+              }
+            ],
+            "shipping": [
+              {
+                "first_name": "João",
+                "last_name": "Silva",
+                "company": "",
+                "address_1": "Av. Brasil, 432",
+                "address_2": "",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "postcode": "12345-000",
+                "country": "BR"
+              }
+            ]
+          }
+        ],
+        "update": [
+          {
+            "id": "2",
+            "billing": {"phone": "(55) 5555-5555"}
+          }
+        ],
+        "delete": [31]
+      },
+    );
+
+    print(coupons.create[0].email);
 
     setState(() {
-      _productName = coupons.email;
+      _productName = coupons.create[0].email;
     });
   }
 
