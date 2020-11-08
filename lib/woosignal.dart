@@ -15,6 +15,7 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:woosignal/models/response/reports.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -707,5 +708,150 @@ class WooSignal {
     });
     _printLog(payloadRsp.toString());
     return payloadRsp;
+  }
+
+// List all reports
+// This API helps you to list all the coupons that have been created.
+  Future<List<Reports>> getReports() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports");
+
+    List<Reports> reports = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      reports = (json as List).map((i) => Reports.fromJson(i)).toList();
+    });
+    _printLog(reports.toString());
+    return reports;
+  }
+
+// Retrieve sales report
+// This API lets you retrieve and view a sales report.
+  Future<List<SalesReports>> getSaleReports({
+    String context,
+    String period,
+    String dateMin,
+    String dateMax,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (context != null) payload['code'] = context;
+    if (period != null) payload['discount_type'] = period;
+    if (dateMin != null) payload['amount'] = dateMin;
+    if (dateMax != null) payload['individual_use'] = dateMax;
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/sales");
+
+    List<SalesReports> saleReports = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      saleReports =
+          (json as List).map((i) => SalesReports.fromJson(i)).toList();
+    });
+    _printLog(saleReports.toString());
+    return saleReports;
+  }
+
+  // Retrieve top sellers report
+// This API lets you retrieve and view a list of top sellers report.
+  Future<List<TopSellerReport>> getTopSellerReports({
+    String context,
+    String period,
+    String dateMin,
+    String dateMax,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (context != null) payload['code'] = context;
+    if (period != null) payload['discount_type'] = period;
+    if (dateMin != null) payload['amount'] = dateMin;
+    if (dateMax != null) payload['individual_use'] = dateMax;
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/top_sellers");
+
+    List<TopSellerReport> topSellerReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      topSellerReport =
+          (json as List).map((i) => TopSellerReport.fromJson(i)).toList();
+    });
+    _printLog(topSellerReport.toString());
+    return topSellerReport;
+  }
+
+  // Retrieve coupons totals
+// This API lets you retrieve and view coupons totals report.
+  Future<List<TotalReport>> getTotalCouponsReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/coupons/totals");
+
+    List<TotalReport> couponReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      couponReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(couponReport.toString());
+    return couponReport;
+  }
+
+// Retrieve customers totals
+// This API lets you retrieve and view customers totals report.
+  Future<List<TotalReport>> getTotalCustomerReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/customers/totals");
+
+    List<TotalReport> customerReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      customerReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(customerReport.toString());
+    return customerReport;
+  }
+
+// Retrieve orders totals
+// This API lets you retrieve and view orders totals report.
+  Future<List<TotalReport>> getTotalOrderReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/orders/totals");
+
+    List<TotalReport> orderReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      orderReport = (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(orderReport.toString());
+    return orderReport;
+  }
+
+// Retrieve products totals
+// This API lets you retrieve and view products totals report.
+  Future<List<TotalReport>> getTotalProductReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/products/totals");
+
+    List<TotalReport> productReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      productReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(productReport.toString());
+    return productReport;
+  }
+
+// Retrieve reviews totals
+// This API lets you retrieve and view reviews totals report.
+  Future<List<TotalReport>> getTotalReviewReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/reviews/totals");
+
+    List<TotalReport> reviewReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      reviewReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(reviewReport.toString());
+    return reviewReport;
   }
 }
