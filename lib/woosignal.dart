@@ -15,6 +15,8 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:flutter/cupertino.dart';
+import 'package:woosignal/models/response/orderBatch.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -154,8 +156,7 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
-  Future<Product> retrieveProduct(
-      {int id}) async {
+  Future<Product> retrieveProduct({int id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
@@ -163,7 +164,7 @@ class WooSignal {
 
     Product product;
     await _apiProvider.post("/request", payload).then((json) {
-      product =  Product.fromJson(json);
+      product = Product.fromJson(json);
     });
     _printLog(product.toString());
     return product;
@@ -708,5 +709,37 @@ class WooSignal {
     });
     _printLog(payloadRsp.toString());
     return payloadRsp;
+  }
+
+// Delete an Order
+// This API helps you delete an Order.
+  Future<Orders> deleteOrder(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload, "orders/" + id.toString());
+
+    Orders order;
+    await _apiProvider.post("/request", payload).then((json) {
+      order = Orders.fromJson(json);
+    });
+    _printLog(order.toString());
+    return order;
+  }
+
+  // This API helps you to batch create, update and delete multiple Orders.
+  // This API helps you to batch create, update and delete multiple Orders.
+// Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<OrderBatch> batchOrders({Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "orders/batch");
+
+    OrderBatch orderBatch;
+    await _apiProvider.post("/request", payload).then((json) {
+      orderBatch = OrderBatch.fromJson(json);
+    });
+    _printLog(orderBatch.toString());
+    return orderBatch;
   }
 }
