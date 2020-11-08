@@ -15,6 +15,8 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:flutter/cupertino.dart';
+import 'package:woosignal/models/response/refund.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -154,8 +156,7 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
-  Future<Product> retrieveProduct(
-      {int id}) async {
+  Future<Product> retrieveProduct({int id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
@@ -163,7 +164,7 @@ class WooSignal {
 
     Product product;
     await _apiProvider.post("/request", payload).then((json) {
-      product =  Product.fromJson(json);
+      product = Product.fromJson(json);
     });
     _printLog(product.toString());
     return product;
@@ -708,5 +709,115 @@ class WooSignal {
     });
     _printLog(payloadRsp.toString());
     return payloadRsp;
+  }
+
+// https://woocommerce.github.io/woocommerce-rest-api-docs/?php#refunds
+  //Refunds
+  // Create a refund
+  // This API helps you to create a new refund for an order.
+  Future<Refund> createRefund({
+    @required String amount,
+    @required int orderId,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (amount != null) payload['amount'] = amount;
+
+    _printLog(payload.toString());
+    payload = _standardPayload(
+        "post", payload, "orders/${orderId.toString()}/refunds");
+    Refund refund;
+    await _apiProvider.post("/request", payload).then((json) {
+      refund = Refund.fromJson(json);
+    });
+    _printLog(refund.toString());
+    return refund;
+  }
+
+// Retrieve a refund
+// This API lets you retrieve and view a specific refund from an order.
+  Future<Refund> retrieveRefund({
+    @required int orderId,
+    @required int refundId,
+    String dp,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (dp != null) payload["dp"] = dp;
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload,
+        "orders/${orderId.toString()}/refunds/${refundId.toString()}");
+
+    Refund refund;
+    await _apiProvider.post("/request", payload).then((json) {
+      refund = Refund.fromJson(json);
+    });
+    _printLog(refund.toString());
+    return refund;
+  }
+
+// List all refunds
+// This API helps you to view all the refunds from an order.
+  Future<List<Refund>> getRefunds({
+    String context,
+    int page,
+    int perPage,
+    String search,
+    String after,
+    String before,
+    List<int> exclude,
+    List<int> include,
+    int offset,
+    String order,
+    String orderby,
+    List<int> parent,
+    List<int> parentExclude,
+    int dp,
+    @required int orderId,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (page != null) payload["page"] = page;
+    if (perPage != null) payload["per_page"] = perPage;
+    if (search != null) payload["search"] = search;
+    if (after != null) payload["after"] = after;
+    if (before != null) payload["before"] = before;
+    if (exclude != null) payload["exclude"] = exclude;
+    if (include != null) payload["include"] = include;
+    if (offset != null) payload["include"] = offset;
+    if (order != null) payload["order"] = order;
+    if (orderby != null) payload["orderby"] = orderby;
+    if (parent != null) payload["code"] = parent;
+    if (parentExclude != null) payload["code"] = parentExclude;
+    if (dp != null) payload["code"] = dp;
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "orders/${orderId.toString()}/refunds");
+
+    List<Refund> refunds = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      refunds = (json as List).map((i) => Refund.fromJson(i)).toList();
+    });
+    _printLog(refunds.toString());
+    return refunds;
+  }
+
+// Delete a refund
+// This API helps you delete an order refund.
+  Future<Refund> deleteRefund({
+    @required int orderId,
+    @required int refundId,
+    @required Map<String, dynamic> data,
+  }) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload,
+        "orders/${orderId.toString()}/refunds/${refundId.toString()}");
+
+    Refund refund;
+    await _apiProvider.post("/request", payload).then((json) {
+      refund = Refund.fromJson(json);
+    });
+    _printLog(refund.toString());
+    return refund;
   }
 }
