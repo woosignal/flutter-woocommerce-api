@@ -15,6 +15,7 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:flutter/cupertino.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -32,6 +33,7 @@ import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
 import 'package:woosignal/models/response/system_status.dart';
+import 'package:woosignal/models/response/payment_gateway.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -710,18 +712,56 @@ class WooSignal {
     return payloadRsp;
   }
 
-// Doc link: https://woosignal.com/docs/api/1.0/system-status
-  Future<SystemStatus> getSystemStatus() async {
+//
+  // Doc link: https://woosignal.com/docs/api/1.0/payment-gateways
+  // Retrieve an payment gateway
+// This API lets you retrieve and view a specific payment gateway.
+  Future<PaymentGateWay> retrievePaymentGateway({@required String id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
-    payload = _standardPayload("get", payload, "system_status/");
+    payload =
+        _standardPayload("get", payload, "payment_gateways/${id.toString()}");
 
-    SystemStatus systemStatus;
+    PaymentGateWay paymentGateWay;
     await _apiProvider.post("/request", payload).then((json) {
-      systemStatus = SystemStatus.fromJson(json);
+      paymentGateWay = PaymentGateWay.fromJson(json);
     });
-    _printLog(systemStatus.toString());
-    return systemStatus;
+    _printLog(paymentGateWay.toString());
+    return paymentGateWay;
+  }
+
+// List all payment gateways
+// This API helps you to view all the payment gateways.
+  Future<List<PaymentGateWay>> getPaymentGateways() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "payment_gateways");
+
+    List<PaymentGateWay> paymentGateway = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      paymentGateway =
+          (json as List).map((i) => PaymentGateWay.fromJson(i)).toList();
+    });
+    _printLog(paymentGateway.toString());
+    return paymentGateway;
+  }
+
+  // Update a payment gateway
+// This API lets you make changes to a payment gateway.
+  Future<PaymentGateWay> updatePaymentGateway(
+      {@required String id, Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+    payload =
+        _standardPayload("put", payload, "payment_gateways/${id.toString()}");
+    _printLog(payload.toString());
+
+    PaymentGateWay paymentGateWay;
+    await _apiProvider.post("/request", payload).then((json) {
+      paymentGateWay = PaymentGateWay.fromJson(json);
+    });
+    _printLog(paymentGateWay.toString());
+    return paymentGateWay;
   }
 }
