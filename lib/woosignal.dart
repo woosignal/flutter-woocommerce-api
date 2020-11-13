@@ -31,6 +31,7 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/system_status.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -154,8 +155,7 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
-  Future<Product> retrieveProduct(
-      {int id}) async {
+  Future<Product> retrieveProduct({int id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
@@ -163,7 +163,7 @@ class WooSignal {
 
     Product product;
     await _apiProvider.post("/request", payload).then((json) {
-      product =  Product.fromJson(json);
+      product = Product.fromJson(json);
     });
     _printLog(product.toString());
     return product;
@@ -708,5 +708,20 @@ class WooSignal {
     });
     _printLog(payloadRsp.toString());
     return payloadRsp;
+  }
+
+// Doc link: https://woosignal.com/docs/api/1.0/system-status
+  Future<SystemStatus> getSystemStatus() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "system_status/");
+
+    SystemStatus systemStatus;
+    await _apiProvider.post("/request", payload).then((json) {
+      systemStatus = SystemStatus.fromJson(json);
+    });
+    _printLog(systemStatus.toString());
+    return systemStatus;
   }
 }
