@@ -154,8 +154,7 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
-  Future<Product> retrieveProduct(
-      {int id}) async {
+  Future<Product> retrieveProduct({int id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
@@ -163,7 +162,7 @@ class WooSignal {
 
     Product product;
     await _apiProvider.post("/request", payload).then((json) {
-      product =  Product.fromJson(json);
+      product = Product.fromJson(json);
     });
     _printLog(product.toString());
     return product;
@@ -709,4 +708,5 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
+  // https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags
 }
