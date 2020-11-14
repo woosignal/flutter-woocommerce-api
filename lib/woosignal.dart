@@ -15,6 +15,7 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:flutter/cupertino.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -31,6 +32,7 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/setting_option.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -154,8 +156,7 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
-  Future<Product> retrieveProduct(
-      {int id}) async {
+  Future<Product> retrieveProduct({int id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
@@ -163,7 +164,7 @@ class WooSignal {
 
     Product product;
     await _apiProvider.post("/request", payload).then((json) {
-      product =  Product.fromJson(json);
+      product = Product.fromJson(json);
     });
     _printLog(product.toString());
     return product;
@@ -709,4 +710,65 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
+
+  // Doc link: https://woosignal.com/docs/api/1.0/setting-options
+// Retrieve a setting option
+// This API lets you retrieve and view a specific setting option.
+
+  Future<SettingOption> retrieveSettingOptions(
+      {@required String groupid, @required String id}) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "settings/${groupid.toString()}/${id.toString()}");
+
+    SettingOption settingOption;
+    await _apiProvider.post("/request", payload).then((json) {
+      settingOption = SettingOption.fromJson(json);
+    });
+    _printLog(settingOption.toString());
+    return settingOption;
+  }
+
+// Retrieve a setting option
+// This API lets you retrieve and view a specific setting option.
+  Future<List<SettingOption>> getSettingOptions({String groupId}) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload =
+        _standardPayload("get", payload, "settings/${groupId.toString()}");
+
+    List<SettingOption> settingOptions = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      settingOptions =
+          (json as List).map((i) => SettingOption.fromJson(i)).toList();
+    });
+    _printLog(settingOptions.toString());
+    return settingOptions;
+  }
+
+//   Update a setting option
+// This API lets you make changes to a setting option.
+  Future<SettingOption> updateSettinOptions(String groupid, String id,
+      {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload(
+        "put", payload, "settings/${groupid.toString()}/${id.toString}");
+
+    SettingOption settingOption;
+    await _apiProvider.post("/request", payload).then((json) {
+      settingOption = SettingOption.fromJson(json);
+    });
+    _printLog(settingOption.toString());
+    return settingOption;
+  }
+//   Batch update setting options
+// This API helps you to batch update multiple setting options.
+
+//  Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
 }
