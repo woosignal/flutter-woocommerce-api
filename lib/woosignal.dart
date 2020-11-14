@@ -33,6 +33,7 @@ import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
 import 'package:woosignal/models/response/setting_option.dart';
+import 'package:woosignal/models/response/setting_option_batch.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -770,5 +771,18 @@ class WooSignal {
 // This API helps you to batch update multiple setting options.
 
 //  Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<SettingOptionBatch> batchSettingOptions(
+      {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
 
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "settings/general/batch");
+
+    SettingOptionBatch batchsettingOption;
+    await _apiProvider.post("/request", payload).then((json) {
+      batchsettingOption = SettingOptionBatch.fromJson(json);
+    });
+    _printLog(batchsettingOption.toString());
+    return batchsettingOption;
+  }
 }

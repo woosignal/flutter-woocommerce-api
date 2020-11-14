@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:woosignal/models/response/products.dart';
+import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -31,16 +31,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _incrementCounter() async {
     // CONFIG FOR WOOSIGNAL
-    var wsConfig = {"appKey": "your app key", "debugMode": true};
+    var wsConfig = {
+      "appKey":
+          "app_affb6434339b34443a297c2e40a3edab7102137e6d67de9abfe612b749bd",
+      "debugMode": true
+    };
 
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
-
-    List<Product> products = await wooSignal.getProducts();
-    print(products[0].name);
+    SettingOptionBatch couponBatch = await wooSignal.batchSettingOptions(
+      data: {
+        "create": [
+          {
+            "regular_price": "10.00",
+            "attributes": [
+              {
+                "id": "6",
+                "option": "Blue",
+              }
+            ]
+          }
+        ],
+        "update": [
+          {"id": "733", "minimum_amount": "10.00"}
+        ],
+        "delete": [732],
+      },
+    );
 
     setState(() {
-      _productName = products[0].name;
+      _productName = coupons.description;
     });
   }
 
