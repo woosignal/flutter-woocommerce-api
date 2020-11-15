@@ -15,6 +15,7 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:flutter/cupertino.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -31,6 +32,7 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/product_batch.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -708,5 +710,83 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
-  // https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags
+
+//   Create a product
+// This API helps you to create a new product.
+
+  Future<Product> createProduct({
+    @required String name,
+    @required String type,
+    @required String regularPrice,
+    @required String description,
+    @required String shortDescription,
+    @required Map<String, dynamic> categories,
+    @required Map<String, dynamic> images,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (name != null) payload['name'] = name;
+    if (type != null) payload['type'] = type;
+    if (regularPrice != null) payload['regular_price'] = regularPrice;
+    if (description != null) payload['description'] = description;
+    if (shortDescription != null)
+      payload['short_description'] = shortDescription;
+    if (categories != null) payload['categories'] = categories;
+    if (images != null) payload['images'] = images;
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "products/");
+    Product product;
+    await _apiProvider.post("/request", payload).then((json) {
+      product = Product.fromJson(json);
+    });
+    _printLog(product.toString());
+    return product;
+  }
+//   Update a product
+// This API lets you make changes to a product.
+
+  Future<Product> updateProduct(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("put", payload, "products/" + id.toString());
+
+    Product product;
+    await _apiProvider.post("/request", payload).then((json) {
+      product = Product.fromJson(json);
+    });
+    _printLog(product.toString());
+    return product;
+  }
+
+// Delete a product
+// This API helps you delete a product.
+  Future<Product> deleteProduct(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload, "products/" + id.toString());
+
+    Product product;
+    await _apiProvider.post("/request", payload).then((json) {
+      product = Product.fromJson(json);
+    });
+    _printLog(product.toString());
+    return product;
+  }
+
+  // This API helps you to batch create, update and delete multiple Products.
+// Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<ProductBatch> batchProduct({Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "coupons/batch");
+
+    ProductBatch productBatch;
+    await _apiProvider.post("/request", payload).then((json) {
+      productBatch = ProductBatch.fromJson(json);
+    });
+    _printLog(productBatch.toString());
+    return productBatch;
+  }
 }
