@@ -56,6 +56,10 @@ _getProducts() async {
 #### WooCommerce - Products
 - Get Products
 - Retrive a Product by id
+- Update a Product by id
+- Delete a Product by id 
+- Create a Product 
+- Create, Delete and  Update Product Multiple Time.
 
 [See Products API](https://woosignal.com/docs/api/1.0/products#list-all-products)
 
@@ -138,7 +142,13 @@ _getProducts() async {
 
 #### WooCommerce - Customers
 - Get Customers
+- Create a Customer
+- Delete a Customer
+- Update a Customer
+- Create, Delete and  Update Product Multiple Time.
 
 [See Customers API](https://woosignal.com/docs/api/1.0/customers)
 
 Disclaimer: This plugin is not affiliated with or supported by Automattic, Inc. All logos and trademarks are the property of their respective owners.
+
+
