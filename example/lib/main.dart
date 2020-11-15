@@ -31,7 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _incrementCounter() async {
     // CONFIG FOR WOOSIGNAL
-    var wsConfig = {"appKey": "your app key", "debugMode": true};
+    var wsConfig = {
+      "appKey":
+          "app_affb6434339b34443a297c2e40a3edab7102137e6d67de9abfe612b749bd",
+      "debugMode": true
+    };
 
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
