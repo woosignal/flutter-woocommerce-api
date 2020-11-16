@@ -805,8 +805,9 @@ class WooSignal {
   Future<Refund> deleteRefund({
     @required int orderId,
     @required int refundId,
-    @required Map<String, dynamic> data,
   }) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
     Map<String, dynamic> payload = data;
 
     _printLog(payload.toString());
