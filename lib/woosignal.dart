@@ -802,7 +802,10 @@ class WooSignal {
     return coupon;
   }
 
-  Future<Coupon> deleteCoupon(int id, {Map<String, dynamic> data}) async {
+  Future<Coupon> deleteCoupon(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
     Map<String, dynamic> payload = data;
 
     _printLog(payload.toString());
