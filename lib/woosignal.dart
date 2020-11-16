@@ -713,7 +713,11 @@ class WooSignal {
 
 // Delete an Order
 // This API helps you delete an Order.
-  Future<Orders> deleteOrder(int id, {Map<String, dynamic> data}) async {
+  Future<Orders> deleteOrder(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
     Map<String, dynamic> payload = data;
     _printLog(payload.toString());
     payload = _standardPayload("delete", payload, "orders/" + id.toString());
