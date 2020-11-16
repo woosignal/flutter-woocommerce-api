@@ -799,7 +799,11 @@ class WooSignal {
 
 // Delete a customer
 // This API helps you delete a customer.
-  Future<Customers> deleteCustomer(int id, {Map<String, dynamic> data}) async {
+  Future<Customers> deleteCustomer(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
     Map<String, dynamic> payload = data;
 
     _printLog(payload.toString());
