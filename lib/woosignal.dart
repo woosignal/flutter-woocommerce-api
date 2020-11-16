@@ -774,8 +774,12 @@ class WooSignal {
 
 // Delete an order note
 // This API helps you delete an order note.
-  Future<OrderNote> deleteOrder(int orderId, int noteId,
-      {@required Map<String, dynamic> data}) async {
+  Future<OrderNote> deleteOrderNote(
+    int orderId,
+    int noteId,
+  ) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
     Map<String, dynamic> payload = data;
 
     _printLog(payload.toString());
