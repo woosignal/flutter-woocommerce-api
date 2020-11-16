@@ -713,7 +713,7 @@ class WooSignal {
 
 //   Create a product
 // This API helps you to create a new product.
-/// https://woosignal.com/docs/api/1.0/products#create-a-product
+  /// https://woosignal.com/docs/api/1.0/products#create-a-product
 
   Future<Product> createProduct({
     @required String name,
@@ -742,9 +742,10 @@ class WooSignal {
     _printLog(product.toString());
     return product;
   }
+
 //   Update a product
 // This API lets you make changes to a product.
- /// https://woosignal.com/docs/api/1.0/products#update-a-product
+  /// https://woosignal.com/docs/api/1.0/products#update-a-product
   Future<Product> updateProduct(int id, {Map<String, dynamic> data}) async {
     Map<String, dynamic> payload = data;
 
@@ -761,10 +762,16 @@ class WooSignal {
 
 // Delete a product
 // This API helps you delete a product.
-/// https://woosignal.com/docs/api/1.0/products#delete-a-product
-  Future<Product> deleteProduct(int id, {Map<String, dynamic> data}) async {
+  /// https://woosignal.com/docs/api/1.0/products#delete-a-product
+  Future<Product> deleteProduct(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
+    data = {
+      'force': true,
+    };
     Map<String, dynamic> payload = data;
-
+    
     _printLog(payload.toString());
     payload = _standardPayload("delete", payload, "products/" + id.toString());
 
@@ -778,7 +785,7 @@ class WooSignal {
 
   // This API helps you to batch create, update and delete multiple Products.
 // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
- /// https://woosignal.com/docs/api/1.0/products#batch-products
+  /// https://woosignal.com/docs/api/1.0/products#batch-products
   Future<ProductBatch> batchProduct({Map<String, dynamic> data}) async {
     Map<String, dynamic> payload = data;
 

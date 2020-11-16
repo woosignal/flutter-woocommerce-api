@@ -40,11 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    List<Product> products = await wooSignal.getProducts();
-    print(products[0].name);
+    Product products = await wooSignal.deleteProduct(256);
+    print(products.name);
 
     setState(() {
-      _productName = products[0].name;
+      _productName = products.name;
     });
   }
 
