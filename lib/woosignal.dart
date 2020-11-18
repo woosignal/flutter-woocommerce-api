@@ -18,6 +18,8 @@ library woosignal;
 import 'package:flutter/cupertino.dart';
 import 'package:woosignal/models/response/coupon.dart';
 import 'package:woosignal/models/response/coupon_batch.dart';
+import 'package:woosignal/models/response/customer_batch.dart';
+import 'package:woosignal/models/response/reports.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -34,6 +36,9 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/SaleReport.dart';
+import 'package:woosignal/models/response/top_seller_report.dart';
+import 'package:woosignal/models/response/system_status.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -833,5 +838,288 @@ class WooSignal {
     });
     _printLog(couponBatch.toString());
     return couponBatch;
+  }
+
+// Retrieve a customer
+// This API lets you retrieve and view a specific customer by ID.
+  Future<Customers> retrieveCustomer({int id}) async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "customers/${id.toString()}");
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+  // Retrieve customer downloads
+  // This API lets you retrieve customer downloads permissions.
+  Future<Customers> retrieveCustomerDownloads(
+      {@required int customerid,
+      String downloadId,
+      String downloadUrl,
+      int productId,
+      String productName,
+      String downloadName,
+      int orderId,
+      String orderKey,
+      String downloadsRemaining,
+      String accessExpires,
+      String accessExpiresGmt,
+      Map<String, String> file}) async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "customers/${customerid.toString()}/downloads");
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+  // Create a customer
+  // This API helps you to create a new customer.
+  Future<Customers> createCustomer({
+    String email,
+    String firstName,
+    String lastName,
+    String userName,
+    Map<String, dynamic> billing,
+    Map<String, dynamic> shipping,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (email != null) payload['email'] = email;
+    if (firstName != null) payload['first_name'] = firstName;
+    if (lastName != null) payload['last_name'] = lastName;
+    if (userName != null) payload['username'] = userName;
+    if (billing != null) payload['billing'] = billing;
+    if (shipping != null) payload['shipping'] = shipping;
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "customers/");
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+// Update a customer
+// This API lets you make changes to a customer.
+  Future<Customers> updateCustomer(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("put", payload, "customers/" + id.toString());
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+// Delete a customer
+// This API helps you delete a customer.
+  Future<Customers> deleteCustomer(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload, "customers/" + id.toString());
+
+    Customers customers;
+    await _apiProvider.post("/request", payload).then((json) {
+      customers = Customers.fromJson(json);
+    });
+    _printLog(customers.toString());
+    return customers;
+  }
+
+  // This API helps you to batch create, update and delete multiple Customers.
+  // This API helps you to batch create, update and delete multiple customers.
+// Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<CustomerBatch> batchCustomers({Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "customers/batch");
+
+    CustomerBatch customerBatch;
+    await _apiProvider.post("/request", payload).then((json) {
+      customerBatch = CustomerBatch.fromJson(json);
+    });
+    _printLog(customerBatch.toString());
+    return customerBatch;
+}
+
+// List all reports
+// This API helps you to list all the coupons that have been created.
+  Future<List<Reports>> getReports() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports");
+
+    List<Reports> reports = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      reports = (json as List).map((i) => Reports.fromJson(i)).toList();
+    });
+    _printLog(reports.toString());
+    return reports;
+  }
+
+// Retrieve sales report
+// This API lets you retrieve and view a sales report.
+  Future<List<SalesReports>> getSaleReports({
+    String context,
+    String period,
+    String dateMin,
+    String dateMax,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (context != null) payload['context'] = context;
+    if (period != null) payload['period'] = period;
+    if (dateMin != null) payload['dateMin'] = dateMin;
+    if (dateMax != null) payload['dateMax'] = dateMax;
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/sales");
+
+    List<SalesReports> saleReports = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      saleReports =
+          (json as List).map((i) => SalesReports.fromJson(i)).toList();
+    });
+    _printLog(saleReports.toString());
+    return saleReports;
+  }
+
+  // Retrieve top sellers report
+// This API lets you retrieve and view a list of top sellers report.
+  Future<List<TopSellerReport>> getTopSellerReports({
+    String context,
+    String period,
+    String dateMin,
+    String dateMax,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (context != null) payload['context'] = context;
+    if (period != null) payload['period'] = period;
+    if (dateMin != null) payload['dateMin'] = dateMin;
+    if (dateMax != null) payload['dateMax'] = dateMax;
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/top_sellers");
+
+    List<TopSellerReport> topSellerReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      topSellerReport =
+          (json as List).map((i) => TopSellerReport.fromJson(i)).toList();
+    });
+    _printLog(topSellerReport.toString());
+    return topSellerReport;
+  }
+
+  // Retrieve coupons totals
+// This API lets you retrieve and view coupons totals report.
+  Future<List<TotalReport>> getTotalCouponsReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/coupons/totals");
+
+    List<TotalReport> couponReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      couponReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(couponReport.toString());
+    return couponReport;
+  }
+
+// Retrieve customers totals
+// This API lets you retrieve and view customers totals report.
+  Future<List<TotalReport>> getTotalCustomerReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/customers/totals");
+
+    List<TotalReport> customerReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      customerReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(customerReport.toString());
+    return customerReport;
+  }
+
+// Retrieve orders totals
+// This API lets you retrieve and view orders totals report.
+  Future<List<TotalReport>> getTotalOrderReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/orders/totals");
+
+    List<TotalReport> orderReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      orderReport = (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(orderReport.toString());
+    return orderReport;
+  }
+
+// Retrieve products totals
+// This API lets you retrieve and view products totals report.
+  Future<List<TotalReport>> getTotalProductReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/products/totals");
+
+    List<TotalReport> productReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      productReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(productReport.toString());
+    return productReport;
+  }
+
+// Retrieve reviews totals
+// This API lets you retrieve and view reviews totals report.
+  Future<List<TotalReport>> getTotalReviewReports() async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "reports/reviews/totals");
+
+    List<TotalReport> reviewReport = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      reviewReport =
+          (json as List).map((i) => TotalReport.fromJson(i)).toList();
+    });
+    _printLog(reviewReport.toString());
+    return reviewReport;
+}
+
+  // Doc link: https://woosignal.com/docs/api/1.0/system-status
+  Future<SystemStatus> getSystemStatus() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "system_status/");
+
+    SystemStatus systemStatus;
+    await _apiProvider.post("/request", payload).then((json) {
+      systemStatus = SystemStatus.fromJson(json);
+    });
+    _printLog(systemStatus.toString());
+    return systemStatus;
   }
 }

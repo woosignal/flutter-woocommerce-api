@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:woosignal/models/response/products.dart';
-import 'package:woosignal/models/response/coupon.dart';
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
-import 'package:woosignal/models/response/coupon_batch.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,41 +28,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _productName = "";
-  // CONFIG FOR WOOSIGNAL
-  var wsConfig = {
-    "appKey":
-        "app_affb6434339b34443a297c2e40a3edab7102137e6d67de9abfe612b749bd",
-    "debugMode": true
-  };
 
   _incrementCounter() async {
+    // CONFIG FOR WOOSIGNAL
+    var wsConfig = {
+      "appKey":
+          "app_affb6434339b34443a297c2e40a3edab7102137e6d67de9abfe612b749bd",
+      "debugMode": true
+    };
+
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    // Coupon coupons = await wooSignal.batchCoupon(data: {"create":"data"});
-    CouponBatch couponBatch = await wooSignal.batchCoupon(
-      data: {
-        "create": [
-          {
-            "code": "15off",
-            "discount_type": "percent",
-            "amount": "20",
-            "individual_use": "true",
-            "exclude_sale_items": "true",
-            "minimum_amount": "100.00"
-          }
-        ],
-        "update": [
-          {"id": "518", "minimum_amount": "100.00"}
-        ],
-        "delete": [517],
-      },
-    );
-
-    print(couponBatch.create[0].id);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = couponBatch.create[0].id.toString();
+      _productName = coupons.pages.toString();
     });
   }
 

@@ -56,6 +56,11 @@ _getProducts() async {
 #### WooCommerce - Products
 - Get Products
 - Retrive a Product by id
+- Update a Product by id
+- Delete a Product by id 
+- Create a Product 
+- Create, Delete and  Update Product Multiple Time.
+<!--  -->
 
 [See Products API](https://woosignal.com/docs/api/1.0/products#list-all-products)
 
@@ -132,13 +137,121 @@ _getProducts() async {
 - Get Orders
 - Retrive a Order by id
 - Create an Order
-
+- Update an Order
+- - Create, Delete and  Update Order Multiple Time.
 [See Order API](https://woosignal.com/docs/api/1.0/orders)
 
 
 #### WooCommerce - Customers
 - Get Customers
+- Create a Customer
+- Delete a Customer
+- Update a Customer
+- Create, Delete and  Update Product Multiple Time.
 
 [See Customers API](https://woosignal.com/docs/api/1.0/customers)
 
+#### WooCommerce - API Orders Notes
+- List all Orders Notes
+- Retrive a Orders Notes by id
+- Delete a Orders Notes by id 
+- Create a Orders Notes 
+[See Orders Notes API](https://woosignal.com/docs/api/1.0/order-notes)
+
+#### WooCommerce - Refunds
+<!-- The refunds API allows you to create, view, and delete individual refunds. -->
+- List all all the refunds from an order.
+- Retrive a retrieve and view a specific refund from an order
+- Delete a delete an order refund.
+- Create a new refund for an order.
+[See Refunds API](https://woosignal.com/docs/api/1.0/order-refund)
+
+#### WooCommerce - Coupons
+<!-- The coupons API allows you to create, view, update, and delete individual, or a batch, of coupon codes. -->
+- List all the coupons that have been created.
+- Retrive and view a specific coupon by ID
+- This API lets you make changes  or update to a coupon.
+- Delete a delete a coupon.
+- Create, Delete and  Update Coupons Multiple Time.
+[See Coupons API](https://woosignal.com/docs/api/1.0/coupons)
+
+#### WooCommerce - Reports
+<!-- The reports API allows you to view all types of reports available. -->
+
+<!-- Retrieve and view a simple list of available reports. -->
+- List all the Reports that have been created.
+<!-- Retrieve sales report -->
+- API lets you retrieve and view a sales report.
+<!-- Retrieve top sellers report -->
+- API lets you retrieve and view a list of top sellers report.
+<!-- Retrieve coupons totals -->
+- API lets you retrieve and view coupons totals report.
+<!-- Retrieve customers totals -->
+- API lets you retrieve and view customers totals report.
+<!-- Retrieve orders totals -->
+- API lets you retrieve and view orders totals report.
+<!-- Retrieve products totals -->
+- API lets you retrieve and view products totals report
+<!-- Retrieve reviews totals -->
+- API lets you retrieve and view reviews totals report.
+
+[See Reports API](https://woosignal.com/docs/api/1.0/reports)
+
+#### WooCommerce - Data
+<!-- The data API allows you to view all types of data available. -->
+<!-- List all data -->
+- Retrieve and view a simple list of available data endpoints.
+<!-- List all continents -->
+- API helps you to view all the continents..
+<!-- Retrieve continent data -->
+- API lets you retrieve and view a continent data.
+<!-- List all countries -->
+- API helps you to view all the countries..
+<!-- Retrieve country data -->
+- API lets you retrieve and view a country data.
+<!-- List all currencies -->
+- API helps you to view all the currencies.
+<!-- Retrieve currency data -->
+- API lets you retrieve and view a currency data.
+<!-- Retrieve current currency -->
+- API lets you retrieve and view store's current currency data.
+
+[See Data API](https://woosignal.com/docs/api/1.0/data)
+
+#### WooCommerce - System Status
+<!-- The system status API allows you to view all system status items. -->
+<!-- List all system status items -->
+- API helps you to view all the system status items.
+
+[See System Status API](https://woosignal.com/docs/api/1.0/system-status)
+
+#### WooCommerce - Payment gateways
+<!--The payment gateways API allows you to view, and update individual payment gateways. 
+  Results are not paginated - all gateways will be returned -->
+<!-- Retrieve an payment gateway -->
+- API lets you retrieve and view a specific payment gateway.
+<!-- List all payment gateways -->
+- API helps you to view all the payment gateways.
+<!-- Update a payment gateway -->
+- API lets you make changes to a payment gateway.
+
+[See Payment gateways API](https://woosignal.com/docs/api/1.0/payment-gateways)
+
+#### WooCommerce - Setting options
+<!--The payment gateways API allows you to view, and update individual payment gateways. 
+  Results are not paginated - all gateways will be returned -->
+<!-- Retrieve a setting option -->
+- API lets you retrieve and view a specific setting option.
+<!-- List all setting options -->
+- API helps you to view all the setting options.
+<!-- Update a setting option -->
+- API lets you make changes to a setting option.
+<!-- Batch update setting options -->
+- Create, Delete and  Update Setting options Multiple Time.
+
+[See Setting options API](https://woosignal.com/docs/api/1.0/setting-options)
+
+
 Disclaimer: This plugin is not affiliated with or supported by Automattic, Inc. All logos and trademarks are the property of their respective owners.
+
+
