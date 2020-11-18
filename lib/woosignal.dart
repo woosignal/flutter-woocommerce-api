@@ -34,6 +34,7 @@ import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
 import 'package:woosignal/models/response/SaleReport.dart';
 import 'package:woosignal/models/response/top_seller_report.dart';
+import 'package:woosignal/models/response/system_status.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -712,6 +713,7 @@ class WooSignal {
     return payloadRsp;
   }
 
+<<<<<<< HEAD
 // List all reports
 // This API helps you to list all the coupons that have been created.
   Future<List<Reports>> getReports() async {
@@ -855,5 +857,20 @@ class WooSignal {
     });
     _printLog(reviewReport.toString());
     return reviewReport;
+}
+
+  // Doc link: https://woosignal.com/docs/api/1.0/system-status
+  Future<SystemStatus> getSystemStatus() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "system_status/");
+
+    SystemStatus systemStatus;
+    await _apiProvider.post("/request", payload).then((json) {
+      systemStatus = SystemStatus.fromJson(json);
+    });
+    _printLog(systemStatus.toString());
+    return systemStatus;
   }
 }

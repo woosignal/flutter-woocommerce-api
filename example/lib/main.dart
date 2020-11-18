@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:woosignal/models/response/SaleReport.dart';
-import 'package:woosignal/models/response/reports.dart';
-// import 'package:woosignal/models/response/top_seller_report.dart';
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -42,20 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    // List<Reports> reports = await wooSignal.getReports();
-    // List<SalesReports> reports = await wooSignal.getSaleReports();
-    // List<TopSellerReport> reports = await wooSignal.getTopSellerReports();
-    // List<TotalReport> reports = await wooSignal.getTotalCouponsReports();
-    // List<TotalReport> reports = await wooSignal.getTotalCustomerReports();
-    // List<TotalReport> reports = await wooSignal.getTotalOrderReports();
-    // List<TotalReport> reports = await wooSignal.getTotalProductReports();
-    // List<TotalReport> reports = await wooSignal.getTotalReviewReports();
-    List<TotalReport> reports = await wooSignal.getTotalReviewReports();
-
-    print(reports[0].name);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = reports[0].name.toString();
+      _productName = coupons.pages.toString();
     });
   }
 
