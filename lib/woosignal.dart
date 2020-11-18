@@ -16,6 +16,7 @@ library woosignal;
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'package:flutter/cupertino.dart';
+import 'package:woosignal/models/response/order_notes.dart';
 import 'package:woosignal/models/response/coupon.dart';
 import 'package:woosignal/models/response/coupon_batch.dart';
 import 'package:woosignal/models/response/customer_batch.dart';
@@ -716,6 +717,90 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
+
+// Retrieve an order note
+// This API lets you retrieve and view a specific note from an order
+  Future<OrderNote> retrieveOrderNote({
+    @required int orderId,
+    @required int noteId,
+  }) async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload,
+        "orders/${orderId.toString()}/notes/${noteId.toString()}");
+
+    OrderNote orderNote;
+    await _apiProvider.post("/request", payload).then((json) {
+      orderNote = OrderNote.fromJson(json);
+    });
+    _printLog(orderNote.toString());
+    return orderNote;
+  }
+
+// https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-order-notes
+// List All order notes
+// This API helps you to view all the notes from an order.
+  Future<List<OrderNote>> getOrderNotes({
+    @required int orderId,
+    String context,
+    String type,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (type != null) payload["type"] = type;
+
+    _printLog("Parameters: " + payload.toString());
+    payload =
+        _standardPayload("get", payload, "orders/${orderId.toString()}/notes");
+
+    List<OrderNote> orderNotes = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      orderNotes = (json as List).map((i) => OrderNote.fromJson(i)).toList();
+    });
+    _printLog(orderNotes.toString());
+    return orderNotes;
+  }
+
+// Create an order note
+// This API helps you to create a new note for an order.
+  Future<OrderNote> createOrderNote({
+    @required int id,
+    Map<String, dynamic> data,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (data != null) payload['data'] = data;
+    _printLog(payload.toString());
+    payload =
+        _standardPayload("post", payload, "orders/${id.toString()}/notes");
+    OrderNote orderNote;
+    await _apiProvider.post("/request", payload).then((json) {
+      orderNote = OrderNote.fromJson(json);
+    });
+    _printLog(orderNote.toString());
+    return orderNote;
+  }
+
+// Delete an order note
+// This API helps you delete an order note.
+  Future<OrderNote> deleteOrderNote(
+    int orderId,
+    int noteId) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+
+    // There is the usage of + instead of ${} if error Occurs
+    payload = _standardPayload("delete", payload,
+        "orders/${orderId.toString()}/notes/${noteId.toString()}");
+
+    OrderNote orderNote;
+    await _apiProvider.post("/request", payload).then((json) {
+      orderNote = OrderNote.fromJson(json);
+    });
+    _printLog(orderNote.toString());
+    return orderNote;
+    }
 
   Future<Coupon> retrieveCoupons({int id}) async {
     Map<String, dynamic> payload = {};
