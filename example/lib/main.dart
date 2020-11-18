@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:woosignal/models/response/system_status.dart' as systemStatus;
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
-import 'package:woosignal/models/response/payment_gateway.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,12 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    PaymentGateWay coupons = await wooSignal
-        .updatePaymentGateway(id: 'bacs', data: {'enabled': false});
-    print(coupons.enabled);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = coupons.enabled.toString();
+      _productName = coupons.pages.toString();
     });
   }
 
