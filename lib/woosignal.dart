@@ -37,6 +37,7 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/payment_gateway.dart';
 import 'package:woosignal/models/response/SaleReport.dart';
 import 'package:woosignal/models/response/top_seller_report.dart';
 import 'package:woosignal/models/response/system_status.dart';
@@ -717,6 +718,59 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
+
+//
+  // Doc link: https://woosignal.com/docs/api/1.0/payment-gateways
+  // Retrieve an payment gateway
+// This API lets you retrieve and view a specific payment gateway.
+  Future<PaymentGateWay> retrievePaymentGateway({@required String id}) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload =
+        _standardPayload("get", payload, "payment_gateways/${id.toString()}");
+
+    PaymentGateWay paymentGateWay;
+    await _apiProvider.post("/request", payload).then((json) {
+      paymentGateWay = PaymentGateWay.fromJson(json);
+    });
+    _printLog(paymentGateWay.toString());
+    return paymentGateWay;
+  }
+
+// List all payment gateways
+// This API helps you to view all the payment gateways.
+  Future<List<PaymentGateWay>> getPaymentGateways() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "payment_gateways");
+
+    List<PaymentGateWay> paymentGateway = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      paymentGateway =
+          (json as List).map((i) => PaymentGateWay.fromJson(i)).toList();
+    });
+    _printLog(paymentGateway.toString());
+    return paymentGateway;
+  }
+
+  // Update a payment gateway
+// This API lets you make changes to a payment gateway.
+  Future<PaymentGateWay> updatePaymentGateway(
+      {@required String id, Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+    payload =
+        _standardPayload("put", payload, "payment_gateways/${id.toString()}");
+    _printLog(payload.toString());
+
+    PaymentGateWay paymentGateWay;
+    await _apiProvider.post("/request", payload).then((json) {
+      paymentGateWay = PaymentGateWay.fromJson(json);
+    });
+    _printLog(paymentGateWay.toString());
+    return paymentGateWay;
+}
 
 // Retrieve an order note
 // This API lets you retrieve and view a specific note from an order
