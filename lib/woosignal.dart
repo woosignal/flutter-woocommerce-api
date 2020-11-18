@@ -16,6 +16,8 @@ library woosignal;
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'package:flutter/cupertino.dart';
+import 'package:woosignal/models/response/coupon.dart';
+import 'package:woosignal/models/response/coupon_batch.dart';
 import 'package:woosignal/models/response/customer_batch.dart';
 import 'package:woosignal/models/response/reports.dart';
 import 'package:woosignal/networking/api_provider.dart';
@@ -713,6 +715,129 @@ class WooSignal {
     });
     _printLog(payloadRsp.toString());
     return payloadRsp;
+  }
+
+  Future<Coupon> retrieveCoupons({int id}) async {
+    Map<String, dynamic> payload = {};
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "coupons/${id.toString()}");
+
+    Coupon coupon;
+    await _apiProvider.post("/request", payload).then((json) {
+      coupon = Coupon.fromJson(json);
+    });
+    _printLog(coupon.toString());
+    return coupon;
+  }
+
+  // https://woocommerce.github.io/woocommerce-rest-api-docs/#list-all-coupons
+// This API helps you to list all the coupons that have been created.
+  Future<List<Coupon>> getCoupons({
+    String context,
+    int page,
+    int perPage,
+    String search,
+    String after,
+    String before,
+    List<int> exclude,
+    List<int> include,
+    String order,
+    String orderby,
+    String code,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (page != null) payload["page"] = page;
+    if (perPage != null) payload["per_page"] = perPage;
+    if (search != null) payload["search"] = search;
+    if (after != null) payload["after"] = after;
+    if (before != null) payload["before"] = before;
+    if (exclude != null) payload["exclude"] = exclude;
+    if (include != null) payload["include"] = include;
+    if (order != null) payload["order"] = order;
+    if (orderby != null) payload["orderby"] = orderby;
+    if (code != null) payload["code"] = code;
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "coupons");
+
+    List<Coupon> coupons = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      coupons = (json as List).map((i) => Coupon.fromJson(i)).toList();
+    });
+    _printLog(coupons.toString());
+    return coupons;
+  }
+
+  Future<Coupon> createCoupon({
+    @required String code,
+    @required String discountType,
+    @required String amount,
+    @required bool individualUse,
+    @required bool excludeSaleItems,
+    @required String minimumAmount,
+  }) async {
+    Map<String, dynamic> payload = {};
+    if (code != null) payload['code'] = code;
+    if (code != null) payload['discount_type'] = discountType;
+    if (code != null) payload['amount'] = amount;
+    if (code != null) payload['individual_use'] = individualUse;
+    if (code != null) payload['exclude_sale_items'] = excludeSaleItems;
+    if (code != null) payload['minimum_amount'] = minimumAmount;
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "coupons/");
+    Coupon productCoupon;
+    await _apiProvider.post("/request", payload).then((json) {
+      productCoupon = Coupon.fromJson(json);
+    });
+    _printLog(productCoupon.toString());
+    return productCoupon;
+  }
+
+  Future<Coupon> updateCoupon(int id, {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("put", payload, "coupons/" + id.toString());
+
+    Coupon coupon;
+    await _apiProvider.post("/request", payload).then((json) {
+      coupon = Coupon.fromJson(json);
+    });
+    _printLog(coupon.toString());
+    return coupon;
+  }
+
+  Future<Coupon> deleteCoupon(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload, "coupons/" + id.toString());
+
+    Coupon coupon;
+    await _apiProvider.post("/request", payload).then((json) {
+      coupon = Coupon.fromJson(json);
+    });
+    _printLog(coupon.toString());
+    return coupon;
+  }
+
+  // This API helps you to batch create, update and delete multiple coupons.
+// Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<CouponBatch> batchCoupon({Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "coupons/batch");
+
+    CouponBatch couponBatch;
+    await _apiProvider.post("/request", payload).then((json) {
+      couponBatch = CouponBatch.fromJson(json);
+    });
+    _printLog(couponBatch.toString());
+    return couponBatch;
   }
 
 // Retrieve a customer
