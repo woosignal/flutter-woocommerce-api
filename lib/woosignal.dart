@@ -713,7 +713,7 @@ class WooSignal {
     return payloadRsp;
   }
 
-<<<<<<< HEAD
+
 // List all reports
 // This API helps you to list all the coupons that have been created.
   Future<List<Reports>> getReports() async {
