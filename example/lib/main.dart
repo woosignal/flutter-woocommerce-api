@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:woosignal/models/response/products.dart';
-import 'package:woosignal/models/response/customer_batch.dart';
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -41,98 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    // Customers coupons = await wooSignal.retrieveCustomer(id: 2);
-    // Customers coupons =
-    //     await wooSignal.updateCustomer(2, data: {'first_name': 'Shahryar'});
-    // Customers coupons = await wooSignal.deleteCustomer(29, data: {
-    //   'force': true,
-    // });
-    CustomerBatch coupons = await wooSignal.batchCustomers(
-      data: {
-        "create": [
-          {
-            "email": "testexamole@example.com",
-            "first_name": "John",
-            "last_name": "Doe",
-            "username": "test.testexamole",
-            "billing": [
-              {
-                "first_name": "John",
-                "last_name": "Doe",
-                "company": "",
-                "address_1": "969 Market",
-                "address_2": "",
-                "city": "San Francisco",
-                "state": "CA",
-                "postcode": "94103",
-                "country": "US",
-                "email": "john.testexamole@example.com",
-                "phone": "(555) 555-5555"
-              }
-            ],
-            "shipping": [
-              {
-                "first_name": "John",
-                "last_name": "Doe",
-                "company": "",
-                "address_1": "969 Market",
-                "address_2": "",
-                "city": "San Francisco",
-                "state": "CA",
-                "postcode": "94103",
-                "country": "US"
-              }
-            ]
-          },
-          {
-            "email": "testexamole.silva2test@example.com",
-            "first_name": "João",
-            "last_name": "Silva",
-            "username": "testexamole.silva5",
-            "billing": [
-              {
-                "first_name": "João",
-                "last_name": "Silva",
-                "company": "",
-                "address_1": "Av. Brasil, 432",
-                "address_2": "",
-                "city": "Rio de Janeiro",
-                "state": "RJ",
-                "postcode": "12345-000",
-                "country": "BR",
-                "email": "testexamole.silva@example.com",
-                "phone": "(55) 5555-5555"
-              }
-            ],
-            "shipping": [
-              {
-                "first_name": "João",
-                "last_name": "Silva",
-                "company": "",
-                "address_1": "Av. Brasil, 432",
-                "address_2": "",
-                "city": "Rio de Janeiro",
-                "state": "RJ",
-                "postcode": "12345-000",
-                "country": "BR"
-              }
-            ]
-          }
-        ],
-        "update": [
-          {
-            "id": "2",
-            "billing": {"phone": "(55) 5555-5555"}
-          }
-        ],
-        "delete": [31]
-      },
-    );
-
-    print(coupons.create[0].email);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = coupons.create[0].email;
+      _productName = coupons.pages.toString();
     });
   }
 
