@@ -4,13 +4,16 @@ description: Demonstrates how to use the woosignal plugin.
 dependencies:
   flutter:
     sdk: flutter
-
+  http:
+  provider:
+  sms_maintained:
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   woosignal:
     path: ../
+ 
 
 flutter:
 
