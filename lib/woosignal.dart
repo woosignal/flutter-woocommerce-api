@@ -47,6 +47,8 @@ import 'package:woosignal/models/response/payment_gateway.dart';
 import 'package:woosignal/models/response/SaleReport.dart';
 import 'package:woosignal/models/response/top_seller_report.dart';
 import 'package:woosignal/models/response/system_status.dart';
+import 'package:woosignal/models/response/setting_option.dart';
+import 'package:woosignal/models/response/setting_option_batch.dart';
 
 class WooSignal {
   ApiProvider _apiProvider;
@@ -1545,4 +1547,78 @@ class WooSignal {
     return orderBatch;
   }
 }
+
+// Doc link: https://woosignal.com/docs/api/1.0/setting-options
+// Retrieve a setting option
+// This API lets you retrieve and view a specific setting option.
+
+  Future<SettingOption> retrieveSettingOptions(
+      {@required String groupid, @required String id}) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "settings/${groupid.toString()}/${id.toString()}");
+
+    SettingOption settingOption;
+    await _apiProvider.post("/request", payload).then((json) {
+      settingOption = SettingOption.fromJson(json);
+    });
+    _printLog(settingOption.toString());
+    return settingOption;
+  }
+
+// Retrieve a setting option
+// This API lets you retrieve and view a specific setting option.
+  Future<List<SettingOption>> getSettingOptions({String groupId}) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload =
+        _standardPayload("get", payload, "settings/${groupId.toString()}");
+
+    List<SettingOption> settingOptions = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      settingOptions =
+          (json as List).map((i) => SettingOption.fromJson(i)).toList();
+    });
+    _printLog(settingOptions.toString());
+    return settingOptions;
+  }
+
+//   Update a setting option
+// This API lets you make changes to a setting option.
+  Future<SettingOption> updateSettinOptions(String groupid, String id,
+      {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload(
+        "put", payload, "settings/${groupid.toString()}/${id.toString}");
+
+    SettingOption settingOption;
+    await _apiProvider.post("/request", payload).then((json) {
+      settingOption = SettingOption.fromJson(json);
+    });
+    _printLog(settingOption.toString());
+    return settingOption;
+  }
+//   Batch update setting options
+// This API helps you to batch update multiple setting options.
+
+//  Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<SettingOptionBatch> batchSettingOptions(
+      {Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "settings/general/batch");
+
+    SettingOptionBatch batchsettingOption;
+    await _apiProvider.post("/request", payload).then((json) {
+      batchsettingOption = SettingOptionBatch.fromJson(json);
+    });
+    _printLog(batchsettingOption.toString());
+    return batchsettingOption;
+  }
 }
