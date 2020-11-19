@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:woosignal/models/response/products.dart';
-// import 'package:woosignal/models/response/coupon.dart';
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
-import 'package:woosignal/models/response/currencies.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,11 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    Currencies coupons = await wooSignal.retreiveCurrentCurrencyData();
-    print(coupons.code);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = coupons.name;
+      _productName = coupons.pages.toString();
     });
   }
 
