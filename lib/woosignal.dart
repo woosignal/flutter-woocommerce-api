@@ -15,6 +15,9 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:woosignal/models/response/api_data.dart';
+import 'package:woosignal/models/response/continent.dart';
+import 'package:woosignal/models/response/currencies.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:woosignal/models/response/refund.dart';
 import 'package:woosignal/models/response/order_notes.dart';
@@ -38,6 +41,7 @@ import 'package:woosignal/models/response/tax_classes.dart';
 import 'package:woosignal/models/response/shipping_zone.dart';
 import 'package:woosignal/models/response/shipping_method.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
+import 'package:woosignal/models/response/countries.dart';
 import 'package:woosignal/models/response/payment_gateway.dart';
 import 'package:woosignal/models/response/SaleReport.dart';
 import 'package:woosignal/models/response/top_seller_report.dart';
@@ -825,6 +829,141 @@ class WooSignal {
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }
+
+  // Doc link: https://woosignal.com/docs/api/1.0/data
+//   List all data
+// This API lets you retrieve and view a simple list of available data endpoints.
+  Future<ApiData> retrieveApiData() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "data/");
+
+    ApiData apiData;
+    await _apiProvider.post("/request", payload).then((json) {
+      apiData = ApiData.fromJson(json);
+    });
+    _printLog(apiData.toString());
+    return apiData;
+  }
+
+// List all continents
+// This API helps you to view all the continents.
+  Future<Continents> retrieveContinentData() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "data/continents");
+
+    Continents continents;
+    await _apiProvider.post("/request", payload).then((json) {
+      continents = Continents.fromJson(json);
+    });
+    _printLog(continents.toString());
+    return continents;
+  }
+
+//   Retrieve continent data
+// This API lets you retrieve and view a continent data.
+// Location be like "eu" code For Europe
+  Future<Continents> retrieveContinentDatabyLocation(String location) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "data/continents/${location.toLowerCase()}");
+
+    Continents continents;
+    await _apiProvider.post("/request", payload).then((json) {
+      continents = Continents.fromJson(json);
+    });
+    _printLog(continents.toString());
+    return continents;
+  }
+
+//   List all countries
+// This API helps you to view all the countries.
+  Future<List<Countries>> getCountries() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "data/countries");
+
+    List<Countries> countries = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      countries = (json as List).map((i) => Countries.fromJson(i)).toList();
+    });
+    _printLog(countries.toString());
+    return countries;
+  }
+
+//   Retrieve country data
+// This API lets you retrieve and view a country data.
+// Location be like "eu" code For Europe
+  Future<Countries> retreiveCountryData(String location) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "data/countries/${location.toLowerCase()}");
+
+    Countries countryData;
+    await _apiProvider.post("/request", payload).then((json) {
+      countryData = Countries.fromJson(json);
+    });
+    _printLog(countryData.toString());
+    return countryData;
+  }
+
+//   Retrieve current currency
+// This API lets you retrieve and view store's current currency data.
+  Future<List<Currencies>> getCurrencies() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "data/currencies");
+
+    List<Currencies> currencies = [];
+    await _apiProvider.post("/request", payload).then((json) {
+      currencies = (json as List).map((i) => Currencies.fromJson(i)).toList();
+    });
+    _printLog(currencies.toString());
+    return currencies;
+  }
+
+// Retrieve currency data
+// This API lets you retrieve and view a currency data.
+// currency be like "BRL" code For Europe
+  Future<Currencies> retreiveCurrencyData(String currency) async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload(
+        "get", payload, "data/currencies/${currency.toString()}");
+
+    Currencies currencyData;
+    await _apiProvider.post("/request", payload).then((json) {
+      currencyData = Currencies.fromJson(json);
+    });
+    _printLog(currencyData.toString());
+    return currencyData;
+  }
+
+//   Retrieve current currency
+// This API lets you retrieve and view store's current currency data.
+  Future<Currencies> retreiveCurrentCurrencyData() async {
+    Map<String, dynamic> payload = {};
+
+    _printLog("Parameters: " + payload.toString());
+    payload = _standardPayload("get", payload, "data/currencies/current");
+
+    Currencies currencyData;
+    await _apiProvider.post("/request", payload).then((json) {
+      currencyData = Currencies.fromJson(json);
+    });
+    _printLog(currencyData.toString());
+    return currencyData;
+}
 
 //
   // Doc link: https://woosignal.com/docs/api/1.0/payment-gateways
