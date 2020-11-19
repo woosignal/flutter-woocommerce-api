@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:woosignal/models/response/orderBatch.dart';
-import 'package:woosignal/models/response/order.dart';
-// import 'package:woosignal/models/response/coupon.dart';
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -42,13 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    // List<Order> coupons = await wooSignal.getOrders();
-    Order coupons = await wooSignal.retrieveOrder(508);
-
-    print(coupons.id);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = coupons.id.toString();
+      _productName = coupons.pages.toString();
     });
   }
 
