@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:woosignal/models/response/products.dart';
+import 'package:woosignal/models/response/system_status.dart' as system;
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -40,11 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    Product products = await wooSignal.deleteProduct(256);
-    print(products.name);
+    system.SystemStatus coupons = await wooSignal.getSystemStatus();
+    print(coupons.database);
 
     setState(() {
-      _productName = products.name;
+      _productName = coupons.pages.toString();
     });
   }
 

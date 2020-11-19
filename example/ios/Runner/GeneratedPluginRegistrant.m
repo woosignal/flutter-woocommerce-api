@@ -16,11 +16,18 @@
 @import shared_preferences;
 #endif
 
+#if __has_include(<sms_maintained/SmsPlugin.h>)
+#import <sms_maintained/SmsPlugin.h>
+#else
+@import sms_maintained;
+#endif
+
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
+  [SmsPlugin registerWithRegistrar:[registry registrarForPlugin:@"SmsPlugin"]];
 }
 
 @end

@@ -1,4 +1,4 @@
-package com.example.sole_entrepreneur
+package com.example.haider_app
 
 import io.flutter.embedding.android.FlutterActivity
 
