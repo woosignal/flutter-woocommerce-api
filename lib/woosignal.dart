@@ -19,6 +19,7 @@ import 'package:woosignal/models/response/api_data.dart';
 import 'package:woosignal/models/response/continent.dart';
 import 'package:woosignal/models/response/currencies.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:woosignal/models/response/orderBatch.dart';
 import 'package:woosignal/models/response/refund.dart';
 import 'package:woosignal/models/response/order_notes.dart';
 import 'package:woosignal/models/response/coupon.dart';
@@ -1507,4 +1508,41 @@ class WooSignal {
     _printLog(systemStatus.toString());
     return systemStatus;
   }
+
+  // Delete an Order
+// This API helps you delete an Order.
+  Future<Orders> deleteOrder(
+    int id,
+  ) async {
+    Map<String, dynamic> data;
+    data = {'force': true};
+    Map<String, dynamic> payload = data;
+    _printLog(payload.toString());
+    payload = _standardPayload("delete", payload, "orders/" + id.toString());
+
+    Orders order;
+    await _apiProvider.post("/request", payload).then((json) {
+      order = Orders.fromJson(json);
+    });
+    _printLog(order.toString());
+    return order;
+  }
+
+  // This API helps you to batch create, update and delete multiple Orders.
+  // This API helps you to batch create, update and delete multiple Orders.
+// Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+  Future<OrderBatch> batchOrders({Map<String, dynamic> data}) async {
+    Map<String, dynamic> payload = data;
+
+    _printLog(payload.toString());
+    payload = _standardPayload("post", payload, "orders/batch");
+
+    OrderBatch orderBatch;
+    await _apiProvider.post("/request", payload).then((json) {
+      orderBatch = OrderBatch.fromJson(json);
+    });
+    _printLog(orderBatch.toString());
+    return orderBatch;
+  }
+}
 }
