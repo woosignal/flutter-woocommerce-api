@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^1.3.0
+  woosignal: ^1.3.1
 ```
 
 ### Usage example #
@@ -138,7 +138,7 @@ _getProducts() async {
 - Retrive a Order by id
 - Create an Order
 - Update an Order
-- - Create, Delete and  Update Order Multiple Time.
+- Create, Delete and  Update Order Multiple Time.
 
 [See Order API](https://woosignal.com/docs/api/1.0/orders)
 

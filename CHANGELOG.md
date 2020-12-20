@@ -1,3 +1,7 @@
+## [1.3.1] - 2020-12-20
+
+* README updates
+
 ## [1.3.0] - 2020-12-20
 
 * New WooCommerce APIs
