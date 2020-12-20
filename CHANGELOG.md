@@ -1,3 +1,7 @@
+## [1.3.0] - 2020-12-20
+
+* New WooCommerce APIs
+
 ## [1.2.1] - 2020-10-30
 
 * Dependency updates

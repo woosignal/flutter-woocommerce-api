@@ -50,7 +50,7 @@ class ApiProvider {
           "brand":
               androidMeta.brand.replaceAll(new RegExp('[^\u0001-\u007F]'), '_'),
           "manufacturer": androidMeta.manufacturer,
-          "version": androidMeta.version.baseOS,
+          "version": androidMeta.version.sdkInt.toString(),
           "uuid": uuid
         };
       });

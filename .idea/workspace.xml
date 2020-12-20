@@ -2,9 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3eeed35-acde-41db-9f60-883ce315f645" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/assets/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/assets/Image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/assets/Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/assets/avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/assets/company.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/SaleReport.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/api_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/api_data.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/continent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/continent.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/countries.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/countries.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/coupon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/coupon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/coupon_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/coupon_batch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/currencies.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/currencies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/customer_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/customer_batch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/orderBatch.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/order_notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/order_notes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/payment_gateway.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/payment_gateway.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_batch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/refund.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/refund.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/reports.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/reports.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/setting_option_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/setting_option_batch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/system_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/system_status.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/top_seller_report.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/top_seller_report.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/networking/api_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/networking/api_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/woosignal.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/woosignal.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +40,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="woosignal" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -41,6 +65,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/example/lib/main.dart" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -70,9 +100,13 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1592261240389">
+    <state x="808" y="235" key="run.anything.popup" timestamp="1608068129731">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="424" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1592261240389" />
+    <state x="808" y="235" key="run.anything.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1608068129731" />
+    <state x="577" y="248" width="670" height="676" key="search.everywhere.popup" timestamp="1608485077235">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="577" y="248" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1608485077235" />
   </component>
 </project>

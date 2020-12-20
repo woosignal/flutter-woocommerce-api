@@ -139,6 +139,7 @@ _getProducts() async {
 - Create an Order
 - Update an Order
 - - Create, Delete and  Update Order Multiple Time.
+
 [See Order API](https://woosignal.com/docs/api/1.0/orders)
 
 
@@ -154,8 +155,9 @@ _getProducts() async {
 #### WooCommerce - API Orders Notes
 - List all Orders Notes
 - Retrive a Orders Notes by id
-- Delete a Orders Notes by id 
-- Create a Orders Notes 
+- Delete a Orders Notes by id
+- Create a Orders Notes
+
 [See Orders Notes API](https://woosignal.com/docs/api/1.0/order-notes)
 
 #### WooCommerce - Refunds
@@ -164,6 +166,7 @@ _getProducts() async {
 - Retrive a retrieve and view a specific refund from an order
 - Delete a delete an order refund.
 - Create a new refund for an order.
+
 [See Refunds API](https://woosignal.com/docs/api/1.0/order-refund)
 
 #### WooCommerce - Coupons
@@ -173,6 +176,7 @@ _getProducts() async {
 - This API lets you make changes  or update to a coupon.
 - Delete a delete a coupon.
 - Create, Delete and  Update Coupons Multiple Time.
+
 [See Coupons API](https://woosignal.com/docs/api/1.0/coupons)
 
 #### WooCommerce - Reports
@@ -253,5 +257,3 @@ _getProducts() async {
 
 
 Disclaimer: This plugin is not affiliated with or supported by Automattic, Inc. All logos and trademarks are the property of their respective owners.
-
-
