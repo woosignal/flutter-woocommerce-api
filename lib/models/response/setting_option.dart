@@ -1,8 +1,21 @@
-// To parse this JSON data, do
+// Copyright (c) 2021, WooSignal Ltd.
+// All rights reserved.
 //
-//     final settingOption = settingOptionFromJson(jsonString);
+// Redistribution and use in source and binary forms are permitted
+// provided that the above copyright notice and this paragraph are
+// duplicated in all such forms and that any documentation,
+// advertising materials, and other materials related to such
+// distribution and use acknowledge that the software was developed
+// by the WooSignal. The name of the
+// WooSignal may not be used to endorse or promote products derived
+// from this software without specific prior written permission.
+// THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+// IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'dart:convert';
+
+import 'package:woosignal/models/links.dart';
 
 List<SettingOption> settingOptionFromJson(String str) =>
     List<SettingOption>.from(
@@ -61,43 +74,5 @@ class SettingOption {
         "options": options == null
             ? null
             : Map.from(options).map((k, v) => MapEntry<String, dynamic>(k, v)),
-      };
-}
-
-class Links {
-  Links({
-    this.self,
-    this.collection,
-  });
-
-  List<Collection> self;
-  List<Collection> collection;
-
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        self: List<Collection>.from(
-            json["self"].map((x) => Collection.fromJson(x))),
-        collection: List<Collection>.from(
-            json["collection"].map((x) => Collection.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "self": List<dynamic>.from(self.map((x) => x.toJson())),
-        "collection": List<dynamic>.from(collection.map((x) => x.toJson())),
-      };
-}
-
-class Collection {
-  Collection({
-    this.href,
-  });
-
-  String href;
-
-  factory Collection.fromJson(Map<String, dynamic> json) => Collection(
-        href: json["href"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "href": href,
       };
 }

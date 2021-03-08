@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -12,6 +12,8 @@
 // THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+import 'package:woosignal/models/image.dart';
 
 import '../meta_data.dart';
 
@@ -232,30 +234,6 @@ class DefaultAttribute {
         option = json['option'];
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'option': option};
-}
-
-class Image {
-  final int id;
-  final DateTime dateCreated;
-  final DateTime dateCreatedGMT;
-  final DateTime dateModified;
-  final DateTime dateModifiedGMT;
-  final String src;
-  final String name;
-  final String alt;
-
-  Image(this.id, this.src, this.name, this.alt, this.dateCreated,
-      this.dateCreatedGMT, this.dateModified, this.dateModifiedGMT);
-
-  Image.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        src = json['src'],
-        name = json['name'],
-        alt = json['alt'],
-        dateCreated = DateTime.parse(json['date_created']),
-        dateModifiedGMT = DateTime.parse(json['date_modified_gmt']),
-        dateModified = DateTime.parse(json['date_modified']),
-        dateCreatedGMT = DateTime.parse(json['date_created_gmt']);
 }
 
 class Category {

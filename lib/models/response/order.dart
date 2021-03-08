@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -12,6 +12,8 @@
 // THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+import 'package:woosignal/models/links.dart';
 
 import '../meta_data.dart';
 
@@ -146,38 +148,38 @@ class Order {
           (json['meta_data'] as List).map((i) => MetaData.fromJson(i)).toList();
     }
     if (json['line_items'] != null) {
-      lineItems = new List<LineItems>();
+      lineItems = [];
       json['line_items'].forEach((v) {
         lineItems.add(new LineItems.fromJson(v));
       });
     }
     if (json['tax_lines'] != null) {
-      taxLines = new List<TaxLines>();
+      taxLines = [];
       json['tax_lines'].forEach((v) {
         taxLines.add(new TaxLines.fromJson(v));
       });
     }
     if (json['shipping_lines'] != null) {
-      shippingLines = new List<ShippingLines>();
+      shippingLines = [];
       json['shipping_lines'].forEach((v) {
         shippingLines.add(new ShippingLines.fromJson(v));
       });
     }
     if (json['fee_lines'] != null) {
-      feeLines = new List<FeeLine>();
+      feeLines = [];
       json['fee_lines'].forEach((v) {
         feeLines.add(new FeeLine.fromJson(v));
       });
     }
     if (json['coupon_lines'] != null) {
-      couponLines = new List<CouponLine>();
+      couponLines = [];
       json['coupon_lines'].forEach((v) {
         couponLines.add(new CouponLine.fromJson(v));
       });
     }
 
     if (json['refunds'] != null) {
-      refunds = new List<Refunds>();
+      refunds = [];
       json['refunds'].forEach((v) {
         refunds.add(new Refunds.fromJson(v));
       });
@@ -681,71 +683,6 @@ class ShippingLines {
     if (this.metaData != null) {
       data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Links {
-  List<Self> self;
-  List<Collection> collection;
-
-  Links({this.self, this.collection});
-
-  Links.fromJson(Map<String, dynamic> json) {
-    if (json['self'] != null) {
-      self = new List<Self>();
-      json['self'].forEach((v) {
-        self.add(new Self.fromJson(v));
-      });
-    }
-    if (json['collection'] != null) {
-      collection = new List<Collection>();
-      json['collection'].forEach((v) {
-        collection.add(new Collection.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.self != null) {
-      data['self'] = this.self.map((v) => v.toJson()).toList();
-    }
-    if (this.collection != null) {
-      data['collection'] = this.collection.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Self {
-  String href;
-
-  Self({this.href});
-
-  Self.fromJson(Map<String, dynamic> json) {
-    href = json['href'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['href'] = this.href;
-    return data;
-  }
-}
-
-class Collection {
-  String href;
-
-  Collection({this.href});
-
-  Collection.fromJson(Map<String, dynamic> json) {
-    href = json['href'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['href'] = this.href;
     return data;
   }
 }

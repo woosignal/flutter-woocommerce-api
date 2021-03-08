@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -13,7 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'package:woosignal/models/response/customer.dart';
+import 'package:woosignal/models/links.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
 
 class Coupon {
@@ -90,10 +90,7 @@ class Coupon {
     dateExpiresGmt = json['date_expires_gmt'];
     usageCount = json['usage_count'];
     individualUse = json['individual_use'];
-    //Error Expected
     productIds = (json['product_ids'] != null) ? json['product_ids'] : null;
-    //Error Expected
-    // excludedProductIds = json['excluded_product_ids'];
     excludedProductIds = (json['excluded_product_ids'] != null)
         ? json['excluded_product_ids']
         : null;
@@ -101,30 +98,21 @@ class Coupon {
     usageLimitPerUser = json['usage_limit_per_user'];
     limitUsageToXItems = json['limit_usage_to_x_items'];
     freeShipping = json['free_shipping'];
-    //Error Expected
-    // productCategories = json['product_categories'];
     productCategories = (json['product_categories'] != null)
         ? json['product_categories']
         : null;
-    //Error Expected
-    // excludedProductCategories = json['excluded_product_categories'];
     productCategories = (json['product_categories'] != null)
         ? json['product_categories']
         : null;
     excludeSaleItems = json['exclude_sale_items'];
     minimumAmount = json['minimum_amount'];
     maximumAmount = json['maximum_amount'];
-    //Error Expected
-
-    // emailRestrictions = json['email_restrictions'].cast<String>();
     emailRestrictions = (json['email_restrictions'] != null)
         ? json['email_restrictions']
         : null;
-    //Error Expected
-    // usedBy = json['used_by'].cast<String>();
     usedBy = (json['used_by'] != null) ? json['used_by'] : null;
     if (json['meta_data'] != null) {
-      metaData = new List<MetaData>();
+      metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new MetaData.fromJson(v));
       });
@@ -166,77 +154,6 @@ class Coupon {
     if (this.lLinks != null) {
       data['_links'] = this.lLinks.toJson();
     }
-    return data;
-  }
-}
-
-// class MetaData {
-//   int id;
-//   String key;
-//   String value;
-
-//   MetaData({this.id, this.key, this.value});
-
-//   MetaData.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     key = json['key'];
-//     value = json['value'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['id'] = this.id;
-//     data['key'] = this.key;
-//     data['value'] = this.value;
-//     return data;
-//   }
-// }
-
-// class Links {
-//   List<Self> self;
-//   List<Collection> collection;
-
-//   Links({this.self, this.collection});
-
-//   Links.fromJson(Map<String, dynamic> json) {
-//     if (json['self'] != null) {
-//       self = new List<Self>();
-//       json['self'].forEach((v) {
-//         self.add(new Self.fromJson(v));
-//       });
-//     }
-//     if (json['collection'] != null) {
-//       collection = new List<Collection>();
-//       json['collection'].forEach((v) {
-//         collection.add(new Collection.fromJson(v));
-//       });
-//     }
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     if (this.self != null) {
-//       data['self'] = this.self.map((v) => v.toJson()).toList();
-//     }
-//     if (this.collection != null) {
-//       data['collection'] = this.collection.map((v) => v.toJson()).toList();
-//     }
-//     return data;
-//   }
-// }
-
-class Self {
-  String href;
-
-  Self({this.href});
-
-  Self.fromJson(Map<String, dynamic> json) {
-    href = json['href'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['href'] = this.href;
     return data;
   }
 }

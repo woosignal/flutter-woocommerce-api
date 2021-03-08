@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:woosignal/models/response/system_status.dart' as system;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

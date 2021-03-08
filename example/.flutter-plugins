@@ -1,21 +1,10 @@
 # This is a generated file; do not edit or check into version control.
-<<<<<<< HEAD
-device_info=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\device_info-0.4.2+10\\
-path_provider_linux=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-0.0.1+2\\
-path_provider_windows=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-0.0.4+3\\
-shared_preferences=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.12+4\\
-shared_preferences_linux=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_linux-0.0.2+4\\
-shared_preferences_macos=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+6\\
-shared_preferences_web=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_web-0.1.2+4\\
-shared_preferences_windows=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_windows-0.0.1+3\\
-=======
-device_info=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\device_info-0.4.2+9\\
-path_provider_linux=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-0.0.1+2\\
-path_provider_windows=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-0.0.4+1\\
-shared_preferences=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.12+2\\
-shared_preferences_linux=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_linux-0.0.2+2\\
-shared_preferences_macos=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+6\\
-shared_preferences_web=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_web-0.1.2+4\\
-shared_preferences_windows=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_windows-0.0.1+1\\
-sms_maintained=C:\\src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sms_maintained-0.2.5\\
->>>>>>> ebeedfe9758105ff6c3bed9973070b61b353c5c3
+device_info=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/device_info-1.0.0/
+path_provider_linux=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/
+path_provider_windows=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.4+1/
+shared_preferences=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.12+2/
+shared_preferences_linux=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-0.0.2+2/
+shared_preferences_macos=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+6/
+shared_preferences_web=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+4/
+shared_preferences_windows=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-0.0.1+1/
+sms_maintained=/Users/anthony/.pub-cache/hosted/pub.dartlang.org/sms_maintained-0.2.5/

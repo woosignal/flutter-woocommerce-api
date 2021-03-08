@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -14,6 +14,9 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'dart:convert';
+
+import 'package:woosignal/models/image.dart';
+import 'package:woosignal/models/links.dart';
 
 ProductBatch productBatchFromJson(String str) =>
     ProductBatch.fromJson(json.decode(str));
@@ -460,87 +463,5 @@ class Download {
         "id": id,
         "name": name,
         "file": file,
-      };
-}
-
-class Image {
-  Image({
-    this.id,
-    this.dateCreated,
-    this.dateCreatedGmt,
-    this.dateModified,
-    this.dateModifiedGmt,
-    this.src,
-    this.name,
-    this.alt,
-  });
-
-  int id;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String src;
-  String name;
-  String alt;
-
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
-        id: json["id"],
-        dateCreated: DateTime.parse(json["date_created"]),
-        dateCreatedGmt: DateTime.parse(json["date_created_gmt"]),
-        dateModified: DateTime.parse(json["date_modified"]),
-        dateModifiedGmt: DateTime.parse(json["date_modified_gmt"]),
-        src: json["src"],
-        name: json["name"],
-        alt: json["alt"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
-        "date_modified": dateModified.toIso8601String(),
-        "date_modified_gmt": dateModifiedGmt.toIso8601String(),
-        "src": src,
-        "name": name,
-        "alt": alt,
-      };
-}
-
-class Links {
-  Links({
-    this.self,
-    this.collection,
-  });
-
-  List<Collection> self;
-  List<Collection> collection;
-
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        self: List<Collection>.from(
-            json["self"].map((x) => Collection.fromJson(x))),
-        collection: List<Collection>.from(
-            json["collection"].map((x) => Collection.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "self": List<dynamic>.from(self.map((x) => x.toJson())),
-        "collection": List<dynamic>.from(collection.map((x) => x.toJson())),
-      };
-}
-
-class Collection {
-  Collection({
-    this.href,
-  });
-
-  String href;
-
-  factory Collection.fromJson(Map<String, dynamic> json) => Collection(
-        href: json["href"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "href": href,
       };
 }

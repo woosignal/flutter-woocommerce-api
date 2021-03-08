@@ -13,4 +13,18 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-String baseUrl = "https://api.woosignal.com/v3";
+class Collection {
+  String href;
+
+  Collection({this.href});
+
+  Collection.fromJson(Map<String, dynamic> json) {
+    href = json['href'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['href'] = this.href;
+    return data;
+  }
+}

@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -14,6 +14,8 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'dart:convert';
+
+import 'package:woosignal/models/links.dart';
 
 SettingOptionBatch settingOptionBatchFromJson(String str) =>
     SettingOptionBatch.fromJson(json.decode(str));
@@ -89,43 +91,5 @@ class Update {
         "tip": tip == null ? null : tip,
         "value": value,
         "_links": links.toJson(),
-      };
-}
-
-class Links {
-  Links({
-    this.self,
-    this.collection,
-  });
-
-  List<Collection> self;
-  List<Collection> collection;
-
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        self: List<Collection>.from(
-            json["self"].map((x) => Collection.fromJson(x))),
-        collection: List<Collection>.from(
-            json["collection"].map((x) => Collection.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "self": List<dynamic>.from(self.map((x) => x.toJson())),
-        "collection": List<dynamic>.from(collection.map((x) => x.toJson())),
-      };
-}
-
-class Collection {
-  Collection({
-    this.href,
-  });
-
-  String href;
-
-  factory Collection.fromJson(Map<String, dynamic> json) => Collection(
-        href: json["href"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "href": href,
       };
 }

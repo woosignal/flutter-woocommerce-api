@@ -1,3 +1,9 @@
+## [1.4.0] - 2021-03-08
+
+* Refactor classes
+* Ability to fetch app meta data
+* New method for initializing API
+
 ## [1.3.1] - 2020-12-20
 
 * README updates

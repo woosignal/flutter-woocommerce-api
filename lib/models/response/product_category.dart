@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd Ltd
+// Copyright (c) 2021, WooSignal Ltd Ltd
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -12,6 +12,9 @@
 // THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+import 'package:woosignal/models/image.dart';
+import 'package:woosignal/models/links.dart';
 
 class ProductCategory {
   int id;
@@ -66,116 +69,6 @@ class ProductCategory {
     if (this.links != null) {
       data['_links'] = this.links.toJson();
     }
-    return data;
-  }
-}
-
-class Image {
-  int id;
-  String dateCreated;
-  String dateCreatedGmt;
-  String dateModified;
-  String dateModifiedGmt;
-  String src;
-  String name;
-  String alt;
-
-  Image(
-      {this.id,
-      this.dateCreated,
-      this.dateCreatedGmt,
-      this.dateModified,
-      this.dateModifiedGmt,
-      this.src,
-      this.name,
-      this.alt});
-
-  Image.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    dateCreated = json['date_created'];
-    dateCreatedGmt = json['date_created_gmt'];
-    dateModified = json['date_modified'];
-    dateModifiedGmt = json['date_modified_gmt'];
-    src = (json['src'] != null && json['src'] is String) ? json['src'] : "";
-    name = json['name'];
-    alt = json['alt'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['date_created'] = this.dateCreated;
-    data['date_created_gmt'] = this.dateCreatedGmt;
-    data['date_modified'] = this.dateModified;
-    data['date_modified_gmt'] = this.dateModifiedGmt;
-    data['src'] = this.src;
-    data['name'] = this.name;
-    data['alt'] = this.alt;
-    return data;
-  }
-}
-
-class Links {
-  List<Self> self;
-  List<Collection> collection;
-
-  Links({this.self, this.collection});
-
-  Links.fromJson(Map<String, dynamic> json) {
-    if (json['self'] != null) {
-      self = new List<Self>();
-      json['self'].forEach((v) {
-        self.add(new Self.fromJson(v));
-      });
-    }
-    if (json['collection'] != null) {
-      collection = new List<Collection>();
-      json['collection'].forEach((v) {
-        collection.add(new Collection.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.self != null) {
-      data['self'] = this.self.map((v) => v.toJson()).toList();
-    }
-    if (this.collection != null) {
-      data['collection'] = this.collection.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Self {
-  String href;
-
-  Self({this.href});
-
-  Self.fromJson(Map<String, dynamic> json) {
-    href = json['href'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['href'] = this.href;
-    return data;
-  }
-}
-
-class Collection {
-  String href;
-
-  Collection({this.href});
-
-  Collection.fromJson(Map<String, dynamic> json) {
-    href = json['href'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['href'] = this.href;
     return data;
   }
 }

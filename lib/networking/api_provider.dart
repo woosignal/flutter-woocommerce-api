@@ -1,4 +1,4 @@
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -98,6 +98,17 @@ class ApiProvider {
     try {
       Response response =
           await _dio.post(url, data: {"data": json.encode(data)});
+      return response.data;
+    } catch (error, stacktrace) {
+      _printLog("$error stackTrace: $stacktrace");
+      return null;
+    }
+  }
+
+  // GET
+  Future<dynamic> get(url) async {
+    try {
+      Response response = await _dio.get(url);
       return response.data;
     } catch (error, stacktrace) {
       _printLog("$error stackTrace: $stacktrace");

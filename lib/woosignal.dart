@@ -1,6 +1,6 @@
 library woosignal;
 
-// Copyright (c) 2020, WooSignal Ltd.
+// Copyright (c) 2021, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -26,6 +26,7 @@ import 'package:woosignal/models/response/coupon.dart';
 import 'package:woosignal/models/response/coupon_batch.dart';
 import 'package:woosignal/models/response/customer_batch.dart';
 import 'package:woosignal/models/response/reports.dart';
+import 'package:woosignal/models/response/woosignal_app.dart';
 import 'package:woosignal/networking/api_provider.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:woosignal/models/response/products.dart';
@@ -101,6 +102,17 @@ class WooSignal {
 
   Map<String, dynamic> _standardPayload(String type, json, String path) {
     return {"type": type, "payload": json, "path": path};
+  }
+
+  Future<WooSignalApp> getApp() async {
+    dynamic response = await _apiProvider.get("/app");
+    if (response == null) {
+      return null;
+    }
+    WooSignalApp wooSignalApp = WooSignalApp.fromJson(response);
+
+    _printLog(wooSignalApp.toString());
+    return wooSignalApp;
   }
 
   /// https://woosignal.com/docs/api/1.0/products
@@ -499,8 +511,6 @@ class WooSignal {
     return customers;
   }
 
-  // Refunds
-  // Create a refund
   // This API helps you to create a new refund for an order.
   /// https://woosignal.com/docs/api/1.0/refundss#create-a-refund
   Future<Refund> createRefund({
@@ -521,7 +531,6 @@ class WooSignal {
     return refund;
   }
 
-  // Retrieve a refund
   // This API lets you retrieve and view a specific refund from an order.
   /// https://woosignal.com/docs/api/1.0/refunds#retrieve-a-refund
   Future<Refund> retrieveRefund({
@@ -543,7 +552,6 @@ class WooSignal {
     return refund;
   }
 
-  // List all refunds
   // This API helps you to view all the refunds from an order.
   /// https://woosignal.com/docs/api/1.0/refunds#list-all-refunds
   Future<List<Refund>> getRefunds(int orderId,
@@ -588,7 +596,6 @@ class WooSignal {
     return refunds;
   }
 
-  // Delete a refund
   // This API helps you delete an order refund.
   /// https://woosignal.com/docs/api/1.0/refunds#delete-a-refund
   Future<Refund> deleteRefund({
@@ -621,8 +628,9 @@ class WooSignal {
       String orderBy,
       List<int> parent,
       List<int> parentExclude,
-      List<String>
-          status, // Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any.
+      List<String> status = const [
+        "any"
+      ], // Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any.
       int customer,
       int product,
       int dp}) async {
@@ -824,7 +832,7 @@ class WooSignal {
     return payloadRsp;
   }
 
-  Future<dynamic> checkAppStatus() async {
+  Future<bool> checkAppStatus() async {
     Map<String, dynamic> payload = {};
     payload = _standardPayload("get", [], "ws/app-status");
 
@@ -833,10 +841,11 @@ class WooSignal {
       payloadRsp = json;
     });
     _printLog(payloadRsp.toString());
-    return payloadRsp;
+    return (payloadRsp['status'] == "200" && payloadRsp['result']['value'] == 1)
+        ? true
+        : false;
   }
 
-  // List all data
   // This API lets you retrieve and view a simple list of available data endpoints.
   /// https://woosignal.com/docs/api/1.0/data#list-all-data
   Future<ApiData> retrieveApiData() async {
@@ -853,7 +862,6 @@ class WooSignal {
     return apiData;
   }
 
-  // List all continents
   // This API helps you to view all the continents.
   /// https://woosignal.com/docs/api/1.0/data#list-all-continents
   Future<Continents> getContinentData() async {
@@ -1096,16 +1104,13 @@ class WooSignal {
   }
 
   // Delete an order note
-  // This API helps you delete an order note.
   /// https://woosignal.com/docs/api/1.0/order-notes#delete-an-order-note
-  Future<OrderNote> deleteOrderNote(int orderId, int noteId) async {
-    Map<String, dynamic> data;
-    data = {'force': true};
-    Map<String, dynamic> payload = data;
+  Future<OrderNote> deleteOrderNote(int orderId, int noteId,
+      {bool force = true}) async {
+    Map<String, dynamic> payload = {"force": force};
 
     _printLog(payload.toString());
 
-    // There is the usage of + instead of ${} if error Occurs
     payload = _standardPayload("delete", payload,
         "orders/${orderId.toString()}/notes/${noteId.toString()}");
 
@@ -1131,9 +1136,7 @@ class WooSignal {
     return coupon;
   }
 
-  // https://woocommerce.github.io/woocommerce-rest-api-docs/#list-all-coupons
-  // This API helps you to list all the coupons that have been created.
-  /// Doc link: https://woosignal.com/docs/api/1.0/coupons#list-all-coupons
+  /// https://woosignal.com/docs/api/1.0/coupons#list-all-coupons
   Future<List<Coupon>> getCoupons({
     String context,
     int page,
@@ -1170,7 +1173,7 @@ class WooSignal {
     return coupons;
   }
 
-  /// Doc link: https://woosignal.com/docs/api/1.0/coupons#create-a-coupon
+  /// https://woosignal.com/docs/api/1.0/coupons#create-a-coupon
   Future<Coupon> createCoupon({
     @required String code,
     @required String discountType,
@@ -1196,7 +1199,7 @@ class WooSignal {
     return productCoupon;
   }
 
-  /// Doc link: https://woosignal.com/docs/api/1.0/coupons#update-a-coupon
+  /// https://woosignal.com/docs/api/1.0/coupons#update-a-coupon
   Future<Coupon> updateCoupon(int id, {Map<String, dynamic> data}) async {
     Map<String, dynamic> payload = data;
 
@@ -1211,7 +1214,7 @@ class WooSignal {
     return coupon;
   }
 
-  /// Doc link: https://woosignal.com/docs/api/1.0/coupons#delete-a-coupon
+  /// https://woosignal.com/docs/api/1.0/coupons#delete-a-coupon
   Future<Coupon> deleteCoupon(
     int id,
   ) async {
@@ -1231,7 +1234,7 @@ class WooSignal {
 
   // This API helps you to batch create, update and delete multiple coupons.
   // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#batch-update-coupons
+  /// https://woosignal.com/docs/api/1.0/customers#batch-update-coupons
   Future<CouponBatch> batchCoupon({Map<String, dynamic> data}) async {
     Map<String, dynamic> payload = data;
 
@@ -1248,7 +1251,7 @@ class WooSignal {
 
   // Retrieve a customer
   // This API lets you retrieve and view a specific customer by ID.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#retrieve-a-customer
+  /// https://woosignal.com/docs/api/1.0/customers#retrieve-a-customer
   Future<Customers> retrieveCustomer({int id}) async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
@@ -1264,7 +1267,7 @@ class WooSignal {
 
   // Retrieve customer downloads
   // This API lets you retrieve customer downloads permissions.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#retrieve-customer-downloads
+  /// https://woosignal.com/docs/api/1.0/customers#retrieve-customer-downloads
   Future<Customers> retrieveCustomerDownloads(
       {@required int customerid,
       String downloadId,
@@ -1293,7 +1296,7 @@ class WooSignal {
 
   // Create a customer
   // This API helps you to create a new customer.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#create-a-customer
+  /// https://woosignal.com/docs/api/1.0/customers#create-a-customer
   Future<Customers> createCustomer({
     String email,
     String firstName,
@@ -1321,7 +1324,7 @@ class WooSignal {
 
   // Update a customer
   // This API lets you make changes to a customer.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#update-a-customer
+  /// https://woosignal.com/docs/api/1.0/customers#update-a-customer
   Future<Customers> updateCustomer(int id, {Map<String, dynamic> data}) async {
     Map<String, dynamic> payload = data;
 
@@ -1338,10 +1341,8 @@ class WooSignal {
 
   // Delete a customer
   // This API helps you delete a customer.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#delete-a-customer
-  Future<Customers> deleteCustomer(
-    int id, {bool force = false}
-  ) async {
+  /// https://woosignal.com/docs/api/1.0/customers#delete-a-customer
+  Future<Customers> deleteCustomer(int id, {bool force = false}) async {
     Map<String, dynamic> data;
     data = {'force': force};
     Map<String, dynamic> payload = data;
@@ -1359,7 +1360,7 @@ class WooSignal {
 
   // This API helps you to batch create, update and delete multiple customers.
   // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
-  /// Doc link: https://woosignal.com/docs/api/1.0/customers#batch-update-customers
+  /// https://woosignal.com/docs/api/1.0/customers#batch-update-customers
   Future<CustomerBatch> batchCustomers({Map<String, dynamic> data}) async {
     Map<String, dynamic> payload = data;
 
@@ -1376,7 +1377,7 @@ class WooSignal {
 
   // List all reports
   // This API helps you to list all the coupons that have been created.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#list-all-reports
+  /// https://woosignal.com/docs/api/1.0/reports#list-all-reports
   Future<List<Reports>> getReports() async {
     Map<String, dynamic> payload = {};
 
@@ -1393,7 +1394,7 @@ class WooSignal {
 
   // Retrieve sales report
   // This API lets you retrieve and view a sales report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-sales-report
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-sales-report
   Future<List<SalesReports>> getSaleReports({
     String context,
     String period,
@@ -1419,7 +1420,7 @@ class WooSignal {
 
   // Retrieve top sellers report
   // This API lets you retrieve and view a list of top sellers report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-top-sellers-report
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-top-sellers-report
   Future<List<TopSellerReport>> getTopSellerReports({
     String context,
     String period,
@@ -1445,7 +1446,7 @@ class WooSignal {
 
   // Retrieve coupons totals
   // This API lets you retrieve and view coupons totals report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-coupons-totals
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-coupons-totals
   Future<List<TotalReport>> getTotalCouponsReports() async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
@@ -1462,7 +1463,7 @@ class WooSignal {
 
   // Retrieve customers totals
   // This API lets you retrieve and view customers totals report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-customers-totals
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-customers-totals
   Future<List<TotalReport>> getTotalCustomerReports() async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
@@ -1479,7 +1480,7 @@ class WooSignal {
 
   // Retrieve orders totals
   // This API lets you retrieve and view orders totals report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-orders-totals
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-orders-totals
   Future<List<TotalReport>> getTotalOrderReports() async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
@@ -1495,7 +1496,7 @@ class WooSignal {
 
   // Retrieve products totals
   // This API lets you retrieve and view products totals report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-products-totals
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-products-totals
   Future<List<TotalReport>> getTotalProductReports() async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
@@ -1512,7 +1513,7 @@ class WooSignal {
 
   // Retrieve reviews totals
   // This API lets you retrieve and view reviews totals report.
-  /// Doc link: https://woosignal.com/docs/api/1.0/reports#retrieve-reviews-totals
+  /// https://woosignal.com/docs/api/1.0/reports#retrieve-reviews-totals
   Future<List<TotalReport>> getTotalReviewReports() async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
@@ -1527,7 +1528,7 @@ class WooSignal {
     return reviewReport;
   }
 
-  /// Doc link: https://woosignal.com/docs/api/1.0/system-status
+  /// https://woosignal.com/docs/api/1.0/system-status
   Future<SystemStatus> getSystemStatus() async {
     Map<String, dynamic> payload = {};
 
@@ -1545,10 +1546,7 @@ class WooSignal {
   // Delete an Order
   // This API helps you delete an Order.
   /// https://woosignal.com/docs/api/1.0/setting-options#delete-an-order
-  Future<OB.Orders> deleteOrder(
-    int id,
-  {bool force = false}
-  ) async {
+  Future<OB.Orders> deleteOrder(int id, {bool force = false}) async {
     Map<String, dynamic> data;
     data = {'force': force};
     Map<String, dynamic> payload = data;
@@ -1580,17 +1578,17 @@ class WooSignal {
     return orderBatch;
   }
 
-  // Doc link: https://woosignal.com/docs/api/1.0/setting-options
+  // https://woosignal.com/docs/api/1.0/setting-options
   // Retrieve a setting option
   // This API lets you retrieve and view a specific setting option.
   /// https://woosignal.com/docs/api/1.0/setting-options#retrieve-a-setting-option
   Future<SettingOption> retrieveSettingOptions(
-      {@required String groupid, @required String id}) async {
+      {@required String groupId, @required String id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload(
-        "get", payload, "settings/${groupid.toString()}/${id.toString()}");
+        "get", payload, "settings/${groupId.toString()}/${id.toString()}");
 
     SettingOption settingOption;
     await _apiProvider.post("/request", payload).then((json) {
