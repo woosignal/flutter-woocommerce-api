@@ -31,7 +31,8 @@ class Continents {
   Continents.fromJson(Map<String, dynamic> json) {
     this.code = json["code"];
     this.name = json["name"];
-    this.countries = List<Country>.from(json["countries"].map((x) => Country.fromJson(x)));
+    this.countries =
+        List<Country>.from(json["countries"].map((x) => Country.fromJson(x)));
     this.links = Links.fromJson(json["_links"]);
   }
 
