@@ -16,6 +16,7 @@
 import 'dart:convert';
 
 import 'package:woosignal/models/links.dart';
+import 'package:woosignal/models/response/shipping_method.dart';
 
 List<PaymentGateWay> paymentGateWayFromJson(String str) =>
     List<PaymentGateWay>.from(
@@ -852,74 +853,6 @@ class TitleOptions {
         "authorization": authorization == null ? null : authorization,
         "add": add == null ? null : add,
         "drop": drop == null ? null : drop,
-      };
-}
-
-class FlatRate {
-  FlatRate({
-    this.flatRate,
-    this.flatRate4,
-    this.flatRate2,
-    this.flatRate6,
-  });
-
-  String flatRate;
-  String flatRate4;
-  String flatRate2;
-  String flatRate6;
-
-  factory FlatRate.fromJson(Map<String, dynamic> json) => FlatRate(
-        flatRate: json["flat_rate"],
-        flatRate4: json["flat_rate:4"],
-        flatRate2: json["flat_rate:2"],
-        flatRate6: json["flat_rate:6"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "flat_rate": flatRate,
-        "flat_rate:4": flatRate4,
-        "flat_rate:2": flatRate2,
-        "flat_rate:6": flatRate6,
-      };
-}
-
-class FreeShipping {
-  FreeShipping({
-    this.freeShipping,
-    this.freeShipping1,
-  });
-
-  String freeShipping;
-  String freeShipping1;
-
-  factory FreeShipping.fromJson(Map<String, dynamic> json) => FreeShipping(
-        freeShipping: json["free_shipping"],
-        freeShipping1: json["free_shipping:1"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "free_shipping": freeShipping,
-        "free_shipping:1": freeShipping1,
-      };
-}
-
-class LocalPickup {
-  LocalPickup({
-    this.localPickup,
-    this.localPickup5,
-  });
-
-  String localPickup;
-  String localPickup5;
-
-  factory LocalPickup.fromJson(Map<String, dynamic> json) => LocalPickup(
-        localPickup: json["local_pickup"],
-        localPickup5: json["local_pickup:5"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "local_pickup": localPickup,
-        "local_pickup:5": localPickup5,
       };
 }
 

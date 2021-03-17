@@ -13,13 +13,6 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
-SystemStatus systemStatusFromJson(String str) =>
-    SystemStatus.fromJson(json.decode(str));
-
-String systemStatusToJson(SystemStatus data) => json.encode(data.toJson());
-
 class SystemStatus {
   SystemStatus({
     this.environment,

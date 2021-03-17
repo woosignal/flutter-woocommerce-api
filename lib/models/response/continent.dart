@@ -13,15 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-List<Continents> continentsFromJson(String str) =>
-    List<Continents>.from(json.decode(str).map((x) => Continents.fromJson(x)));
-
-String continentsToJson(List<Continents> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Continents {
   Continents({
@@ -36,13 +28,12 @@ class Continents {
   List<Country> countries;
   Links links;
 
-  factory Continents.fromJson(Map<String, dynamic> json) => Continents(
-        code: json["code"],
-        name: json["name"],
-        countries: List<Country>.from(
-            json["countries"].map((x) => Country.fromJson(x))),
-        links: Links.fromJson(json["_links"]),
-      );
+  Continents.fromJson(Map<String, dynamic> json) {
+    this.code = json["code"];
+    this.name = json["name"];
+    this.countries = List<Country>.from(json["countries"].map((x) => Country.fromJson(x)));
+    this.links = Links.fromJson(json["_links"]);
+  }
 
   Map<String, dynamic> toJson() => {
         "code": code,

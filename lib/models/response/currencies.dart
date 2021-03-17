@@ -13,15 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-List<Currencies> currenciesFromJson(String str) =>
-    List<Currencies>.from(json.decode(str).map((x) => Currencies.fromJson(x)));
-
-String currenciesToJson(List<Currencies> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Currencies {
   Currencies({

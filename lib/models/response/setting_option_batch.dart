@@ -13,15 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-SettingOptionBatch settingOptionBatchFromJson(String str) =>
-    SettingOptionBatch.fromJson(json.decode(str));
-
-String settingOptionBatchToJson(SettingOptionBatch data) =>
-    json.encode(data.toJson());
 
 class SettingOptionBatch {
   SettingOptionBatch({

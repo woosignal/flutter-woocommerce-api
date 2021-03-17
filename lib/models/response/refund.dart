@@ -13,13 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-Refund refundFromJson(String str) => Refund.fromJson(json.decode(str));
-
-String refundToJson(Refund data) => json.encode(data.toJson());
 
 class Refund {
   Refund({

@@ -13,14 +13,6 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
-TopSellerReport topSellerReportFromJson(String str) =>
-    TopSellerReport.fromJson(json.decode(str));
-
-String topSellerReportToJson(TopSellerReport data) =>
-    json.encode(data.toJson());
-
 class TopSellerReport {
   TopSellerReport({
     this.title,

@@ -13,14 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-CouponBatch couponBatchFromJson(String str) =>
-    CouponBatch.fromJson(json.decode(str));
-
-String couponBatchToJson(CouponBatch data) => json.encode(data.toJson());
 
 class CouponBatch {
   CouponBatch({

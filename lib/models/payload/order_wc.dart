@@ -57,19 +57,19 @@ class OrderWC {
     customerNote = json['customer_note'];
     parentId = json['parent_id'];
     if (json['meta_data'] != null) {
-      metaData = new List<MetaData>();
+      metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new MetaData.fromJson(v));
       });
     }
     if (json['fee_lines'] != null) {
-      feeLines = new List<FeeLines>();
+      feeLines = [];
       json['fee_lines'].forEach((v) {
         feeLines.add(new FeeLines.fromJson(v));
       });
     }
     if (json['coupon_lines'] != null) {
-      couponLines = new List<CouponLines>();
+      couponLines = [];
       json['coupon_lines'].forEach((v) {
         couponLines.add(new CouponLines.fromJson(v));
       });
@@ -80,13 +80,13 @@ class OrderWC {
         ? new Shipping.fromJson(json['shipping'])
         : null;
     if (json['line_items'] != null) {
-      lineItems = new List<LineItems>();
+      lineItems = [];
       json['line_items'].forEach((v) {
         lineItems.add(new LineItems.fromJson(v));
       });
     }
     if (json['shipping_lines'] != null) {
-      shippingLines = new List<ShippingLines>();
+      shippingLines = [];
       json['shipping_lines'].forEach((v) {
         shippingLines.add(new ShippingLines.fromJson(v));
       });
@@ -164,7 +164,7 @@ class FeeLines {
     taxStatus = json['tax_status'];
     total = json['total'];
     if (json['meta_data'] != null) {
-      metaData = new List<MetaData>();
+      metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new MetaData.fromJson(v));
       });
@@ -193,7 +193,7 @@ class CouponLines {
   CouponLines.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     if (json['meta_data'] != null) {
-      metaData = new List<MetaData>();
+      metaData = [];
       json['meta_data'].forEach((v) {
         metaData.add(new MetaData.fromJson(v));
       });

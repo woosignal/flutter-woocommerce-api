@@ -25,7 +25,7 @@ class WSShipping {
     parentId = json['parent_id'];
     name = json['name'];
     if (json['locations'] != null) {
-      locations = new List<Locations>();
+      locations = [];
       json['locations'].forEach((v) {
         locations.add(new Locations.fromJson(v));
       });
@@ -76,19 +76,19 @@ class Methods {
 
   Methods.fromJson(Map<String, dynamic> json) {
     if (json['free_shipping'] != null) {
-      freeShipping = new List<FreeShipping>();
+      freeShipping = [];
       json['free_shipping'].forEach((v) {
         freeShipping.add(new FreeShipping.fromJson(v));
       });
     }
     if (json['flat_rate'] != null) {
-      flatRate = new List<FlatRate>();
+      flatRate = [];
       json['flat_rate'].forEach((v) {
         flatRate.add(new FlatRate.fromJson(v));
       });
     }
     if (json['local_pickup'] != null) {
-      localPickup = new List<LocalPickup>();
+      localPickup = [];
       json['local_pickup'].forEach((v) {
         localPickup.add(new LocalPickup.fromJson(v));
       });
@@ -172,7 +172,7 @@ class FlatRate {
     calculationType = json['calculation_type'];
     taxable = json['taxable'];
     if (json['shipping_classes'] != null) {
-      shippingClasses = new List<ShippingClasses>();
+      shippingClasses = [];
       json['shipping_classes'].forEach((v) {
         shippingClasses.add(new ShippingClasses.fromJson(v));
       });

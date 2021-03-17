@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^1.4.0
+  woosignal: ^1.5.0
 ```
 
 ### Usage example #
@@ -55,7 +55,7 @@ _getProducts() async {
 
 #### WooCommerce - Products
 - Get Products
-- Retrive a Product by id
+- Retrieve a Product by id
 - Update a Product by id
 - Delete a Product by id 
 - Create a Product 
@@ -67,7 +67,7 @@ _getProducts() async {
 
 #### WooCommerce - Product Variations
 - Get Product Variations
-- Retrive a Product Variation by id
+- Retrieve a Product Variation by id
 
 [See Product Variations API](https://woosignal.com/docs/api/1.0/products-variations)
 
@@ -115,14 +115,14 @@ _getProducts() async {
 
 #### WooCommerce - Shipping Zones
 - Get Shipping Zones
-- Retrive a Shipping Zone by id
+- Retrieve a Shipping Zone by id
 
 [See Tax Classes API](https://woosignal.com/docs/api/1.0/tax-classes)
 
 
 #### WooCommerce - Shipping Zone Locations
 - Get Shipping Zone Locations
-- Retrive a Shipping Zone Location by id
+- Retrieve a Shipping Zone Location by id
 
 [See Shipping Zone Locations API](https://woosignal.com/docs/api/1.0/shipping-zone-locations)
 
@@ -135,7 +135,7 @@ _getProducts() async {
 
 #### WooCommerce - Orders
 - Get Orders
-- Retrive a Order by id
+- Retrieve a Order by id
 - Create an Order
 - Update an Order
 - Create, Delete and  Update Order Multiple Time.
@@ -154,7 +154,7 @@ _getProducts() async {
 
 #### WooCommerce - API Orders Notes
 - List all Orders Notes
-- Retrive a Orders Notes by id
+- Retrieve a Orders Notes by id
 - Delete a Orders Notes by id
 - Create a Orders Notes
 
@@ -163,7 +163,7 @@ _getProducts() async {
 #### WooCommerce - Refunds
 <!-- The refunds API allows you to create, view, and delete individual refunds. -->
 - List all all the refunds from an order.
-- Retrive a retrieve and view a specific refund from an order
+- Retrieve a retrieve and view a specific refund from an order
 - Delete a delete an order refund.
 - Create a new refund for an order.
 
@@ -172,7 +172,7 @@ _getProducts() async {
 #### WooCommerce - Coupons
 <!-- The coupons API allows you to create, view, update, and delete individual, or a batch, of coupon codes. -->
 - List all the coupons that have been created.
-- Retrive and view a specific coupon by ID
+- Retrieve and view a specific coupon by ID
 - This API lets you make changes  or update to a coupon.
 - Delete a delete a coupon.
 - Create, Delete and  Update Coupons Multiple Time.

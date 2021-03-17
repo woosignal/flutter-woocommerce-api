@@ -13,15 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-List<ApiData> apiDataFromJson(String str) =>
-    List<ApiData>.from(json.decode(str).map((x) => ApiData.fromJson(x)));
-
-String apiDataToJson(List<ApiData> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ApiData {
   ApiData({

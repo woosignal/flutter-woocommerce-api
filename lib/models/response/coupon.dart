@@ -44,7 +44,7 @@ class Coupon {
   List<dynamic> emailRestrictions;
   List<dynamic> usedBy;
   List<MetaData> metaData;
-  Links lLinks;
+  Links links;
 
   Coupon(
       {this.id,
@@ -74,7 +74,7 @@ class Coupon {
       this.emailRestrictions,
       this.usedBy,
       this.metaData,
-      this.lLinks});
+      this.links});
 
   Coupon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -117,7 +117,7 @@ class Coupon {
         metaData.add(new MetaData.fromJson(v));
       });
     }
-    lLinks = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -151,8 +151,8 @@ class Coupon {
     if (this.metaData != null) {
       data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
     }
-    if (this.lLinks != null) {
-      data['_links'] = this.lLinks.toJson();
+    if (this.links != null) {
+      data['_links'] = this.links.toJson();
     }
     return data;
   }

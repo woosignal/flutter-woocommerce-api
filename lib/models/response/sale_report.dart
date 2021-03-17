@@ -13,14 +13,6 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
-List<SalesReports> salesReportsFromJson(String str) => List<SalesReports>.from(
-    json.decode(str).map((x) => SalesReports.fromJson(x)));
-
-String salesReportsToJson(List<SalesReports> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class SalesReports {
   SalesReports({
     this.totalSales,
@@ -48,7 +40,7 @@ class SalesReports {
   int totalRefunds;
   String totalDiscount;
   String totalsGroupedBy;
-  Totals totals;
+  dynamic totals;
   int totalCustomers;
   Links links;
 
@@ -63,7 +55,7 @@ class SalesReports {
         totalRefunds: json["total_refunds"],
         totalDiscount: json["total_discount"],
         totalsGroupedBy: json["totals_grouped_by"],
-        totals: Totals.fromJson(json["totals"]),
+        totals: json['totals'],
         totalCustomers: json["total_customers"],
         links: Links.fromJson(json["_links"]),
       );
@@ -114,61 +106,5 @@ class About {
 
   Map<String, dynamic> toJson() => {
         "href": href,
-      };
-}
-
-class Totals {
-  Totals({
-    this.the20201108,
-  });
-
-  The20201108 the20201108;
-
-  factory Totals.fromJson(Map<String, dynamic> json) => Totals(
-        the20201108: The20201108.fromJson(json["2020-11-08"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "2020-11-08": the20201108.toJson(),
-      };
-}
-
-class The20201108 {
-  The20201108({
-    this.sales,
-    this.orders,
-    this.items,
-    this.tax,
-    this.shipping,
-    this.discount,
-    this.customers,
-  });
-
-  String sales;
-  int orders;
-  int items;
-  String tax;
-  String shipping;
-  String discount;
-  int customers;
-
-  factory The20201108.fromJson(Map<String, dynamic> json) => The20201108(
-        sales: json["sales"],
-        orders: json["orders"],
-        items: json["items"],
-        tax: json["tax"],
-        shipping: json["shipping"],
-        discount: json["discount"],
-        customers: json["customers"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "sales": sales,
-        "orders": orders,
-        "items": items,
-        "tax": tax,
-        "shipping": shipping,
-        "discount": discount,
-        "customers": customers,
       };
 }

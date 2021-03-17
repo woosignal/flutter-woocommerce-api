@@ -13,15 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-List<Countries> countriesFromJson(String str) =>
-    List<Countries>.from(json.decode(str).map((x) => Countries.fromJson(x)));
-
-String countriesToJson(List<Countries> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Countries {
   Countries({

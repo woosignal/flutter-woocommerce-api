@@ -26,25 +26,25 @@ class Links {
 
   Links.fromJson(Map<String, dynamic> json) {
     if (json['self'] != null) {
-      self = new List<Self>();
+      self = [];
       json['self'].forEach((v) {
         self.add(new Self.fromJson(v));
       });
     }
     if (json['collection'] != null) {
-      collection = new List<Collection>();
+      collection = [];
       json['collection'].forEach((v) {
         collection.add(new Collection.fromJson(v));
       });
     }
     if (json['up'] != null) {
-      up = new List<Collection>();
+      up = [];
       json['up'].forEach((v) {
         up.add(new Collection.fromJson(v));
       });
     }
     if (json['describes'] != null) {
-      describes = new List<Collection>();
+      describes = [];
       json['describes'].forEach((v) {
         describes.add(new Collection.fromJson(v));
       });

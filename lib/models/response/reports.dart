@@ -13,15 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-List<Reports> reportsFromJson(String str) =>
-    List<Reports>.from(json.decode(str).map((x) => Reports.fromJson(x)));
-
-String reportsToJson(List<Reports> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Reports {
   Reports({
@@ -46,85 +38,6 @@ class Reports {
         "_links": links.toJson(),
       };
 }
-
-// To parse this JSON data, do
-//
-//     final salesReports = salesReportsFromJson(jsonString);
-
-// To parse this JSON data, do
-//
-//     final salesReports = salesReportsFromJson(jsonString);
-
-// SalesReports salesReportsFromJson(String str) =>
-//     SalesReports.fromJson(json.decode(str));
-
-// String salesReportsToJson(SalesReports data) => json.encode(data.toJson());
-
-// class SalesReports {
-//   SalesReports({
-//     this.totalSales,
-//     this.netSales,
-//     this.averageSales,
-//     this.totalOrders,
-//     this.totalItems,
-//     this.totalTax,
-//     this.totalShipping,
-//     this.totalRefunds,
-//     this.totalDiscount,
-//     this.totalsGroupedBy,
-//     this.totals,
-//     this.totalCustomers,
-//     this.links,
-//   });
-
-//   String totalSales;
-//   String netSales;
-//   String averageSales;
-//   int totalOrders;
-//   int totalItems;
-//   String totalTax;
-//   String totalShipping;
-//   int totalRefunds;
-//   String totalDiscount;
-//   String totalsGroupedBy;
-//   Map<String, Total> totals;
-//   int totalCustomers;
-//   Links links;
-
-//   factory SalesReports.fromJson(Map<String, dynamic> json) => SalesReports(
-//         totalSales: json["total_sales"],
-//         netSales: json["net_sales"],
-//         averageSales: json["average_sales"],
-//         totalOrders: json["total_orders"],
-//         totalItems: json["total_items"],
-//         totalTax: json["total_tax"],
-//         totalShipping: json["total_shipping"],
-//         totalRefunds: json["total_refunds"],
-//         totalDiscount: json["total_discount"],
-//         totalsGroupedBy: json["totals_grouped_by"],
-//         totals: Map.from(json["totals"])
-//             .map((k, v) => MapEntry<String, Total>(k, Total.fromJson(v))),
-//         totalCustomers: json["total_customers"],
-//         links: Links.fromJson(json["_links"]),
-//       );
-
-//   Map<String, dynamic> toJson() => {
-//         "total_sales": totalSales,
-//         "net_sales": netSales,
-//         "average_sales": averageSales,
-//         "total_orders": totalOrders,
-//         "total_items": totalItems,
-//         "total_tax": totalTax,
-//         "total_shipping": totalShipping,
-//         "total_refunds": totalRefunds,
-//         "total_discount": totalDiscount,
-//         "totals_grouped_by": totalsGroupedBy,
-//         "totals": Map.from(totals)
-//             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-//         "total_customers": totalCustomers,
-//         "_links": links.toJson(),
-//       };
-// }
 
 class About {
   About({
@@ -181,11 +94,6 @@ class Total {
         "customers": customers,
       };
 }
-
-TotalReport totalReportFromJson(String str) =>
-    TotalReport.fromJson(json.decode(str));
-
-String totalReportToJson(TotalReport data) => json.encode(data.toJson());
 
 class TotalReport {
   TotalReport({

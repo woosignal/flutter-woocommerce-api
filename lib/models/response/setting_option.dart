@@ -13,16 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-List<SettingOption> settingOptionFromJson(String str) =>
-    List<SettingOption>.from(
-        json.decode(str).map((x) => SettingOption.fromJson(x)));
-
-String settingOptionToJson(List<SettingOption> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class SettingOption {
   SettingOption({

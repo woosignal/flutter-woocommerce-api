@@ -1,3 +1,9 @@
+## [1.5.0] - 2021-03-17
+
+* Refactor classes
+* Ability to fetch app meta data
+* Changes as per dart analysis log
+
 ## [1.4.0] - 2021-03-08
 
 * Refactor classes

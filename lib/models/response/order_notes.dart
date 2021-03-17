@@ -13,13 +13,7 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
-import 'dart:convert';
-
 import 'package:woosignal/models/links.dart';
-
-OrderNote orderNoteFromJson(String str) => OrderNote.fromJson(json.decode(str));
-
-String orderNoteToJson(OrderNote data) => json.encode(data.toJson());
 
 class OrderNote {
   OrderNote({
