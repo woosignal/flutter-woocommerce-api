@@ -1,3 +1,7 @@
+## [1.5.1+1] - 2021-03-27
+
+* Update README
+
 ## [1.5.1] - 2021-03-27
 
 * Fixed small issue with the image and product model
