@@ -1,3 +1,7 @@
+## [1.5.1] - 2021-03-27
+
+* Fixed small issue with the image and product model
+
 ## [1.5.0] - 2021-03-17
 
 * Refactor classes
