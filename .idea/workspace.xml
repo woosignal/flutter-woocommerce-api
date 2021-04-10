@@ -2,12 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3eeed35-acde-41db-9f60-883ce315f645" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/example/android/app/src/main/res/drawable-v21/launch_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/android/app/src/main/res/values-night/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/javaCompile/jarAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/5.6.2/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/example/sms_app/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/example/woosignal_app/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/example/sole_entrepreneur/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/local.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/helpers/shared_pref.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/helpers/shared_pref.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/collection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/collection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/image.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/image.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/links.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/links.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/meta_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/meta_data.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/payload/order_wc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/payload/order_wc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/api_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/api_data.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/continent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/continent.dart" afterDir="false" />
@@ -15,21 +53,38 @@
       <change beforePath="$PROJECT_DIR$/lib/models/response/coupon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/coupon.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/coupon_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/coupon_batch.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/currencies.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/currencies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/customer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/customer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/customer_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/customer_batch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/order.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/order_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/order_batch.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/order_notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/order_notes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/payment_gateway.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/payment_gateway.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_attribute_term.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_attribute_term.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_attributes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_attributes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/product_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_batch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_category.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_category.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_review.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_review.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_shipping_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_shipping_class.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/product_variation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/product_variation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/products.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/products.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/refund.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/refund.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/reports.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/reports.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/sale_report.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/sale_report.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/setting_option.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/setting_option.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/setting_option_batch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/setting_option_batch.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/shipping_method.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/shipping_method.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/shipping_zone.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/shipping_zone.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/shipping_zone_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/shipping_zone_location.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/system_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/system_status.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/tax_classes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/tax_classes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/tax_rate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/tax_rate.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/response/top_seller_report.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/top_seller_report.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/response/woosignal_app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/response/woosignal_app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/self.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/self.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/networking/api_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/networking/api_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/woosignal.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/woosignal.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/woosignal_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/woosignal_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,33 +138,28 @@
     </task>
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="789" y="240" width="685" height="640" key="find.popup" timestamp="1614887282011">
+    <state x="532" y="124" key="CommitChangelistDialog2" timestamp="1617645493321">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="789" y="240" width="685" height="640" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1614887282011" />
-    <state x="808" y="235" key="run.anything.popup" timestamp="1608068129731">
+    <state x="532" y="124" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1617645493321" />
+    <state x="789" y="240" width="685" height="640" key="find.popup" timestamp="1618014400274">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="808" y="235" key="run.anything.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1608068129731" />
-    <state x="577" y="248" width="670" height="676" key="search.everywhere.popup" timestamp="1615683596788">
+    <state x="789" y="240" width="685" height="640" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1618014400274" />
+    <state x="638" y="253" key="run.anything.popup" timestamp="1617644976719">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="638" y="253" key="run.anything.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1617644976719" />
+    <state x="577" y="248" width="670" height="676" key="search.everywhere.popup" timestamp="1618014673172">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="577" y="248" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120/-1920.-182.1920.1080@0.0.1792.1120" timestamp="1615683596788" />
-    <state x="577" y="248" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1614887253901" />
+    <state x="577" y="248" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1618014673172" />
   </component>
 </project>

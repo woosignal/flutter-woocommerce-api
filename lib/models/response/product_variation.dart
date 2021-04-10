@@ -18,45 +18,45 @@ import 'package:woosignal/models/image.dart';
 import '../meta_data.dart';
 
 class ProductVariation {
-  int id;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String description;
-  String permalink;
-  String sku;
-  String price;
-  String regularPrice;
-  String salePrice;
-  DateTime dateOnSaleFrom;
-  DateTime dateOnSaleFromGmt;
-  DateTime dateOnSaleTo;
-  DateTime dateOnSaleToGmt;
-  bool onSale;
-  String status;
-  bool purchasable;
-  bool virtual;
-  bool downloadable;
+  int? id;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  DateTime? dateModified;
+  DateTime? dateModifiedGmt;
+  String? description;
+  String? permalink;
+  String? sku;
+  String? price;
+  String? regularPrice;
+  String? salePrice;
+  DateTime? dateOnSaleFrom;
+  DateTime? dateOnSaleFromGmt;
+  DateTime? dateOnSaleTo;
+  DateTime? dateOnSaleToGmt;
+  bool? onSale;
+  String? status;
+  bool? purchasable;
+  bool? virtual;
+  bool? downloadable;
   List<Download> downloads;
-  int downloadLimit;
-  int downloadExpiry;
-  String taxStatus;
-  String taxClass;
-  bool manageStock;
-  int stockQuantity;
-  String stockStatus;
-  String backorders;
-  bool backordersAllowed;
-  bool backOrdered;
+  int? downloadLimit;
+  int? downloadExpiry;
+  String? taxStatus;
+  String? taxClass;
+  bool? manageStock;
+  int? stockQuantity;
+  String? stockStatus;
+  String? backorders;
+  bool? backordersAllowed;
+  bool? backOrdered;
   List<Attribute> attributes;
-  String weight;
-  String shippingClass;
-  int shippingClassId;
-  int menuOrder;
+  String? weight;
+  String? shippingClass;
+  int? shippingClassId;
+  int? menuOrder;
   Dimension dimensions;
   List<MetaData> metaData;
-  Image image;
+  Image? image;
 
   ProductVariation(
       this.id,
@@ -142,9 +142,9 @@ class ProductVariation {
 }
 
 class Category {
-  final int id;
-  final String name;
-  final String slug;
+  final int? id;
+  final String? name;
+  final String? slug;
 
   Category(this.id, this.name, this.slug);
 
@@ -161,9 +161,9 @@ class Category {
 }
 
 class Dimension {
-  final String length;
-  final String width;
-  final String height;
+  final String? length;
+  final String? width;
+  final String? height;
 
   Dimension(this.length, this.height, this.width);
 
@@ -177,9 +177,9 @@ class Dimension {
 }
 
 class Attribute {
-  final int id;
-  final String name;
-  final String option;
+  final int? id;
+  final String? name;
+  final String? option;
 
   Attribute(this.id, this.name, this.option);
 
@@ -196,9 +196,9 @@ class Attribute {
 }
 
 class Download {
-  final String id;
-  final String name;
-  final String file;
+  final String? id;
+  final String? name;
+  final String? file;
 
   Download(this.id, this.name, this.file);
 

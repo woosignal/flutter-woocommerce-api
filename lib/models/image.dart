@@ -14,14 +14,14 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class Image {
-  int id;
-  DateTime dateCreated;
-  DateTime dateCreatedGMT;
-  DateTime dateModified;
-  DateTime dateModifiedGMT;
-  String src;
-  String name;
-  String alt;
+  int? id;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGMT;
+  DateTime? dateModified;
+  DateTime? dateModifiedGMT;
+  String? src;
+  String? name;
+  String? alt;
 
   Image(this.id, this.src, this.name, this.alt, this.dateCreated,
       this.dateCreatedGMT, this.dateModified, this.dateModifiedGMT);

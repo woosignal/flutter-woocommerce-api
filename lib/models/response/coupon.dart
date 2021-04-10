@@ -17,34 +17,34 @@ import 'package:woosignal/models/links.dart';
 import 'package:woosignal/models/payload/order_wc.dart';
 
 class Coupon {
-  int id;
-  String code;
-  String amount;
-  String dateCreated;
-  String dateCreatedGmt;
-  String dateModified;
-  String dateModifiedGmt;
-  String discountType;
-  String description;
-  String dateExpires;
-  String dateExpiresGmt;
-  int usageCount;
-  bool individualUse;
-  List<dynamic> productIds;
-  List<dynamic> excludedProductIds;
-  int usageLimit;
-  int usageLimitPerUser;
-  int limitUsageToXItems;
-  bool freeShipping;
-  List<dynamic> productCategories;
-  List<dynamic> excludedProductCategories;
-  bool excludeSaleItems;
-  String minimumAmount;
-  String maximumAmount;
-  List<dynamic> emailRestrictions;
-  List<dynamic> usedBy;
-  List<MetaData> metaData;
-  Links links;
+  int? id;
+  String? code;
+  String? amount;
+  String? dateCreated;
+  String? dateCreatedGmt;
+  String? dateModified;
+  String? dateModifiedGmt;
+  String? discountType;
+  String? description;
+  String? dateExpires;
+  String? dateExpiresGmt;
+  int? usageCount;
+  bool? individualUse;
+  List<dynamic>? productIds;
+  List<dynamic>? excludedProductIds;
+  int? usageLimit;
+  int? usageLimitPerUser;
+  int? limitUsageToXItems;
+  bool? freeShipping;
+  List<dynamic>? productCategories;
+  List<dynamic>? excludedProductCategories;
+  bool? excludeSaleItems;
+  String? minimumAmount;
+  String? maximumAmount;
+  List<dynamic>? emailRestrictions;
+  List<dynamic>? usedBy;
+  List<MetaData>? metaData;
+  Links? links;
 
   Coupon(
       {this.id,
@@ -114,7 +114,7 @@ class Coupon {
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {
-        metaData.add(new MetaData.fromJson(v));
+        metaData!.add(new MetaData.fromJson(v));
       });
     }
     links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
@@ -149,10 +149,10 @@ class Coupon {
     data['email_restrictions'] = this.emailRestrictions;
     data['used_by'] = this.usedBy;
     if (this.metaData != null) {
-      data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
+      data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
     }
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

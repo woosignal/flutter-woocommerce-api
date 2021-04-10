@@ -16,18 +16,18 @@
 import 'package:woosignal/models/links.dart';
 
 class ProductReview {
-  int id;
-  String dateCreated;
-  String dateCreatedGmt;
-  int productId;
-  String status;
-  String reviewer;
-  String reviewerEmail;
-  String review;
-  int rating;
-  bool verified;
-  Map<String, dynamic> reviewerAvatarUrls;
-  Links links;
+  int? id;
+  String? dateCreated;
+  String? dateCreatedGmt;
+  int? productId;
+  String? status;
+  String? reviewer;
+  String? reviewerEmail;
+  String? review;
+  int? rating;
+  bool? verified;
+  Map<String, dynamic>? reviewerAvatarUrls;
+  Links? links;
 
   ProductReview(
       {this.id,
@@ -76,7 +76,7 @@ class ProductReview {
       data['reviewer_avatar_urls'] = this.reviewerAvatarUrls.toString();
     }
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

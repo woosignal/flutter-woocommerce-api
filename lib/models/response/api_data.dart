@@ -22,9 +22,9 @@ class ApiData {
     this.links,
   });
 
-  String slug;
-  String description;
-  Links links;
+  String? slug;
+  String? description;
+  Links? links;
 
   factory ApiData.fromJson(Map<String, dynamic> json) => ApiData(
         slug: json["slug"],
@@ -35,6 +35,6 @@ class ApiData {
   Map<String, dynamic> toJson() => {
         "slug": slug,
         "description": description,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
       };
 }

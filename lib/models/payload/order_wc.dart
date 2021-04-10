@@ -14,21 +14,21 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class OrderWC {
-  String paymentMethod;
-  String paymentMethodTitle;
-  bool setPaid;
-  String status;
-  String currency;
-  int customerId;
-  String customerNote;
-  int parentId;
-  List<MetaData> metaData;
-  List<FeeLines> feeLines;
-  List<CouponLines> couponLines;
-  Billing billing;
-  Shipping shipping;
-  List<LineItems> lineItems;
-  List<ShippingLines> shippingLines;
+  String? paymentMethod;
+  String? paymentMethodTitle;
+  bool? setPaid;
+  String? status;
+  String? currency;
+  int? customerId;
+  String? customerNote;
+  int? parentId;
+  List<MetaData>? metaData;
+  List<FeeLines>? feeLines;
+  List<CouponLines>? couponLines;
+  Billing? billing;
+  Shipping? shipping;
+  List<LineItems>? lineItems;
+  List<ShippingLines>? shippingLines;
 
   OrderWC(
       {this.paymentMethod,
@@ -59,19 +59,19 @@ class OrderWC {
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {
-        metaData.add(new MetaData.fromJson(v));
+        metaData!.add(new MetaData.fromJson(v));
       });
     }
     if (json['fee_lines'] != null) {
       feeLines = [];
       json['fee_lines'].forEach((v) {
-        feeLines.add(new FeeLines.fromJson(v));
+        feeLines!.add(new FeeLines.fromJson(v));
       });
     }
     if (json['coupon_lines'] != null) {
       couponLines = [];
       json['coupon_lines'].forEach((v) {
-        couponLines.add(new CouponLines.fromJson(v));
+        couponLines!.add(new CouponLines.fromJson(v));
       });
     }
     billing =
@@ -82,13 +82,13 @@ class OrderWC {
     if (json['line_items'] != null) {
       lineItems = [];
       json['line_items'].forEach((v) {
-        lineItems.add(new LineItems.fromJson(v));
+        lineItems!.add(new LineItems.fromJson(v));
       });
     }
     if (json['shipping_lines'] != null) {
       shippingLines = [];
       json['shipping_lines'].forEach((v) {
-        shippingLines.add(new ShippingLines.fromJson(v));
+        shippingLines!.add(new ShippingLines.fromJson(v));
       });
     }
   }
@@ -104,34 +104,34 @@ class OrderWC {
     data['customer_note'] = this.customerNote;
     data['parent_id'] = this.parentId;
     if (this.metaData != null) {
-      data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
+      data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
     }
     if (this.feeLines != null) {
-      data['fee_lines'] = this.feeLines.map((v) => v.toJson()).toList();
+      data['fee_lines'] = this.feeLines!.map((v) => v.toJson()).toList();
     }
     if (this.couponLines != null) {
-      data['coupon_lines'] = this.couponLines.map((v) => v.toJson()).toList();
+      data['coupon_lines'] = this.couponLines!.map((v) => v.toJson()).toList();
     }
     if (this.billing != null) {
-      data['billing'] = this.billing.toJson();
+      data['billing'] = this.billing!.toJson();
     }
     if (this.shipping != null) {
-      data['shipping'] = this.shipping.toJson();
+      data['shipping'] = this.shipping!.toJson();
     }
     if (this.lineItems != null) {
-      data['line_items'] = this.lineItems.map((v) => v.toJson()).toList();
+      data['line_items'] = this.lineItems!.map((v) => v.toJson()).toList();
     }
     if (this.shippingLines != null) {
       data['shipping_lines'] =
-          this.shippingLines.map((v) => v.toJson()).toList();
+          this.shippingLines!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class MetaData {
-  String key;
-  String value;
+  String? key;
+  String? value;
 
   MetaData({this.key, this.value});
 
@@ -149,11 +149,11 @@ class MetaData {
 }
 
 class FeeLines {
-  String name;
-  String taxClass;
-  String taxStatus;
-  String total;
-  List<MetaData> metaData;
+  String? name;
+  String? taxClass;
+  String? taxStatus;
+  String? total;
+  List<MetaData>? metaData;
 
   FeeLines(
       {this.name, this.taxClass, this.taxStatus, this.total, this.metaData});
@@ -166,7 +166,7 @@ class FeeLines {
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {
-        metaData.add(new MetaData.fromJson(v));
+        metaData!.add(new MetaData.fromJson(v));
       });
     }
   }
@@ -178,15 +178,15 @@ class FeeLines {
     data['tax_status'] = this.taxStatus;
     data['total'] = this.total;
     if (this.metaData != null) {
-      data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
+      data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class CouponLines {
-  String code;
-  List<MetaData> metaData;
+  String? code;
+  List<MetaData>? metaData;
 
   CouponLines({this.code, this.metaData});
 
@@ -195,7 +195,7 @@ class CouponLines {
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {
-        metaData.add(new MetaData.fromJson(v));
+        metaData!.add(new MetaData.fromJson(v));
       });
     }
   }
@@ -204,24 +204,24 @@ class CouponLines {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['code'] = this.code;
     if (this.metaData != null) {
-      data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
+      data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Billing {
-  String company;
-  String firstName;
-  String lastName;
-  String address1;
-  String address2;
-  String city;
-  String state;
-  String postcode;
-  String country;
-  String email;
-  String phone;
+  String? company;
+  String? firstName;
+  String? lastName;
+  String? address1;
+  String? address2;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
+  String? email;
+  String? phone;
 
   Billing(
       {this.company,
@@ -272,15 +272,15 @@ class Billing {
 }
 
 class Shipping {
-  String company;
-  String firstName;
-  String lastName;
-  String address1;
-  String address2;
-  String city;
-  String state;
-  String postcode;
-  String country;
+  String? company;
+  String? firstName;
+  String? lastName;
+  String? address1;
+  String? address2;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
 
   Shipping(
       {this.company,
@@ -321,13 +321,13 @@ class Shipping {
 }
 
 class LineItems {
-  int productId;
-  String name;
-  int variationId;
-  String taxClass;
-  String subtotal;
-  String total;
-  int quantity;
+  int? productId;
+  String? name;
+  int? variationId;
+  String? taxClass;
+  String? subtotal;
+  String? total;
+  int? quantity;
 
   LineItems(
       {this.productId,
@@ -366,9 +366,9 @@ class LineItems {
 }
 
 class ShippingLines {
-  String methodId;
-  String methodTitle;
-  String total;
+  String? methodId;
+  String? methodTitle;
+  String? total;
 
   ShippingLines({this.methodId, this.methodTitle, this.total});
 

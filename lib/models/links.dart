@@ -17,10 +17,10 @@ import 'package:woosignal/models/collection.dart';
 import 'package:woosignal/models/self.dart';
 
 class Links {
-  List<Self> self;
-  List<Collection> collection;
-  List<Collection> up;
-  List<Collection> describes;
+  List<Self>? self;
+  List<Collection>? collection;
+  List<Collection>? up;
+  List<Collection>? describes;
 
   Links({this.self, this.collection, this.up});
 
@@ -28,25 +28,25 @@ class Links {
     if (json['self'] != null) {
       self = [];
       json['self'].forEach((v) {
-        self.add(new Self.fromJson(v));
+        self!.add(new Self.fromJson(v));
       });
     }
     if (json['collection'] != null) {
       collection = [];
       json['collection'].forEach((v) {
-        collection.add(new Collection.fromJson(v));
+        collection!.add(new Collection.fromJson(v));
       });
     }
     if (json['up'] != null) {
       up = [];
       json['up'].forEach((v) {
-        up.add(new Collection.fromJson(v));
+        up!.add(new Collection.fromJson(v));
       });
     }
     if (json['describes'] != null) {
       describes = [];
       json['describes'].forEach((v) {
-        describes.add(new Collection.fromJson(v));
+        describes!.add(new Collection.fromJson(v));
       });
     }
   }
@@ -54,16 +54,16 @@ class Links {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.self != null) {
-      data['self'] = this.self.map((v) => v.toJson()).toList();
+      data['self'] = this.self!.map((v) => v.toJson()).toList();
     }
     if (this.collection != null) {
-      data['collection'] = this.collection.map((v) => v.toJson()).toList();
+      data['collection'] = this.collection!.map((v) => v.toJson()).toList();
     }
     if (this.up != null) {
-      data['up'] = this.up.map((v) => v.toJson()).toList();
+      data['up'] = this.up!.map((v) => v.toJson()).toList();
     }
     if (this.describes != null) {
-      data['describes'] = this.describes.map((v) => v.toJson()).toList();
+      data['describes'] = this.describes!.map((v) => v.toJson()).toList();
     }
     return data;
   }

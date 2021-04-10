@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:woosignal/models/response/system_status.dart' as system;
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:woosignal/woosignal.dart';
 
 void main() => runApp(MyApp());
@@ -34,19 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
   _incrementCounter() async {
     // CONFIG FOR WOOSIGNAL
     var wsConfig = {
-      "appKey":
-          "app_affb6434339b34443a297c2e40a3edab7102137e6d67de9abfe612b749bd",
+      "appKey": "your app key",
       "debugMode": true
     };
 
     // CREATING AN INSTANCE
     WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
 
-    system.SystemStatus coupons = await wooSignal.getSystemStatus();
-    print(coupons.database);
-
     setState(() {
-      _productName = coupons.pages.toString();
+      _productName = "";
     });
   }
 

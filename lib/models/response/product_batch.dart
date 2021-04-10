@@ -23,9 +23,9 @@ class ProductBatch {
     this.delete,
   });
 
-  List<Create> create;
-  List<Create> update;
-  List<Create> delete;
+  List<Create>? create;
+  List<Create>? update;
+  List<Create>? delete;
 
   factory ProductBatch.fromJson(Map<String, dynamic> json) => ProductBatch(
         create:
@@ -37,9 +37,9 @@ class ProductBatch {
       );
 
   Map<String, dynamic> toJson() => {
-        "create": List<dynamic>.from(create.map((x) => x.toJson())),
-        "update": List<dynamic>.from(update.map((x) => x.toJson())),
-        "delete": List<dynamic>.from(delete.map((x) => x.toJson())),
+        "create": List<dynamic>.from(create!.map((x) => x.toJson())),
+        "update": List<dynamic>.from(update!.map((x) => x.toJson())),
+        "delete": List<dynamic>.from(delete!.map((x) => x.toJson())),
       };
 }
 
@@ -113,72 +113,72 @@ class Create {
     this.links,
   });
 
-  int id;
-  String name;
-  String slug;
-  String permalink;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String type;
-  String status;
-  bool featured;
-  String catalogVisibility;
-  String description;
-  String shortDescription;
-  String sku;
-  String price;
-  String regularPrice;
-  String salePrice;
+  int? id;
+  String? name;
+  String? slug;
+  String? permalink;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  DateTime? dateModified;
+  DateTime? dateModifiedGmt;
+  String? type;
+  String? status;
+  bool? featured;
+  String? catalogVisibility;
+  String? description;
+  String? shortDescription;
+  String? sku;
+  String? price;
+  String? regularPrice;
+  String? salePrice;
   dynamic dateOnSaleFrom;
   dynamic dateOnSaleFromGmt;
   dynamic dateOnSaleTo;
   dynamic dateOnSaleToGmt;
-  String priceHtml;
-  bool onSale;
-  bool purchasable;
-  int totalSales;
-  bool virtual;
-  bool downloadable;
-  List<Download> downloads;
-  int downloadLimit;
-  int downloadExpiry;
-  String externalUrl;
-  String buttonText;
-  String taxStatus;
-  String taxClass;
-  bool manageStock;
+  String? priceHtml;
+  bool? onSale;
+  bool? purchasable;
+  int? totalSales;
+  bool? virtual;
+  bool? downloadable;
+  List<Download>? downloads;
+  int? downloadLimit;
+  int? downloadExpiry;
+  String? externalUrl;
+  String? buttonText;
+  String? taxStatus;
+  String? taxClass;
+  bool? manageStock;
   dynamic stockQuantity;
-  String stockStatus;
-  String backorders;
-  bool backordersAllowed;
-  bool backordered;
-  bool soldIndividually;
-  String weight;
-  Dimensions dimensions;
-  bool shippingRequired;
-  bool shippingTaxable;
-  String shippingClass;
-  int shippingClassId;
-  bool reviewsAllowed;
-  String averageRating;
-  int ratingCount;
-  List<int> relatedIds;
-  List<dynamic> upsellIds;
-  List<dynamic> crossSellIds;
-  int parentId;
-  String purchaseNote;
-  List<Category> categories;
-  List<dynamic> tags;
-  List<Image> images;
-  List<Attribute> attributes;
-  List<DefaultAttribute> defaultAttributes;
-  List<dynamic> variations;
-  List<dynamic> groupedProducts;
-  int menuOrder;
-  List<dynamic> metaData;
-  Links links;
+  String? stockStatus;
+  String? backorders;
+  bool? backordersAllowed;
+  bool? backordered;
+  bool? soldIndividually;
+  String? weight;
+  Dimensions? dimensions;
+  bool? shippingRequired;
+  bool? shippingTaxable;
+  String? shippingClass;
+  int? shippingClassId;
+  bool? reviewsAllowed;
+  String? averageRating;
+  int? ratingCount;
+  List<int>? relatedIds;
+  List<dynamic>? upsellIds;
+  List<dynamic>? crossSellIds;
+  int? parentId;
+  String? purchaseNote;
+  List<Category>? categories;
+  List<dynamic>? tags;
+  List<Image>? images;
+  List<Attribute>? attributes;
+  List<DefaultAttribute>? defaultAttributes;
+  List<dynamic>? variations;
+  List<dynamic>? groupedProducts;
+  int? menuOrder;
+  List<dynamic>? metaData;
+  Links? links;
 
   factory Create.fromJson(Map<String, dynamic> json) => Create(
         id: json["id"],
@@ -260,10 +260,10 @@ class Create {
         "name": name,
         "slug": slug,
         "permalink": permalink,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
-        "date_modified": dateModified.toIso8601String(),
-        "date_modified_gmt": dateModifiedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
+        "date_modified": dateModified!.toIso8601String(),
+        "date_modified_gmt": dateModifiedGmt!.toIso8601String(),
         "type": type,
         "status": status,
         "featured": featured,
@@ -284,7 +284,7 @@ class Create {
         "total_sales": totalSales,
         "virtual": virtual,
         "downloadable": downloadable,
-        "downloads": List<dynamic>.from(downloads.map((x) => x.toJson())),
+        "downloads": List<dynamic>.from(downloads!.map((x) => x.toJson())),
         "download_limit": downloadLimit,
         "download_expiry": downloadExpiry,
         "external_url": externalUrl,
@@ -299,7 +299,7 @@ class Create {
         "backordered": backordered,
         "sold_individually": soldIndividually,
         "weight": weight,
-        "dimensions": dimensions.toJson(),
+        "dimensions": dimensions!.toJson(),
         "shipping_required": shippingRequired,
         "shipping_taxable": shippingTaxable,
         "shipping_class": shippingClass,
@@ -307,22 +307,22 @@ class Create {
         "reviews_allowed": reviewsAllowed,
         "average_rating": averageRating,
         "rating_count": ratingCount,
-        "related_ids": List<dynamic>.from(relatedIds.map((x) => x)),
-        "upsell_ids": List<dynamic>.from(upsellIds.map((x) => x)),
-        "cross_sell_ids": List<dynamic>.from(crossSellIds.map((x) => x)),
+        "related_ids": List<dynamic>.from(relatedIds!.map((x) => x)),
+        "upsell_ids": List<dynamic>.from(upsellIds!.map((x) => x)),
+        "cross_sell_ids": List<dynamic>.from(crossSellIds!.map((x) => x)),
         "parent_id": parentId,
         "purchase_note": purchaseNote,
-        "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
-        "tags": List<dynamic>.from(tags.map((x) => x)),
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "attributes": List<dynamic>.from(attributes.map((x) => x.toJson())),
+        "categories": List<dynamic>.from(categories!.map((x) => x.toJson())),
+        "tags": List<dynamic>.from(tags!.map((x) => x)),
+        "images": List<dynamic>.from(images!.map((x) => x.toJson())),
+        "attributes": List<dynamic>.from(attributes!.map((x) => x.toJson())),
         "default_attributes":
-            List<dynamic>.from(defaultAttributes.map((x) => x.toJson())),
-        "variations": List<dynamic>.from(variations.map((x) => x)),
-        "grouped_products": List<dynamic>.from(groupedProducts.map((x) => x)),
+            List<dynamic>.from(defaultAttributes!.map((x) => x.toJson())),
+        "variations": List<dynamic>.from(variations!.map((x) => x)),
+        "grouped_products": List<dynamic>.from(groupedProducts!.map((x) => x)),
         "menu_order": menuOrder,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x)),
-        "_links": links.toJson(),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x)),
+        "_links": links!.toJson(),
       };
 }
 
@@ -336,12 +336,12 @@ class Attribute {
     this.options,
   });
 
-  int id;
-  String name;
-  int position;
-  bool visible;
-  bool variation;
-  List<String> options;
+  int? id;
+  String? name;
+  int? position;
+  bool? visible;
+  bool? variation;
+  List<String>? options;
 
   factory Attribute.fromJson(Map<String, dynamic> json) => Attribute(
         id: json["id"],
@@ -358,7 +358,7 @@ class Attribute {
         "position": position,
         "visible": visible,
         "variation": variation,
-        "options": List<dynamic>.from(options.map((x) => x)),
+        "options": List<dynamic>.from(options!.map((x) => x)),
       };
 }
 
@@ -369,9 +369,9 @@ class Category {
     this.slug,
   });
 
-  int id;
-  String name;
-  String slug;
+  int? id;
+  String? name;
+  String? slug;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         id: json["id"],
@@ -393,9 +393,9 @@ class DefaultAttribute {
     this.option,
   });
 
-  int id;
-  String name;
-  String option;
+  int? id;
+  String? name;
+  String? option;
 
   factory DefaultAttribute.fromJson(Map<String, dynamic> json) =>
       DefaultAttribute(
@@ -418,9 +418,9 @@ class Dimensions {
     this.height,
   });
 
-  String length;
-  String width;
-  String height;
+  String? length;
+  String? width;
+  String? height;
 
   factory Dimensions.fromJson(Map<String, dynamic> json) => Dimensions(
         length: json["length"],
@@ -442,9 +442,9 @@ class Download {
     this.file,
   });
 
-  int id;
-  String name;
-  String file;
+  int? id;
+  String? name;
+  String? file;
 
   factory Download.fromJson(Map<String, dynamic> json) => Download(
         id: json["id"],

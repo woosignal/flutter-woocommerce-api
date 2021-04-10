@@ -28,15 +28,15 @@ class SettingOption {
     this.options,
   });
 
-  String id;
-  String label;
-  String description;
-  String type;
-  String settingOptionDefault;
-  String tip;
-  String value;
-  Links links;
-  Map<String, String> options;
+  String? id;
+  String? label;
+  String? description;
+  String? type;
+  String? settingOptionDefault;
+  String? tip;
+  String? value;
+  Links? links;
+  Map<String, String>? options;
 
   factory SettingOption.fromJson(Map<String, dynamic> json) => SettingOption(
         id: json["id"],
@@ -61,9 +61,9 @@ class SettingOption {
         "default": settingOptionDefault,
         "tip": tip == null ? null : tip,
         "value": value,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
         "options": options == null
             ? null
-            : Map.from(options).map((k, v) => MapEntry<String, dynamic>(k, v)),
+            : Map.from(options!).map((k, v) => MapEntry<String, dynamic>(k, v)),
       };
 }

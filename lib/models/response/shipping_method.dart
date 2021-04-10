@@ -14,10 +14,10 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class WSShipping {
-  int parentId;
-  String name;
-  List<Locations> locations;
-  Methods methods;
+  int? parentId;
+  String? name;
+  List<Locations>? locations;
+  Methods? methods;
 
   WSShipping({this.parentId, this.name, this.locations, this.methods});
 
@@ -27,7 +27,7 @@ class WSShipping {
     if (json['locations'] != null) {
       locations = [];
       json['locations'].forEach((v) {
-        locations.add(new Locations.fromJson(v));
+        locations!.add(new Locations.fromJson(v));
       });
     }
     methods =
@@ -39,18 +39,18 @@ class WSShipping {
     data['parent_id'] = this.parentId;
     data['name'] = this.name;
     if (this.locations != null) {
-      data['locations'] = this.locations.map((v) => v.toJson()).toList();
+      data['locations'] = this.locations!.map((v) => v.toJson()).toList();
     }
     if (this.methods != null) {
-      data['methods'] = this.methods.toJson();
+      data['methods'] = this.methods!.toJson();
     }
     return data;
   }
 }
 
 class Locations {
-  String code;
-  String type;
+  String? code;
+  String? type;
 
   Locations({this.code, this.type});
 
@@ -68,9 +68,9 @@ class Locations {
 }
 
 class Methods {
-  List<FreeShipping> freeShipping;
-  List<FlatRate> flatRate;
-  List<LocalPickup> localPickup;
+  List<FreeShipping>? freeShipping;
+  List<FlatRate>? flatRate;
+  List<LocalPickup>? localPickup;
 
   Methods({this.freeShipping, this.flatRate, this.localPickup});
 
@@ -78,19 +78,19 @@ class Methods {
     if (json['free_shipping'] != null) {
       freeShipping = [];
       json['free_shipping'].forEach((v) {
-        freeShipping.add(new FreeShipping.fromJson(v));
+        freeShipping!.add(new FreeShipping.fromJson(v));
       });
     }
     if (json['flat_rate'] != null) {
       flatRate = [];
       json['flat_rate'].forEach((v) {
-        flatRate.add(new FlatRate.fromJson(v));
+        flatRate!.add(new FlatRate.fromJson(v));
       });
     }
     if (json['local_pickup'] != null) {
       localPickup = [];
       json['local_pickup'].forEach((v) {
-        localPickup.add(new LocalPickup.fromJson(v));
+        localPickup!.add(new LocalPickup.fromJson(v));
       });
     }
   }
@@ -98,24 +98,24 @@ class Methods {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.freeShipping != null) {
-      data['free_shipping'] = this.freeShipping.map((v) => v.toJson()).toList();
+      data['free_shipping'] = this.freeShipping!.map((v) => v.toJson()).toList();
     }
     if (this.flatRate != null) {
-      data['flat_rate'] = this.flatRate.map((v) => v.toJson()).toList();
+      data['flat_rate'] = this.flatRate!.map((v) => v.toJson()).toList();
     }
     if (this.localPickup != null) {
-      data['local_pickup'] = this.localPickup.map((v) => v.toJson()).toList();
+      data['local_pickup'] = this.localPickup!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class FreeShipping {
-  int id;
-  String title;
-  String methodId;
-  String cost;
-  String minimumOrderAmount;
+  int? id;
+  String? title;
+  String? methodId;
+  String? cost;
+  String? minimumOrderAmount;
 
   FreeShipping(
       {this.id, this.title, this.methodId, this.cost, this.minimumOrderAmount});
@@ -144,14 +144,14 @@ class FreeShipping {
 }
 
 class FlatRate {
-  int id;
-  String title;
-  String methodId;
-  String cost;
-  String classCost;
-  String calculationType;
-  bool taxable;
-  List<ShippingClasses> shippingClasses;
+  int? id;
+  String? title;
+  String? methodId;
+  String? cost;
+  String? classCost;
+  String? calculationType;
+  bool? taxable;
+  List<ShippingClasses>? shippingClasses;
 
   FlatRate(
       {this.id,
@@ -174,7 +174,7 @@ class FlatRate {
     if (json['shipping_classes'] != null) {
       shippingClasses = [];
       json['shipping_classes'].forEach((v) {
-        shippingClasses.add(new ShippingClasses.fromJson(v));
+        shippingClasses!.add(new ShippingClasses.fromJson(v));
       });
     }
   }
@@ -190,15 +190,15 @@ class FlatRate {
     data['taxable'] = this.taxable;
     if (this.shippingClasses != null) {
       data['shipping_classes'] =
-          this.shippingClasses.map((v) => v.toJson()).toList();
+          this.shippingClasses!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ShippingClasses {
-  String id;
-  String cost;
+  String? id;
+  String? cost;
 
   ShippingClasses({this.id, this.cost});
 
@@ -216,11 +216,11 @@ class ShippingClasses {
 }
 
 class LocalPickup {
-  int id;
-  String title;
-  String methodId;
-  bool taxable;
-  String cost;
+  int? id;
+  String? title;
+  String? methodId;
+  bool? taxable;
+  String? cost;
 
   LocalPickup({this.id, this.title, this.methodId, this.taxable, this.cost});
 

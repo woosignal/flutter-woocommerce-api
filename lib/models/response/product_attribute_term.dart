@@ -16,13 +16,13 @@
 import 'package:woosignal/models/links.dart';
 
 class ProductAttributeTerm {
-  int id;
-  String name;
-  String slug;
-  String description;
-  int menuOrder;
-  int count;
-  Links links;
+  int? id;
+  String? name;
+  String? slug;
+  String? description;
+  int? menuOrder;
+  int? count;
+  Links? links;
 
   ProductAttributeTerm(
       {this.id,
@@ -52,7 +52,7 @@ class ProductAttributeTerm {
     data['menu_order'] = this.menuOrder;
     data['count'] = this.count;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

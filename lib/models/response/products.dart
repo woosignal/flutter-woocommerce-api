@@ -18,62 +18,62 @@ import 'package:woosignal/models/image.dart';
 import '../meta_data.dart';
 
 class Product {
-  final int id;
-  final String name;
-  final String slug;
-  final String permalink;
-  final String type;
-  final String status;
-  final bool featured;
-  final String catalogVisibility;
-  final String description;
-  final String shortDescription;
-  final String sku;
-  final String price;
-  final String regularPrice;
-  final String salePrice;
-  final String priceHtml;
-  final bool onSale;
-  final bool purchasable;
-  final int totalSales;
-  final bool virtual;
-  final bool downloadable;
+  final int? id;
+  final String? name;
+  final String? slug;
+  final String? permalink;
+  final String? type;
+  final String? status;
+  final bool? featured;
+  final String? catalogVisibility;
+  final String? description;
+  final String? shortDescription;
+  final String? sku;
+  final String? price;
+  final String? regularPrice;
+  final String? salePrice;
+  final String? priceHtml;
+  final bool? onSale;
+  final bool? purchasable;
+  final int? totalSales;
+  final bool? virtual;
+  final bool? downloadable;
   final List<Download> downloads;
-  final int downloadLimit;
-  final int downloadExpiry;
-  final String externalUrl;
-  final String buttonText;
-  final String taxStatus;
-  final String taxClass;
-  final bool manageStock;
-  final int stockQuantity;
-  final String stockStatus;
-  final String backorders;
-  final bool backordersAllowed;
-  final bool backordered;
-  final bool soldIndividually;
-  final String weight;
+  final int? downloadLimit;
+  final int? downloadExpiry;
+  final String? externalUrl;
+  final String? buttonText;
+  final String? taxStatus;
+  final String? taxClass;
+  final bool? manageStock;
+  final int? stockQuantity;
+  final String? stockStatus;
+  final String? backorders;
+  final bool? backordersAllowed;
+  final bool? backordered;
+  final bool? soldIndividually;
+  final String? weight;
   final Dimension dimensions;
-  final bool shippingRequired;
-  final bool shippingTaxable;
-  final String shippingClass;
-  final int shippingClassId;
-  final bool reviewsAllowed;
-  final String averageRating;
-  final int ratingCount;
-  final List<int> relatedIds;
-  final List<int> upsellIds;
-  final List<int> crossSellIds;
-  final int parentId;
-  final String purchaseNote;
+  final bool? shippingRequired;
+  final bool? shippingTaxable;
+  final String? shippingClass;
+  final int? shippingClassId;
+  final bool? reviewsAllowed;
+  final String? averageRating;
+  final int? ratingCount;
+  final List<int>? relatedIds;
+  final List<int>? upsellIds;
+  final List<int>? crossSellIds;
+  final int? parentId;
+  final String? purchaseNote;
   final List<Category> categories;
   final List<Tag> tags;
   final List<Image> images;
   final List<Attribute> attributes;
   final List<DefaultAttribute> defaultAttributes;
-  final List<int> variations;
-  final List<int> groupedProducts;
-  final int menuOrder;
+  final List<int>? variations;
+  final List<int>? groupedProducts;
+  final int? menuOrder;
   final List<MetaData> metaData;
 
   Product(
@@ -207,9 +207,9 @@ class Product {
 }
 
 class Tag {
-  final int id;
-  final String name;
-  final String slug;
+  final int? id;
+  final String? name;
+  final String? slug;
 
   Tag(this.id, this.name, this.slug);
 
@@ -222,9 +222,9 @@ class Tag {
 }
 
 class DefaultAttribute {
-  final int id;
-  final String name;
-  final String option;
+  final int? id;
+  final String? name;
+  final String? option;
 
   DefaultAttribute(this.id, this.name, this.option);
 
@@ -237,9 +237,9 @@ class DefaultAttribute {
 }
 
 class Category {
-  final int id;
-  final String name;
-  final String slug;
+  final int? id;
+  final String? name;
+  final String? slug;
 
   Category(this.id, this.name, this.slug);
 
@@ -256,9 +256,9 @@ class Category {
 }
 
 class Dimension {
-  final String length;
-  final String width;
-  final String height;
+  final String? length;
+  final String? width;
+  final String? height;
 
   Dimension(this.length, this.height, this.width);
 
@@ -272,12 +272,12 @@ class Dimension {
 }
 
 class Attribute {
-  final int id;
-  final String name;
-  final int position;
-  final bool visible;
-  final bool variation;
-  final List<String> options;
+  final int? id;
+  final String? name;
+  final int? position;
+  final bool? visible;
+  final bool? variation;
+  final List<String>? options;
 
   Attribute(this.id, this.name, this.position, this.visible, this.variation,
       this.options);
@@ -301,9 +301,9 @@ class Attribute {
 }
 
 class Download {
-  final String id;
-  final String name;
-  final String file;
+  final String? id;
+  final String? name;
+  final String? file;
 
   Download(this.id, this.name, this.file);
 

@@ -21,9 +21,9 @@ class CustomerBatch {
     this.update,
     this.delete,
   });
-  List<Customers> create;
-  List<Customers> update;
-  List<Customers> delete;
+  List<Customers>? create;
+  List<Customers>? update;
+  List<Customers>? delete;
 
   factory CustomerBatch.fromJson(Map<String, dynamic> json) => CustomerBatch(
         create: List<Customers>.from(
@@ -35,9 +35,9 @@ class CustomerBatch {
       );
 
   Map<String, dynamic> toJson() => {
-        "create": List<dynamic>.from(create.map((x) => x.toJson())),
-        "update": List<dynamic>.from(update.map((x) => x.toJson())),
-        "delete": List<dynamic>.from(delete.map((x) => x.toJson())),
+        "create": List<dynamic>.from(create!.map((x) => x.toJson())),
+        "update": List<dynamic>.from(update!.map((x) => x.toJson())),
+        "delete": List<dynamic>.from(delete!.map((x) => x.toJson())),
       };
 }
 
@@ -61,22 +61,22 @@ class Customers {
     this.links,
   });
 
-  int id;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String email;
-  String firstName;
-  String lastName;
-  String role;
-  String username;
-  Ing billing;
-  Ing shipping;
-  bool isPayingCustomer;
-  String avatarUrl;
-  List<dynamic> metaData;
-  Links links;
+  int? id;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  DateTime? dateModified;
+  DateTime? dateModifiedGmt;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? role;
+  String? username;
+  Ing? billing;
+  Ing? shipping;
+  bool? isPayingCustomer;
+  String? avatarUrl;
+  List<dynamic>? metaData;
+  Links? links;
 
   factory Customers.fromJson(Map<String, dynamic> json) => Customers(
         id: json["id"],
@@ -99,21 +99,21 @@ class Customers {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
-        "date_modified": dateModified.toIso8601String(),
-        "date_modified_gmt": dateModifiedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
+        "date_modified": dateModified!.toIso8601String(),
+        "date_modified_gmt": dateModifiedGmt!.toIso8601String(),
         "email": email,
         "first_name": firstName,
         "last_name": lastName,
         "role": role,
         "username": username,
-        "billing": billing.toJson(),
-        "shipping": shipping.toJson(),
+        "billing": billing!.toJson(),
+        "shipping": shipping!.toJson(),
         "is_paying_customer": isPayingCustomer,
         "avatar_url": avatarUrl,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x)),
-        "_links": links.toJson(),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x)),
+        "_links": links!.toJson(),
       };
 }
 
@@ -132,17 +132,17 @@ class Ing {
     this.phone,
   });
 
-  String firstName;
-  String lastName;
-  String company;
-  String address1;
-  String address2;
-  String city;
-  String state;
-  String postcode;
-  String country;
-  String email;
-  String phone;
+  String? firstName;
+  String? lastName;
+  String? company;
+  String? address1;
+  String? address2;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
+  String? email;
+  String? phone;
 
   factory Ing.fromJson(Map<String, dynamic> json) => Ing(
         firstName: json["first_name"],

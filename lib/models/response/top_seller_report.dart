@@ -21,10 +21,10 @@ class TopSellerReport {
     this.links,
   });
 
-  String title;
-  int productId;
-  int quantity;
-  Links links;
+  String? title;
+  int? productId;
+  int? quantity;
+  Links? links;
 
   factory TopSellerReport.fromJson(Map<String, dynamic> json) =>
       TopSellerReport(
@@ -38,7 +38,7 @@ class TopSellerReport {
         "title": title,
         "product_id": productId,
         "quantity": quantity,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
       };
 }
 
@@ -48,8 +48,8 @@ class Links {
     this.product,
   });
 
-  List<About> about;
-  List<About> product;
+  List<About>? about;
+  List<About>? product;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
         about: List<About>.from(json["about"].map((x) => About.fromJson(x))),
@@ -58,8 +58,8 @@ class Links {
       );
 
   Map<String, dynamic> toJson() => {
-        "about": List<dynamic>.from(about.map((x) => x.toJson())),
-        "product": List<dynamic>.from(product.map((x) => x.toJson())),
+        "about": List<dynamic>.from(about!.map((x) => x.toJson())),
+        "product": List<dynamic>.from(product!.map((x) => x.toJson())),
       };
 }
 
@@ -68,7 +68,7 @@ class About {
     this.href,
   });
 
-  String href;
+  String? href;
 
   factory About.fromJson(Map<String, dynamic> json) => About(
         href: json["href"],

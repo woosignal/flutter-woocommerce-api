@@ -16,13 +16,13 @@
 import 'package:woosignal/models/links.dart';
 
 class ProductAttribute {
-  int id;
-  String name;
-  String slug;
-  String type;
-  String orderBy;
-  bool hasArchives;
-  Links links;
+  int? id;
+  String? name;
+  String? slug;
+  String? type;
+  String? orderBy;
+  bool? hasArchives;
+  Links? links;
 
   ProductAttribute(
       {this.id,
@@ -52,7 +52,7 @@ class ProductAttribute {
     data['order_by'] = this.orderBy;
     data['has_archives'] = this.hasArchives;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

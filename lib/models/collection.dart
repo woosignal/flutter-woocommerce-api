@@ -14,7 +14,7 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class Collection {
-  String href;
+  String? href;
 
   Collection({this.href});
 

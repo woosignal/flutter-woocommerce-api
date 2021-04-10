@@ -17,16 +17,16 @@ import 'package:woosignal/models/image.dart';
 import 'package:woosignal/models/links.dart';
 
 class ProductCategory {
-  int id;
-  String name;
-  String slug;
-  int parent;
-  String description;
-  String display;
-  Image image;
-  int menuOrder;
-  int count;
-  Links links;
+  int? id;
+  String? name;
+  String? slug;
+  int? parent;
+  String? description;
+  String? display;
+  Image? image;
+  int? menuOrder;
+  int? count;
+  Links? links;
 
   ProductCategory(
       {this.id,
@@ -62,12 +62,12 @@ class ProductCategory {
     data['description'] = this.description;
     data['display'] = this.display;
     if (this.image != null) {
-      data['image'] = this.image.toJson();
+      data['image'] = this.image!.toJson();
     }
     data['menu_order'] = this.menuOrder;
     data['count'] = this.count;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

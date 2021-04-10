@@ -39,16 +39,16 @@ class PaymentGateWay {
     this.links,
   });
 
-  String id;
-  String title;
-  String description;
-  String order;
-  bool enabled;
-  String methodTitle;
-  String methodDescription;
-  List<String> methodSupports;
-  Settings settings;
-  Links links;
+  String? id;
+  String? title;
+  String? description;
+  String? order;
+  bool? enabled;
+  String? methodTitle;
+  String? methodDescription;
+  List<String>? methodSupports;
+  Settings? settings;
+  Links? links;
 
   factory PaymentGateWay.fromJson(Map<String, dynamic> json) => PaymentGateWay(
         id: json["id"],
@@ -72,9 +72,9 @@ class PaymentGateWay {
         "enabled": enabled,
         "method_title": methodTitle,
         "method_description": methodDescription,
-        "method_supports": List<dynamic>.from(methodSupports.map((x) => x)),
-        "settings": settings.toJson(),
-        "_links": links.toJson(),
+        "method_supports": List<dynamic>.from(methodSupports!.map((x) => x)),
+        "settings": settings!.toJson(),
+        "_links": links!.toJson(),
       };
 }
 
@@ -168,92 +168,92 @@ class Settings {
     this.logging,
   });
 
-  Title title;
-  Title instructions;
-  Title enableForMethods;
-  Title enableForVirtual;
-  Title email;
-  Title advanced;
-  Title testmode;
-  Title debug;
-  Title ipnNotification;
-  Title receiverEmail;
-  Title identityToken;
-  Title invoicePrefix;
-  Title sendShipping;
-  Title addressOverride;
-  Title paymentaction;
-  Title pageStyle;
-  Title imageUrl;
-  Title apiDetails;
-  Title apiUsername;
-  Title apiPassword;
-  Title apiSignature;
-  Title sandboxApiUsername;
-  Title sandboxApiPassword;
-  Title sandboxApiSignature;
-  Title accountSettings;
-  Title environment;
-  Title apiCredentials;
-  Title apiCertificate;
-  Title apiSubject;
-  Title sandboxApiCredentials;
-  Title sandboxApiCertificate;
-  Title sandboxApiSubject;
-  Title paypalHostedSettings;
-  Title brandName;
-  Title logoImageUrl;
-  Title headerImageUrl;
-  Title landingPage;
-  Title requireBilling;
-  Title requirePhoneNumber;
-  Title instantPayments;
-  Title subtotalMismatchBehavior;
-  Title buttonSettings;
-  Title useSpb;
-  Title buttonColor;
-  Title buttonShape;
-  Title buttonLayout;
-  Title buttonSize;
-  HideFundingMethods hideFundingMethods;
-  Title creditEnabled;
-  Title cartCheckoutEnabled;
-  Title miniCartSettings;
-  Title miniCartSettingsToggle;
-  Title miniCartButtonLayout;
-  Title miniCartButtonSize;
-  HideFundingMethods miniCartHideFundingMethods;
-  Title miniCartCreditEnabled;
-  Title singleProductSettings;
-  Title checkoutOnSingleProductEnabled;
-  Title singleProductSettingsToggle;
-  Title singleProductButtonLayout;
-  Title singleProductButtonSize;
-  HideFundingMethods singleProductHideFundingMethods;
-  Title singleProductCreditEnabled;
-  Title markSettings;
-  Title markEnabled;
-  Title markSettingsToggle;
-  Title markButtonLayout;
-  Title markButtonSize;
-  HideFundingMethods markHideFundingMethods;
-  Title markCreditEnabled;
-  Title webhook;
-  Title testPublishableKey;
-  Title testSecretKey;
-  Title testWebhookSecret;
-  Title publishableKey;
-  Title secretKey;
-  Title webhookSecret;
-  Title inlineCcForm;
-  Title statementDescriptor;
-  Title capture;
-  Title paymentRequest;
-  Title paymentRequestButtonType;
-  Title paymentRequestButtonTheme;
-  Title paymentRequestButtonHeight;
-  Title savedCards;
-  Title logging;
+  Title? title;
+  Title? instructions;
+  Title? enableForMethods;
+  Title? enableForVirtual;
+  Title? email;
+  Title? advanced;
+  Title? testmode;
+  Title? debug;
+  Title? ipnNotification;
+  Title? receiverEmail;
+  Title? identityToken;
+  Title? invoicePrefix;
+  Title? sendShipping;
+  Title? addressOverride;
+  Title? paymentaction;
+  Title? pageStyle;
+  Title? imageUrl;
+  Title? apiDetails;
+  Title? apiUsername;
+  Title? apiPassword;
+  Title? apiSignature;
+  Title? sandboxApiUsername;
+  Title? sandboxApiPassword;
+  Title? sandboxApiSignature;
+  Title? accountSettings;
+  Title? environment;
+  Title? apiCredentials;
+  Title? apiCertificate;
+  Title? apiSubject;
+  Title? sandboxApiCredentials;
+  Title? sandboxApiCertificate;
+  Title? sandboxApiSubject;
+  Title? paypalHostedSettings;
+  Title? brandName;
+  Title? logoImageUrl;
+  Title? headerImageUrl;
+  Title? landingPage;
+  Title? requireBilling;
+  Title? requirePhoneNumber;
+  Title? instantPayments;
+  Title? subtotalMismatchBehavior;
+  Title? buttonSettings;
+  Title? useSpb;
+  Title? buttonColor;
+  Title? buttonShape;
+  Title? buttonLayout;
+  Title? buttonSize;
+  HideFundingMethods? hideFundingMethods;
+  Title? creditEnabled;
+  Title? cartCheckoutEnabled;
+  Title? miniCartSettings;
+  Title? miniCartSettingsToggle;
+  Title? miniCartButtonLayout;
+  Title? miniCartButtonSize;
+  HideFundingMethods? miniCartHideFundingMethods;
+  Title? miniCartCreditEnabled;
+  Title? singleProductSettings;
+  Title? checkoutOnSingleProductEnabled;
+  Title? singleProductSettingsToggle;
+  Title? singleProductButtonLayout;
+  Title? singleProductButtonSize;
+  HideFundingMethods? singleProductHideFundingMethods;
+  Title? singleProductCreditEnabled;
+  Title? markSettings;
+  Title? markEnabled;
+  Title? markSettingsToggle;
+  Title? markButtonLayout;
+  Title? markButtonSize;
+  HideFundingMethods? markHideFundingMethods;
+  Title? markCreditEnabled;
+  Title? webhook;
+  Title? testPublishableKey;
+  Title? testSecretKey;
+  Title? testWebhookSecret;
+  Title? publishableKey;
+  Title? secretKey;
+  Title? webhookSecret;
+  Title? inlineCcForm;
+  Title? statementDescriptor;
+  Title? capture;
+  Title? paymentRequest;
+  Title? paymentRequestButtonType;
+  Title? paymentRequestButtonTheme;
+  Title? paymentRequestButtonHeight;
+  Title? savedCards;
+  Title? logging;
 
   factory Settings.fromJson(Map<String, dynamic> json) => Settings(
         title: Title.fromJson(json["title"]),
@@ -513,160 +513,160 @@ class Settings {
       );
 
   Map<String, dynamic> toJson() => {
-        "title": title.toJson(),
-        "instructions": instructions == null ? null : instructions.toJson(),
+        "title": title!.toJson(),
+        "instructions": instructions == null ? null : instructions!.toJson(),
         "enable_for_methods":
-            enableForMethods == null ? null : enableForMethods.toJson(),
+            enableForMethods == null ? null : enableForMethods!.toJson(),
         "enable_for_virtual":
-            enableForVirtual == null ? null : enableForVirtual.toJson(),
-        "email": email == null ? null : email.toJson(),
-        "advanced": advanced == null ? null : advanced.toJson(),
-        "testmode": testmode == null ? null : testmode.toJson(),
-        "debug": debug == null ? null : debug.toJson(),
+            enableForVirtual == null ? null : enableForVirtual!.toJson(),
+        "email": email == null ? null : email!.toJson(),
+        "advanced": advanced == null ? null : advanced!.toJson(),
+        "testmode": testmode == null ? null : testmode!.toJson(),
+        "debug": debug == null ? null : debug!.toJson(),
         "ipn_notification":
-            ipnNotification == null ? null : ipnNotification.toJson(),
-        "receiver_email": receiverEmail == null ? null : receiverEmail.toJson(),
-        "identity_token": identityToken == null ? null : identityToken.toJson(),
-        "invoice_prefix": invoicePrefix == null ? null : invoicePrefix.toJson(),
-        "send_shipping": sendShipping == null ? null : sendShipping.toJson(),
+            ipnNotification == null ? null : ipnNotification!.toJson(),
+        "receiver_email": receiverEmail == null ? null : receiverEmail!.toJson(),
+        "identity_token": identityToken == null ? null : identityToken!.toJson(),
+        "invoice_prefix": invoicePrefix == null ? null : invoicePrefix!.toJson(),
+        "send_shipping": sendShipping == null ? null : sendShipping!.toJson(),
         "address_override":
-            addressOverride == null ? null : addressOverride.toJson(),
-        "paymentaction": paymentaction == null ? null : paymentaction.toJson(),
-        "page_style": pageStyle == null ? null : pageStyle.toJson(),
-        "image_url": imageUrl == null ? null : imageUrl.toJson(),
-        "api_details": apiDetails == null ? null : apiDetails.toJson(),
-        "api_username": apiUsername == null ? null : apiUsername.toJson(),
-        "api_password": apiPassword == null ? null : apiPassword.toJson(),
-        "api_signature": apiSignature == null ? null : apiSignature.toJson(),
+            addressOverride == null ? null : addressOverride!.toJson(),
+        "paymentaction": paymentaction == null ? null : paymentaction!.toJson(),
+        "page_style": pageStyle == null ? null : pageStyle!.toJson(),
+        "image_url": imageUrl == null ? null : imageUrl!.toJson(),
+        "api_details": apiDetails == null ? null : apiDetails!.toJson(),
+        "api_username": apiUsername == null ? null : apiUsername!.toJson(),
+        "api_password": apiPassword == null ? null : apiPassword!.toJson(),
+        "api_signature": apiSignature == null ? null : apiSignature!.toJson(),
         "sandbox_api_username":
-            sandboxApiUsername == null ? null : sandboxApiUsername.toJson(),
+            sandboxApiUsername == null ? null : sandboxApiUsername!.toJson(),
         "sandbox_api_password":
-            sandboxApiPassword == null ? null : sandboxApiPassword.toJson(),
+            sandboxApiPassword == null ? null : sandboxApiPassword!.toJson(),
         "sandbox_api_signature":
-            sandboxApiSignature == null ? null : sandboxApiSignature.toJson(),
+            sandboxApiSignature == null ? null : sandboxApiSignature!.toJson(),
         "account_settings":
-            accountSettings == null ? null : accountSettings.toJson(),
-        "environment": environment == null ? null : environment.toJson(),
+            accountSettings == null ? null : accountSettings!.toJson(),
+        "environment": environment == null ? null : environment!.toJson(),
         "api_credentials":
-            apiCredentials == null ? null : apiCredentials.toJson(),
+            apiCredentials == null ? null : apiCredentials!.toJson(),
         "api_certificate":
-            apiCertificate == null ? null : apiCertificate.toJson(),
-        "api_subject": apiSubject == null ? null : apiSubject.toJson(),
+            apiCertificate == null ? null : apiCertificate!.toJson(),
+        "api_subject": apiSubject == null ? null : apiSubject!.toJson(),
         "sandbox_api_credentials": sandboxApiCredentials == null
             ? null
-            : sandboxApiCredentials.toJson(),
+            : sandboxApiCredentials!.toJson(),
         "sandbox_api_certificate": sandboxApiCertificate == null
             ? null
-            : sandboxApiCertificate.toJson(),
+            : sandboxApiCertificate!.toJson(),
         "sandbox_api_subject":
-            sandboxApiSubject == null ? null : sandboxApiSubject.toJson(),
+            sandboxApiSubject == null ? null : sandboxApiSubject!.toJson(),
         "paypal_hosted_settings":
-            paypalHostedSettings == null ? null : paypalHostedSettings.toJson(),
-        "brand_name": brandName == null ? null : brandName.toJson(),
-        "logo_image_url": logoImageUrl == null ? null : logoImageUrl.toJson(),
+            paypalHostedSettings == null ? null : paypalHostedSettings!.toJson(),
+        "brand_name": brandName == null ? null : brandName!.toJson(),
+        "logo_image_url": logoImageUrl == null ? null : logoImageUrl!.toJson(),
         "header_image_url":
-            headerImageUrl == null ? null : headerImageUrl.toJson(),
-        "landing_page": landingPage == null ? null : landingPage.toJson(),
+            headerImageUrl == null ? null : headerImageUrl!.toJson(),
+        "landing_page": landingPage == null ? null : landingPage!.toJson(),
         "require_billing":
-            requireBilling == null ? null : requireBilling.toJson(),
+            requireBilling == null ? null : requireBilling!.toJson(),
         "require_phone_number":
-            requirePhoneNumber == null ? null : requirePhoneNumber.toJson(),
+            requirePhoneNumber == null ? null : requirePhoneNumber!.toJson(),
         "instant_payments":
-            instantPayments == null ? null : instantPayments.toJson(),
+            instantPayments == null ? null : instantPayments!.toJson(),
         "subtotal_mismatch_behavior": subtotalMismatchBehavior == null
             ? null
-            : subtotalMismatchBehavior.toJson(),
+            : subtotalMismatchBehavior!.toJson(),
         "button_settings":
-            buttonSettings == null ? null : buttonSettings.toJson(),
-        "use_spb": useSpb == null ? null : useSpb.toJson(),
-        "button_color": buttonColor == null ? null : buttonColor.toJson(),
-        "button_shape": buttonShape == null ? null : buttonShape.toJson(),
-        "button_layout": buttonLayout == null ? null : buttonLayout.toJson(),
-        "button_size": buttonSize == null ? null : buttonSize.toJson(),
+            buttonSettings == null ? null : buttonSettings!.toJson(),
+        "use_spb": useSpb == null ? null : useSpb!.toJson(),
+        "button_color": buttonColor == null ? null : buttonColor!.toJson(),
+        "button_shape": buttonShape == null ? null : buttonShape!.toJson(),
+        "button_layout": buttonLayout == null ? null : buttonLayout!.toJson(),
+        "button_size": buttonSize == null ? null : buttonSize!.toJson(),
         "hide_funding_methods":
-            hideFundingMethods == null ? null : hideFundingMethods.toJson(),
-        "credit_enabled": creditEnabled == null ? null : creditEnabled.toJson(),
+            hideFundingMethods == null ? null : hideFundingMethods!.toJson(),
+        "credit_enabled": creditEnabled == null ? null : creditEnabled!.toJson(),
         "cart_checkout_enabled":
-            cartCheckoutEnabled == null ? null : cartCheckoutEnabled.toJson(),
+            cartCheckoutEnabled == null ? null : cartCheckoutEnabled!.toJson(),
         "mini_cart_settings":
-            miniCartSettings == null ? null : miniCartSettings.toJson(),
+            miniCartSettings == null ? null : miniCartSettings!.toJson(),
         "mini_cart_settings_toggle": miniCartSettingsToggle == null
             ? null
-            : miniCartSettingsToggle.toJson(),
+            : miniCartSettingsToggle!.toJson(),
         "mini_cart_button_layout":
-            miniCartButtonLayout == null ? null : miniCartButtonLayout.toJson(),
+            miniCartButtonLayout == null ? null : miniCartButtonLayout!.toJson(),
         "mini_cart_button_size":
-            miniCartButtonSize == null ? null : miniCartButtonSize.toJson(),
+            miniCartButtonSize == null ? null : miniCartButtonSize!.toJson(),
         "mini_cart_hide_funding_methods": miniCartHideFundingMethods == null
             ? null
-            : miniCartHideFundingMethods.toJson(),
+            : miniCartHideFundingMethods!.toJson(),
         "mini_cart_credit_enabled": miniCartCreditEnabled == null
             ? null
-            : miniCartCreditEnabled.toJson(),
+            : miniCartCreditEnabled!.toJson(),
         "single_product_settings": singleProductSettings == null
             ? null
-            : singleProductSettings.toJson(),
+            : singleProductSettings!.toJson(),
         "checkout_on_single_product_enabled":
             checkoutOnSingleProductEnabled == null
                 ? null
-                : checkoutOnSingleProductEnabled.toJson(),
+                : checkoutOnSingleProductEnabled!.toJson(),
         "single_product_settings_toggle": singleProductSettingsToggle == null
             ? null
-            : singleProductSettingsToggle.toJson(),
+            : singleProductSettingsToggle!.toJson(),
         "single_product_button_layout": singleProductButtonLayout == null
             ? null
-            : singleProductButtonLayout.toJson(),
+            : singleProductButtonLayout!.toJson(),
         "single_product_button_size": singleProductButtonSize == null
             ? null
-            : singleProductButtonSize.toJson(),
+            : singleProductButtonSize!.toJson(),
         "single_product_hide_funding_methods":
             singleProductHideFundingMethods == null
                 ? null
-                : singleProductHideFundingMethods.toJson(),
+                : singleProductHideFundingMethods!.toJson(),
         "single_product_credit_enabled": singleProductCreditEnabled == null
             ? null
-            : singleProductCreditEnabled.toJson(),
-        "mark_settings": markSettings == null ? null : markSettings.toJson(),
-        "mark_enabled": markEnabled == null ? null : markEnabled.toJson(),
+            : singleProductCreditEnabled!.toJson(),
+        "mark_settings": markSettings == null ? null : markSettings!.toJson(),
+        "mark_enabled": markEnabled == null ? null : markEnabled!.toJson(),
         "mark_settings_toggle":
-            markSettingsToggle == null ? null : markSettingsToggle.toJson(),
+            markSettingsToggle == null ? null : markSettingsToggle!.toJson(),
         "mark_button_layout":
-            markButtonLayout == null ? null : markButtonLayout.toJson(),
+            markButtonLayout == null ? null : markButtonLayout!.toJson(),
         "mark_button_size":
-            markButtonSize == null ? null : markButtonSize.toJson(),
+            markButtonSize == null ? null : markButtonSize!.toJson(),
         "mark_hide_funding_methods": markHideFundingMethods == null
             ? null
-            : markHideFundingMethods.toJson(),
+            : markHideFundingMethods!.toJson(),
         "mark_credit_enabled":
-            markCreditEnabled == null ? null : markCreditEnabled.toJson(),
-        "webhook": webhook == null ? null : webhook.toJson(),
+            markCreditEnabled == null ? null : markCreditEnabled!.toJson(),
+        "webhook": webhook == null ? null : webhook!.toJson(),
         "test_publishable_key":
-            testPublishableKey == null ? null : testPublishableKey.toJson(),
+            testPublishableKey == null ? null : testPublishableKey!.toJson(),
         "test_secret_key":
-            testSecretKey == null ? null : testSecretKey.toJson(),
+            testSecretKey == null ? null : testSecretKey!.toJson(),
         "test_webhook_secret":
-            testWebhookSecret == null ? null : testWebhookSecret.toJson(),
+            testWebhookSecret == null ? null : testWebhookSecret!.toJson(),
         "publishable_key":
-            publishableKey == null ? null : publishableKey.toJson(),
-        "secret_key": secretKey == null ? null : secretKey.toJson(),
-        "webhook_secret": webhookSecret == null ? null : webhookSecret.toJson(),
-        "inline_cc_form": inlineCcForm == null ? null : inlineCcForm.toJson(),
+            publishableKey == null ? null : publishableKey!.toJson(),
+        "secret_key": secretKey == null ? null : secretKey!.toJson(),
+        "webhook_secret": webhookSecret == null ? null : webhookSecret!.toJson(),
+        "inline_cc_form": inlineCcForm == null ? null : inlineCcForm!.toJson(),
         "statement_descriptor":
-            statementDescriptor == null ? null : statementDescriptor.toJson(),
-        "capture": capture == null ? null : capture.toJson(),
+            statementDescriptor == null ? null : statementDescriptor!.toJson(),
+        "capture": capture == null ? null : capture!.toJson(),
         "payment_request":
-            paymentRequest == null ? null : paymentRequest.toJson(),
+            paymentRequest == null ? null : paymentRequest!.toJson(),
         "payment_request_button_type": paymentRequestButtonType == null
             ? null
-            : paymentRequestButtonType.toJson(),
+            : paymentRequestButtonType!.toJson(),
         "payment_request_button_theme": paymentRequestButtonTheme == null
             ? null
-            : paymentRequestButtonTheme.toJson(),
+            : paymentRequestButtonTheme!.toJson(),
         "payment_request_button_height": paymentRequestButtonHeight == null
             ? null
-            : paymentRequestButtonHeight.toJson(),
-        "saved_cards": savedCards == null ? null : savedCards.toJson(),
-        "logging": logging == null ? null : logging.toJson(),
+            : paymentRequestButtonHeight!.toJson(),
+        "saved_cards": savedCards == null ? null : savedCards!.toJson(),
+        "logging": logging == null ? null : logging!.toJson(),
       };
 }
 
@@ -683,15 +683,15 @@ class Title {
     this.options,
   });
 
-  String id;
-  String label;
-  String description;
-  Type type;
-  String value;
-  String titleDefault;
-  String tip;
-  Placeholder placeholder;
-  TitleOptions options;
+  String? id;
+  String? label;
+  String? description;
+  Type? type;
+  String? value;
+  String? titleDefault;
+  String? tip;
+  Placeholder? placeholder;
+  TitleOptions? options;
 
   factory Title.fromJson(Map<String, dynamic> json) => Title(
         id: json["id"],
@@ -711,12 +711,12 @@ class Title {
         "id": id,
         "label": label,
         "description": description,
-        "type": typeValues.reverse[type],
+        "type": typeValues.reverse![type!],
         "value": value,
         "default": titleDefault,
         "tip": tip,
-        "placeholder": placeholderValues.reverse[placeholder],
-        "options": options == null ? null : options.toJson(),
+        "placeholder": placeholderValues.reverse![placeholder!],
+        "options": options == null ? null : options!.toJson(),
       };
 }
 
@@ -753,35 +753,35 @@ class TitleOptions {
     this.drop,
   });
 
-  String gold;
-  String blue;
-  String silver;
-  String black;
-  String vertical;
-  String horizontal;
-  String pill;
-  String rect;
-  String responsive;
-  String small;
-  String medium;
-  String large;
-  FlatRate flatRate;
-  FreeShipping freeShipping;
-  LocalPickup localPickup;
-  String live;
-  String sandbox;
-  String billing;
-  String login;
-  String dark;
-  String light;
-  String lightOutline;
-  String optionsDefault;
-  String buy;
-  String donate;
-  String sale;
-  String authorization;
-  String add;
-  String drop;
+  String? gold;
+  String? blue;
+  String? silver;
+  String? black;
+  String? vertical;
+  String? horizontal;
+  String? pill;
+  String? rect;
+  String? responsive;
+  String? small;
+  String? medium;
+  String? large;
+  FlatRate? flatRate;
+  FreeShipping? freeShipping;
+  LocalPickup? localPickup;
+  String? live;
+  String? sandbox;
+  String? billing;
+  String? login;
+  String? dark;
+  String? light;
+  String? lightOutline;
+  String? optionsDefault;
+  String? buy;
+  String? donate;
+  String? sale;
+  String? authorization;
+  String? add;
+  String? drop;
 
   factory TitleOptions.fromJson(Map<String, dynamic> json) => TitleOptions(
         gold: json["gold"] == null ? null : json["gold"],
@@ -836,9 +836,9 @@ class TitleOptions {
         "small": small == null ? null : small,
         "medium": medium == null ? null : medium,
         "large": large == null ? null : large,
-        "Flat rate": flatRate == null ? null : flatRate.toJson(),
-        "Free shipping": freeShipping == null ? null : freeShipping.toJson(),
-        "Local pickup": localPickup == null ? null : localPickup.toJson(),
+        "Flat rate": flatRate == null ? null : flatRate!.toJson(),
+        "Free shipping": freeShipping == null ? null : freeShipping!.toJson(),
+        "Local pickup": localPickup == null ? null : localPickup!.toJson(),
         "live": live == null ? null : live,
         "sandbox": sandbox == null ? null : sandbox,
         "Billing": billing == null ? null : billing,
@@ -910,15 +910,15 @@ class HideFundingMethods {
     this.options,
   });
 
-  String id;
-  String label;
-  String description;
-  Type type;
-  String value;
-  List<String> hideFundingMethodsDefault;
-  String tip;
-  String placeholder;
-  HideFundingMethodsOptions options;
+  String? id;
+  String? label;
+  String? description;
+  Type? type;
+  String? value;
+  List<String>? hideFundingMethodsDefault;
+  String? tip;
+  String? placeholder;
+  HideFundingMethodsOptions? options;
 
   factory HideFundingMethods.fromJson(Map<String, dynamic> json) =>
       HideFundingMethods(
@@ -938,12 +938,12 @@ class HideFundingMethods {
         "id": id,
         "label": label,
         "description": description,
-        "type": typeValues.reverse[type],
+        "type": typeValues.reverse![type!],
         "value": value,
-        "default": List<dynamic>.from(hideFundingMethodsDefault.map((x) => x)),
+        "default": List<dynamic>.from(hideFundingMethodsDefault!.map((x) => x)),
         "tip": tip,
         "placeholder": placeholder,
-        "options": options.toJson(),
+        "options": options!.toJson(),
       };
 }
 
@@ -954,9 +954,9 @@ class HideFundingMethodsOptions {
     this.card,
   });
 
-  String credit;
-  String elv;
-  String card;
+  String? credit;
+  String? elv;
+  String? card;
 
   factory HideFundingMethodsOptions.fromJson(Map<String, dynamic> json) =>
       HideFundingMethodsOptions(
@@ -974,11 +974,11 @@ class HideFundingMethodsOptions {
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     if (reverseMap == null) {
       reverseMap = map.map((k, v) => new MapEntry(v, k));
     }

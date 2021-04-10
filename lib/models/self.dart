@@ -14,7 +14,7 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class Self {
-  String href;
+  String? href;
 
   Self({this.href});
 

@@ -26,13 +26,13 @@ class OrderNote {
     this.links,
   });
 
-  int id;
-  String author;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  String note;
-  bool customerNote;
-  Links links;
+  int? id;
+  String? author;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  String? note;
+  bool? customerNote;
+  Links? links;
 
   factory OrderNote.fromJson(Map<String, dynamic> json) => OrderNote(
         id: json["id"],
@@ -47,10 +47,10 @@ class OrderNote {
   Map<String, dynamic> toJson() => {
         "id": id,
         "author": author,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
         "note": note,
         "customer_note": customerNote,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
       };
 }

@@ -23,10 +23,10 @@ class Currencies {
     this.links,
   });
 
-  String code;
-  String name;
-  String symbol;
-  Links links;
+  String? code;
+  String? name;
+  String? symbol;
+  Links? links;
 
   factory Currencies.fromJson(Map<String, dynamic> json) => Currencies(
         code: json["code"],
@@ -39,6 +39,6 @@ class Currencies {
         "code": code,
         "name": name,
         "symbol": symbol,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
       };
 }

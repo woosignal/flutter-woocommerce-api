@@ -24,13 +24,13 @@ class SystemStatus {
     this.pages,
   });
 
-  Environment environment;
-  Database database;
-  List<ActivePlugin> activePlugins;
-  Theme theme;
-  Settings settings;
-  Security security;
-  List<Page> pages;
+  Environment? environment;
+  Database? database;
+  List<ActivePlugin>? activePlugins;
+  Theme? theme;
+  Settings? settings;
+  Security? security;
+  List<Page>? pages;
 
   factory SystemStatus.fromJson(Map<String, dynamic> json) => SystemStatus(
         environment: Environment.fromJson(json["environment"]),
@@ -44,14 +44,14 @@ class SystemStatus {
       );
 
   Map<String, dynamic> toJson() => {
-        "environment": environment.toJson(),
-        "database": database.toJson(),
+        "environment": environment!.toJson(),
+        "database": database!.toJson(),
         "active_plugins":
-            List<dynamic>.from(activePlugins.map((x) => x.toJson())),
-        "theme": theme.toJson(),
-        "settings": settings.toJson(),
-        "security": security.toJson(),
-        "pages": List<dynamic>.from(pages.map((x) => x.toJson())),
+            List<dynamic>.from(activePlugins!.map((x) => x.toJson())),
+        "theme": theme!.toJson(),
+        "settings": settings!.toJson(),
+        "security": security!.toJson(),
+        "pages": List<dynamic>.from(pages!.map((x) => x.toJson())),
       };
 }
 
@@ -67,14 +67,14 @@ class ActivePlugin {
     this.networkActivated,
   });
 
-  String plugin;
-  String name;
-  String version;
-  String versionLatest;
-  String url;
-  String authorName;
-  String authorUrl;
-  bool networkActivated;
+  String? plugin;
+  String? name;
+  String? version;
+  String? versionLatest;
+  String? url;
+  String? authorName;
+  String? authorUrl;
+  bool? networkActivated;
 
   factory ActivePlugin.fromJson(Map<String, dynamic> json) => ActivePlugin(
         plugin: json["plugin"],
@@ -108,11 +108,11 @@ class Database {
     this.databaseSize,
   });
 
-  String wcDatabaseVersion;
-  String databasePrefix;
-  String maxmindGeoipDatabase;
-  DatabaseTables databaseTables;
-  DatabaseSize databaseSize;
+  String? wcDatabaseVersion;
+  String? databasePrefix;
+  String? maxmindGeoipDatabase;
+  DatabaseTables? databaseTables;
+  DatabaseSize? databaseSize;
 
   factory Database.fromJson(Map<String, dynamic> json) => Database(
         wcDatabaseVersion: json["wc_database_version"],
@@ -126,8 +126,8 @@ class Database {
         "wc_database_version": wcDatabaseVersion,
         "database_prefix": databasePrefix,
         "maxmind_geoip_database": maxmindGeoipDatabase,
-        "database_tables": databaseTables.toJson(),
-        "database_size": databaseSize.toJson(),
+        "database_tables": databaseTables!.toJson(),
+        "database_size": databaseSize!.toJson(),
       };
 }
 
@@ -137,8 +137,8 @@ class DatabaseSize {
     this.index,
   });
 
-  double data;
-  double index;
+  double? data;
+  double? index;
 
   factory DatabaseSize.fromJson(Map<String, dynamic> json) => DatabaseSize(
         data: json["data"].toDouble(),
@@ -157,8 +157,8 @@ class DatabaseTables {
     this.other,
   });
 
-  Map<String, Other> woocommerce;
-  Map<String, Other> other;
+  Map<String, Other>? woocommerce;
+  Map<String, Other>? other;
 
   factory DatabaseTables.fromJson(Map<String, dynamic> json) => DatabaseTables(
         woocommerce: Map.from(json["woocommerce"])
@@ -168,9 +168,9 @@ class DatabaseTables {
       );
 
   Map<String, dynamic> toJson() => {
-        "woocommerce": Map.from(woocommerce)
+        "woocommerce": Map.from(woocommerce!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
-        "other": Map.from(other)
+        "other": Map.from(other!)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
       };
 }
@@ -181,8 +181,8 @@ class Other {
     this.index,
   });
 
-  String data;
-  String index;
+  String? data;
+  String? index;
 
   factory Other.fromJson(Map<String, dynamic> json) => Other(
         data: json["data"],
@@ -231,38 +231,38 @@ class Environment {
     this.remoteGetResponse,
   });
 
-  String homeUrl;
-  String siteUrl;
-  String version;
-  String logDirectory;
-  bool logDirectoryWritable;
-  String wpVersion;
-  bool wpMultisite;
-  int wpMemoryLimit;
-  bool wpDebugMode;
-  bool wpCron;
-  String language;
+  String? homeUrl;
+  String? siteUrl;
+  String? version;
+  String? logDirectory;
+  bool? logDirectoryWritable;
+  String? wpVersion;
+  bool? wpMultisite;
+  int? wpMemoryLimit;
+  bool? wpDebugMode;
+  bool? wpCron;
+  String? language;
   dynamic externalObjectCache;
-  String serverInfo;
-  String phpVersion;
-  int phpPostMaxSize;
-  int phpMaxExecutionTime;
-  int phpMaxInputVars;
-  String curlVersion;
-  bool suhosinInstalled;
-  int maxUploadSize;
-  String mysqlVersion;
-  String mysqlVersionString;
-  String defaultTimezone;
-  bool fsockopenOrCurlEnabled;
-  bool soapclientEnabled;
-  bool domdocumentEnabled;
-  bool gzipEnabled;
-  bool mbstringEnabled;
-  bool remotePostSuccessful;
-  String remotePostResponse;
-  bool remoteGetSuccessful;
-  String remoteGetResponse;
+  String? serverInfo;
+  String? phpVersion;
+  int? phpPostMaxSize;
+  int? phpMaxExecutionTime;
+  int? phpMaxInputVars;
+  String? curlVersion;
+  bool? suhosinInstalled;
+  int? maxUploadSize;
+  String? mysqlVersion;
+  String? mysqlVersionString;
+  String? defaultTimezone;
+  bool? fsockopenOrCurlEnabled;
+  bool? soapclientEnabled;
+  bool? domdocumentEnabled;
+  bool? gzipEnabled;
+  bool? mbstringEnabled;
+  bool? remotePostSuccessful;
+  String? remotePostResponse;
+  bool? remoteGetSuccessful;
+  String? remoteGetResponse;
 
   factory Environment.fromJson(Map<String, dynamic> json) => Environment(
         homeUrl: json["home_url"],
@@ -347,14 +347,14 @@ class Page {
     this.shortcodePresent,
   });
 
-  String pageName;
-  String pageId;
-  bool pageSet;
-  bool pageExists;
-  bool pageVisible;
-  String shortcode;
-  bool shortcodeRequired;
-  bool shortcodePresent;
+  String? pageName;
+  String? pageId;
+  bool? pageSet;
+  bool? pageExists;
+  bool? pageVisible;
+  String? shortcode;
+  bool? shortcodeRequired;
+  bool? shortcodePresent;
 
   factory Page.fromJson(Map<String, dynamic> json) => Page(
         pageName: json["page_name"],
@@ -385,8 +385,8 @@ class Security {
     this.hideErrors,
   });
 
-  bool secureConnection;
-  bool hideErrors;
+  bool? secureConnection;
+  bool? hideErrors;
 
   factory Security.fromJson(Map<String, dynamic> json) => Security(
         secureConnection: json["secure_connection"],
@@ -414,17 +414,17 @@ class Settings {
     this.productVisibilityTerms,
   });
 
-  bool apiEnabled;
-  bool forceSsl;
-  String currency;
-  String currencySymbol;
-  String currencyPosition;
-  String thousandSeparator;
-  String decimalSeparator;
-  int numberOfDecimals;
-  bool geolocationEnabled;
-  Taxonomies taxonomies;
-  ProductVisibilityTerms productVisibilityTerms;
+  bool? apiEnabled;
+  bool? forceSsl;
+  String? currency;
+  String? currencySymbol;
+  String? currencyPosition;
+  String? thousandSeparator;
+  String? decimalSeparator;
+  int? numberOfDecimals;
+  bool? geolocationEnabled;
+  Taxonomies? taxonomies;
+  ProductVisibilityTerms? productVisibilityTerms;
 
   factory Settings.fromJson(Map<String, dynamic> json) => Settings(
         apiEnabled: json["api_enabled"],
@@ -451,8 +451,8 @@ class Settings {
         "decimal_separator": decimalSeparator,
         "number_of_decimals": numberOfDecimals,
         "geolocation_enabled": geolocationEnabled,
-        "taxonomies": taxonomies.toJson(),
-        "product_visibility_terms": productVisibilityTerms.toJson(),
+        "taxonomies": taxonomies!.toJson(),
+        "product_visibility_terms": productVisibilityTerms!.toJson(),
       };
 }
 
@@ -469,15 +469,15 @@ class ProductVisibilityTerms {
     this.rated5,
   });
 
-  String excludeFromCatalog;
-  String excludeFromSearch;
-  String featured;
-  String outofstock;
-  String rated1;
-  String rated2;
-  String rated3;
-  String rated4;
-  String rated5;
+  String? excludeFromCatalog;
+  String? excludeFromSearch;
+  String? featured;
+  String? outofstock;
+  String? rated1;
+  String? rated2;
+  String? rated3;
+  String? rated4;
+  String? rated5;
 
   factory ProductVisibilityTerms.fromJson(Map<String, dynamic> json) =>
       ProductVisibilityTerms(
@@ -513,10 +513,10 @@ class Taxonomies {
     this.variable,
   });
 
-  String taxonomiesExternal;
-  String grouped;
-  String simple;
-  String variable;
+  String? taxonomiesExternal;
+  String? grouped;
+  String? simple;
+  String? variable;
 
   factory Taxonomies.fromJson(Map<String, dynamic> json) => Taxonomies(
         taxonomiesExternal: json["external"],
@@ -550,19 +550,19 @@ class Theme {
     this.parentAuthorUrl,
   });
 
-  String name;
-  String version;
-  String versionLatest;
-  String authorUrl;
-  bool isChildTheme;
-  bool hasWoocommerceSupport;
-  bool hasWoocommerceFile;
-  bool hasOutdatedTemplates;
-  List<dynamic> overrides;
-  String parentName;
-  String parentVersion;
-  String parentVersionLatest;
-  String parentAuthorUrl;
+  String? name;
+  String? version;
+  String? versionLatest;
+  String? authorUrl;
+  bool? isChildTheme;
+  bool? hasWoocommerceSupport;
+  bool? hasWoocommerceFile;
+  bool? hasOutdatedTemplates;
+  List<dynamic>? overrides;
+  String? parentName;
+  String? parentVersion;
+  String? parentVersionLatest;
+  String? parentAuthorUrl;
 
   factory Theme.fromJson(Map<String, dynamic> json) => Theme(
         name: json["name"],
@@ -589,7 +589,7 @@ class Theme {
         "has_woocommerce_support": hasWoocommerceSupport,
         "has_woocommerce_file": hasWoocommerceFile,
         "has_outdated_templates": hasOutdatedTemplates,
-        "overrides": List<dynamic>.from(overrides.map((x) => x)),
+        "overrides": List<dynamic>.from(overrides!.map((x) => x)),
         "parent_name": parentName,
         "parent_version": parentVersion,
         "parent_version_latest": parentVersionLatest,

@@ -14,22 +14,22 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class WooSignalApp {
-  String appName;
-  String appLogo;
-  String appTermslink;
-  String appPrivacylink;
-  int appDebug;
-  int appStatus;
-  CurrencyMeta currencyMeta;
-  List<String> bannerImages;
-  bool stripeLiveMode;
-  String stripeAccount;
-  int wpLoginEnabled;
-  String wpLoginBaseUrl;
-  String wpLoginForgotPasswordUrl;
-  String wpLoginWpApiPath;
-  int productPricesIncludeTax;
-  int disableShipping;
+  String? appName;
+  String? appLogo;
+  String? appTermslink;
+  String? appPrivacylink;
+  int? appDebug;
+  int? appStatus;
+  CurrencyMeta? currencyMeta;
+  List<String>? bannerImages;
+  bool? stripeLiveMode;
+  String? stripeAccount;
+  int? wpLoginEnabled;
+  String? wpLoginBaseUrl;
+  String? wpLoginForgotPasswordUrl;
+  String? wpLoginWpApiPath;
+  int? productPricesIncludeTax;
+  int? disableShipping;
 
   WooSignalApp(
       {this.appName,
@@ -79,7 +79,7 @@ class WooSignalApp {
     data['app_debug'] = this.appDebug;
     data['app_status'] = this.appStatus;
     if (this.currencyMeta != null) {
-      data['currency_meta'] = this.currencyMeta.toJson();
+      data['currency_meta'] = this.currencyMeta!.toJson();
     }
     data['banner_images'] = this.bannerImages;
     data['stripe_live_mode'] = this.stripeLiveMode;
@@ -95,13 +95,13 @@ class WooSignalApp {
 }
 
 class CurrencyMeta {
-  String symbol;
-  String name;
-  String symbolNative;
-  int decimalDigits;
-  int rounding;
-  String code;
-  String namePlural;
+  String? symbol;
+  String? name;
+  String? symbolNative;
+  int? decimalDigits;
+  int? rounding;
+  String? code;
+  String? namePlural;
 
   CurrencyMeta(
       {this.symbol,

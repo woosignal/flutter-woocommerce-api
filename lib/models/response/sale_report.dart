@@ -30,19 +30,19 @@ class SalesReports {
     this.links,
   });
 
-  String totalSales;
-  String netSales;
-  String averageSales;
-  int totalOrders;
-  int totalItems;
-  String totalTax;
-  String totalShipping;
-  int totalRefunds;
-  String totalDiscount;
-  String totalsGroupedBy;
+  String? totalSales;
+  String? netSales;
+  String? averageSales;
+  int? totalOrders;
+  int? totalItems;
+  String? totalTax;
+  String? totalShipping;
+  int? totalRefunds;
+  String? totalDiscount;
+  String? totalsGroupedBy;
   dynamic totals;
-  int totalCustomers;
-  Links links;
+  int? totalCustomers;
+  Links? links;
 
   factory SalesReports.fromJson(Map<String, dynamic> json) => SalesReports(
         totalSales: json["total_sales"],
@@ -73,7 +73,7 @@ class SalesReports {
         "totals_grouped_by": totalsGroupedBy,
         "totals": totals.toJson(),
         "total_customers": totalCustomers,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
       };
 }
 
@@ -82,14 +82,14 @@ class Links {
     this.about,
   });
 
-  List<About> about;
+  List<About>? about;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
         about: List<About>.from(json["about"].map((x) => About.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "about": List<dynamic>.from(about.map((x) => x.toJson())),
+        "about": List<dynamic>.from(about!.map((x) => x.toJson())),
       };
 }
 
@@ -98,7 +98,7 @@ class About {
     this.href,
   });
 
-  String href;
+  String? href;
 
   factory About.fromJson(Map<String, dynamic> json) => About(
         href: json["href"],

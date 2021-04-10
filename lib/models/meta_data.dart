@@ -14,9 +14,9 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 class MetaData {
-  int id;
-  String key;
-  String value;
+  int? id;
+  String? key;
+  String? value;
 
   MetaData({this.id, this.key, this.value});
 

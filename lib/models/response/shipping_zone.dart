@@ -16,10 +16,10 @@
 import 'package:woosignal/models/links.dart';
 
 class ShippingZone {
-  int id;
-  String name;
-  int order;
-  Links links;
+  int? id;
+  String? name;
+  int? order;
+  Links? links;
 
   ShippingZone({this.id, this.name, this.order, this.links});
 
@@ -36,7 +36,7 @@ class ShippingZone {
     data['name'] = this.name;
     data['order'] = this.order;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

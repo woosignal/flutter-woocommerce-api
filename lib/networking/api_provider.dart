@@ -21,27 +21,23 @@ import 'package:woosignal/env.dart';
 import 'dart:io' show Platform;
 
 class ApiProvider {
-  Dio _dio;
-  Future _doneFuture;
+  late Dio _dio;
+  Future? _doneFuture;
 
-  Future<DeviceInfoPlugin> userDeviceInfo;
+  Future<DeviceInfoPlugin>? userDeviceInfo;
   Map<String, dynamic> deviceMeta = {};
 
-  Future get initializationDone => _doneFuture;
+  Future? get initializationDone => _doneFuture;
 
   Future<void> _setDeviceMeta() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
-    String uuid;
-    await getUUID().then((val) {
-      if (val == null) {
-        String uid = buildUUID();
-        storeUUID(uid);
-        uuid = uid;
-      } else {
-        uuid = val;
-      }
-    });
+    String? uuid = await getUUID();
+    if (uuid == null) {
+      String uid = buildUUID();
+      storeUUID(uid);
+      uuid = uid;
+    }
 
     if (Platform.isAndroid) {
       await deviceInfo.androidInfo.then((androidMeta) {

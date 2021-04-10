@@ -16,19 +16,19 @@
 import 'package:woosignal/models/links.dart';
 
 class TaxRate {
-  int id;
-  String country;
-  String state;
-  String postcode;
-  String city;
-  String rate;
-  String name;
-  int priority;
-  bool compound;
-  bool shipping;
-  int order;
-  String taxClass;
-  Links links;
+  int? id;
+  String? country;
+  String? state;
+  String? postcode;
+  String? city;
+  String? rate;
+  String? name;
+  int? priority;
+  bool? compound;
+  bool? shipping;
+  int? order;
+  String? taxClass;
+  Links? links;
 
   TaxRate(
       {this.id,
@@ -76,7 +76,7 @@ class TaxRate {
     data['order'] = this.order;
     data['class'] = this.taxClass;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

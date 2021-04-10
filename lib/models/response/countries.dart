@@ -23,10 +23,10 @@ class Countries {
     this.links,
   });
 
-  String code;
-  String name;
-  List<State> states;
-  Links links;
+  String? code;
+  String? name;
+  List<State>? states;
+  Links? links;
 
   factory Countries.fromJson(Map<String, dynamic> json) => Countries(
         code: json["code"],
@@ -38,8 +38,8 @@ class Countries {
   Map<String, dynamic> toJson() => {
         "code": code,
         "name": name,
-        "states": List<dynamic>.from(states.map((x) => x.toJson())),
-        "_links": links.toJson(),
+        "states": List<dynamic>.from(states!.map((x) => x.toJson())),
+        "_links": links!.toJson(),
       };
 }
 
@@ -49,8 +49,8 @@ class State {
     this.name,
   });
 
-  String code;
-  String name;
+  String? code;
+  String? name;
 
   factory State.fromJson(Map<String, dynamic> json) => State(
         code: json["code"],

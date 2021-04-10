@@ -1,3 +1,8 @@
+## [2.0.0] - 2021-04-10
+
+* Added null safety support
+* Dependency updates
+
 ## [1.5.1+1] - 2021-03-27
 
 * Update README

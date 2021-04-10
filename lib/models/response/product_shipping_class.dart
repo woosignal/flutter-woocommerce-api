@@ -16,12 +16,12 @@
 import 'package:woosignal/models/links.dart';
 
 class ProductShippingClass {
-  int id;
-  String name;
-  String slug;
-  String description;
-  int count;
-  Links links;
+  int? id;
+  String? name;
+  String? slug;
+  String? description;
+  int? count;
+  Links? links;
 
   ProductShippingClass(
       {this.id,
@@ -48,7 +48,7 @@ class ProductShippingClass {
     data['description'] = this.description;
     data['count'] = this.count;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

@@ -20,7 +20,7 @@ class SettingOptionBatch {
     this.update,
   });
 
-  List<Update> update;
+  List<Update>? update;
 
   factory SettingOptionBatch.fromJson(Map<String, dynamic> json) =>
       SettingOptionBatch(
@@ -29,7 +29,7 @@ class SettingOptionBatch {
       );
 
   Map<String, dynamic> toJson() => {
-        "update": List<dynamic>.from(update.map((x) => x.toJson())),
+        "update": List<dynamic>.from(update!.map((x) => x.toJson())),
       };
 }
 
@@ -46,15 +46,15 @@ class Update {
     this.links,
   });
 
-  String id;
-  String label;
-  String description;
-  String type;
-  String updateDefault;
-  Map<String, String> options;
-  String tip;
-  String value;
-  Links links;
+  String? id;
+  String? label;
+  String? description;
+  String? type;
+  String? updateDefault;
+  Map<String, String>? options;
+  String? tip;
+  String? value;
+  Links? links;
 
   factory Update.fromJson(Map<String, dynamic> json) => Update(
         id: json["id"],
@@ -79,9 +79,9 @@ class Update {
         "default": updateDefault,
         "options": options == null
             ? null
-            : Map.from(options).map((k, v) => MapEntry<String, dynamic>(k, v)),
+            : Map.from(options!).map((k, v) => MapEntry<String, dynamic>(k, v)),
         "tip": tip == null ? null : tip,
         "value": value,
-        "_links": links.toJson(),
+        "_links": links!.toJson(),
       };
 }

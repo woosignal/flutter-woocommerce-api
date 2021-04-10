@@ -18,7 +18,6 @@ library woosignal;
 import 'package:woosignal/models/response/api_data.dart';
 import 'package:woosignal/models/response/continent.dart';
 import 'package:woosignal/models/response/currencies.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:woosignal/models/response/order_batch.dart' as OB;
 import 'package:woosignal/models/response/refund.dart';
 import 'package:woosignal/models/response/order_notes.dart';
@@ -53,10 +52,10 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 class WooSignal {
-  ApiProvider _apiProvider;
-  bool _shouldDebug;
+  late ApiProvider _apiProvider;
+  bool? _shouldDebug;
 
-  static Future<WooSignal> getInstance({Map<String, dynamic> config}) async {
+  static Future<WooSignal> getInstance({required Map<String, dynamic> config}) async {
     WooSignal wooSignal = new WooSignal._internal();
     await wooSignal._setApp(config: config);
     await wooSignal._init();
@@ -65,7 +64,7 @@ class WooSignal {
 
   WooSignal._internal();
 
-  Future _setApp({Map<String, dynamic> config}) async {
+  Future _setApp({required Map<String, dynamic> config}) async {
     await storeUserApiKey(config['appKey']);
     await _setAppKey(config['appKey']);
     _setDebug(config['debugMode']);
@@ -76,7 +75,7 @@ class WooSignal {
     await _apiProvider.initializationDone;
   }
 
-  _setAppKey(String appKey) async {
+  _setAppKey(String? appKey) async {
     appKey ??= null;
     if (appKey != null) {
       await storeUserApiKey(appKey);
@@ -85,12 +84,12 @@ class WooSignal {
     }
   }
 
-  void _setDebug(bool shouldDebug) {
+  void _setDebug(bool? shouldDebug) {
     shouldDebug ??= false;
     this._shouldDebug = shouldDebug;
   }
 
-  bool _shouldDebugMode() {
+  bool? _shouldDebugMode() {
     return this._shouldDebug;
   }
 
@@ -100,11 +99,9 @@ class WooSignal {
     }
   }
 
-  Map<String, dynamic> _standardPayload(String type, json, String path) {
-    return {"type": type, "payload": json, "path": path};
-  }
+  Map<String, dynamic> _standardPayload(String type, json, String path) => {"type": type, "payload": json, "path": path};
 
-  Future<WooSignalApp> getApp() async {
+  Future<WooSignalApp?> getApp() async {
     dynamic response = await _apiProvider.get("/app");
     if (response == null) {
       return null;
@@ -117,33 +114,33 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/products
   Future<List<Product>> getProducts(
-      {int page,
-      int perPage,
-      String search,
-      String after,
-      String before,
-      String order,
-      String orderBy,
-      String slug,
-      String status,
-      String type,
-      String sku,
-      String category,
-      String tag,
-      String shippingClass,
-      String attribute,
-      String attributeTerm,
-      String taxClass,
-      String minPrice,
-      String maxPrice,
-      String stockStatus,
-      List<int> exclude,
-      List<int> parentExclude,
-      List<int> include,
-      List<int> parent,
-      int offset,
-      bool featured,
-      bool onSale}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      String? after,
+      String? before,
+      String? order,
+      String? orderBy,
+      String? slug,
+      String? status,
+      String? type,
+      String? sku,
+      String? category,
+      String? tag,
+      String? shippingClass,
+      String? attribute,
+      String? attributeTerm,
+      String? taxClass,
+      String? minPrice,
+      String? maxPrice,
+      String? stockStatus,
+      List<int>? exclude,
+      List<int>? parentExclude,
+      List<int>? include,
+      List<int>? parent,
+      int? offset,
+      bool? featured,
+      bool? onSale}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
@@ -185,13 +182,13 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
-  Future<Product> retrieveProduct({int id}) async {
+  Future<Product?> retrieveProduct({int? id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "products/${id.toString()}");
 
-    Product product;
+    Product? product;
     await _apiProvider.post("/request", payload).then((json) {
       product = Product.fromJson(json);
     });
@@ -201,26 +198,26 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/products-variations
   Future<List<ProductVariation>> getProductVariations(int productId,
-      {int page,
-      int perPage,
-      String search,
-      String after,
-      String before,
-      List<int> exclude,
-      List<int> include,
-      int offset,
-      String order,
-      String orderBy,
-      List<int> parent,
-      List<int> parentExclude,
-      String slug,
-      String status,
-      String sku,
-      String taxClass,
-      bool onSale,
-      String minPrice,
-      String maxPrice,
-      String stockStatus}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      String? after,
+      String? before,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderBy,
+      List<int>? parent,
+      List<int>? parentExclude,
+      String? slug,
+      String? status,
+      String? sku,
+      String? taxClass,
+      bool? onSale,
+      String? minPrice,
+      String? maxPrice,
+      String? stockStatus}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
@@ -274,25 +271,23 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/products-attribute-terms
   Future<List<ProductAttributeTerm>> getProductAttributeTerms(int attributeId,
-      {int page,
-      int perPage,
-      String search,
-      List<int> exclude,
-      List<int> include,
-      String order,
-      String orderBy,
-      bool hideEmpty,
-      int parent,
-      int product,
-      String slug}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      List<int>? exclude,
+      List<int>? include,
+      String? order,
+      String? orderBy,
+      bool? hideEmpty,
+      int? parent,
+      int? product,
+      String? slug}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
     if (search != null) payload["search"] = search;
     if (exclude != null) payload["exclude"] = exclude;
     if (include != null) payload["include"] = include;
-    if (int != null) payload["int"] = int;
-    if (int != null) payload["int"] = int;
     if (order != null) payload["order"] = order;
     if (orderBy != null) payload["orderby"] = orderBy;
     if (hideEmpty != null) payload["hide_empty"] = hideEmpty;
@@ -315,17 +310,17 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/product-categories
   Future<List<ProductCategory>> getProductCategories(
-      {int page,
-      int perPage,
-      String search,
-      List<int> exclude,
-      List<int> include,
-      String order,
-      String orderBy,
-      bool hideEmpty,
-      int parent,
-      int product,
-      String slug}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      List<int>? exclude,
+      List<int>? include,
+      String? order,
+      String? orderBy,
+      bool? hideEmpty,
+      int? parent,
+      int? product,
+      String? slug}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
@@ -354,17 +349,17 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/product-shipping-classes
   Future<List<ProductShippingClass>> getProductShippingClasses(
-      {int page,
-      int perPage,
-      String search,
-      List<int> exclude,
-      List<int> include,
-      int offset,
-      String order,
-      String orderBy,
-      bool hideEmpty,
-      int product,
-      String slug}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderBy,
+      bool? hideEmpty,
+      int? product,
+      String? slug}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
@@ -392,21 +387,21 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/product-reviews
   Future<List<ProductReview>> getProductReviews(
-      {int page,
-      int perPage,
-      String search,
-      String after,
-      String before,
-      List<int> exclude,
-      List<int> include,
-      int offset,
-      String order,
-      String orderBy,
-      List<int> reviewer,
-      List<int> reviewerExclude,
-      List<String> reviewerEmail,
-      List<int> product,
-      String status}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      String? after,
+      String? before,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderBy,
+      List<int>? reviewer,
+      List<int>? reviewerExclude,
+      List<String>? reviewerEmail,
+      List<int>? product,
+      String? status}) async {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
@@ -438,14 +433,14 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/product-reviews
-  Future<ProductReview> createProductReview(
-      {int productId,
-      int status,
-      String reviewer,
-      String reviewerEmail,
-      String review,
-      int rating,
-      bool verified}) async {
+  Future<ProductReview?> createProductReview(
+      {int? productId,
+      int? status,
+      String? reviewer,
+      String? reviewerEmail,
+      String? review,
+      int? rating,
+      bool? verified}) async {
     Map<String, dynamic> payload = {};
 
     if (productId != null) payload['product_id'] = productId;
@@ -459,7 +454,7 @@ class WooSignal {
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "products/reviews");
 
-    ProductReview productReview;
+    ProductReview? productReview;
     await _apiProvider.post("/request", payload).then((json) {
       productReview = ProductReview.fromJson(json);
     });
@@ -469,20 +464,20 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/customers
   Future<List<Customer>> getCustomers(
-      {int page,
-      int perPage,
-      String search,
-      List<int> exclude,
-      List<int> include,
-      int offset,
-      String order,
-      String orderBy,
-      bool hideEmpty,
-      int parent,
-      int product,
-      String email,
-      String slug,
-      String role}) async {
+      {int? page,
+      int? perPage,
+      String? search,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderBy,
+      bool? hideEmpty,
+      int? parent,
+      int? product,
+      String? email,
+      String? slug,
+      String? role}) async {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
@@ -512,18 +507,18 @@ class WooSignal {
   }
 
   // This API helps you to create a new refund for an order.
-  /// https://woosignal.com/docs/api/1.0/refundss#create-a-refund
-  Future<Refund> createRefund({
-    @required String amount,
-    @required int orderId,
+  /// https://woosignal.com/docs/api/1.0/refunds#create-a-refund
+  Future<Refund?> createRefund({
+    required String amount,
+    required int orderId,
   }) async {
     Map<String, dynamic> payload = {};
-    if (amount != null) payload['amount'] = amount;
+    payload['amount'] = amount;
 
     _printLog(payload.toString());
     payload = _standardPayload(
         "post", payload, "orders/${orderId.toString()}/refunds");
-    Refund refund;
+    Refund? refund;
     await _apiProvider.post("/request", payload).then((json) {
       refund = Refund.fromJson(json);
     });
@@ -533,10 +528,10 @@ class WooSignal {
 
   // This API lets you retrieve and view a specific refund from an order.
   /// https://woosignal.com/docs/api/1.0/refunds#retrieve-a-refund
-  Future<Refund> retrieveRefund({
-    @required int orderId,
-    @required int refundId,
-    String dp,
+  Future<Refund?> retrieveRefund({
+    required int orderId,
+    required int refundId,
+    String? dp,
   }) async {
     Map<String, dynamic> payload = {};
     if (dp != null) payload["dp"] = dp;
@@ -544,7 +539,7 @@ class WooSignal {
     payload = _standardPayload("get", payload,
         "orders/${orderId.toString()}/refunds/${refundId.toString()}");
 
-    Refund refund;
+    Refund? refund;
     await _apiProvider.post("/request", payload).then((json) {
       refund = Refund.fromJson(json);
     });
@@ -555,20 +550,20 @@ class WooSignal {
   // This API helps you to view all the refunds from an order.
   /// https://woosignal.com/docs/api/1.0/refunds#list-all-refunds
   Future<List<Refund>> getRefunds(int orderId,
-      {String context,
-      int page,
-      int perPage,
-      String search,
-      String after,
-      String before,
-      List<int> exclude,
-      List<int> include,
-      int offset,
-      String order,
-      String orderby,
-      List<int> parent,
-      List<int> parentExclude,
-      int dp}) async {
+      {String? context,
+      int? page,
+      int? perPage,
+      String? search,
+      String? after,
+      String? before,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderby,
+      List<int>? parent,
+      List<int>? parentExclude,
+      int? dp}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
@@ -598,15 +593,15 @@ class WooSignal {
 
   // This API helps you delete an order refund.
   /// https://woosignal.com/docs/api/1.0/refunds#delete-a-refund
-  Future<Refund> deleteRefund({
-    @required int orderId,
-    @required int refundId,
+  Future<Refund?> deleteRefund({
+    required int orderId,
+    required int refundId,
   }) async {
     Map<String, dynamic> payload = {};
     payload = _standardPayload("delete", payload,
         "orders/${orderId.toString()}/refunds/${refundId.toString()}");
 
-    Refund refund;
+    Refund? refund;
     await _apiProvider.post("/request", payload).then((json) {
       refund = Refund.fromJson(json);
     });
@@ -616,24 +611,24 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/orders
   Future<List<Order>> getOrders(
-      {int page,
-      int perPage,
-      String search,
-      String after,
-      String before,
-      List<int> exclude,
-      List<int> include,
-      int offset,
-      String order,
-      String orderBy,
-      List<int> parent,
-      List<int> parentExclude,
+      {int? page,
+      int? perPage,
+      String? search,
+      String? after,
+      String? before,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderBy,
+      List<int>? parent,
+      List<int>? parentExclude,
       List<String> status = const [
         "any"
       ], // Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any.
-      int customer,
-      int product,
-      int dp}) async {
+      int? customer,
+      int? product,
+      int? dp}) async {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
@@ -648,7 +643,7 @@ class WooSignal {
     if (orderBy != null) payload["orderby"] = orderBy;
     if (parent != null) payload["parent"] = parent;
     if (parentExclude != null) payload["parent_exclude"] = parentExclude;
-    if (status != null) payload["status"] = status;
+    payload["status"] = status;
     if (customer != null) payload["customer"] = customer;
     if (product != null) payload["product"] = product;
     if (dp != null) payload["dp"] = dp;
@@ -665,14 +660,14 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/orders#retrieve-a-order
-  Future<Order> retrieveOrder(int id, {String dp}) async {
+  Future<Order?> retrieveOrder(int id, {String? dp}) async {
     Map<String, dynamic> payload = {};
     if (dp != null) payload["dp"] = dp;
 
     _printLog(payload.toString());
     payload = _standardPayload("get", payload, "orders/" + id.toString());
 
-    Order order;
+    Order? order;
     await _apiProvider.post("/request", payload).then((json) {
       order = Order.fromJson(json);
     });
@@ -681,13 +676,13 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/orders
-  Future<Order> updateOrder(int id, {Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<Order?> updateOrder(int id, {Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("put", payload, "orders/" + id.toString());
 
-    Order order;
+    Order? order;
     await _apiProvider.post("/request", payload).then((json) {
       order = Order.fromJson(json);
     });
@@ -696,13 +691,13 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/orders#create-an-order
-  Future<Order> createOrder(OrderWC orderWC) async {
+  Future<Order?> createOrder(OrderWC orderWC) async {
     Map<String, dynamic> payload = orderWC.toJson();
 
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "orders");
 
-    Order order;
+    Order? order;
     await _apiProvider.post("/request", payload).then((json) {
       order = Order.fromJson(json);
     });
@@ -713,12 +708,12 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/tax-rates
   Future<List<TaxRate>> getTaxRates(
-      {int page,
-      int perPage,
-      int offset,
-      String order,
-      String orderBy,
-      String taxClass}) async {
+      {int? page,
+      int? perPage,
+      int? offset,
+      String? order,
+      String? orderBy,
+      String? taxClass}) async {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
@@ -786,12 +781,12 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/shipping-zones#retrive-a-shipping-zone
-  Future<ShippingZone> retrieveShippingZone(int id) async {
+  Future<ShippingZone?> retrieveShippingZone(int id) async {
     Map<String, dynamic> payload = {};
     payload =
         _standardPayload("get", payload, "shipping/zones/" + id.toString());
 
-    ShippingZone shippingZone;
+    ShippingZone? shippingZone;
     await _apiProvider.post("/request", payload).then((json) {
       shippingZone = ShippingZone.fromJson(json);
     });
@@ -799,11 +794,11 @@ class WooSignal {
     return shippingZone;
   }
 
-  Future<Map<String, dynamic>> stripePaymentIntent(
-      {String amount,
-      String desc,
-      String email,
-      Map<String, dynamic> shipping}) async {
+  Future<Map<String, dynamic>?> stripePaymentIntent(
+      {String? amount,
+      String? desc,
+      String? email,
+      Map<String, dynamic>? shipping}) async {
     Map<String, dynamic> payload = {
       "amount": amount,
       "receipt_email": email,
@@ -812,7 +807,7 @@ class WooSignal {
       "path": "order/pi",
       "type": "post"
     };
-    Map<String, dynamic> payloadRsp = {};
+    Map<String, dynamic>? payloadRsp = {};
     await _apiProvider.post("/order/pi", payload).then((json) {
       payloadRsp = json;
     });
@@ -820,11 +815,11 @@ class WooSignal {
     return payloadRsp;
   }
 
-  Future<List<dynamic>> cartCheck(List<Map<String, dynamic>> cartLines) async {
+  Future<List<dynamic>?> cartCheck(List<Map<String, dynamic>> cartLines) async {
     Map<String, dynamic> payload = {};
     payload = _standardPayload("get", cartLines, "ws/cart_check");
 
-    List<dynamic> payloadRsp = [];
+    List<dynamic>? payloadRsp = [];
     await _apiProvider.post("/ws/cart_check", payload).then((json) {
       payloadRsp = json;
     });
@@ -848,13 +843,13 @@ class WooSignal {
 
   // This API lets you retrieve and view a simple list of available data endpoints.
   /// https://woosignal.com/docs/api/1.0/data#list-all-data
-  Future<ApiData> retrieveApiData() async {
+  Future<ApiData?> retrieveApiData() async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "data");
 
-    ApiData apiData;
+    ApiData? apiData;
     await _apiProvider.post("/request", payload).then((json) {
       apiData = ApiData.fromJson(json);
     });
@@ -864,13 +859,13 @@ class WooSignal {
 
   // This API helps you to view all the continents.
   /// https://woosignal.com/docs/api/1.0/data#list-all-continents
-  Future<Continents> getContinentData() async {
+  Future<Continents?> getContinentData() async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "data/continents");
 
-    Continents continents;
+    Continents? continents;
     await _apiProvider.post("/request", payload).then((json) {
       continents = Continents.fromJson(json);
     });
@@ -882,14 +877,14 @@ class WooSignal {
   // This API lets you retrieve and view a continent data.
   // Location be like "eu" code For Europe
   /// https://woosignal.com/docs/api/1.0/data#retrieve-continent-data
-  Future<Continents> retrieveContinentDataByLocation(String location) async {
+  Future<Continents?> retrieveContinentDataByLocation(String location) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload(
         "get", payload, "data/continents/${location.toLowerCase()}");
 
-    Continents continents;
+    Continents? continents;
     await _apiProvider.post("/request", payload).then((json) {
       continents = Continents.fromJson(json);
     });
@@ -918,14 +913,14 @@ class WooSignal {
   // This API lets you retrieve and view a country data.
   // Location be like "eu" code For Europe
   /// https://woosignal.com/docs/api/1.0/data#retrieve-country-data
-  Future<Countries> retrieveCountryData(String location) async {
+  Future<Countries?> retrieveCountryData(String location) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload(
         "get", payload, "data/countries/${location.toLowerCase()}");
 
-    Countries countryData;
+    Countries? countryData;
     await _apiProvider.post("/request", payload).then((json) {
       countryData = Countries.fromJson(json);
     });
@@ -954,14 +949,14 @@ class WooSignal {
   // This API lets you retrieve and view a currency data.
   // currency be like "BRL" code For Europe
   /// https://woosignal.com/docs/api/1.0/data#retrieve-currency-data
-  Future<Currencies> retrieveCurrencyData(String currency) async {
+  Future<Currencies?> retrieveCurrencyData(String currency) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload(
         "get", payload, "data/currencies/${currency.toString()}");
 
-    Currencies currencyData;
+    Currencies? currencyData;
     await _apiProvider.post("/request", payload).then((json) {
       currencyData = Currencies.fromJson(json);
     });
@@ -972,13 +967,13 @@ class WooSignal {
   // Retrieve current currency
   // This API lets you retrieve and view store's current currency data.
   /// https://woosignal.com/docs/api/1.0/data#retrieve-current-currency
-  Future<Currencies> retrieveCurrentCurrencyData() async {
+  Future<Currencies?> retrieveCurrentCurrencyData() async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "data/currencies/current");
 
-    Currencies currencyData;
+    Currencies? currencyData;
     await _apiProvider.post("/request", payload).then((json) {
       currencyData = Currencies.fromJson(json);
     });
@@ -989,14 +984,14 @@ class WooSignal {
   // Retrieve an payment gateway
   // This API lets you retrieve and view a specific payment gateway.
   /// https://woosignal.com/docs/api/1.0/payment-gateways#retrieve-an-payment-gateway
-  Future<PaymentGateWay> retrievePaymentGateway({@required String id}) async {
+  Future<PaymentGateWay?> retrievePaymentGateway({required String id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload =
         _standardPayload("get", payload, "payment_gateways/${id.toString()}");
 
-    PaymentGateWay paymentGateWay;
+    PaymentGateWay? paymentGateWay;
     await _apiProvider.post("/request", payload).then((json) {
       paymentGateWay = PaymentGateWay.fromJson(json);
     });
@@ -1025,14 +1020,14 @@ class WooSignal {
   // Update a payment gateway
   // This API lets you make changes to a payment gateway.
   /// https://woosignal.com/docs/api/1.0/payment-gateways#update-a-payment-gateway
-  Future<PaymentGateWay> updatePaymentGateway(
-      {@required String id, Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<PaymentGateWay?> updatePaymentGateway(
+      {required String id, Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
     payload =
         _standardPayload("put", payload, "payment_gateways/${id.toString()}");
     _printLog(payload.toString());
 
-    PaymentGateWay paymentGateWay;
+    PaymentGateWay? paymentGateWay;
     await _apiProvider.post("/request", payload).then((json) {
       paymentGateWay = PaymentGateWay.fromJson(json);
     });
@@ -1043,16 +1038,16 @@ class WooSignal {
   // Retrieve an order note
   // This API lets you retrieve and view a specific note from an order
   /// https://woosignal.com/docs/api/1.0/order-notes#retrieve-an-order-note
-  Future<OrderNote> retrieveOrderNote({
-    @required int orderId,
-    @required int noteId,
+  Future<OrderNote?> retrieveOrderNote({
+    required int orderId,
+    required int noteId,
   }) async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload,
         "orders/${orderId.toString()}/notes/${noteId.toString()}");
 
-    OrderNote orderNote;
+    OrderNote? orderNote;
     await _apiProvider.post("/request", payload).then((json) {
       orderNote = OrderNote.fromJson(json);
     });
@@ -1064,9 +1059,9 @@ class WooSignal {
   // This API helps you to view all the notes from an order.
   /// https://woosignal.com/docs/api/1.0/order-notes#list-all-order-notes
   Future<List<OrderNote>> getOrderNotes({
-    @required int orderId,
-    String context,
-    String type,
+    required int orderId,
+    String? context,
+    String? type,
   }) async {
     Map<String, dynamic> payload = {};
     if (type != null) payload["type"] = type;
@@ -1086,16 +1081,16 @@ class WooSignal {
   // Create an order note
   // This API helps you to create a new note for an order.
   /// https://woosignal.com/docs/api/1.0/order-notes#create-an-order-note
-  Future<OrderNote> createOrderNote({
-    @required int id,
-    Map<String, dynamic> data,
+  Future<OrderNote?> createOrderNote({
+    required int id,
+    Map<String, dynamic>? data,
   }) async {
     Map<String, dynamic> payload = {};
     if (data != null) payload['data'] = data;
     _printLog(payload.toString());
     payload =
         _standardPayload("post", payload, "orders/${id.toString()}/notes");
-    OrderNote orderNote;
+    OrderNote? orderNote;
     await _apiProvider.post("/request", payload).then((json) {
       orderNote = OrderNote.fromJson(json);
     });
@@ -1105,7 +1100,7 @@ class WooSignal {
 
   // Delete an order note
   /// https://woosignal.com/docs/api/1.0/order-notes#delete-an-order-note
-  Future<OrderNote> deleteOrderNote(int orderId, int noteId,
+  Future<OrderNote?> deleteOrderNote(int orderId, int noteId,
       {bool force = true}) async {
     Map<String, dynamic> payload = {"force": force};
 
@@ -1114,7 +1109,7 @@ class WooSignal {
     payload = _standardPayload("delete", payload,
         "orders/${orderId.toString()}/notes/${noteId.toString()}");
 
-    OrderNote orderNote;
+    OrderNote? orderNote;
     await _apiProvider.post("/request", payload).then((json) {
       orderNote = OrderNote.fromJson(json);
     });
@@ -1123,12 +1118,12 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/coupons#retrieve-a-coupon
-  Future<Coupon> retrieveCoupons({int id}) async {
+  Future<Coupon?> retrieveCoupons({int? id}) async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "coupons/${id.toString()}");
 
-    Coupon coupon;
+    Coupon? coupon;
     await _apiProvider.post("/request", payload).then((json) {
       coupon = Coupon.fromJson(json);
     });
@@ -1138,17 +1133,17 @@ class WooSignal {
 
   /// https://woosignal.com/docs/api/1.0/coupons#list-all-coupons
   Future<List<Coupon>> getCoupons({
-    String context,
-    int page,
-    int perPage,
-    String search,
-    String after,
-    String before,
-    List<int> exclude,
-    List<int> include,
-    String order,
-    String orderby,
-    String code,
+    String? context,
+    int? page,
+    int? perPage,
+    String? search,
+    String? after,
+    String? before,
+    List<int>? exclude,
+    List<int>? include,
+    String? order,
+    String? orderby,
+    String? code,
   }) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
@@ -1174,24 +1169,24 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/coupons#create-a-coupon
-  Future<Coupon> createCoupon({
-    @required String code,
-    @required String discountType,
-    @required String amount,
-    @required bool individualUse,
-    @required bool excludeSaleItems,
-    @required String minimumAmount,
+  Future<Coupon?> createCoupon({
+    required String? code,
+    required String? discountType,
+    required String? amount,
+    required bool? individualUse,
+    required bool? excludeSaleItems,
+    required String? minimumAmount,
   }) async {
     Map<String, dynamic> payload = {};
     if (code != null) payload['code'] = code;
-    if (code != null) payload['discount_type'] = discountType;
-    if (code != null) payload['amount'] = amount;
-    if (code != null) payload['individual_use'] = individualUse;
-    if (code != null) payload['exclude_sale_items'] = excludeSaleItems;
-    if (code != null) payload['minimum_amount'] = minimumAmount;
+    if (discountType != null) payload['discount_type'] = discountType;
+    if (amount != null) payload['amount'] = amount;
+    if (individualUse != null) payload['individual_use'] = individualUse;
+    if (excludeSaleItems != null) payload['exclude_sale_items'] = excludeSaleItems;
+    if (minimumAmount != null) payload['minimum_amount'] = minimumAmount;
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "coupons/");
-    Coupon productCoupon;
+    Coupon? productCoupon;
     await _apiProvider.post("/request", payload).then((json) {
       productCoupon = Coupon.fromJson(json);
     });
@@ -1200,13 +1195,13 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/coupons#update-a-coupon
-  Future<Coupon> updateCoupon(int id, {Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<Coupon?> updateCoupon(int id, {Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("put", payload, "coupons/" + id.toString());
 
-    Coupon coupon;
+    Coupon? coupon;
     await _apiProvider.post("/request", payload).then((json) {
       coupon = Coupon.fromJson(json);
     });
@@ -1215,16 +1210,16 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/coupons#delete-a-coupon
-  Future<Coupon> deleteCoupon(
+  Future<Coupon?> deleteCoupon(
     int id,
   ) async {
-    Map<String, dynamic> data;
-    Map<String, dynamic> payload = data;
+    Map<String, dynamic>? data;
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("delete", payload, "coupons/" + id.toString());
 
-    Coupon coupon;
+    Coupon? coupon;
     await _apiProvider.post("/request", payload).then((json) {
       coupon = Coupon.fromJson(json);
     });
@@ -1235,13 +1230,13 @@ class WooSignal {
   // This API helps you to batch create, update and delete multiple coupons.
   // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
   /// https://woosignal.com/docs/api/1.0/customers#batch-update-coupons
-  Future<CouponBatch> batchCoupon({Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<CouponBatch?> batchCoupon({Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "coupons/batch");
 
-    CouponBatch couponBatch;
+    CouponBatch? couponBatch;
     await _apiProvider.post("/request", payload).then((json) {
       couponBatch = CouponBatch.fromJson(json);
     });
@@ -1252,12 +1247,12 @@ class WooSignal {
   // Retrieve a customer
   // This API lets you retrieve and view a specific customer by ID.
   /// https://woosignal.com/docs/api/1.0/customers#retrieve-a-customer
-  Future<Customers> retrieveCustomer({int id}) async {
+  Future<Customers?> retrieveCustomer({int? id}) async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "customers/${id.toString()}");
 
-    Customers customers;
+    Customers? customers;
     await _apiProvider.post("/request", payload).then((json) {
       customers = Customers.fromJson(json);
     });
@@ -1268,25 +1263,25 @@ class WooSignal {
   // Retrieve customer downloads
   // This API lets you retrieve customer downloads permissions.
   /// https://woosignal.com/docs/api/1.0/customers#retrieve-customer-downloads
-  Future<Customers> retrieveCustomerDownloads(
-      {@required int customerid,
-      String downloadId,
-      String downloadUrl,
-      int productId,
-      String productName,
-      String downloadName,
-      int orderId,
-      String orderKey,
-      String downloadsRemaining,
-      String accessExpires,
-      String accessExpiresGmt,
-      Map<String, String> file}) async {
+  Future<Customers?> retrieveCustomerDownloads(
+      {required int customerid,
+      String? downloadId,
+      String? downloadUrl,
+      int? productId,
+      String? productName,
+      String? downloadName,
+      int? orderId,
+      String? orderKey,
+      String? downloadsRemaining,
+      String? accessExpires,
+      String? accessExpiresGmt,
+      Map<String, String>? file}) async {
     Map<String, dynamic> payload = {};
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload(
         "get", payload, "customers/${customerid.toString()}/downloads");
 
-    Customers customers;
+    Customers? customers;
     await _apiProvider.post("/request", payload).then((json) {
       customers = Customers.fromJson(json);
     });
@@ -1297,13 +1292,13 @@ class WooSignal {
   // Create a customer
   // This API helps you to create a new customer.
   /// https://woosignal.com/docs/api/1.0/customers#create-a-customer
-  Future<Customers> createCustomer({
-    String email,
-    String firstName,
-    String lastName,
-    String userName,
-    Map<String, dynamic> billing,
-    Map<String, dynamic> shipping,
+  Future<Customers?> createCustomer({
+    String? email,
+    String? firstName,
+    String? lastName,
+    String? userName,
+    Map<String, dynamic>? billing,
+    Map<String, dynamic>? shipping,
   }) async {
     Map<String, dynamic> payload = {};
     if (email != null) payload['email'] = email;
@@ -1314,7 +1309,7 @@ class WooSignal {
     if (shipping != null) payload['shipping'] = shipping;
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "customers/");
-    Customers customers;
+    Customers? customers;
     await _apiProvider.post("/request", payload).then((json) {
       customers = Customers.fromJson(json);
     });
@@ -1325,13 +1320,13 @@ class WooSignal {
   // Update a customer
   // This API lets you make changes to a customer.
   /// https://woosignal.com/docs/api/1.0/customers#update-a-customer
-  Future<Customers> updateCustomer(int id, {Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<Customers?> updateCustomer(int id, {Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("put", payload, "customers/" + id.toString());
 
-    Customers customers;
+    Customers? customers;
     await _apiProvider.post("/request", payload).then((json) {
       customers = Customers.fromJson(json);
     });
@@ -1342,7 +1337,7 @@ class WooSignal {
   // Delete a customer
   // This API helps you delete a customer.
   /// https://woosignal.com/docs/api/1.0/customers#delete-a-customer
-  Future<Customers> deleteCustomer(int id, {bool force = false}) async {
+  Future<Customers?> deleteCustomer(int id, {bool force = false}) async {
     Map<String, dynamic> data;
     data = {'force': force};
     Map<String, dynamic> payload = data;
@@ -1350,7 +1345,7 @@ class WooSignal {
     _printLog(payload.toString());
     payload = _standardPayload("delete", payload, "customers/" + id.toString());
 
-    Customers customers;
+    Customers? customers;
     await _apiProvider.post("/request", payload).then((json) {
       customers = Customers.fromJson(json);
     });
@@ -1361,13 +1356,13 @@ class WooSignal {
   // This API helps you to batch create, update and delete multiple customers.
   // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
   /// https://woosignal.com/docs/api/1.0/customers#batch-update-customers
-  Future<CustomerBatch> batchCustomers({Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<CustomerBatch?> batchCustomers({Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "customers/batch");
 
-    CustomerBatch customerBatch;
+    CustomerBatch? customerBatch;
     await _apiProvider.post("/request", payload).then((json) {
       customerBatch = CustomerBatch.fromJson(json);
     });
@@ -1396,10 +1391,10 @@ class WooSignal {
   // This API lets you retrieve and view a sales report.
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-sales-report
   Future<List<SalesReports>> getSaleReports({
-    String context,
-    String period,
-    String dateMin,
-    String dateMax,
+    String? context,
+    String? period,
+    String? dateMin,
+    String? dateMax,
   }) async {
     Map<String, dynamic> payload = {};
     if (context != null) payload['context'] = context;
@@ -1422,10 +1417,10 @@ class WooSignal {
   // This API lets you retrieve and view a list of top sellers report.
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-top-sellers-report
   Future<List<TopSellerReport>> getTopSellerReports({
-    String context,
-    String period,
-    String dateMin,
-    String dateMax,
+    String? context,
+    String? period,
+    String? dateMin,
+    String? dateMax,
   }) async {
     Map<String, dynamic> payload = {};
     if (context != null) payload['context'] = context;
@@ -1529,13 +1524,13 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/system-status
-  Future<SystemStatus> getSystemStatus() async {
+  Future<SystemStatus?> getSystemStatus() async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload("get", payload, "system_status");
 
-    SystemStatus systemStatus;
+    SystemStatus? systemStatus;
     await _apiProvider.post("/request", payload).then((json) {
       systemStatus = SystemStatus.fromJson(json);
     });
@@ -1546,14 +1541,14 @@ class WooSignal {
   // Delete an Order
   // This API helps you delete an Order.
   /// https://woosignal.com/docs/api/1.0/setting-options#delete-an-order
-  Future<OB.Orders> deleteOrder(int id, {bool force = false}) async {
+  Future<OB.Orders?> deleteOrder(int id, {bool force = false}) async {
     Map<String, dynamic> data;
     data = {'force': force};
     Map<String, dynamic> payload = data;
     _printLog(payload.toString());
     payload = _standardPayload("delete", payload, "orders/" + id.toString());
 
-    OB.Orders order;
+    OB.Orders? order;
     await _apiProvider.post("/request", payload).then((json) {
       order = OB.Orders.fromJson(json);
     });
@@ -1564,13 +1559,13 @@ class WooSignal {
   // This API helps you to batch create, update and delete multiple Orders.
   // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
   /// https://woosignal.com/docs/api/1.0/setting-options#batch-update-orders
-  Future<OB.OrderBatch> batchOrders({Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<OB.OrderBatch?> batchOrders({Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "orders/batch");
 
-    OB.OrderBatch orderBatch;
+    OB.OrderBatch? orderBatch;
     await _apiProvider.post("/request", payload).then((json) {
       orderBatch = OB.OrderBatch.fromJson(json);
     });
@@ -1582,15 +1577,15 @@ class WooSignal {
   // Retrieve a setting option
   // This API lets you retrieve and view a specific setting option.
   /// https://woosignal.com/docs/api/1.0/setting-options#retrieve-a-setting-option
-  Future<SettingOption> retrieveSettingOptions(
-      {@required String groupId, @required String id}) async {
+  Future<SettingOption?> retrieveSettingOptions(
+      {required String groupId, required String id}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
     payload = _standardPayload(
         "get", payload, "settings/${groupId.toString()}/${id.toString()}");
 
-    SettingOption settingOption;
+    SettingOption? settingOption;
     await _apiProvider.post("/request", payload).then((json) {
       settingOption = SettingOption.fromJson(json);
     });
@@ -1601,7 +1596,7 @@ class WooSignal {
   // Retrieve a setting option
   // This API lets you retrieve and view a specific setting option.
   /// https://woosignal.com/docs/api/1.0/setting-options#list-all-setting-options
-  Future<List<SettingOption>> getSettingOptions({String groupId}) async {
+  Future<List<SettingOption>> getSettingOptions({String? groupId}) async {
     Map<String, dynamic> payload = {};
 
     _printLog("Parameters: " + payload.toString());
@@ -1620,15 +1615,15 @@ class WooSignal {
   // Update a setting option
   // This API lets you make changes to a setting option.
   /// https://woosignal.com/docs/api/1.0/setting-options#update-a-setting-option
-  Future<SettingOption> updateSettingOptions(String groupId, String id,
-      {Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<SettingOption?> updateSettingOptions(String groupId, String id,
+      {Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload(
         "put", payload, "settings/${groupId.toString()}/${id.toString}");
 
-    SettingOption settingOption;
+    SettingOption? settingOption;
     await _apiProvider.post("/request", payload).then((json) {
       settingOption = SettingOption.fromJson(json);
     });
@@ -1640,14 +1635,14 @@ class WooSignal {
   // This API helps you to batch update multiple setting options.
   //  Note: By default it's limited to up to 100 objects to be created, updated or deleted.
   /// https://woosignal.com/docs/api/1.0/setting-options#batch-update-setting-options
-  Future<SettingOptionBatch> batchSettingOptions(
-      {Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<SettingOptionBatch?> batchSettingOptions(
+      {Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "settings/general/batch");
 
-    SettingOptionBatch batchSettingOption;
+    SettingOptionBatch? batchSettingOption;
     await _apiProvider.post("/request", payload).then((json) {
       batchSettingOption = SettingOptionBatch.fromJson(json);
     });
@@ -1658,27 +1653,26 @@ class WooSignal {
   // Create a product
   // This API helps you to create a new product.
   /// https://woosignal.com/docs/api/1.0/products#create-a-product
-  Future<Product> createProduct({
-    @required String name,
-    @required String type, // simple, grouped, external and variable.
-    @required String regularPrice,
-    @required String description,
-    @required String shortDescription,
-    @required Map<String, dynamic> categories,
-    @required Map<String, dynamic> images,
+  Future<Product?> createProduct({
+    required String name,
+    String type = "simple", // simple, grouped, external and variable.
+    required String regularPrice,
+    required String description,
+    required String shortDescription,
+    required Map<String, dynamic> categories,
+    required Map<String, dynamic> images,
   }) async {
     Map<String, dynamic> payload = {};
-    if (name != null) payload['name'] = name;
-    if (type != null) payload['type'] = type;
-    if (regularPrice != null) payload['regular_price'] = regularPrice;
-    if (description != null) payload['description'] = description;
-    if (shortDescription != null)
-      payload['short_description'] = shortDescription;
-    if (categories != null) payload['categories'] = categories;
-    if (images != null) payload['images'] = images;
+    payload['name'] = name;
+    payload['type'] = type;
+    payload['regular_price'] = regularPrice;
+    payload['description'] = description;
+    payload['short_description'] = shortDescription;
+    payload['categories'] = categories;
+    payload['images'] = images;
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "products/");
-    Product product;
+    Product? product;
     await _apiProvider.post("/request", payload).then((json) {
       product = Product.fromJson(json);
     });
@@ -1689,13 +1683,13 @@ class WooSignal {
   // Update a product
   // This API lets you make changes to a product.
   /// https://woosignal.com/docs/api/1.0/products#update-a-product
-  Future<Product> updateProduct(int id, {Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<Product?> updateProduct(int id, {Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("put", payload, "products/" + id.toString());
 
-    Product product;
+    Product? product;
     await _apiProvider.post("/request", payload).then((json) {
       product = Product.fromJson(json);
     });
@@ -1706,7 +1700,7 @@ class WooSignal {
   // Delete a product
   // This API helps you delete a product.
   /// https://woosignal.com/docs/api/1.0/products#delete-a-product
-  Future<Product> deleteProduct(int id, {bool force = false}) async {
+  Future<Product?> deleteProduct(int id, {bool force = false}) async {
     Map<String, dynamic> data;
     data = {
       'force': force,
@@ -1716,7 +1710,7 @@ class WooSignal {
     _printLog(payload.toString());
     payload = _standardPayload("delete", payload, "products/" + id.toString());
 
-    Product product;
+    Product? product;
     await _apiProvider.post("/request", payload).then((json) {
       product = Product.fromJson(json);
     });
@@ -1727,13 +1721,13 @@ class WooSignal {
   // This API helps you to batch create, update and delete multiple Products.
   // Note: By default it's limited to up to 100 objects to be created, updated or deleted.
   /// https://woosignal.com/docs/api/1.0/products#batch-products
-  Future<ProductBatch> batchProduct({Map<String, dynamic> data}) async {
-    Map<String, dynamic> payload = data;
+  Future<ProductBatch?> batchProduct({Map<String, dynamic>? data}) async {
+    Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "coupons/batch");
 
-    ProductBatch productBatch;
+    ProductBatch? productBatch;
     await _apiProvider.post("/request", payload).then((json) {
       productBatch = ProductBatch.fromJson(json);
     });

@@ -16,9 +16,9 @@
 import 'package:woosignal/models/links.dart';
 
 class TaxClass {
-  String slug;
-  String name;
-  Links links;
+  String? slug;
+  String? name;
+  Links? links;
 
   TaxClass({this.slug, this.name, this.links});
 
@@ -33,7 +33,7 @@ class TaxClass {
     data['slug'] = this.slug;
     data['name'] = this.name;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

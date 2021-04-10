@@ -18,22 +18,22 @@ import 'package:woosignal/models/links.dart';
 import '../meta_data.dart';
 
 class Customer {
-  int id;
-  String dateCreated;
-  String dateCreatedGmt;
-  String dateModified;
-  String dateModifiedGmt;
-  String email;
-  String firstName;
-  String lastName;
-  String role;
-  String username;
-  Billing billing;
-  Shipping shipping;
-  bool isPayingCustomer;
-  String avatarUrl;
-  List<MetaData> metaData;
-  Links links;
+  int? id;
+  String? dateCreated;
+  String? dateCreatedGmt;
+  String? dateModified;
+  String? dateModifiedGmt;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? role;
+  String? username;
+  Billing? billing;
+  Shipping? shipping;
+  bool? isPayingCustomer;
+  String? avatarUrl;
+  List<MetaData>? metaData;
+  Links? links;
 
   Customer(
       {this.id,
@@ -89,35 +89,35 @@ class Customer {
     data['role'] = this.role;
     data['username'] = this.username;
     if (this.billing != null) {
-      data['billing'] = this.billing.toJson();
+      data['billing'] = this.billing!.toJson();
     }
     if (this.shipping != null) {
-      data['shipping'] = this.shipping.toJson();
+      data['shipping'] = this.shipping!.toJson();
     }
     data['is_paying_customer'] = this.isPayingCustomer;
     data['avatar_url'] = this.avatarUrl;
     if (this.metaData != null) {
-      data['meta_data'] = this.metaData.map((v) => v.toJson()).toList();
+      data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
     }
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }
 }
 
 class Billing {
-  String firstName;
-  String lastName;
-  String company;
-  String address1;
-  String address2;
-  String city;
-  String state;
-  String postcode;
-  String country;
-  String email;
-  String phone;
+  String? firstName;
+  String? lastName;
+  String? company;
+  String? address1;
+  String? address2;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
+  String? email;
+  String? phone;
 
   Billing(
       {this.firstName,
@@ -164,15 +164,15 @@ class Billing {
 }
 
 class Shipping {
-  String firstName;
-  String lastName;
-  String company;
-  String address1;
-  String address2;
-  String city;
-  String state;
-  String postcode;
-  String country;
+  String? firstName;
+  String? lastName;
+  String? company;
+  String? address1;
+  String? address2;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
 
   Shipping(
       {this.firstName,

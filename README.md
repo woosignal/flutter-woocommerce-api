@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^1.5.1+1
+  woosignal: ^2.0.0
 ```
 
 ### Usage example #
@@ -41,12 +41,9 @@ _getProducts() async {
         };
 
         // CREATING AN INSTANCE
-        WooSignal.getInstance(config: wsConfig).then( (wcStore) {
-
-         wcStore.getProducts().then( (products) {
-              print(products[0].name);
-        });
-
+        WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
+        List<Product> products = await wooSignal.getProducts();
+        print(products[0].name);
   });
 }
 ```
@@ -59,8 +56,7 @@ _getProducts() async {
 - Update a Product by id
 - Delete a Product by id 
 - Create a Product 
-- Create, Delete and  Update Product Multiple Time.
-<!--  -->
+- Batch update Products
 
 [See Products API](https://woosignal.com/docs/api/1.0/products#list-all-products)
 
@@ -138,7 +134,7 @@ _getProducts() async {
 - Retrieve a Order by id
 - Create an Order
 - Update an Order
-- Create, Delete and  Update Order Multiple Time.
+- Batch update Orders
 
 [See Order API](https://woosignal.com/docs/api/1.0/orders)
 
@@ -148,7 +144,7 @@ _getProducts() async {
 - Create a Customer
 - Delete a Customer
 - Update a Customer
-- Create, Delete and  Update Product Multiple Time.
+- Batch update Customers
 
 [See Customers API](https://woosignal.com/docs/api/1.0/customers)
 
@@ -161,97 +157,63 @@ _getProducts() async {
 [See Orders Notes API](https://woosignal.com/docs/api/1.0/order-notes)
 
 #### WooCommerce - Refunds
-<!-- The refunds API allows you to create, view, and delete individual refunds. -->
-- List all all the refunds from an order.
+- Get refunds from an order id
 - Retrieve a retrieve and view a specific refund from an order
 - Delete a delete an order refund.
-- Create a new refund for an order.
+- Create a new refund for an order
 
 [See Refunds API](https://woosignal.com/docs/api/1.0/order-refund)
 
 #### WooCommerce - Coupons
-<!-- The coupons API allows you to create, view, update, and delete individual, or a batch, of coupon codes. -->
-- List all the coupons that have been created.
+- Get all coupons.
 - Retrieve and view a specific coupon by ID
-- This API lets you make changes  or update to a coupon.
-- Delete a delete a coupon.
-- Create, Delete and  Update Coupons Multiple Time.
+- Update a coupon.
+- Delete a coupon.
+- Batch update Coupons.
 
 [See Coupons API](https://woosignal.com/docs/api/1.0/coupons)
 
 #### WooCommerce - Reports
-<!-- The reports API allows you to view all types of reports available. -->
-
-<!-- Retrieve and view a simple list of available reports. -->
-- List all the Reports that have been created.
-<!-- Retrieve sales report -->
-- API lets you retrieve and view a sales report.
-<!-- Retrieve top sellers report -->
-- API lets you retrieve and view a list of top sellers report.
-<!-- Retrieve coupons totals -->
-- API lets you retrieve and view coupons totals report.
-<!-- Retrieve customers totals -->
-- API lets you retrieve and view customers totals report.
-<!-- Retrieve orders totals -->
-- API lets you retrieve and view orders totals report.
-<!-- Retrieve products totals -->
-- API lets you retrieve and view products totals report
-<!-- Retrieve reviews totals -->
-- API lets you retrieve and view reviews totals report.
+- Get Reports
+- Retrieve a report of Sales
+- Retrieve a report of Top Sellers
+- Retrieve a report of the Total Coupons
+- Retrieve a report of the Total Customers
+- Retrieve a report of the Total Orders
+- Retrieve a report of the Total Products
+- Retrieve a report of the Total Reviews
 
 [See Reports API](https://woosignal.com/docs/api/1.0/reports)
 
 #### WooCommerce - Data
-<!-- The data API allows you to view all types of data available. -->
-<!-- List all data -->
-- Retrieve and view a simple list of available data endpoints.
-<!-- List all continents -->
-- API helps you to view all the continents..
-<!-- Retrieve continent data -->
-- API lets you retrieve and view a continent data.
-<!-- List all countries -->
-- API helps you to view all the countries..
-<!-- Retrieve country data -->
-- API lets you retrieve and view a country data.
-<!-- List all currencies -->
-- API helps you to view all the currencies.
-<!-- Retrieve currency data -->
-- API lets you retrieve and view a currency data.
-<!-- Retrieve current currency -->
-- API lets you retrieve and view store's current currency data.
+- Retrieve a list of available data endpoints.
+- Get continents.
+- Retrieve continent data.
+- Get countries.
+- Retrieve country data.
+- Get currencies.
+- Retrieve currency data.
+- Retrieve current currency data.
 
 [See Data API](https://woosignal.com/docs/api/1.0/data)
 
 #### WooCommerce - System Status
-<!-- The system status API allows you to view all system status items. -->
-<!-- List all system status items -->
-- API helps you to view all the system status items.
+- Get System Status Items
 
 [See System Status API](https://woosignal.com/docs/api/1.0/system-status)
 
 #### WooCommerce - Payment gateways
-<!--The payment gateways API allows you to view, and update individual payment gateways. 
-  Results are not paginated - all gateways will be returned -->
-<!-- Retrieve an payment gateway -->
-- API lets you retrieve and view a specific payment gateway.
-<!-- List all payment gateways -->
-- API helps you to view all the payment gateways.
-<!-- Update a payment gateway -->
-- API lets you make changes to a payment gateway.
+- Retrieve a Payment Gateway by id
+- Get all the Payment Gateways
+- Update a Payment Gateway
 
 [See Payment gateways API](https://woosignal.com/docs/api/1.0/payment-gateways)
 
 #### WooCommerce - Setting options
-<!--The payment gateways API allows you to view, and update individual payment gateways. 
-  Results are not paginated - all gateways will be returned -->
-<!-- Retrieve a setting option -->
-- API lets you retrieve and view a specific setting option.
-<!-- List all setting options -->
-- API helps you to view all the setting options.
-<!-- Update a setting option -->
-- API lets you make changes to a setting option.
-<!-- Batch update setting options -->
-- Create, Delete and  Update Setting options Multiple Time.
+- Retrieve a specific Setting Option
+- Get all the Setting Options
+- Update a Setting Option by id
+- Batch update Setting Options
 
 [See Setting options API](https://woosignal.com/docs/api/1.0/setting-options)
 

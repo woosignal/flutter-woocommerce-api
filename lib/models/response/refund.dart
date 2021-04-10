@@ -29,16 +29,16 @@ class Refund {
     this.links,
   });
 
-  int id;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  String amount;
-  String reason;
-  int refundedBy;
-  bool refundedPayment;
-  List<dynamic> metaData;
-  List<dynamic> lineItems;
-  Links links;
+  int? id;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  String? amount;
+  String? reason;
+  int? refundedBy;
+  bool? refundedPayment;
+  List<dynamic>? metaData;
+  List<dynamic>? lineItems;
+  Links? links;
 
   factory Refund.fromJson(Map<String, dynamic> json) => Refund(
         id: json["id"],
@@ -55,14 +55,14 @@ class Refund {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
         "amount": amount,
         "reason": reason,
         "refunded_by": refundedBy,
         "refunded_payment": refundedPayment,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x)),
-        "line_items": List<dynamic>.from(lineItems.map((x) => x)),
-        "_links": links.toJson(),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x)),
+        "line_items": List<dynamic>.from(lineItems!.map((x) => x)),
+        "_links": links!.toJson(),
       };
 }

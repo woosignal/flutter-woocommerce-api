@@ -18,7 +18,7 @@ import 'package:uuid/uuid.dart';
 import 'dart:core';
 import 'dart:math';
 
-Future<String> getUserApiKey() async {
+Future<String?> getUserApiKey() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString("DEFAULT_WOOSIGNAL_KEY");
 }
@@ -28,9 +28,9 @@ Future<void> storeUserApiKey(String apiKey) async {
   await prefs.setString("DEFAULT_WOOSIGNAL_KEY", apiKey);
 }
 
-Future<String> getUUID() async {
+Future<String?> getUUID() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  String uuid = prefs.getString("DEFAULT_WOOSIGNAL_UUID");
+  String? uuid = prefs.getString("DEFAULT_WOOSIGNAL_UUID");
   return uuid;
 }
 

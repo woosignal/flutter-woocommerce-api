@@ -22,9 +22,9 @@ class CouponBatch {
     this.delete,
   });
 
-  List<Create> create;
-  List<Create> update;
-  List<Create> delete;
+  List<Create>? create;
+  List<Create>? update;
+  List<Create>? delete;
 
   factory CouponBatch.fromJson(Map<String, dynamic> json) => CouponBatch(
         create:
@@ -36,9 +36,9 @@ class CouponBatch {
       );
 
   Map<String, dynamic> toJson() => {
-        "create": List<dynamic>.from(create.map((x) => x.toJson())),
-        "update": List<dynamic>.from(update.map((x) => x.toJson())),
-        "delete": List<dynamic>.from(delete.map((x) => x.toJson())),
+        "create": List<dynamic>.from(create!.map((x) => x.toJson())),
+        "update": List<dynamic>.from(update!.map((x) => x.toJson())),
+        "delete": List<dynamic>.from(delete!.map((x) => x.toJson())),
       };
 }
 
@@ -74,34 +74,34 @@ class Create {
     this.links,
   });
 
-  int id;
-  String code;
-  String amount;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String discountType;
-  String description;
+  int? id;
+  String? code;
+  String? amount;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  DateTime? dateModified;
+  DateTime? dateModifiedGmt;
+  String? discountType;
+  String? description;
   dynamic dateExpires;
   dynamic dateExpiresGmt;
-  int usageCount;
-  bool individualUse;
-  List<dynamic> productIds;
-  List<dynamic> excludedProductIds;
+  int? usageCount;
+  bool? individualUse;
+  List<dynamic>? productIds;
+  List<dynamic>? excludedProductIds;
   dynamic usageLimit;
   dynamic usageLimitPerUser;
   dynamic limitUsageToXItems;
-  bool freeShipping;
-  List<dynamic> productCategories;
-  List<dynamic> excludedProductCategories;
-  bool excludeSaleItems;
-  String minimumAmount;
-  String maximumAmount;
-  List<dynamic> emailRestrictions;
-  List<dynamic> usedBy;
-  List<dynamic> metaData;
-  Links links;
+  bool? freeShipping;
+  List<dynamic>? productCategories;
+  List<dynamic>? excludedProductCategories;
+  bool? excludeSaleItems;
+  String? minimumAmount;
+  String? maximumAmount;
+  List<dynamic>? emailRestrictions;
+  List<dynamic>? usedBy;
+  List<dynamic>? metaData;
+  Links? links;
 
   factory Create.fromJson(Map<String, dynamic> json) => Create(
         id: json["id"],
@@ -142,34 +142,34 @@ class Create {
         "id": id,
         "code": code,
         "amount": amount,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
-        "date_modified": dateModified.toIso8601String(),
-        "date_modified_gmt": dateModifiedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
+        "date_modified": dateModified!.toIso8601String(),
+        "date_modified_gmt": dateModifiedGmt!.toIso8601String(),
         "discount_type": discountType,
         "description": description,
         "date_expires": dateExpires,
         "date_expires_gmt": dateExpiresGmt,
         "usage_count": usageCount,
         "individual_use": individualUse,
-        "product_ids": List<dynamic>.from(productIds.map((x) => x)),
+        "product_ids": List<dynamic>.from(productIds!.map((x) => x)),
         "excluded_product_ids":
-            List<dynamic>.from(excludedProductIds.map((x) => x)),
+            List<dynamic>.from(excludedProductIds!.map((x) => x)),
         "usage_limit": usageLimit,
         "usage_limit_per_user": usageLimitPerUser,
         "limit_usage_to_x_items": limitUsageToXItems,
         "free_shipping": freeShipping,
         "product_categories":
-            List<dynamic>.from(productCategories.map((x) => x)),
+            List<dynamic>.from(productCategories!.map((x) => x)),
         "excluded_product_categories":
-            List<dynamic>.from(excludedProductCategories.map((x) => x)),
+            List<dynamic>.from(excludedProductCategories!.map((x) => x)),
         "exclude_sale_items": excludeSaleItems,
         "minimum_amount": minimumAmount,
         "maximum_amount": maximumAmount,
         "email_restrictions":
-            List<dynamic>.from(emailRestrictions.map((x) => x)),
-        "used_by": List<dynamic>.from(usedBy.map((x) => x)),
-        "meta_data": List<dynamic>.from(metaData.map((x) => x)),
-        "_links": links.toJson(),
+            List<dynamic>.from(emailRestrictions!.map((x) => x)),
+        "used_by": List<dynamic>.from(usedBy!.map((x) => x)),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x)),
+        "_links": links!.toJson(),
       };
 }

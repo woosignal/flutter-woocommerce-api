@@ -16,9 +16,9 @@
 import 'package:woosignal/models/links.dart';
 
 class ShippingZoneLocation {
-  String code;
-  String type;
-  Links links;
+  String? code;
+  String? type;
+  Links? links;
 
   ShippingZoneLocation({this.code, this.type, this.links});
 
@@ -33,7 +33,7 @@ class ShippingZoneLocation {
     data['code'] = this.code;
     data['type'] = this.type;
     if (this.links != null) {
-      data['_links'] = this.links.toJson();
+      data['_links'] = this.links!.toJson();
     }
     return data;
   }

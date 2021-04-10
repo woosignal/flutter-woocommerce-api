@@ -22,9 +22,9 @@ class OrderBatch {
     this.delete,
   });
 
-  List<Orders> create;
-  List<Orders> update;
-  List<Delete> delete;
+  List<Orders>? create;
+  List<Orders>? update;
+  List<Delete>? delete;
 
   factory OrderBatch.fromJson(Map<String, dynamic> json) => OrderBatch(
         create:
@@ -36,9 +36,9 @@ class OrderBatch {
       );
 
   Map<String, dynamic> toJson() => {
-        "create": List<dynamic>.from(create.map((x) => x.toJson())),
-        "update": List<dynamic>.from(update.map((x) => x.toJson())),
-        "delete": List<dynamic>.from(delete.map((x) => x.toJson())),
+        "create": List<dynamic>.from(create!.map((x) => x.toJson())),
+        "update": List<dynamic>.from(update!.map((x) => x.toJson())),
+        "delete": List<dynamic>.from(delete!.map((x) => x.toJson())),
       };
 }
 
@@ -88,48 +88,48 @@ class Orders {
     this.links,
   });
 
-  int id;
-  int parentId;
-  String number;
-  String orderKey;
-  String createdVia;
-  String version;
-  String status;
-  String currency;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String discountTotal;
-  String discountTax;
-  String shippingTotal;
-  String shippingTax;
-  String cartTax;
-  String total;
-  String totalTax;
-  bool pricesIncludeTax;
-  int customerId;
-  String customerIpAddress;
-  String customerUserAgent;
-  String customerNote;
-  Ing billing;
-  Ing shipping;
-  String paymentMethod;
-  String paymentMethodTitle;
-  String transactionId;
-  DateTime datePaid;
-  DateTime datePaidGmt;
-  DateTime dateCompleted;
-  DateTime dateCompletedGmt;
-  String cartHash;
-  List<MetaDatum> metaData;
-  List<LineItem> lineItems;
-  List<TaxLine> taxLines;
-  List<ShippingLine> shippingLines;
-  List<dynamic> feeLines;
-  List<dynamic> couponLines;
-  List<dynamic> refunds;
-  CreateLinks links;
+  int? id;
+  int? parentId;
+  String? number;
+  String? orderKey;
+  String? createdVia;
+  String? version;
+  String? status;
+  String? currency;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  DateTime? dateModified;
+  DateTime? dateModifiedGmt;
+  String? discountTotal;
+  String? discountTax;
+  String? shippingTotal;
+  String? shippingTax;
+  String? cartTax;
+  String? total;
+  String? totalTax;
+  bool? pricesIncludeTax;
+  int? customerId;
+  String? customerIpAddress;
+  String? customerUserAgent;
+  String? customerNote;
+  Ing? billing;
+  Ing? shipping;
+  String? paymentMethod;
+  String? paymentMethodTitle;
+  String? transactionId;
+  DateTime? datePaid;
+  DateTime? datePaidGmt;
+  DateTime? dateCompleted;
+  DateTime? dateCompletedGmt;
+  String? cartHash;
+  List<MetaDatum>? metaData;
+  List<LineItem>? lineItems;
+  List<TaxLine>? taxLines;
+  List<ShippingLine>? shippingLines;
+  List<dynamic>? feeLines;
+  List<dynamic>? couponLines;
+  List<dynamic>? refunds;
+  CreateLinks? links;
 
   factory Orders.fromJson(Map<String, dynamic> json) => Orders(
         id: json["id"],
@@ -197,10 +197,10 @@ class Orders {
         "version": version,
         "status": status,
         "currency": currency,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
-        "date_modified": dateModified.toIso8601String(),
-        "date_modified_gmt": dateModifiedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
+        "date_modified": dateModified!.toIso8601String(),
+        "date_modified_gmt": dateModifiedGmt!.toIso8601String(),
         "discount_total": discountTotal,
         "discount_tax": discountTax,
         "shipping_total": shippingTotal,
@@ -213,29 +213,29 @@ class Orders {
         "customer_ip_address": customerIpAddress,
         "customer_user_agent": customerUserAgent,
         "customer_note": customerNote,
-        "billing": billing.toJson(),
-        "shipping": shipping.toJson(),
+        "billing": billing!.toJson(),
+        "shipping": shipping!.toJson(),
         "payment_method": paymentMethod,
         "payment_method_title": paymentMethodTitle,
         "transaction_id": transactionId,
-        "date_paid": datePaid == null ? null : datePaid.toIso8601String(),
+        "date_paid": datePaid == null ? null : datePaid!.toIso8601String(),
         "date_paid_gmt":
-            datePaidGmt == null ? null : datePaidGmt.toIso8601String(),
+            datePaidGmt == null ? null : datePaidGmt!.toIso8601String(),
         "date_completed":
-            dateCompleted == null ? null : dateCompleted.toIso8601String(),
+            dateCompleted == null ? null : dateCompleted!.toIso8601String(),
         "date_completed_gmt": dateCompletedGmt == null
             ? null
-            : dateCompletedGmt.toIso8601String(),
+            : dateCompletedGmt!.toIso8601String(),
         "cart_hash": cartHash,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x.toJson())),
-        "line_items": List<dynamic>.from(lineItems.map((x) => x.toJson())),
-        "tax_lines": List<dynamic>.from(taxLines.map((x) => x.toJson())),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x.toJson())),
+        "line_items": List<dynamic>.from(lineItems!.map((x) => x.toJson())),
+        "tax_lines": List<dynamic>.from(taxLines!.map((x) => x.toJson())),
         "shipping_lines":
-            List<dynamic>.from(shippingLines.map((x) => x.toJson())),
-        "fee_lines": List<dynamic>.from(feeLines.map((x) => x)),
-        "coupon_lines": List<dynamic>.from(couponLines.map((x) => x)),
-        "refunds": List<dynamic>.from(refunds.map((x) => x)),
-        "_links": links.toJson(),
+            List<dynamic>.from(shippingLines!.map((x) => x.toJson())),
+        "fee_lines": List<dynamic>.from(feeLines!.map((x) => x)),
+        "coupon_lines": List<dynamic>.from(couponLines!.map((x) => x)),
+        "refunds": List<dynamic>.from(refunds!.map((x) => x)),
+        "_links": links!.toJson(),
       };
 }
 
@@ -254,17 +254,17 @@ class Ing {
     this.phone,
   });
 
-  String firstName;
-  String lastName;
-  String company;
-  String address1;
-  String address2;
-  String city;
-  String state;
-  String postcode;
-  String country;
-  String email;
-  String phone;
+  String? firstName;
+  String? lastName;
+  String? company;
+  String? address1;
+  String? address2;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
+  String? email;
+  String? phone;
 
   factory Ing.fromJson(Map<String, dynamic> json) => Ing(
         firstName: json["first_name"],
@@ -313,20 +313,20 @@ class LineItem {
     this.price,
   });
 
-  int id;
-  String name;
-  int productId;
-  int variationId;
-  int quantity;
-  String taxClass;
-  String subtotal;
-  String subtotalTax;
-  String total;
-  String totalTax;
-  List<Tax> taxes;
-  List<MetaDatum> metaData;
-  String sku;
-  int price;
+  int? id;
+  String? name;
+  int? productId;
+  int? variationId;
+  int? quantity;
+  String? taxClass;
+  String? subtotal;
+  String? subtotalTax;
+  String? total;
+  String? totalTax;
+  List<Tax>? taxes;
+  List<MetaDatum>? metaData;
+  String? sku;
+  int? price;
 
   factory LineItem.fromJson(Map<String, dynamic> json) => LineItem(
         id: json["id"],
@@ -357,8 +357,8 @@ class LineItem {
         "subtotal_tax": subtotalTax,
         "total": total,
         "total_tax": totalTax,
-        "taxes": List<dynamic>.from(taxes.map((x) => x.toJson())),
-        "meta_data": List<dynamic>.from(metaData.map((x) => x.toJson())),
+        "taxes": List<dynamic>.from(taxes!.map((x) => x.toJson())),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x.toJson())),
         "sku": sku,
         "price": price,
       };
@@ -371,9 +371,9 @@ class MetaDatum {
     this.value,
   });
 
-  int id;
-  String key;
-  String value;
+  int? id;
+  String? key;
+  String? value;
 
   factory MetaDatum.fromJson(Map<String, dynamic> json) => MetaDatum(
         id: json["id"],
@@ -395,9 +395,9 @@ class Tax {
     this.subtotal,
   });
 
-  int id;
-  String total;
-  String subtotal;
+  int? id;
+  String? total;
+  String? subtotal;
 
   factory Tax.fromJson(Map<String, dynamic> json) => Tax(
         id: json["id"],
@@ -418,8 +418,8 @@ class CreateLinks {
     this.collection,
   });
 
-  List<Collection> self;
-  List<Collection> collection;
+  List<Collection>? self;
+  List<Collection>? collection;
 
   factory CreateLinks.fromJson(Map<String, dynamic> json) => CreateLinks(
         self: List<Collection>.from(
@@ -429,8 +429,8 @@ class CreateLinks {
       );
 
   Map<String, dynamic> toJson() => {
-        "self": List<dynamic>.from(self.map((x) => x.toJson())),
-        "collection": List<dynamic>.from(collection.map((x) => x.toJson())),
+        "self": List<dynamic>.from(self!.map((x) => x.toJson())),
+        "collection": List<dynamic>.from(collection!.map((x) => x.toJson())),
       };
 }
 
@@ -445,13 +445,13 @@ class ShippingLine {
     this.metaData,
   });
 
-  int id;
-  String methodTitle;
-  String methodId;
-  String total;
-  String totalTax;
-  List<dynamic> taxes;
-  List<MetaDatum> metaData;
+  int? id;
+  String? methodTitle;
+  String? methodId;
+  String? total;
+  String? totalTax;
+  List<dynamic>? taxes;
+  List<MetaDatum>? metaData;
 
   factory ShippingLine.fromJson(Map<String, dynamic> json) => ShippingLine(
         id: json["id"],
@@ -470,8 +470,8 @@ class ShippingLine {
         "method_id": methodId,
         "total": total,
         "total_tax": totalTax,
-        "taxes": List<dynamic>.from(taxes.map((x) => x)),
-        "meta_data": List<dynamic>.from(metaData.map((x) => x.toJson())),
+        "taxes": List<dynamic>.from(taxes!.map((x) => x)),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x.toJson())),
       };
 }
 
@@ -487,14 +487,14 @@ class TaxLine {
     this.metaData,
   });
 
-  int id;
-  String rateCode;
-  int rateId;
-  String label;
-  bool compound;
-  String taxTotal;
-  String shippingTaxTotal;
-  List<dynamic> metaData;
+  int? id;
+  String? rateCode;
+  int? rateId;
+  String? label;
+  bool? compound;
+  String? taxTotal;
+  String? shippingTaxTotal;
+  List<dynamic>? metaData;
 
   factory TaxLine.fromJson(Map<String, dynamic> json) => TaxLine(
         id: json["id"],
@@ -515,7 +515,7 @@ class TaxLine {
         "compound": compound,
         "tax_total": taxTotal,
         "shipping_tax_total": shippingTaxTotal,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x)),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x)),
       };
 }
 
@@ -565,48 +565,48 @@ class Delete {
     this.links,
   });
 
-  int id;
-  int parentId;
-  String number;
-  String orderKey;
-  String createdVia;
-  String version;
-  String status;
-  String currency;
-  DateTime dateCreated;
-  DateTime dateCreatedGmt;
-  DateTime dateModified;
-  DateTime dateModifiedGmt;
-  String discountTotal;
-  String discountTax;
-  String shippingTotal;
-  String shippingTax;
-  String cartTax;
-  String total;
-  String totalTax;
-  bool pricesIncludeTax;
-  int customerId;
-  String customerIpAddress;
-  String customerUserAgent;
-  String customerNote;
-  Ing billing;
-  Ing shipping;
-  String paymentMethod;
-  String paymentMethodTitle;
-  String transactionId;
+  int? id;
+  int? parentId;
+  String? number;
+  String? orderKey;
+  String? createdVia;
+  String? version;
+  String? status;
+  String? currency;
+  DateTime? dateCreated;
+  DateTime? dateCreatedGmt;
+  DateTime? dateModified;
+  DateTime? dateModifiedGmt;
+  String? discountTotal;
+  String? discountTax;
+  String? shippingTotal;
+  String? shippingTax;
+  String? cartTax;
+  String? total;
+  String? totalTax;
+  bool? pricesIncludeTax;
+  int? customerId;
+  String? customerIpAddress;
+  String? customerUserAgent;
+  String? customerNote;
+  Ing? billing;
+  Ing? shipping;
+  String? paymentMethod;
+  String? paymentMethodTitle;
+  String? transactionId;
   dynamic datePaid;
   dynamic datePaidGmt;
-  DateTime dateCompleted;
-  DateTime dateCompletedGmt;
-  String cartHash;
-  List<MetaDatum> metaData;
-  List<LineItem> lineItems;
-  List<dynamic> taxLines;
-  List<ShippingLine> shippingLines;
-  List<dynamic> feeLines;
-  List<dynamic> couponLines;
-  List<Refund> refunds;
-  DeleteLinks links;
+  DateTime? dateCompleted;
+  DateTime? dateCompletedGmt;
+  String? cartHash;
+  List<MetaDatum>? metaData;
+  List<LineItem>? lineItems;
+  List<dynamic>? taxLines;
+  List<ShippingLine>? shippingLines;
+  List<dynamic>? feeLines;
+  List<dynamic>? couponLines;
+  List<Refund>? refunds;
+  DeleteLinks? links;
 
   factory Delete.fromJson(Map<String, dynamic> json) => Delete(
         id: json["id"],
@@ -666,10 +666,10 @@ class Delete {
         "version": version,
         "status": status,
         "currency": currency,
-        "date_created": dateCreated.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt.toIso8601String(),
-        "date_modified": dateModified.toIso8601String(),
-        "date_modified_gmt": dateModifiedGmt.toIso8601String(),
+        "date_created": dateCreated!.toIso8601String(),
+        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
+        "date_modified": dateModified!.toIso8601String(),
+        "date_modified_gmt": dateModifiedGmt!.toIso8601String(),
         "discount_total": discountTotal,
         "discount_tax": discountTax,
         "shipping_total": shippingTotal,
@@ -682,25 +682,25 @@ class Delete {
         "customer_ip_address": customerIpAddress,
         "customer_user_agent": customerUserAgent,
         "customer_note": customerNote,
-        "billing": billing.toJson(),
-        "shipping": shipping.toJson(),
+        "billing": billing!.toJson(),
+        "shipping": shipping!.toJson(),
         "payment_method": paymentMethod,
         "payment_method_title": paymentMethodTitle,
         "transaction_id": transactionId,
         "date_paid": datePaid,
         "date_paid_gmt": datePaidGmt,
-        "date_completed": dateCompleted.toIso8601String(),
-        "date_completed_gmt": dateCompletedGmt.toIso8601String(),
+        "date_completed": dateCompleted!.toIso8601String(),
+        "date_completed_gmt": dateCompletedGmt!.toIso8601String(),
         "cart_hash": cartHash,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x.toJson())),
-        "line_items": List<dynamic>.from(lineItems.map((x) => x.toJson())),
-        "tax_lines": List<dynamic>.from(taxLines.map((x) => x)),
+        "meta_data": List<dynamic>.from(metaData!.map((x) => x.toJson())),
+        "line_items": List<dynamic>.from(lineItems!.map((x) => x.toJson())),
+        "tax_lines": List<dynamic>.from(taxLines!.map((x) => x)),
         "shipping_lines":
-            List<dynamic>.from(shippingLines.map((x) => x.toJson())),
-        "fee_lines": List<dynamic>.from(feeLines.map((x) => x)),
-        "coupon_lines": List<dynamic>.from(couponLines.map((x) => x)),
-        "refunds": List<dynamic>.from(refunds.map((x) => x.toJson())),
-        "_links": links.toJson(),
+            List<dynamic>.from(shippingLines!.map((x) => x.toJson())),
+        "fee_lines": List<dynamic>.from(feeLines!.map((x) => x)),
+        "coupon_lines": List<dynamic>.from(couponLines!.map((x) => x)),
+        "refunds": List<dynamic>.from(refunds!.map((x) => x.toJson())),
+        "_links": links!.toJson(),
       };
 }
 
@@ -711,9 +711,9 @@ class DeleteLinks {
     this.customer,
   });
 
-  List<Collection> self;
-  List<Collection> collection;
-  List<Collection> customer;
+  List<Collection>? self;
+  List<Collection>? collection;
+  List<Collection>? customer;
 
   factory DeleteLinks.fromJson(Map<String, dynamic> json) => DeleteLinks(
         self: List<Collection>.from(
@@ -725,9 +725,9 @@ class DeleteLinks {
       );
 
   Map<String, dynamic> toJson() => {
-        "self": List<dynamic>.from(self.map((x) => x.toJson())),
-        "collection": List<dynamic>.from(collection.map((x) => x.toJson())),
-        "customer": List<dynamic>.from(customer.map((x) => x.toJson())),
+        "self": List<dynamic>.from(self!.map((x) => x.toJson())),
+        "collection": List<dynamic>.from(collection!.map((x) => x.toJson())),
+        "customer": List<dynamic>.from(customer!.map((x) => x.toJson())),
       };
 }
 
@@ -738,9 +738,9 @@ class Refund {
     this.total,
   });
 
-  int id;
-  String refund;
-  String total;
+  int? id;
+  String? refund;
+  String? total;
 
   factory Refund.fromJson(Map<String, dynamic> json) => Refund(
         id: json["id"],

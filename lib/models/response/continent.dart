@@ -23,10 +23,10 @@ class Continents {
     this.links,
   });
 
-  String code;
-  String name;
-  List<Country> countries;
-  Links links;
+  String? code;
+  String? name;
+  List<Country>? countries;
+  Links? links;
 
   Continents.fromJson(Map<String, dynamic> json) {
     this.code = json["code"];
@@ -39,8 +39,8 @@ class Continents {
   Map<String, dynamic> toJson() => {
         "code": code,
         "name": name,
-        "countries": List<dynamic>.from(countries.map((x) => x.toJson())),
-        "_links": links.toJson(),
+        "countries": List<dynamic>.from(countries!.map((x) => x.toJson())),
+        "_links": links!.toJson(),
       };
 }
 
@@ -58,16 +58,16 @@ class Country {
     this.weightUnit,
   });
 
-  String code;
-  String name;
-  List<State> states;
-  String currencyCode;
-  CurrencyPos currencyPos;
-  Sep decimalSep;
-  DimensionUnit dimensionUnit;
-  int numDecimals;
-  Sep thousandSep;
-  WeightUnit weightUnit;
+  String? code;
+  String? name;
+  List<State>? states;
+  String? currencyCode;
+  CurrencyPos? currencyPos;
+  Sep? decimalSep;
+  DimensionUnit? dimensionUnit;
+  int? numDecimals;
+  Sep? thousandSep;
+  WeightUnit? weightUnit;
 
   factory Country.fromJson(Map<String, dynamic> json) => Country(
         code: json["code"],
@@ -96,20 +96,20 @@ class Country {
   Map<String, dynamic> toJson() => {
         "code": code,
         "name": name,
-        "states": List<dynamic>.from(states.map((x) => x.toJson())),
+        "states": List<dynamic>.from(states!.map((x) => x.toJson())),
         "currency_code": currencyCode == null ? null : currencyCode,
         "currency_pos":
-            currencyPos == null ? null : currencyPosValues.reverse[currencyPos],
+            currencyPos == null ? null : currencyPosValues.reverse![currencyPos!],
         "decimal_sep":
-            decimalSep == null ? null : sepValues.reverse[decimalSep],
+            decimalSep == null ? null : sepValues.reverse![decimalSep!],
         "dimension_unit": dimensionUnit == null
             ? null
-            : dimensionUnitValues.reverse[dimensionUnit],
+            : dimensionUnitValues.reverse![dimensionUnit!],
         "num_decimals": numDecimals == null ? null : numDecimals,
         "thousand_sep":
-            thousandSep == null ? null : sepValues.reverse[thousandSep],
+            thousandSep == null ? null : sepValues.reverse![thousandSep!],
         "weight_unit":
-            weightUnit == null ? null : weightUnitValues.reverse[weightUnit],
+            weightUnit == null ? null : weightUnitValues.reverse![weightUnit!],
       };
 }
 
@@ -137,8 +137,8 @@ class State {
     this.name,
   });
 
-  String code;
-  String name;
+  String? code;
+  String? name;
 
   factory State.fromJson(Map<String, dynamic> json) => State(
         code: json["code"],
@@ -157,11 +157,11 @@ final weightUnitValues = EnumValues({"kg": WeightUnit.KG, "oz": WeightUnit.OZ});
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     if (reverseMap == null) {
       reverseMap = map.map((k, v) => new MapEntry(v, k));
     }
