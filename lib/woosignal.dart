@@ -55,7 +55,8 @@ class WooSignal {
   late ApiProvider _apiProvider;
   bool? _shouldDebug;
 
-  static Future<WooSignal> getInstance({required Map<String, dynamic> config}) async {
+  static Future<WooSignal> getInstance(
+      {required Map<String, dynamic> config}) async {
     WooSignal wooSignal = new WooSignal._internal();
     await wooSignal._setApp(config: config);
     await wooSignal._init();
@@ -99,7 +100,8 @@ class WooSignal {
     }
   }
 
-  Map<String, dynamic> _standardPayload(String type, json, String path) => {"type": type, "payload": json, "path": path};
+  Map<String, dynamic> _standardPayload(String type, json, String path) =>
+      {"type": type, "payload": json, "path": path};
 
   Future<WooSignalApp?> getApp() async {
     dynamic response = await _apiProvider.get("/app");
@@ -1182,7 +1184,8 @@ class WooSignal {
     if (discountType != null) payload['discount_type'] = discountType;
     if (amount != null) payload['amount'] = amount;
     if (individualUse != null) payload['individual_use'] = individualUse;
-    if (excludeSaleItems != null) payload['exclude_sale_items'] = excludeSaleItems;
+    if (excludeSaleItems != null)
+      payload['exclude_sale_items'] = excludeSaleItems;
     if (minimumAmount != null) payload['minimum_amount'] = minimumAmount;
     _printLog(payload.toString());
     payload = _standardPayload("post", payload, "coupons/");
@@ -1320,7 +1323,8 @@ class WooSignal {
   // Update a customer
   // This API lets you make changes to a customer.
   /// https://woosignal.com/docs/api/1.0/customers#update-a-customer
-  Future<Customers?> updateCustomer(int id, {Map<String, dynamic>? data}) async {
+  Future<Customers?> updateCustomer(int id,
+      {Map<String, dynamic>? data}) async {
     Map<String, dynamic>? payload = data;
 
     _printLog(payload.toString());

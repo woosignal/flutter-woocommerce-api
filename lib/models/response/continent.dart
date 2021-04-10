@@ -98,8 +98,9 @@ class Country {
         "name": name,
         "states": List<dynamic>.from(states!.map((x) => x.toJson())),
         "currency_code": currencyCode == null ? null : currencyCode,
-        "currency_pos":
-            currencyPos == null ? null : currencyPosValues.reverse![currencyPos!],
+        "currency_pos": currencyPos == null
+            ? null
+            : currencyPosValues.reverse![currencyPos!],
         "decimal_sep":
             decimalSep == null ? null : sepValues.reverse![decimalSep!],
         "dimension_unit": dimensionUnit == null

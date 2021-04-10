@@ -54,8 +54,12 @@ class OrderWC {
     status = json['status'];
     currency = json['currency'];
     customerId = json['customer_id'];
-    customerNote = json['customer_note'];
-    parentId = json['parent_id'];
+    if (json['customer_note'] != null) {
+      customerNote = json['customer_note'];
+    }
+    if (json['parent_id']) {
+      parentId = json['parent_id'];
+    }
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {
@@ -100,9 +104,15 @@ class OrderWC {
     data['set_paid'] = this.setPaid;
     data['status'] = this.status;
     data['currency'] = this.currency;
-    data['customer_id'] = this.customerId;
-    data['customer_note'] = this.customerNote;
-    data['parent_id'] = this.parentId;
+    if (this.customerId != null) {
+      data['customer_id'] = this.customerId;
+    }
+    if (this.customerNote != null) {
+      data['customer_note'] = this.customerNote;
+    }
+    if (this.parentId != null) {
+      data['parent_id'] = this.parentId;
+    }
     if (this.metaData != null) {
       data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
     }
@@ -358,8 +368,12 @@ class LineItems {
     if (this.taxClass != null) {
       data['tax_class'] = this.taxClass;
     }
-    data['subtotal'] = this.subtotal;
-    data['total'] = this.total;
+    if (this.subtotal != null) {
+      data['subtotal'] = this.subtotal;
+    }
+    if (data['total'] != null) {
+      data['total'] = this.total;
+    }
     data['quantity'] = this.quantity;
     return data;
   }

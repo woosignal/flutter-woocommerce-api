@@ -149,7 +149,9 @@ class Product {
         sku = json['sku'],
         price = json['price'],
         regularPrice = json['regular_price'],
-        salePrice = (json['sale_price'] is String ? json['sale_price'] : json['sale_price'].toString()),
+        salePrice = (json['sale_price'] is String
+            ? json['sale_price']
+            : json['sale_price'].toString()),
         priceHtml = json['price_html'],
         onSale = json['on_sale'],
         purchasable = json['purchasable'],

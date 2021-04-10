@@ -98,7 +98,8 @@ class Methods {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.freeShipping != null) {
-      data['free_shipping'] = this.freeShipping!.map((v) => v.toJson()).toList();
+      data['free_shipping'] =
+          this.freeShipping!.map((v) => v.toJson()).toList();
     }
     if (this.flatRate != null) {
       data['flat_rate'] = this.flatRate!.map((v) => v.toJson()).toList();

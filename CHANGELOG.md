@@ -1,3 +1,8 @@
+## [2.0.1] - 2021-04-10
+
+* null check on Order vars
+* flutter format
+
 ## [2.0.0] - 2021-04-10
 
 * Added null safety support

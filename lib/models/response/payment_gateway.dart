@@ -525,9 +525,12 @@ class Settings {
         "debug": debug == null ? null : debug!.toJson(),
         "ipn_notification":
             ipnNotification == null ? null : ipnNotification!.toJson(),
-        "receiver_email": receiverEmail == null ? null : receiverEmail!.toJson(),
-        "identity_token": identityToken == null ? null : identityToken!.toJson(),
-        "invoice_prefix": invoicePrefix == null ? null : invoicePrefix!.toJson(),
+        "receiver_email":
+            receiverEmail == null ? null : receiverEmail!.toJson(),
+        "identity_token":
+            identityToken == null ? null : identityToken!.toJson(),
+        "invoice_prefix":
+            invoicePrefix == null ? null : invoicePrefix!.toJson(),
         "send_shipping": sendShipping == null ? null : sendShipping!.toJson(),
         "address_override":
             addressOverride == null ? null : addressOverride!.toJson(),
@@ -560,8 +563,9 @@ class Settings {
             : sandboxApiCertificate!.toJson(),
         "sandbox_api_subject":
             sandboxApiSubject == null ? null : sandboxApiSubject!.toJson(),
-        "paypal_hosted_settings":
-            paypalHostedSettings == null ? null : paypalHostedSettings!.toJson(),
+        "paypal_hosted_settings": paypalHostedSettings == null
+            ? null
+            : paypalHostedSettings!.toJson(),
         "brand_name": brandName == null ? null : brandName!.toJson(),
         "logo_image_url": logoImageUrl == null ? null : logoImageUrl!.toJson(),
         "header_image_url":
@@ -585,7 +589,8 @@ class Settings {
         "button_size": buttonSize == null ? null : buttonSize!.toJson(),
         "hide_funding_methods":
             hideFundingMethods == null ? null : hideFundingMethods!.toJson(),
-        "credit_enabled": creditEnabled == null ? null : creditEnabled!.toJson(),
+        "credit_enabled":
+            creditEnabled == null ? null : creditEnabled!.toJson(),
         "cart_checkout_enabled":
             cartCheckoutEnabled == null ? null : cartCheckoutEnabled!.toJson(),
         "mini_cart_settings":
@@ -593,8 +598,9 @@ class Settings {
         "mini_cart_settings_toggle": miniCartSettingsToggle == null
             ? null
             : miniCartSettingsToggle!.toJson(),
-        "mini_cart_button_layout":
-            miniCartButtonLayout == null ? null : miniCartButtonLayout!.toJson(),
+        "mini_cart_button_layout": miniCartButtonLayout == null
+            ? null
+            : miniCartButtonLayout!.toJson(),
         "mini_cart_button_size":
             miniCartButtonSize == null ? null : miniCartButtonSize!.toJson(),
         "mini_cart_hide_funding_methods": miniCartHideFundingMethods == null
@@ -649,7 +655,8 @@ class Settings {
         "publishable_key":
             publishableKey == null ? null : publishableKey!.toJson(),
         "secret_key": secretKey == null ? null : secretKey!.toJson(),
-        "webhook_secret": webhookSecret == null ? null : webhookSecret!.toJson(),
+        "webhook_secret":
+            webhookSecret == null ? null : webhookSecret!.toJson(),
         "inline_cc_form": inlineCcForm == null ? null : inlineCcForm!.toJson(),
         "statement_descriptor":
             statementDescriptor == null ? null : statementDescriptor!.toJson(),
