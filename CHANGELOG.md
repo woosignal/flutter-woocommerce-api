@@ -1,3 +1,7 @@
+## [2.0.2] - 2021-04-11
+
+* Add theme var to woosignal_app
+
 ## [2.0.1] - 2021-04-10
 
 * null check on Order vars

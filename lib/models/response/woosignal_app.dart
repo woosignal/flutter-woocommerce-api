@@ -30,6 +30,7 @@ class WooSignalApp {
   String? wpLoginWpApiPath;
   int? productPricesIncludeTax;
   int? disableShipping;
+  String? theme;
 
   WooSignalApp(
       {this.appName,
@@ -47,7 +48,8 @@ class WooSignalApp {
       this.wpLoginForgotPasswordUrl,
       this.wpLoginWpApiPath,
       this.productPricesIncludeTax,
-      this.disableShipping});
+      this.disableShipping,
+      this.theme});
 
   WooSignalApp.fromJson(Map<String, dynamic> json) {
     appName = json['app_name'];
@@ -68,6 +70,7 @@ class WooSignalApp {
     wpLoginWpApiPath = json['wp_login_wp_api_path'];
     productPricesIncludeTax = json['product_prices_include_tax'];
     disableShipping = json['disable_shipping'];
+    theme = json['theme'];
   }
 
   Map<String, dynamic> toJson() {
@@ -90,6 +93,7 @@ class WooSignalApp {
     data['wp_login_wp_api_path'] = this.wpLoginWpApiPath;
     data['product_prices_include_tax'] = this.productPricesIncludeTax;
     data['disable_shipping'] = this.disableShipping;
+    data['theme'] = this.theme;
     return data;
   }
 }
