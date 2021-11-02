@@ -1,3 +1,7 @@
+## [2.2.1] - 2021-11-02
+
+* Update readme
+
 ## [2.2.0] - 2021-11-02
 
 * Add new variables to woosignal_app
