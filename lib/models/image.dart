@@ -46,13 +46,13 @@ class Image {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': this.id,
-        'src': this.src,
-        'name': this.name,
-        'alt': this.alt,
-        'date_created': this.dateCreated,
-        'date_modified_gmt': this.dateModifiedGMT,
-        'date_modified': this.dateModified,
-        'date_created_gmt': this.dateCreatedGMT
+        'id': id,
+        'src': src,
+        'name': name,
+        'alt': alt,
+        'date_created': dateCreated,
+        'date_modified_gmt': dateModifiedGMT,
+        'date_modified': dateModified,
+        'date_created_gmt': dateCreatedGMT
       };
 }

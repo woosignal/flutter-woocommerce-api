@@ -66,7 +66,7 @@ class Update {
             ? null
             : Map.from(json["options"])
                 .map((k, v) => MapEntry<String, String>(k, v)),
-        tip: json["tip"] == null ? null : json["tip"],
+        tip: json["tip"],
         value: json["value"],
         links: Links.fromJson(json["_links"]),
       );
@@ -80,7 +80,7 @@ class Update {
         "options": options == null
             ? null
             : Map.from(options!).map((k, v) => MapEntry<String, dynamic>(k, v)),
-        "tip": tip == null ? null : tip,
+        "tip": tip,
         "value": value,
         "_links": links!.toJson(),
       };

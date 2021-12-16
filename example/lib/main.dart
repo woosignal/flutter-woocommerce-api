@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:woosignal/woosignal.dart';
+import 'package:woosignal/models/response/products.dart';
 
 void woosignal_woocommerce_example() => runApp(MyApp());
 
@@ -29,15 +30,14 @@ class _MyHomePageState extends State<MyHomePage> {
   String _productName = "";
 
   _incrementCounter() async {
-    // CONFIG FOR WOOSIGNAL
-    var wsConfig = {"appKey": "your app key", "debugMode": true};
+    // CREATING AN INSTANCE FOR WOOSIGNAL
+    WooSignal wooSignal = await WooSignal.instance.init(appKey: "your app key");
 
-    // CREATING AN INSTANCE
-    WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
-
-    setState(() {
-      _productName = "";
-    });
+    List<Product> products = await wooSignal.getProducts();
+    if (products.isNotEmpty) {
+      _productName = products[0].name ?? "";
+    }
+    setState(() {});
   }
 
   @override
@@ -50,13 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'WooCommerce product :',
-            ),
-            Text(
-              '$_productName',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Text('Tap the light bulb to get a product'),
+            if (_productName != "")
+              Text(
+                'WooCommerce product :\n $_productName',
+              ),
           ],
         ),
       ),

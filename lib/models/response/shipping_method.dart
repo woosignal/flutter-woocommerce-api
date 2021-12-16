@@ -27,22 +27,22 @@ class WSShipping {
     if (json['locations'] != null) {
       locations = [];
       json['locations'].forEach((v) {
-        locations!.add(new Locations.fromJson(v));
+        locations!.add(Locations.fromJson(v));
       });
     }
     methods =
-        json['methods'] != null ? new Methods.fromJson(json['methods']) : null;
+        json['methods'] != null ? Methods.fromJson(json['methods']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['parent_id'] = this.parentId;
-    data['name'] = this.name;
-    if (this.locations != null) {
-      data['locations'] = this.locations!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['parent_id'] = parentId;
+    data['name'] = name;
+    if (locations != null) {
+      data['locations'] = locations!.map((v) => v.toJson()).toList();
     }
-    if (this.methods != null) {
-      data['methods'] = this.methods!.toJson();
+    if (methods != null) {
+      data['methods'] = methods!.toJson();
     }
     return data;
   }
@@ -60,9 +60,9 @@ class Locations {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['code'] = code;
+    data['type'] = type;
     return data;
   }
 }
@@ -78,34 +78,33 @@ class Methods {
     if (json['free_shipping'] != null) {
       freeShipping = [];
       json['free_shipping'].forEach((v) {
-        freeShipping!.add(new FreeShipping.fromJson(v));
+        freeShipping!.add(FreeShipping.fromJson(v));
       });
     }
     if (json['flat_rate'] != null) {
       flatRate = [];
       json['flat_rate'].forEach((v) {
-        flatRate!.add(new FlatRate.fromJson(v));
+        flatRate!.add(FlatRate.fromJson(v));
       });
     }
     if (json['local_pickup'] != null) {
       localPickup = [];
       json['local_pickup'].forEach((v) {
-        localPickup!.add(new LocalPickup.fromJson(v));
+        localPickup!.add(LocalPickup.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.freeShipping != null) {
-      data['free_shipping'] =
-          this.freeShipping!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (freeShipping != null) {
+      data['free_shipping'] = freeShipping!.map((v) => v.toJson()).toList();
     }
-    if (this.flatRate != null) {
-      data['flat_rate'] = this.flatRate!.map((v) => v.toJson()).toList();
+    if (flatRate != null) {
+      data['flat_rate'] = flatRate!.map((v) => v.toJson()).toList();
     }
-    if (this.localPickup != null) {
-      data['local_pickup'] = this.localPickup!.map((v) => v.toJson()).toList();
+    if (localPickup != null) {
+      data['local_pickup'] = localPickup!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -132,13 +131,13 @@ class FreeShipping {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['method_id'] = this.methodId;
-    data['cost'] = this.cost;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['method_id'] = methodId;
+    data['cost'] = cost;
     if (minimumOrderAmount != null) {
-      data['minimum_order_amount'] = this.minimumOrderAmount;
+      data['minimum_order_amount'] = minimumOrderAmount;
     }
     return data;
   }
@@ -175,23 +174,23 @@ class FlatRate {
     if (json['shipping_classes'] != null) {
       shippingClasses = [];
       json['shipping_classes'].forEach((v) {
-        shippingClasses!.add(new ShippingClasses.fromJson(v));
+        shippingClasses!.add(ShippingClasses.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['method_id'] = this.methodId;
-    data['cost'] = this.cost;
-    data['class_cost'] = this.classCost;
-    data['calculation_type'] = this.calculationType;
-    data['taxable'] = this.taxable;
-    if (this.shippingClasses != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['method_id'] = methodId;
+    data['cost'] = cost;
+    data['class_cost'] = classCost;
+    data['calculation_type'] = calculationType;
+    data['taxable'] = taxable;
+    if (shippingClasses != null) {
       data['shipping_classes'] =
-          this.shippingClasses!.map((v) => v.toJson()).toList();
+          shippingClasses!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -209,9 +208,9 @@ class ShippingClasses {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['cost'] = this.cost;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['cost'] = cost;
     return data;
   }
 }
@@ -234,12 +233,12 @@ class LocalPickup {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['method_id'] = this.methodId;
-    data['taxable'] = this.taxable;
-    data['cost'] = this.cost;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['title'] = title;
+    data['method_id'] = methodId;
+    data['taxable'] = taxable;
+    data['cost'] = cost;
     return data;
   }
 }

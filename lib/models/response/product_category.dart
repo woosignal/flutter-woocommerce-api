@@ -47,27 +47,27 @@ class ProductCategory {
     parent = json['parent'];
     description = json['description'];
     display = json['display'];
-    image = json['image'] != null ? new Image.fromJson(json['image']) : null;
+    image = json['image'] != null ? Image.fromJson(json['image']) : null;
     menuOrder = json['menu_order'];
     count = json['count'];
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['parent'] = this.parent;
-    data['description'] = this.description;
-    data['display'] = this.display;
-    if (this.image != null) {
-      data['image'] = this.image!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['slug'] = slug;
+    data['parent'] = parent;
+    data['description'] = description;
+    data['display'] = display;
+    if (image != null) {
+      data['image'] = image!.toJson();
     }
-    data['menu_order'] = this.menuOrder;
-    data['count'] = this.count;
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    data['menu_order'] = menuOrder;
+    data['count'] = count;
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

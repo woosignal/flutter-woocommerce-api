@@ -2,18 +2,19 @@ name: woosignal_woocommerce_example
 description: Demonstrates how to use the woosignal plugin.
 
 environment:
-  sdk: '>=2.14.4 <3.0.0'
+  sdk: '>=2.15.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.16.0
   flutter_test:
     sdk: flutter
 
   woosignal:
     path: ../
- 
 
 flutter:
 

@@ -29,11 +29,11 @@ class Continents {
   Links? links;
 
   Continents.fromJson(Map<String, dynamic> json) {
-    this.code = json["code"];
-    this.name = json["name"];
-    this.countries =
+    code = json["code"];
+    name = json["name"];
+    countries =
         List<Country>.from(json["countries"].map((x) => Country.fromJson(x)));
-    this.links = Links.fromJson(json["_links"]);
+    links = Links.fromJson(json["_links"]);
   }
 
   Map<String, dynamic> toJson() => {
@@ -73,8 +73,7 @@ class Country {
         code: json["code"],
         name: json["name"],
         states: List<State>.from(json["states"].map((x) => State.fromJson(x))),
-        currencyCode:
-            json["currency_code"] == null ? null : json["currency_code"],
+        currencyCode: json["currency_code"],
         currencyPos: json["currency_pos"] == null
             ? null
             : currencyPosValues.map[json["currency_pos"]],
@@ -84,7 +83,7 @@ class Country {
         dimensionUnit: json["dimension_unit"] == null
             ? null
             : dimensionUnitValues.map[json["dimension_unit"]],
-        numDecimals: json["num_decimals"] == null ? null : json["num_decimals"],
+        numDecimals: json["num_decimals"],
         thousandSep: json["thousand_sep"] == null
             ? null
             : sepValues.map[json["thousand_sep"]],
@@ -97,7 +96,7 @@ class Country {
         "code": code,
         "name": name,
         "states": List<dynamic>.from(states!.map((x) => x.toJson())),
-        "currency_code": currencyCode == null ? null : currencyCode,
+        "currency_code": currencyCode,
         "currency_pos": currencyPos == null
             ? null
             : currencyPosValues.reverse![currencyPos!],
@@ -106,7 +105,7 @@ class Country {
         "dimension_unit": dimensionUnit == null
             ? null
             : dimensionUnitValues.reverse![dimensionUnit!],
-        "num_decimals": numDecimals == null ? null : numDecimals,
+        "num_decimals": numDecimals,
         "thousand_sep":
             thousandSep == null ? null : sepValues.reverse![thousandSep!],
         "weight_unit":
@@ -163,9 +162,7 @@ class EnumValues<T> {
   EnumValues(this.map);
 
   Map<T, String>? get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
+    reverseMap ??= map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }
 }

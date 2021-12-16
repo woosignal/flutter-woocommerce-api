@@ -58,25 +58,25 @@ class TaxRate {
     shipping = json['shipping'];
     order = json['order'];
     taxClass = json['class'];
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['country'] = this.country;
-    data['state'] = this.state;
-    data['postcode'] = this.postcode;
-    data['city'] = this.city;
-    data['rate'] = this.rate;
-    data['name'] = this.name;
-    data['priority'] = this.priority;
-    data['compound'] = this.compound;
-    data['shipping'] = this.shipping;
-    data['order'] = this.order;
-    data['class'] = this.taxClass;
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['country'] = country;
+    data['state'] = state;
+    data['postcode'] = postcode;
+    data['city'] = city;
+    data['rate'] = rate;
+    data['name'] = name;
+    data['priority'] = priority;
+    data['compound'] = compound;
+    data['shipping'] = shipping;
+    data['order'] = order;
+    data['class'] = taxClass;
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

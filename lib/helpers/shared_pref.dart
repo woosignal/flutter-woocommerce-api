@@ -18,36 +18,33 @@ import 'package:uuid/uuid.dart';
 import 'dart:core';
 import 'dart:math';
 
-Future<String?> getUserApiKey() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString("DEFAULT_WOOSIGNAL_KEY");
-}
-
-Future<void> storeUserApiKey(String apiKey) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setString("DEFAULT_WOOSIGNAL_KEY", apiKey);
-}
-
 Future<String?> getUUID() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? uuid = prefs.getString("DEFAULT_WOOSIGNAL_UUID");
+
+  if (uuid == null) {
+    String uuId = _buildUUID();
+    await _storeUUID(uuId);
+    return uuId;
+  }
+
   return uuid;
 }
 
-storeUUID(String uuid) async {
+_storeUUID(String uuid) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString("DEFAULT_WOOSIGNAL_UUID", uuid.toString());
 }
 
-String buildUUID() {
-  var uuid = new Uuid();
+String _buildUUID() {
+  var uuid = Uuid();
   String idD = uuid.v1();
-  return idD + "_" + randomStr(5);
+  return idD + "_" + _randomStr(5);
 }
 
-String randomStr(int strLen) {
+String _randomStr(int strLen) {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-  Random rnd = new Random(new DateTime.now().millisecondsSinceEpoch);
+  Random rnd = Random(DateTime.now().millisecondsSinceEpoch);
   String result = "";
   for (var i = 0; i < strLen; i++) {
     result += chars[rnd.nextInt(chars.length)];

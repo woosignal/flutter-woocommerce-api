@@ -25,15 +25,15 @@ class TaxClass {
   TaxClass.fromJson(Map<String, dynamic> json) {
     slug = json['slug'];
     name = json['name'];
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['slug'] = this.slug;
-    data['name'] = this.name;
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['slug'] = slug;
+    data['name'] = name;
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

@@ -23,8 +23,8 @@ class Collection {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['href'] = this.href;
+    final Map<String, dynamic> data = {};
+    data['href'] = href;
     return data;
   }
 }

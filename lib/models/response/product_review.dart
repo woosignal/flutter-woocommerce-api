@@ -57,26 +57,27 @@ class ProductReview {
     reviewerAvatarUrls = json['reviewer_avatar_urls'] != null
         ? (json['reviewer_avatar_urls'])
         : null;
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['date_created'] = this.dateCreated;
-    data['date_created_gmt'] = this.dateCreatedGmt;
-    data['product_id'] = this.productId;
-    data['status'] = this.status;
-    data['reviewer'] = this.reviewer;
-    data['reviewer_email'] = this.reviewerEmail;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['date_created'] = dateCreated;
+    data['date_created_gmt'] = dateCreatedGmt;
+    data['product_id'] = productId;
+    data['status'] = status;
+    data['reviewer'] = reviewer;
+    data['reviewer_email'] = reviewerEmail;
+    // ignore: unnecessary_this
     data['review'] = this.review;
-    data['rating'] = this.rating;
-    data['verified'] = this.verified;
-    if (this.reviewerAvatarUrls != null) {
-      data['reviewer_avatar_urls'] = this.reviewerAvatarUrls.toString();
+    data['rating'] = rating;
+    data['verified'] = verified;
+    if (reviewerAvatarUrls != null) {
+      data['reviewer_avatar_urls'] = reviewerAvatarUrls.toString();
     }
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

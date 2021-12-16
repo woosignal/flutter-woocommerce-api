@@ -3,7 +3,7 @@
 [Official WooSignal WooCommerce package](https://woosignal.com)
 
 Build apps for WooCommerce easier with our new package.
-Our API provides many requests types e.g. getProducts, getOrders, getCustomers and many more.
+Our API provides many requests types e.g. getProducts, getOrders and many more.
 Free to get started, see the simple examples below.
 
 For help getting started with WooSignal, view our
@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^2.2.1
+  woosignal: ^3.0.0
 ```
 
 ### Usage example #
@@ -34,16 +34,13 @@ import 'package:woosignal/woosignal.dart';
 // EXAMPLE GET PRODUCTS
 _getProducts() async {
 
-        // CONFIG FOR WOOSIGNAL
-        var wsConfig = {
-          "appKey":"your app key",
-          "debugMode":true
-        };
+        // Step 1 - Initialize WooSignal
+        WooSignal wooSignal = await WooSignal.instance.init(appKey: "your app key");
 
-        // CREATING AN INSTANCE
-        WooSignal wooSignal = await WooSignal.getInstance(config: wsConfig);
-        List<Product> products = await wooSignal.getProducts();
-        print(products[0].name);
+        // Step 2 - Call an API
+        List<Product> products = await WooSignal.instance.getProducts();
+
+        print(products[0].name); // prints a product name
   });
 }
 ```
