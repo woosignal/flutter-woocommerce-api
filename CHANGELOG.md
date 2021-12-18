@@ -1,3 +1,8 @@
+## [3.0.1] - 2021-12-18
+
+* Gracefully handle bad responses
+* Flutter format
+
 ## [3.0.0] - 2021-12-16
 
 * Breaking changes
