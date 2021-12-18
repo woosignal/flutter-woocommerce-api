@@ -40,19 +40,19 @@ class ProductAttribute {
     type = json['type'];
     orderBy = json['order_by'];
     hasArchives = json['has_archives'];
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['type'] = this.type;
-    data['order_by'] = this.orderBy;
-    data['has_archives'] = this.hasArchives;
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['slug'] = slug;
+    data['type'] = type;
+    data['order_by'] = orderBy;
+    data['has_archives'] = hasArchives;
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

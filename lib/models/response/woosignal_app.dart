@@ -16,8 +16,8 @@
 class WooSignalApp {
   String? appName;
   String? appLogo;
-  String? appTermslink;
-  String? appPrivacylink;
+  String? appTermsLink;
+  String? appPrivacyLink;
   int? appDebug;
   int? appStatus;
   CurrencyMeta? currencyMeta;
@@ -39,12 +39,15 @@ class WooSignalApp {
   bool? paypalEnabled;
   bool? paypalLiveMode;
   String? stripeCountryCode;
+  String? themeFont;
+  Map<String, dynamic>? socialLinks;
+  Map<String, dynamic>? themeColors;
 
   WooSignalApp(
       {this.appName,
       this.appLogo,
-      this.appTermslink,
-      this.appPrivacylink,
+      this.appTermsLink,
+      this.appPrivacyLink,
       this.appDebug,
       this.appStatus,
       this.currencyMeta,
@@ -65,17 +68,20 @@ class WooSignalApp {
       this.codEnabled,
       this.paypalEnabled,
       this.paypalLiveMode,
-      this.stripeCountryCode});
+      this.stripeCountryCode,
+      this.themeFont,
+      this.socialLinks,
+      this.themeColors});
 
   WooSignalApp.fromJson(Map<String, dynamic> json) {
     appName = json['app_name'];
     appLogo = json['app_logo'];
-    appTermslink = json['app_termslink'];
-    appPrivacylink = json['app_privacylink'];
+    appTermsLink = json['app_termslink'];
+    appPrivacyLink = json['app_privacylink'];
     appDebug = json['app_debug'];
     appStatus = json['app_status'];
     currencyMeta = json['currency_meta'] != null
-        ? new CurrencyMeta.fromJson(json['currency_meta'])
+        ? CurrencyMeta.fromJson(json['currency_meta'])
         : null;
     bannerImages = json['banner_images'].cast<String>();
     stripeLiveMode = json['stripe_live_mode'];
@@ -88,44 +94,55 @@ class WooSignalApp {
     disableShipping = json['disable_shipping'];
     theme = json['theme'];
     locale = json['locale'];
-    this.paypalLocale = json['paypal_locale'] ?? "en-GB";
-    this.paypalEmail = json['paypal_email'] ?? "";
-    this.stripeEnabled = (json['stripe_enabled'] ?? 0) == 1 ? true : false;
-    this.codEnabled = (json['cod_enabled'] ?? 0) == 1 ? true : false;
-    this.paypalEnabled = (json['paypal_enabled'] ?? 0) == 1 ? true : false;
-    this.paypalLiveMode =
-        (json['paypal_live_mode'] ?? 0) == 1 ? true : false;
-    this.stripeCountryCode = json['stripe_country_code'] ?? "GB";
+    paypalLocale = json['paypal_locale'] ?? "en-GB";
+    paypalEmail = json['paypal_email'] ?? "";
+    stripeEnabled = (json['stripe_enabled'] ?? 0) == 1 ? true : false;
+    codEnabled = (json['cod_enabled'] ?? 0) == 1 ? true : false;
+    paypalEnabled = (json['paypal_enabled'] ?? 0) == 1 ? true : false;
+    paypalLiveMode = (json['paypal_live_mode'] ?? 0) == 1 ? true : false;
+    stripeCountryCode = json['stripe_country_code'] ?? "GB";
+    if (json.containsKey('theme_font') && json['theme_font'] != null) {
+      themeFont = json['theme_font'];
+    }
+    if (json.containsKey('social_links') && json['social_links'] is Map<String, dynamic>?) {
+      socialLinks = json['social_links'];
+    }
+    if (json.containsKey('theme_colors') && json['theme_colors'] is Map<String, dynamic>?) {
+      themeColors = json['theme_colors'];
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['app_name'] = this.appName;
-    data['app_logo'] = this.appLogo;
-    data['app_termslink'] = this.appTermslink;
-    data['app_privacylink'] = this.appPrivacylink;
-    data['app_debug'] = this.appDebug;
-    data['app_status'] = this.appStatus;
-    if (this.currencyMeta != null) {
-      data['currency_meta'] = this.currencyMeta!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['app_name'] = appName;
+    data['app_logo'] = appLogo;
+    data['app_termslink'] = appTermsLink;
+    data['app_privacylink'] = appPrivacyLink;
+    data['app_debug'] = appDebug;
+    data['app_status'] = appStatus;
+    if (currencyMeta != null) {
+      data['currency_meta'] = currencyMeta!.toJson();
     }
-    data['banner_images'] = this.bannerImages;
-    data['stripe_live_mode'] = this.stripeLiveMode;
-    data['stripe_account'] = this.stripeAccount;
-    data['wp_login_enabled'] = this.wpLoginEnabled;
-    data['wp_login_base_url'] = this.wpLoginBaseUrl;
-    data['wp_login_forgot_password_url'] = this.wpLoginForgotPasswordUrl;
-    data['wp_login_wp_api_path'] = this.wpLoginWpApiPath;
-    data['product_prices_include_tax'] = this.productPricesIncludeTax;
-    data['disable_shipping'] = this.disableShipping;
-    data['theme'] = this.theme;
-    data['locale'] = this.locale;
-    data['paypal_locale'] = this.paypalLocale;
-    data['paypal_email'] = this.paypalEmail;
-    data['stripe_enabled'] = this.stripeEnabled;
-    data['cod_enabled'] = this.codEnabled;
-    data['paypal_enabled'] = this.paypalEnabled;
-    data['stripe_country_code'] = this.stripeCountryCode;
+    data['banner_images'] = bannerImages;
+    data['stripe_live_mode'] = stripeLiveMode;
+    data['stripe_account'] = stripeAccount;
+    data['wp_login_enabled'] = wpLoginEnabled;
+    data['wp_login_base_url'] = wpLoginBaseUrl;
+    data['wp_login_forgot_password_url'] = wpLoginForgotPasswordUrl;
+    data['wp_login_wp_api_path'] = wpLoginWpApiPath;
+    data['product_prices_include_tax'] = productPricesIncludeTax;
+    data['disable_shipping'] = disableShipping;
+    data['theme'] = theme;
+    data['locale'] = locale;
+    data['paypal_locale'] = paypalLocale;
+    data['paypal_email'] = paypalEmail;
+    data['stripe_enabled'] = stripeEnabled;
+    data['cod_enabled'] = codEnabled;
+    data['paypal_enabled'] = paypalEnabled;
+    data['stripe_country_code'] = stripeCountryCode;
+    data['theme_font'] = themeFont;
+    data['social_links'] = socialLinks;
+    data['theme_colors'] = themeColors;
     return data;
   }
 }
@@ -159,14 +176,14 @@ class CurrencyMeta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['symbol'] = this.symbol;
-    data['name'] = this.name;
-    data['symbol_native'] = this.symbolNative;
-    data['decimal_digits'] = this.decimalDigits;
-    data['rounding'] = this.rounding;
-    data['code'] = this.code;
-    data['name_plural'] = this.namePlural;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['symbol'] = symbol;
+    data['name'] = name;
+    data['symbol_native'] = symbolNative;
+    data['decimal_digits'] = decimalDigits;
+    data['rounding'] = rounding;
+    data['code'] = code;
+    data['name_plural'] = namePlural;
     return data;
   }
 }

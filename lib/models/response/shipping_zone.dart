@@ -27,16 +27,16 @@ class ShippingZone {
     id = json['id'];
     name = json['name'];
     order = json['order'];
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['order'] = this.order;
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['order'] = order;
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

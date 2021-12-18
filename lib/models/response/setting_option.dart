@@ -44,7 +44,7 @@ class SettingOption {
         description: json["description"],
         type: json["type"],
         settingOptionDefault: json["default"],
-        tip: json["tip"] == null ? null : json["tip"],
+        tip: json["tip"],
         value: json["value"],
         links: Links.fromJson(json["_links"]),
         options: json["options"] == null
@@ -59,7 +59,7 @@ class SettingOption {
         "description": description,
         "type": type,
         "default": settingOptionDefault,
-        "tip": tip == null ? null : tip,
+        "tip": tip,
         "value": value,
         "_links": links!.toJson(),
         "options": options == null

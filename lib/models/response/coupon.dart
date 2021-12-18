@@ -114,45 +114,45 @@ class Coupon {
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {
-        metaData!.add(new MetaData.fromJson(v));
+        metaData!.add(MetaData.fromJson(v));
       });
     }
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['code'] = this.code;
-    data['amount'] = this.amount;
-    data['date_created'] = this.dateCreated;
-    data['date_created_gmt'] = this.dateCreatedGmt;
-    data['date_modified'] = this.dateModified;
-    data['date_modified_gmt'] = this.dateModifiedGmt;
-    data['discount_type'] = this.discountType;
-    data['description'] = this.description;
-    data['date_expires'] = this.dateExpires;
-    data['date_expires_gmt'] = this.dateExpiresGmt;
-    data['usage_count'] = this.usageCount;
-    data['individual_use'] = this.individualUse;
-    data['product_ids'] = this.productIds;
-    data['excluded_product_ids'] = this.excludedProductIds;
-    data['usage_limit'] = this.usageLimit;
-    data['usage_limit_per_user'] = this.usageLimitPerUser;
-    data['limit_usage_to_x_items'] = this.limitUsageToXItems;
-    data['free_shipping'] = this.freeShipping;
-    data['product_categories'] = this.productCategories;
-    data['excluded_product_categories'] = this.excludedProductCategories;
-    data['exclude_sale_items'] = this.excludeSaleItems;
-    data['minimum_amount'] = this.minimumAmount;
-    data['maximum_amount'] = this.maximumAmount;
-    data['email_restrictions'] = this.emailRestrictions;
-    data['used_by'] = this.usedBy;
-    if (this.metaData != null) {
-      data['meta_data'] = this.metaData!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['code'] = code;
+    data['amount'] = amount;
+    data['date_created'] = dateCreated;
+    data['date_created_gmt'] = dateCreatedGmt;
+    data['date_modified'] = dateModified;
+    data['date_modified_gmt'] = dateModifiedGmt;
+    data['discount_type'] = discountType;
+    data['description'] = description;
+    data['date_expires'] = dateExpires;
+    data['date_expires_gmt'] = dateExpiresGmt;
+    data['usage_count'] = usageCount;
+    data['individual_use'] = individualUse;
+    data['product_ids'] = productIds;
+    data['excluded_product_ids'] = excludedProductIds;
+    data['usage_limit'] = usageLimit;
+    data['usage_limit_per_user'] = usageLimitPerUser;
+    data['limit_usage_to_x_items'] = limitUsageToXItems;
+    data['free_shipping'] = freeShipping;
+    data['product_categories'] = productCategories;
+    data['excluded_product_categories'] = excludedProductCategories;
+    data['exclude_sale_items'] = excludeSaleItems;
+    data['minimum_amount'] = minimumAmount;
+    data['maximum_amount'] = maximumAmount;
+    data['email_restrictions'] = emailRestrictions;
+    data['used_by'] = usedBy;
+    if (metaData != null) {
+      data['meta_data'] = metaData!.map((v) => v.toJson()).toList();
     }
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

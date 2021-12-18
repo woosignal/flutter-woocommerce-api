@@ -17,81 +17,96 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
 import 'package:device_info/device_info.dart';
-import 'package:woosignal/env.dart';
 import 'dart:io' show Platform;
 
 class ApiProvider {
   late Dio _dio;
-  Future? _doneFuture;
+  bool _debugMode;
+  late final String _apiKey;
+  Map<String, dynamic> _deviceMeta = {};
 
-  Future<DeviceInfoPlugin>? userDeviceInfo;
-  Map<String, dynamic> deviceMeta = {};
-
-  Future? get initializationDone => _doneFuture;
-
-  Future<void> _setDeviceMeta() async {
+  /// Set the device meta
+  Future<void> setDeviceMeta() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
     String? uuid = await getUUID();
-    if (uuid == null) {
-      String uid = buildUUID();
-      storeUUID(uid);
-      uuid = uid;
-    }
 
     if (Platform.isAndroid) {
-      await deviceInfo.androidInfo.then((androidMeta) {
-        deviceMeta = {
-          "model": androidMeta.device,
-          "brand":
-              androidMeta.brand.replaceAll(new RegExp('[^\u0001-\u007F]'), '_'),
-          "manufacturer": androidMeta.manufacturer,
-          "version": androidMeta.version.sdkInt.toString(),
-          "uuid": uuid,
-          "platform_type": "android"
-        };
-      });
+      AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
+      _deviceMeta = {
+        "model": androidDeviceInfo.device,
+        "brand":
+            androidDeviceInfo.brand.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+        "manufacturer": androidDeviceInfo.manufacturer,
+        "version": androidDeviceInfo.version.sdkInt.toString(),
+        "uuid": uuid,
+        "platform_type": "android",
+        "api_version": "3.0.0/v3"
+      };
     } else if (Platform.isIOS) {
-      await deviceInfo.iosInfo.then((iosMeta) {
-        deviceMeta = {
-          "model": iosMeta.model,
-          "brand": iosMeta.name.replaceAll(new RegExp('[^\u0001-\u007F]'), '_'),
-          "manufacturer": "Apple",
-          "version": iosMeta.systemVersion,
-          "uuid": uuid,
-          "platform_type": "ios"
-        };
-      });
+      IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
+      _deviceMeta = {
+        "model": iosDeviceInfo.model,
+        "brand": iosDeviceInfo.name.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+        "manufacturer": "Apple",
+        "version": iosDeviceInfo.systemVersion,
+        "uuid": uuid,
+        "platform_type": "ios",
+        "api_version": "3.0.0/v3"
+      };
     }
   }
 
-  Future<void> _setHeaderAPI() async {
-    await getUserApiKey().then((apiToken) {
-      if (apiToken != null) {
-        BaseOptions options = new BaseOptions(baseUrl: baseUrl, headers: {
-          "Authorization": "Bearer " + apiToken,
-          "Content-Type": "application/json",
-          "X-DMETA": json.encode(deviceMeta).toString()
-        });
-        this._dio = new Dio(options);
-      }
-    });
+  /// set the FCM token
+  void setFcmToken(String token) {
+    if (_deviceMeta.containsKey('fcm_token')) {
+      _deviceMeta['fcm_token'] = token;
+    } else {
+      _deviceMeta.addAll({"fcm_token": token});
+    }
+    _setDioHeaders();
   }
 
-  ApiProvider() {
-    _doneFuture = _init();
+  /// set the [ApiProvider]'s debugMode
+  void setDebugMode(bool debugMode) {
+    _debugMode = debugMode;
   }
 
-  Future _init() async {
-    await _setDeviceMeta();
-    await _setHeaderAPI();
+  /// Init Dio class
+  _initDio() {
+    BaseOptions options = BaseOptions(baseUrl: "https://api.woosignal.com/v3");
+    _dio = Dio(options);
   }
 
+  /// Set the http headers for Dio
+  _setDioHeaders() {
+    _dio.options.headers = {
+      "Authorization": "Bearer " + _apiKey,
+      "Content-Type": "application/json",
+      "X-DMETA": json.encode(_deviceMeta).toString()
+    };
+  }
+
+  /// Constructor requires a [appKey] from WooSignal
+  ApiProvider({required String appKey, bool debugMode = true})
+      : _apiKey = appKey,
+        _debugMode = debugMode;
+
+  /// Initialize class
+  Future init() async {
+    _initDio();
+    await setDeviceMeta();
+    await _setDioHeaders();
+  }
+
+  /// Print to the console with a [log] response
   void _printLog(String log) {
-    print("WOOSIGNAL LOG: $log");
+    if (_debugMode == true) {
+      print("WOOSIGNAL LOG: $log");
+    }
   }
 
-  // POST
+  /// HTTP POST request using a [url] and [data] payload
   Future<dynamic> post(url, data) async {
     try {
       Response response =
@@ -103,7 +118,7 @@ class ApiProvider {
     }
   }
 
-  // GET
+  /// HTTP GET request using a [url]
   Future<dynamic> get(url) async {
     try {
       Response response = await _dio.get(url);

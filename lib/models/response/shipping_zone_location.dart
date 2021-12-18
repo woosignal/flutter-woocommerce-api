@@ -25,15 +25,15 @@ class ShippingZoneLocation {
   ShippingZoneLocation.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     type = json['type'];
-    links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
+    links = json['_links'] != null ? Links.fromJson(json['_links']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['type'] = this.type;
-    if (this.links != null) {
-      data['_links'] = this.links!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['code'] = code;
+    data['type'] = type;
+    if (links != null) {
+      data['_links'] = links!.toJson();
     }
     return data;
   }

@@ -791,18 +791,18 @@ class TitleOptions {
   String? drop;
 
   factory TitleOptions.fromJson(Map<String, dynamic> json) => TitleOptions(
-        gold: json["gold"] == null ? null : json["gold"],
-        blue: json["blue"] == null ? null : json["blue"],
-        silver: json["silver"] == null ? null : json["silver"],
-        black: json["black"] == null ? null : json["black"],
-        vertical: json["vertical"] == null ? null : json["vertical"],
-        horizontal: json["horizontal"] == null ? null : json["horizontal"],
-        pill: json["pill"] == null ? null : json["pill"],
-        rect: json["rect"] == null ? null : json["rect"],
-        responsive: json["responsive"] == null ? null : json["responsive"],
-        small: json["small"] == null ? null : json["small"],
-        medium: json["medium"] == null ? null : json["medium"],
-        large: json["large"] == null ? null : json["large"],
+        gold: json["gold"],
+        blue: json["blue"],
+        silver: json["silver"],
+        black: json["black"],
+        vertical: json["vertical"],
+        horizontal: json["horizontal"],
+        pill: json["pill"],
+        rect: json["rect"],
+        responsive: json["responsive"],
+        small: json["small"],
+        medium: json["medium"],
+        large: json["large"],
         flatRate: json["Flat rate"] == null
             ? null
             : FlatRate.fromJson(json["Flat rate"]),
@@ -812,54 +812,52 @@ class TitleOptions {
         localPickup: json["Local pickup"] == null
             ? null
             : LocalPickup.fromJson(json["Local pickup"]),
-        live: json["live"] == null ? null : json["live"],
-        sandbox: json["sandbox"] == null ? null : json["sandbox"],
-        billing: json["Billing"] == null ? null : json["Billing"],
-        login: json["Login"] == null ? null : json["Login"],
-        dark: json["dark"] == null ? null : json["dark"],
-        light: json["light"] == null ? null : json["light"],
-        lightOutline:
-            json["light-outline"] == null ? null : json["light-outline"],
-        optionsDefault: json["default"] == null ? null : json["default"],
-        buy: json["buy"] == null ? null : json["buy"],
-        donate: json["donate"] == null ? null : json["donate"],
-        sale: json["sale"] == null ? null : json["sale"],
-        authorization:
-            json["authorization"] == null ? null : json["authorization"],
-        add: json["add"] == null ? null : json["add"],
-        drop: json["drop"] == null ? null : json["drop"],
+        live: json["live"],
+        sandbox: json["sandbox"],
+        billing: json["Billing"],
+        login: json["Login"],
+        dark: json["dark"],
+        light: json["light"],
+        lightOutline: json["light-outline"],
+        optionsDefault: json["default"],
+        buy: json["buy"],
+        donate: json["donate"],
+        sale: json["sale"],
+        authorization: json["authorization"],
+        add: json["add"],
+        drop: json["drop"],
       );
 
   Map<String, dynamic> toJson() => {
-        "gold": gold == null ? null : gold,
-        "blue": blue == null ? null : blue,
-        "silver": silver == null ? null : silver,
-        "black": black == null ? null : black,
-        "vertical": vertical == null ? null : vertical,
-        "horizontal": horizontal == null ? null : horizontal,
-        "pill": pill == null ? null : pill,
-        "rect": rect == null ? null : rect,
-        "responsive": responsive == null ? null : responsive,
-        "small": small == null ? null : small,
-        "medium": medium == null ? null : medium,
-        "large": large == null ? null : large,
+        "gold": gold,
+        "blue": blue,
+        "silver": silver,
+        "black": black,
+        "vertical": vertical,
+        "horizontal": horizontal,
+        "pill": pill,
+        "rect": rect,
+        "responsive": responsive,
+        "small": small,
+        "medium": medium,
+        "large": large,
         "Flat rate": flatRate == null ? null : flatRate!.toJson(),
         "Free shipping": freeShipping == null ? null : freeShipping!.toJson(),
         "Local pickup": localPickup == null ? null : localPickup!.toJson(),
-        "live": live == null ? null : live,
-        "sandbox": sandbox == null ? null : sandbox,
-        "Billing": billing == null ? null : billing,
-        "Login": login == null ? null : login,
-        "dark": dark == null ? null : dark,
-        "light": light == null ? null : light,
-        "light-outline": lightOutline == null ? null : lightOutline,
-        "default": optionsDefault == null ? null : optionsDefault,
-        "buy": buy == null ? null : buy,
-        "donate": donate == null ? null : donate,
-        "sale": sale == null ? null : sale,
-        "authorization": authorization == null ? null : authorization,
-        "add": add == null ? null : add,
-        "drop": drop == null ? null : drop,
+        "live": live,
+        "sandbox": sandbox,
+        "Billing": billing,
+        "Login": login,
+        "dark": dark,
+        "light": light,
+        "light-outline": lightOutline,
+        "default": optionsDefault,
+        "buy": buy,
+        "donate": donate,
+        "sale": sale,
+        "authorization": authorization,
+        "add": add,
+        "drop": drop,
       };
 }
 
@@ -986,9 +984,7 @@ class EnumValues<T> {
   EnumValues(this.map);
 
   Map<T, String>? get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
+    reverseMap ??= map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }
 }

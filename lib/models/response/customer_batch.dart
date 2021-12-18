@@ -154,8 +154,8 @@ class Ing {
         state: json["state"],
         postcode: json["postcode"],
         country: json["country"],
-        email: json["email"] == null ? null : json["email"],
-        phone: json["phone"] == null ? null : json["phone"],
+        email: json["email"],
+        phone: json["phone"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -168,7 +168,7 @@ class Ing {
         "state": state,
         "postcode": postcode,
         "country": country,
-        "email": email == null ? null : email,
-        "phone": phone == null ? null : phone,
+        "email": email,
+        "phone": phone,
       };
 }

@@ -1,3 +1,11 @@
+## [3.0.0] - 2021-12-16
+
+* Breaking changes
+* Major refactor to woosignal.dart class
+* Added CustomerDownload model
+* Ability to store theme colors, theme font and social links in WooSignalApp class
+* Dependency updates
+
 ## [2.2.1] - 2021-11-02
 
 * Update readme

@@ -28,42 +28,43 @@ class Links {
     if (json['self'] != null) {
       self = [];
       json['self'].forEach((v) {
-        self!.add(new Self.fromJson(v));
+        self!.add(Self.fromJson(v));
       });
     }
     if (json['collection'] != null) {
       collection = [];
       json['collection'].forEach((v) {
-        collection!.add(new Collection.fromJson(v));
+        collection!.add(Collection.fromJson(v));
       });
     }
     if (json['up'] != null) {
       up = [];
       json['up'].forEach((v) {
-        up!.add(new Collection.fromJson(v));
+        up!.add(Collection.fromJson(v));
       });
     }
     if (json['describes'] != null) {
       describes = [];
       json['describes'].forEach((v) {
-        describes!.add(new Collection.fromJson(v));
+        describes!.add(Collection.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.self != null) {
-      data['self'] = this.self!.map((v) => v.toJson()).toList();
+    // ignore: prefer_collection_literals
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (self != null) {
+      data['self'] = self!.map((v) => v.toJson()).toList();
     }
-    if (this.collection != null) {
-      data['collection'] = this.collection!.map((v) => v.toJson()).toList();
+    if (collection != null) {
+      data['collection'] = collection!.map((v) => v.toJson()).toList();
     }
-    if (this.up != null) {
-      data['up'] = this.up!.map((v) => v.toJson()).toList();
+    if (up != null) {
+      data['up'] = up!.map((v) => v.toJson()).toList();
     }
-    if (this.describes != null) {
-      data['describes'] = this.describes!.map((v) => v.toJson()).toList();
+    if (describes != null) {
+      data['describes'] = describes!.map((v) => v.toJson()).toList();
     }
     return data;
   }
