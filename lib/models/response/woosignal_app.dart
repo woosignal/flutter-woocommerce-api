@@ -104,10 +104,12 @@ class WooSignalApp {
     if (json.containsKey('theme_font') && json['theme_font'] != null) {
       themeFont = json['theme_font'];
     }
-    if (json.containsKey('social_links') && json['social_links'] is Map<String, dynamic>?) {
+    if (json.containsKey('social_links') &&
+        json['social_links'] is Map<String, dynamic>?) {
       socialLinks = json['social_links'];
     }
-    if (json.containsKey('theme_colors') && json['theme_colors'] is Map<String, dynamic>?) {
+    if (json.containsKey('theme_colors') &&
+        json['theme_colors'] is Map<String, dynamic>?) {
       themeColors = json['theme_colors'];
     }
   }

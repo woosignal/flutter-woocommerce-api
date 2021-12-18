@@ -89,7 +89,7 @@ class WooSignal {
       {"type": type, "payload": json, "path": path};
 
   /// WooSignal Request
-  Future<T> _wooSignalRequest<T>(
+  Future<T?> _wooSignalRequest<T>(
       {dynamic payload = const {},
       required String method,
       required String path,
@@ -99,7 +99,18 @@ class WooSignal {
     payload = _standardPayload(method, payload, path);
 
     dynamic json = await _apiProvider.post(postUrl, payload);
-    T model = jsonResponse(json);
+    if (json is Map<String, dynamic> && json.containsKey('error')) {
+      _printLog(json['error']);
+      return null;
+    }
+
+    T model;
+    try {
+      model = jsonResponse(json);
+    } on Exception catch (e) {
+      _printLog(e.toString());
+      return null;
+    }
 
     _printLog(model.toString());
     return model;
@@ -176,12 +187,13 @@ class WooSignal {
     if (onSale != null) payload["on_sale"] = onSale;
 
     return await _wooSignalRequest<List<Product>>(
-      method: "get",
-      payload: payload,
-      path: "products",
-      jsonResponse: (json) =>
-          (json as List).map((i) => Product.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "products",
+          jsonResponse: (json) =>
+              (json as List).map((i) => Product.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/products#retrive-a-product-api-call
@@ -238,22 +250,24 @@ class WooSignal {
     if (stockStatus != null) payload["stock_status"] = stockStatus;
 
     return await _wooSignalRequest<List<ProductVariation>>(
-      method: "get",
-      payload: payload,
-      path: "products/" + productId.toString() + "/variations",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ProductVariation.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "products/" + productId.toString() + "/variations",
+          jsonResponse: (json) =>
+              (json as List).map((i) => ProductVariation.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/products-attributes
   Future<List<ProductAttribute>> getProductAttributes() async {
     return await _wooSignalRequest<List<ProductAttribute>>(
-      method: "get",
-      path: "products/attributes",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ProductAttribute.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "products/attributes",
+          jsonResponse: (json) =>
+              (json as List).map((i) => ProductAttribute.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/products-attribute-terms
@@ -283,12 +297,14 @@ class WooSignal {
     if (slug != null) payload["slug"] = slug;
 
     return await _wooSignalRequest<List<ProductAttributeTerm>>(
-      method: "get",
-      payload: payload,
-      path: "products/attributes/" + attributeId.toString() + "/terms",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ProductAttributeTerm.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "products/attributes/" + attributeId.toString() + "/terms",
+          jsonResponse: (json) => (json as List)
+              .map((i) => ProductAttributeTerm.fromJson(i))
+              .toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/product-categories
@@ -318,12 +334,13 @@ class WooSignal {
     if (slug != null) payload["slug"] = slug;
 
     return await _wooSignalRequest<List<ProductCategory>>(
-      method: "get",
-      payload: payload,
-      path: "products/categories",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ProductCategory.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "products/categories",
+          jsonResponse: (json) =>
+              (json as List).map((i) => ProductCategory.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/product-shipping-classes
@@ -353,12 +370,14 @@ class WooSignal {
     if (slug != null) payload["slug"] = slug;
 
     return await _wooSignalRequest<List<ProductShippingClass>>(
-      method: "get",
-      payload: payload,
-      path: "products/shipping_classes",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ProductShippingClass.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "products/shipping_classes",
+          jsonResponse: (json) => (json as List)
+              .map((i) => ProductShippingClass.fromJson(i))
+              .toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/product-reviews
@@ -397,12 +416,13 @@ class WooSignal {
     if (status != null) payload["status"] = status;
 
     return await _wooSignalRequest<List<ProductReview>>(
-      method: "get",
-      payload: payload,
-      path: "products/reviews",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ProductReview.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "products/reviews",
+          jsonResponse: (json) =>
+              (json as List).map((i) => ProductReview.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/product-reviews
@@ -466,12 +486,13 @@ class WooSignal {
     if (role != null) payload["role"] = role;
 
     return await _wooSignalRequest<List<Customer>>(
-      method: "get",
-      payload: payload,
-      path: "customers",
-      jsonResponse: (json) =>
-          (json as List).map((i) => Customer.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "customers",
+          jsonResponse: (json) =>
+              (json as List).map((i) => Customer.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/refunds#create-a-refund
@@ -538,12 +559,13 @@ class WooSignal {
     if (dp != null) payload["code"] = dp;
 
     return await _wooSignalRequest<List<Refund>>(
-      method: "get",
-      payload: payload,
-      path: "orders/${orderId.toString()}/refunds",
-      jsonResponse: (json) =>
-          (json as List).map((i) => Refund.fromJson(i)).toList(),
-    );
+          method: "get",
+          payload: payload,
+          path: "orders/${orderId.toString()}/refunds",
+          jsonResponse: (json) =>
+              (json as List).map((i) => Refund.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/refunds#delete-a-refund
@@ -598,12 +620,13 @@ class WooSignal {
     if (dp != null) payload["dp"] = dp;
 
     return await _wooSignalRequest<List<Order>>(
-      method: "get",
-      path: "orders",
-      payload: payload,
-      jsonResponse: (json) =>
-          (json as List).map((i) => Order.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "orders",
+          payload: payload,
+          jsonResponse: (json) =>
+              (json as List).map((i) => Order.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/orders#retrieve-a-order
@@ -658,43 +681,47 @@ class WooSignal {
     if (taxClass != null) payload["taxClass"] = taxClass;
 
     return await _wooSignalRequest<List<TaxRate>>(
-      method: "get",
-      path: "taxes",
-      payload: payload,
-      jsonResponse: (json) =>
-          (json as List).map((i) => TaxRate.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "taxes",
+          payload: payload,
+          jsonResponse: (json) =>
+              (json as List).map((i) => TaxRate.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/tax-classes
   Future<List<TaxClass>> getTaxClasses() async {
     return await _wooSignalRequest<List<TaxClass>>(
-      method: "get",
-      path: "taxes/classes",
-      jsonResponse: (json) =>
-          (json as List).map((i) => TaxClass.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "taxes/classes",
+          jsonResponse: (json) =>
+              (json as List).map((i) => TaxClass.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/shipping-methods
   Future<List<WSShipping>> getShippingMethods() async {
     return await _wooSignalRequest<List<WSShipping>>(
-      method: "get",
-      path: "ws/shipping_methods",
-      postUrl: "/ws/shipping_methods",
-      jsonResponse: (json) =>
-          (json as List).map((i) => WSShipping.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "ws/shipping_methods",
+          postUrl: "/ws/shipping_methods",
+          jsonResponse: (json) =>
+              (json as List).map((i) => WSShipping.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/shipping-zones
   Future<List<ShippingZone>> getShippingZones() async {
     return await _wooSignalRequest<List<ShippingZone>>(
-      method: "get",
-      path: "shipping/zones",
-      jsonResponse: (json) =>
-          (json as List).map((i) => ShippingZone.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "shipping/zones",
+          jsonResponse: (json) =>
+              (json as List).map((i) => ShippingZone.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/shipping-zones#retrive-a-shipping-zone
@@ -742,14 +769,15 @@ class WooSignal {
   /// checks if the app can make orders
   Future<bool> checkAppStatus() async {
     return await _wooSignalRequest<bool>(
-      method: "get",
-      path: "ws/app-status",
-      postUrl: "/ws/app-status",
-      jsonResponse: (json) =>
-          (json['status'] == "200" && json['result']['value'] == 1)
-              ? true
-              : false,
-    );
+          method: "get",
+          path: "ws/app-status",
+          postUrl: "/ws/app-status",
+          jsonResponse: (json) =>
+              (json['status'] == "200" && json['result']['value'] == 1)
+                  ? true
+                  : false,
+        ) ??
+        false;
   }
 
   /// https://woosignal.com/docs/api/1.0/data#list-all-data
@@ -783,11 +811,12 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/data#list-all-countries
   Future<List<Countries>> getCountries() async {
     return await _wooSignalRequest<List<Countries>>(
-      method: "get",
-      path: "data/countries",
-      jsonResponse: (json) =>
-          (json as List).map((i) => Countries.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "data/countries",
+          jsonResponse: (json) =>
+              (json as List).map((i) => Countries.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   // Location be like "eu" code For Europe
@@ -803,11 +832,12 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/data#list-all-currencies
   Future<List<Currencies>> getCurrencies() async {
     return await _wooSignalRequest<List<Currencies>>(
-      method: "get",
-      path: "data/currencies",
-      jsonResponse: (json) =>
-          (json as List).map((i) => Currencies.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "data/currencies",
+          jsonResponse: (json) =>
+              (json as List).map((i) => Currencies.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/data#retrieve-currency-data
@@ -840,11 +870,12 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/payment-gateways#list-all-payment-gateways
   Future<List<PaymentGateWay>> getPaymentGateways() async {
     return await _wooSignalRequest<List<PaymentGateWay>>(
-      method: "get",
-      path: "payment_gateways",
-      jsonResponse: (json) =>
-          (json as List).map((i) => PaymentGateWay.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "payment_gateways",
+          jsonResponse: (json) =>
+              (json as List).map((i) => PaymentGateWay.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/payment-gateways#update-a-payment-gateway
@@ -880,12 +911,13 @@ class WooSignal {
     if (type != null) payload["type"] = type;
 
     return await _wooSignalRequest<List<OrderNote>>(
-      method: "get",
-      path: "orders/${orderId.toString()}/notes",
-      payload: payload,
-      jsonResponse: (json) =>
-          (json as List).map((i) => OrderNote.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "orders/${orderId.toString()}/notes",
+          payload: payload,
+          jsonResponse: (json) =>
+              (json as List).map((i) => OrderNote.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/order-notes#create-an-order-note
@@ -949,12 +981,13 @@ class WooSignal {
     if (code != null) payload["code"] = code;
 
     return await _wooSignalRequest<List<Coupon>>(
-      method: "get",
-      path: "coupons",
-      payload: payload,
-      jsonResponse: (json) =>
-          (json as List).map((i) => Coupon.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "coupons",
+          payload: payload,
+          jsonResponse: (json) =>
+              (json as List).map((i) => Coupon.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/coupons#create-a-coupon
@@ -1099,11 +1132,12 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/reports#list-all-reports
   Future<List<Reports>> getReports() async {
     return await _wooSignalRequest<List<Reports>>(
-      method: "get",
-      path: "reports",
-      jsonResponse: (json) =>
-          (json as List).map((i) => Reports.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports",
+          jsonResponse: (json) =>
+              (json as List).map((i) => Reports.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-sales-report
@@ -1120,12 +1154,13 @@ class WooSignal {
     if (dateMax != null) payload['dateMax'] = dateMax;
 
     return await _wooSignalRequest<List<SalesReports>>(
-      method: "get",
-      path: "reports/sales",
-      payload: payload,
-      jsonResponse: (json) =>
-          (json as List).map((i) => SalesReports.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/sales",
+          payload: payload,
+          jsonResponse: (json) =>
+              (json as List).map((i) => SalesReports.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-top-sellers-report
@@ -1142,62 +1177,68 @@ class WooSignal {
     if (dateMax != null) payload['dateMax'] = dateMax;
 
     return await _wooSignalRequest<List<TopSellerReport>>(
-      method: "get",
-      path: "reports/top_sellers",
-      payload: payload,
-      jsonResponse: (json) =>
-          (json as List).map((i) => TopSellerReport.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/top_sellers",
+          payload: payload,
+          jsonResponse: (json) =>
+              (json as List).map((i) => TopSellerReport.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-coupons-totals
   Future<List<TotalReport>> getTotalCouponsReports() async {
     return await _wooSignalRequest<List<TotalReport>>(
-      method: "get",
-      path: "reports/coupons/totals",
-      jsonResponse: (json) =>
-          (json as List).map((i) => TotalReport.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/coupons/totals",
+          jsonResponse: (json) =>
+              (json as List).map((i) => TotalReport.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-customers-totals
   Future<List<TotalReport>> getTotalCustomerReports() async {
     return await _wooSignalRequest<List<TotalReport>>(
-      method: "get",
-      path: "reports/customers/totals",
-      jsonResponse: (json) =>
-          (json as List).map((i) => TotalReport.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/customers/totals",
+          jsonResponse: (json) =>
+              (json as List).map((i) => TotalReport.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-orders-totals
   Future<List<TotalReport>> getTotalOrderReports() async {
     return await _wooSignalRequest<List<TotalReport>>(
-      method: "get",
-      path: "reports/orders/totals",
-      jsonResponse: (json) =>
-          (json as List).map((i) => TotalReport.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/orders/totals",
+          jsonResponse: (json) =>
+              (json as List).map((i) => TotalReport.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-products-totals
   Future<List<TotalReport>> getTotalProductReports() async {
     return await _wooSignalRequest<List<TotalReport>>(
-      method: "get",
-      path: "reports/products/totals",
-      jsonResponse: (json) =>
-          (json as List).map((i) => TotalReport.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/products/totals",
+          jsonResponse: (json) =>
+              (json as List).map((i) => TotalReport.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/reports#retrieve-reviews-totals
   Future<List<TotalReport>> getTotalReviewReports() async {
     return await _wooSignalRequest<List<TotalReport>>(
-      method: "get",
-      path: "reports/reviews/totals",
-      jsonResponse: (json) =>
-          (json as List).map((i) => TotalReport.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "reports/reviews/totals",
+          jsonResponse: (json) =>
+              (json as List).map((i) => TotalReport.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/system-status
@@ -1244,11 +1285,12 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/setting-options#list-all-setting-options
   Future<List<SettingOption>> getSettingOptions({String? groupId}) async {
     return await _wooSignalRequest<List<SettingOption>>(
-      method: "get",
-      path: "settings/${groupId.toString()}",
-      jsonResponse: (json) =>
-          (json as List).map((i) => SettingOption.fromJson(i)).toList(),
-    );
+          method: "get",
+          path: "settings/${groupId.toString()}",
+          jsonResponse: (json) =>
+              (json as List).map((i) => SettingOption.fromJson(i)).toList(),
+        ) ??
+        [];
   }
 
   /// https://woosignal.com/docs/api/1.0/setting-options#update-a-setting-option
