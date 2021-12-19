@@ -35,7 +35,7 @@ import 'package:woosignal/woosignal.dart';
 _getProducts() async {
 
         // Step 1 - Initialize WooSignal
-        WooSignal wooSignal = await WooSignal.instance.init(appKey: "your app key");
+        await WooSignal.instance.init(appKey: "your app key");
 
         // Step 2 - Call an API
         List<Product> products = await WooSignal.instance.getProducts();
