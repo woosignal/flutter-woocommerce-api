@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^3.0.1
+  woosignal: ^3.0.2
 ```
 
 ### Usage example #
@@ -35,7 +35,7 @@ import 'package:woosignal/woosignal.dart';
 _getProducts() async {
 
         // Step 1 - Initialize WooSignal
-        WooSignal wooSignal = await WooSignal.instance.init(appKey: "your app key");
+        await WooSignal.instance.init(appKey: "your app key");
 
         // Step 2 - Call an API
         List<Product> products = await WooSignal.instance.getProducts();

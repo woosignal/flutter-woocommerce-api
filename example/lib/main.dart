@@ -31,9 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _incrementCounter() async {
     // CREATING AN INSTANCE FOR WOOSIGNAL
-    WooSignal wooSignal = await WooSignal.instance.init(appKey: "your app key");
+    await WooSignal.instance.init(appKey: "your app key");
 
-    List<Product> products = await wooSignal.getProducts();
+    List<Product> products = await WooSignal.instance.getProducts();
     if (products.isNotEmpty) {
       _productName = products[0].name ?? "";
     }

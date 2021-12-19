@@ -59,7 +59,7 @@ class WooSignal {
   bool? _debugMode;
 
   /// Initialize the class
-  Future init({required String? appKey, bool debugMode = false}) async {
+  Future<void> init({required String? appKey, bool debugMode = false}) async {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
     _apiProvider = ApiProvider(appKey: appKey!, debugMode: debugMode);
