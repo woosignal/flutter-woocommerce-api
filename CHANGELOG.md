@@ -1,3 +1,8 @@
+## [3.0.3] - 2022-01-03
+
+* Update coupon property types
+* Improvements as per analysis
+
 ## [3.0.2] - 2021-12-19
 
 * Update Readme

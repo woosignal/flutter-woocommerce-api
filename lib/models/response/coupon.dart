@@ -1,4 +1,4 @@
-// Copyright (c) 2021, WooSignal Ltd.
+// Copyright (c) 2022, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -30,19 +30,19 @@ class Coupon {
   String? dateExpiresGmt;
   int? usageCount;
   bool? individualUse;
-  List<dynamic>? productIds;
-  List<dynamic>? excludedProductIds;
+  List<int>? productIds;
+  List<int>? excludedProductIds;
   int? usageLimit;
   int? usageLimitPerUser;
   int? limitUsageToXItems;
   bool? freeShipping;
-  List<dynamic>? productCategories;
-  List<dynamic>? excludedProductCategories;
+  List<int>? productCategories;
+  List<int>? excludedProductCategories;
   bool? excludeSaleItems;
   String? minimumAmount;
   String? maximumAmount;
-  List<dynamic>? emailRestrictions;
-  List<dynamic>? usedBy;
+  List<String>? emailRestrictions;
+  List<String>? usedBy;
   List<MetaData>? metaData;
   Links? links;
 
@@ -90,27 +90,28 @@ class Coupon {
     dateExpiresGmt = json['date_expires_gmt'];
     usageCount = json['usage_count'];
     individualUse = json['individual_use'];
-    productIds = (json['product_ids'] != null) ? json['product_ids'] : null;
+    productIds =
+        (json['product_ids'] != null) ? json['product_ids'].cast<int>() : null;
     excludedProductIds = (json['excluded_product_ids'] != null)
-        ? json['excluded_product_ids']
+        ? json['excluded_product_ids'].cast<int>()
         : null;
     usageLimit = json['usage_limit'];
     usageLimitPerUser = json['usage_limit_per_user'];
     limitUsageToXItems = json['limit_usage_to_x_items'];
     freeShipping = json['free_shipping'];
     productCategories = (json['product_categories'] != null)
-        ? json['product_categories']
+        ? json['product_categories'].cast<int>()
         : null;
-    productCategories = (json['product_categories'] != null)
-        ? json['product_categories']
+    excludedProductCategories = (json['excluded_product_categories'] != null)
+        ? json['excluded_product_categories'].cast<int>()
         : null;
     excludeSaleItems = json['exclude_sale_items'];
     minimumAmount = json['minimum_amount'];
     maximumAmount = json['maximum_amount'];
     emailRestrictions = (json['email_restrictions'] != null)
-        ? json['email_restrictions']
+        ? json['email_restrictions'].cast<String>()
         : null;
-    usedBy = (json['used_by'] != null) ? json['used_by'] : null;
+    usedBy = (json['used_by'] != null) ? json['used_by'].cast<String>() : null;
     if (json['meta_data'] != null) {
       metaData = [];
       json['meta_data'].forEach((v) {

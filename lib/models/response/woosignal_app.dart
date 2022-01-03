@@ -1,4 +1,4 @@
-// Copyright (c) 2021, WooSignal Ltd.
+// Copyright (c) 2022, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -25,6 +25,7 @@ class WooSignalApp {
   bool? stripeLiveMode;
   String? stripeAccount;
   int? wpLoginEnabled;
+  bool? couponEnabled;
   String? wpLoginBaseUrl;
   String? wpLoginForgotPasswordUrl;
   String? wpLoginWpApiPath;
@@ -37,6 +38,7 @@ class WooSignalApp {
   bool? stripeEnabled;
   bool? codEnabled;
   bool? paypalEnabled;
+  bool? wishlistEnabled;
   bool? paypalLiveMode;
   String? stripeCountryCode;
   String? themeFont;
@@ -69,6 +71,8 @@ class WooSignalApp {
       this.paypalEnabled,
       this.paypalLiveMode,
       this.stripeCountryCode,
+      this.couponEnabled,
+      this.wishlistEnabled,
       this.themeFont,
       this.socialLinks,
       this.themeColors});
@@ -87,6 +91,16 @@ class WooSignalApp {
     stripeLiveMode = json['stripe_live_mode'];
     stripeAccount = json['stripe_account'];
     wpLoginEnabled = json['wp_login_enabled'];
+    if (json['wishlist_enabled'] is int && json['wishlist_enabled'] == 1) {
+      wishlistEnabled = true;
+    } else {
+      wishlistEnabled = false;
+    }
+    if (json['coupon_enabled'] is int && json['coupon_enabled'] == 1) {
+      couponEnabled = true;
+    } else {
+      couponEnabled = false;
+    }
     wpLoginBaseUrl = json['wp_login_base_url'];
     wpLoginForgotPasswordUrl = json['wp_login_forgot_password_url'];
     wpLoginWpApiPath = json['wp_login_wp_api_path'];
@@ -121,6 +135,8 @@ class WooSignalApp {
     data['app_termslink'] = appTermsLink;
     data['app_privacylink'] = appPrivacyLink;
     data['app_debug'] = appDebug;
+    data['wishlist_enabled'] = wishlistEnabled;
+    data['coupon_enabled'] = couponEnabled;
     data['app_status'] = appStatus;
     if (currencyMeta != null) {
       data['currency_meta'] = currencyMeta!.toJson();
