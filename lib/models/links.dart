@@ -1,4 +1,4 @@
-// Copyright (c) 2021, WooSignal Ltd.
+// Copyright (c) 2022, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -52,8 +52,7 @@ class Links {
   }
 
   Map<String, dynamic> toJson() {
-    // ignore: prefer_collection_literals
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (self != null) {
       data['self'] = self!.map((v) => v.toJson()).toList();
     }
