@@ -428,11 +428,11 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/product-reviews
   Future<ProductReview?> createProductReview(
       {int? productId,
-      int? status,
+      String? status,
       String? reviewer,
       String? reviewerEmail,
       String? review,
-      int? rating,
+      int? rating, // Review rating (0 to 5)
       bool? verified}) async {
     Map<String, dynamic> payload = {};
 
