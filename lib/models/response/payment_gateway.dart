@@ -862,44 +862,44 @@ class TitleOptions {
 }
 
 enum Placeholder {
-  EMPTY,
-  OPTIONAL,
-  OPTIONAL_IF_YOU_PROVIDE_A_CERTIFICATE_BELOW,
-  YOU_YOUREMAIL_COM
+  empty,
+  optional,
+  optionalIfYouProvideACertificateBelow,
+  youYourEmailCom
 }
 
 final placeholderValues = EnumValues({
-  "": Placeholder.EMPTY,
-  "Optional": Placeholder.OPTIONAL,
+  "": Placeholder.empty,
+  "Optional": Placeholder.optional,
   "Optional if you provide a certificate below":
-      Placeholder.OPTIONAL_IF_YOU_PROVIDE_A_CERTIFICATE_BELOW,
-  "you@youremail.com": Placeholder.YOU_YOUREMAIL_COM
+      Placeholder.optionalIfYouProvideACertificateBelow,
+  "you@youremail.com": Placeholder.youYourEmailCom
 });
 
 enum Type {
-  TITLE,
-  CHECKBOX,
-  FILE,
-  PASSWORD,
-  TEXT,
-  SELECT,
-  EMAIL,
-  MULTISELECT,
-  IMAGE,
-  TEXTAREA
+  title,
+  checkbox,
+  file,
+  password,
+  text,
+  select,
+  email,
+  multiselect,
+  image,
+  textarea
 }
 
 final typeValues = EnumValues({
-  "checkbox": Type.CHECKBOX,
-  "email": Type.EMAIL,
-  "file": Type.FILE,
-  "image": Type.IMAGE,
-  "multiselect": Type.MULTISELECT,
-  "password": Type.PASSWORD,
-  "select": Type.SELECT,
-  "text": Type.TEXT,
-  "textarea": Type.TEXTAREA,
-  "title": Type.TITLE
+  "checkbox": Type.checkbox,
+  "email": Type.email,
+  "file": Type.file,
+  "image": Type.image,
+  "multiselect": Type.multiselect,
+  "password": Type.password,
+  "select": Type.select,
+  "text": Type.text,
+  "textarea": Type.textarea,
+  "title": Type.title
 });
 
 class HideFundingMethods {

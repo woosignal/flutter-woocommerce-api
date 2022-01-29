@@ -23,6 +23,7 @@ class ApiProvider {
   late Dio _dio;
   bool _debugMode;
   late final String _apiKey;
+  late final String _version;
   Map<String, dynamic> _deviceMeta = {};
 
   /// Set the device meta
@@ -41,7 +42,7 @@ class ApiProvider {
         "version": androidDeviceInfo.version.sdkInt.toString(),
         "uuid": uuid,
         "platform_type": "android",
-        "api_version": "3.0.0/v3"
+        "api_version": "$_version/v3"
       };
     } else if (Platform.isIOS) {
       IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
@@ -52,7 +53,7 @@ class ApiProvider {
         "version": iosDeviceInfo.systemVersion,
         "uuid": uuid,
         "platform_type": "ios",
-        "api_version": "3.0.0/v3"
+        "api_version": "$_version/v3"
       };
     }
   }
@@ -88,9 +89,11 @@ class ApiProvider {
   }
 
   /// Constructor requires a [appKey] from WooSignal
-  ApiProvider({required String appKey, bool debugMode = true})
+  ApiProvider(
+      {required String appKey, required String version, bool debugMode = true})
       : _apiKey = appKey,
-        _debugMode = debugMode;
+        _debugMode = debugMode,
+        _version = version;
 
   /// Initialize class
   Future init() async {

@@ -51,6 +51,9 @@ import 'package:woosignal/models/response/setting_option.dart';
 import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
+/// WooSignal Package version
+const String wooSignalVersion = "3.0.5";
+
 class WooSignal {
   WooSignal._privateConstructor();
   static final WooSignal instance = WooSignal._privateConstructor();
@@ -62,7 +65,8 @@ class WooSignal {
   Future<void> init({required String? appKey, bool debugMode = false}) async {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
-    _apiProvider = ApiProvider(appKey: appKey!, debugMode: debugMode);
+    _apiProvider = ApiProvider(
+        appKey: appKey!, debugMode: debugMode, version: wooSignalVersion);
     setDebugMode(debugMode);
     await _apiProvider.init();
   }
@@ -428,11 +432,11 @@ class WooSignal {
   /// https://woosignal.com/docs/api/1.0/product-reviews
   Future<ProductReview?> createProductReview(
       {int? productId,
-      int? status,
+      String? status,
       String? reviewer,
       String? reviewerEmail,
       String? review,
-      int? rating,
+      int? rating, // Review rating (0 to 5)
       bool? verified}) async {
     Map<String, dynamic> payload = {};
 
