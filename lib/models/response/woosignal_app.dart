@@ -104,17 +104,20 @@ class WooSignalApp {
     } else {
       couponEnabled = false;
     }
-    if (json['show_product_reviews'] is int && json['show_product_reviews'] == 1) {
+    if (json['show_product_reviews'] is int &&
+        json['show_product_reviews'] == 1) {
       showProductReviews = true;
     } else {
       showProductReviews = false;
     }
-    if (json['show_related_products'] is int && json['show_related_products'] == 1) {
+    if (json['show_related_products'] is int &&
+        json['show_related_products'] == 1) {
       showRelatedProducts = true;
     } else {
       showRelatedProducts = false;
     }
-    if (json['show_upsell_products'] is int && json['show_upsell_products'] == 1) {
+    if (json['show_upsell_products'] is int &&
+        json['show_upsell_products'] == 1) {
       showUpsellProducts = true;
     } else {
       showUpsellProducts = false;

@@ -1,3 +1,9 @@
+## [3.0.5] - 2022-01-29
+
+* Version added to woosignal.dart
+* Flutter format
+* Improvements as per Dart analysis
+
 ## [3.0.4] - 2022-01-28
 
 * Add new variables to woosignal_app

@@ -113,23 +113,23 @@ class Country {
       };
 }
 
-enum CurrencyPos { LEFT, LEFT_SPACE, RIGHT, RIGHT_SPACE }
+enum CurrencyPos { left, leftSpace, right, rightSpace }
 
 final currencyPosValues = EnumValues({
-  "left": CurrencyPos.LEFT,
-  "left_space": CurrencyPos.LEFT_SPACE,
-  "right": CurrencyPos.RIGHT,
-  "right_space": CurrencyPos.RIGHT_SPACE
+  "left": CurrencyPos.left,
+  "left_space": CurrencyPos.leftSpace,
+  "right": CurrencyPos.right,
+  "right_space": CurrencyPos.rightSpace
 });
 
-enum Sep { EMPTY, SEP, PURPLE }
+enum Sep { empty, sep, purple }
 
-final sepValues = EnumValues({".": Sep.EMPTY, " ": Sep.PURPLE, ",": Sep.SEP});
+final sepValues = EnumValues({".": Sep.empty, " ": Sep.purple, ",": Sep.sep});
 
-enum DimensionUnit { CM, IN }
+enum DimensionUnit { cm, inch }
 
 final dimensionUnitValues =
-    EnumValues({"cm": DimensionUnit.CM, "in": DimensionUnit.IN});
+    EnumValues({"cm": DimensionUnit.cm, "in": DimensionUnit.inch});
 
 class State {
   State({
@@ -151,9 +151,9 @@ class State {
       };
 }
 
-enum WeightUnit { KG, OZ }
+enum WeightUnit { kg, oz }
 
-final weightUnitValues = EnumValues({"kg": WeightUnit.KG, "oz": WeightUnit.OZ});
+final weightUnitValues = EnumValues({"kg": WeightUnit.kg, "oz": WeightUnit.oz});
 
 class EnumValues<T> {
   Map<String, T> map;
