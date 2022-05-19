@@ -20,6 +20,7 @@ import 'package:woosignal/models/response/continent.dart';
 import 'package:woosignal/models/response/currencies.dart';
 import 'package:woosignal/models/response/customer_download.dart';
 import 'package:woosignal/models/response/order_batch.dart' as ob;
+import 'package:woosignal/models/response/product_tag.dart';
 import 'package:woosignal/models/response/refund.dart';
 import 'package:woosignal/models/response/order_notes.dart';
 import 'package:woosignal/models/response/coupon.dart';
@@ -52,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.0.5";
+const String wooSignalVersion = "3.1.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -85,7 +86,7 @@ class WooSignal {
   /// Print to the console a [message]
   void _printLog(String message) {
     if (_debugMode == true) {
-      print("WOOSIGNAL LOG: " + message);
+      print("WooSignal LOG: $message");
     }
   }
 
@@ -99,7 +100,7 @@ class WooSignal {
       required String path,
       required T Function(dynamic json) jsonResponse,
       String postUrl = "/request"}) async {
-    _printLog("Parameters: " + payload.toString());
+    _printLog("Parameters: $payload");
     payload = _standardPayload(method, payload, path);
 
     dynamic json = await _apiProvider.post(postUrl, payload);
@@ -1378,6 +1379,91 @@ class WooSignal {
       path: "coupons/batch",
       payload: data,
       jsonResponse: (json) => ProductBatch.fromJson(json),
+    );
+  }
+
+  /// https://woosignal.com/docs/api/1.0/products#create-product-tags
+  Future<ProductTag?> createProductTag(
+      {required String name, String? slug, String? description}) async {
+    Map<String, dynamic> payload = {'name': name};
+    if (slug != null) payload['slug'] = slug;
+    if (description != null) payload['description'] = description;
+
+    return await _wooSignalRequest<ProductTag?>(
+      method: "post",
+      path: "products/tags",
+      payload: payload,
+      jsonResponse: (json) => ProductTag.fromJson(json),
+    );
+  }
+
+  /// https://woosignal.com/docs/api/1.0/products#create-product-tag
+  Future<ProductTag?> retrieveProductTag(int id) async {
+    return await _wooSignalRequest<ProductTag?>(
+      method: "get",
+      path: "products/tags/" + id.toString(),
+      jsonResponse: (json) => ProductTag.fromJson(json),
+    );
+  }
+
+  /// https://woosignal.com/docs/api/1.0/products#create-product-tags
+  Future<List<ProductTag>?> getProductTags(
+      {String? context,
+      int? page,
+      int? perPage,
+      String? search,
+      List<int>? exclude,
+      List<int>? include,
+      int? offset,
+      String? order,
+      String? orderBy,
+      bool? hideEmpty,
+      int? product,
+      String? slug}) async {
+    Map<String, dynamic> payload = {};
+
+    if (context != null) payload["context"] = context;
+    if (page != null) payload["page"] = page;
+    if (perPage != null) payload["per_page"] = perPage;
+    if (search != null) payload["search"] = search;
+    if (exclude != null) payload["exclude"] = exclude;
+    if (include != null) payload["include"] = include;
+    if (offset != null) payload["offset"] = offset;
+    if (order != null) payload["order"] = order;
+    if (orderBy != null) payload["orderby"] = orderBy;
+    if (hideEmpty != null) payload["hide_empty"] = hideEmpty;
+    if (product != null) payload["product"] = product;
+    if (slug != null) payload["slug"] = slug;
+
+    return await _wooSignalRequest<List<ProductTag>?>(
+      method: "get",
+      path: "products/tags",
+      payload: payload,
+      jsonResponse: (json) =>
+          (json as List).map((i) => ProductTag.fromJson(i)).toList(),
+    );
+  }
+
+  /// https://woosignal.com/docs/api/1.0/products#create-product-tags
+  Future<ProductTag?> updateProductTag(int productTagId,
+      {Map<String, dynamic>? data}) async {
+    return await _wooSignalRequest<ProductTag?>(
+      method: "put",
+      path: "products/tags/" + productTagId.toString(),
+      payload: data ?? {},
+      jsonResponse: (json) => ProductTag.fromJson(json),
+    );
+  }
+
+  /// https://woosignal.com/docs/api/1.0/products#delete-product-tags
+  Future<ProductTag?> deleteProductTag(int productTagId,
+      {bool force = false}) async {
+    Map<String, dynamic> payload = {"force": force};
+    return await _wooSignalRequest<ProductTag?>(
+      method: "delete",
+      path: "products/tags/" + productTagId.toString(),
+      payload: payload,
+      jsonResponse: (json) => ProductTag.fromJson(json),
     );
   }
 }

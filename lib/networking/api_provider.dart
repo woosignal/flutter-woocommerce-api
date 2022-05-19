@@ -14,9 +14,9 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'dart:convert';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:woosignal/helpers/shared_pref.dart';
-import 'package:device_info/device_info.dart';
 import 'dart:io' show Platform;
 
 class ApiProvider {
@@ -36,8 +36,8 @@ class ApiProvider {
       AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
       _deviceMeta = {
         "model": androidDeviceInfo.device,
-        "brand":
-            androidDeviceInfo.brand.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+        "brand": androidDeviceInfo.brand
+            ?.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
         "manufacturer": androidDeviceInfo.manufacturer,
         "version": androidDeviceInfo.version.sdkInt.toString(),
         "uuid": uuid,
@@ -48,7 +48,8 @@ class ApiProvider {
       IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
       _deviceMeta = {
         "model": iosDeviceInfo.model,
-        "brand": iosDeviceInfo.name.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+        "brand":
+            iosDeviceInfo.name?.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
         "manufacturer": "Apple",
         "version": iosDeviceInfo.systemVersion,
         "uuid": uuid,
@@ -82,7 +83,7 @@ class ApiProvider {
   /// Set the http headers for Dio
   _setDioHeaders() {
     _dio.options.headers = {
-      "Authorization": "Bearer " + _apiKey,
+      "Authorization": "Bearer $_apiKey",
       "Content-Type": "application/json",
       "X-DMETA": json.encode(_deviceMeta).toString()
     };
