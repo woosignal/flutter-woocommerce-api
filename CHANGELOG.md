@@ -1,3 +1,10 @@
+## [3.1.0] - 2022-05-19
+
+* New API for product tags
+* Flutter format
+* Dependency updates
+* Dart version 2.17
+
 ## [3.0.5] - 2022-01-29
 
 * Version added to woosignal.dart
