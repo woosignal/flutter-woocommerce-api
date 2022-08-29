@@ -15,11 +15,11 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^3.1.0
+  woosignal: ^3.1.1
 ```
 
 ### Usage example #
-Import woosignal.dart
+Import `woosignal.dart`
 ``` dart
 import 'package:woosignal/woosignal.dart';
 ```
