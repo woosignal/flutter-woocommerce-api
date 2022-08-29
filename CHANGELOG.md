@@ -1,3 +1,7 @@
+## [3.1.1] - 2022-08-29
+
+* Dependency updates
+
 ## [3.1.0] - 2022-05-19
 
 * New API for product tags
