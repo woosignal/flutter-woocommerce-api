@@ -14,7 +14,8 @@ dependencies:
   device_info_plus: ^4.1.2
   shared_preferences: ^2.0.15
   uuid: ^3.0.6
-
+  dio_proxy_plugin: ^2.0.3
+  
   flutter:
     sdk: flutter
 
