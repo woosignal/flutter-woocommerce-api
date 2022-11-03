@@ -13,6 +13,8 @@
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'package:woosignal/models/menu_link.dart';
+
 class WooSignalApp {
   String? appName;
   String? appLogo;
@@ -46,6 +48,7 @@ class WooSignalApp {
   String? stripeCountryCode;
   String? themeFont;
   Map<String, dynamic>? socialLinks;
+  List<MenuLink> menuLinks = [];
   Map<String, dynamic>? themeColors;
 
   WooSignalApp(
@@ -78,6 +81,7 @@ class WooSignalApp {
       this.wishlistEnabled,
       this.themeFont,
       this.socialLinks,
+      this.menuLinks = const [],
       this.themeColors});
 
   WooSignalApp.fromJson(Map<String, dynamic> json) {
@@ -146,6 +150,11 @@ class WooSignalApp {
     if (json.containsKey('theme_colors') &&
         json['theme_colors'] is Map<String, dynamic>?) {
       themeColors = json['theme_colors'];
+    }
+    if (json.containsKey('menu_links')) {
+      menuLinks = List.from(json['menu_links'])
+          .map((bet) => MenuLink.fromJson(bet))
+          .toList();
     }
   }
 

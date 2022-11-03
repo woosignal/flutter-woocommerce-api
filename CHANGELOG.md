@@ -1,3 +1,9 @@
+## [3.2.0] - 2022-11-03
+
+* Add Menu Links to `WooSignalApp` class
+* Fix expected API return types for Dimension
+* Dependency updates
+
 ## [3.1.1] - 2022-08-29
 
 * Dependency updates
