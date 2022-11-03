@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.1.1";
+const String wooSignalVersion = "3.2.0";
 
 class WooSignal {
   WooSignal._privateConstructor();

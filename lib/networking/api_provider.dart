@@ -36,8 +36,8 @@ class ApiProvider {
       AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
       _deviceMeta = {
         "model": androidDeviceInfo.device,
-        "brand": androidDeviceInfo.brand
-            ?.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+        "brand":
+            androidDeviceInfo.brand.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
         "manufacturer": androidDeviceInfo.manufacturer,
         "version": androidDeviceInfo.version.sdkInt.toString(),
         "uuid": uuid,

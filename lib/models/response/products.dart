@@ -14,6 +14,7 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'package:woosignal/models/image.dart';
+import 'package:woosignal/models/response/dimension.dart';
 
 import '../meta_data.dart';
 
@@ -174,7 +175,9 @@ class Product {
         backordersAllowed = json['backorders_allowed'],
         backordered = json['backordered'],
         soldIndividually = json['sold_individually'],
-        weight = json['weight'],
+        weight = (json['weight'] is double
+            ? json['weight'].toString()
+            : json['weight']),
         dimensions = Dimension.fromJson(json['dimensions']),
         shippingRequired = json['shipping_required'],
         shippingTaxable = json['shipping_taxable'],
@@ -255,22 +258,6 @@ class Category {
         'name': name,
         'slug': slug,
       };
-}
-
-class Dimension {
-  final String? length;
-  final String? width;
-  final String? height;
-
-  Dimension(this.length, this.height, this.width);
-
-  Dimension.fromJson(Map<String, dynamic> json)
-      : length = json['length'],
-        width = json['width'],
-        height = json['height'];
-
-  Map<String, dynamic> toJson() =>
-      {'length': length, 'width': width, 'height': height};
 }
 
 class Attribute {
