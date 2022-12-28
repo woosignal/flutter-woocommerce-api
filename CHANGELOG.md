@@ -1,3 +1,7 @@
+## [3.2.1] - 2022-12-28
+
+* Update copyright version
+
 ## [3.2.0] - 2022-11-03
 
 * Add Menu Links to `WooSignalApp` class

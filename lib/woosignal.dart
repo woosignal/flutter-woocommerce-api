@@ -1,6 +1,6 @@
 library woosignal;
 
-// Copyright (c) 2022, WooSignal Ltd.
+// Copyright (c) 2023, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.2.0";
+const String wooSignalVersion = "3.2.1";
 
 class WooSignal {
   WooSignal._privateConstructor();
