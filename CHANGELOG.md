@@ -1,3 +1,8 @@
+## [3.2.2] - 2022-02-20
+
+* Add logo to package
+* Pubspec.yaml dependency updates.
+
 ## [3.2.1] - 2022-12-28
 
 * Update copyright version
