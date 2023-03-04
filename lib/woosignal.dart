@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.2.3";
+const String wooSignalVersion = "3.3.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -756,6 +756,30 @@ class WooSignal {
     await _apiProvider.post("/order/pi", payload).then((json) {
       payloadRsp = json;
     });
+    _printLog(payloadRsp.toString());
+    return payloadRsp;
+  }
+
+  /// Creates a new payment intent and save details
+  Future<Map<String, dynamic>?> stripePaymentIntentV2({
+    String? amount,
+    String? desc,
+    String? email,
+    Map<String, dynamic>? shipping,
+    Map<String, dynamic>? customerDetails,
+  }) async {
+    Map<String, dynamic> payload = {
+      "amount": amount,
+      "receipt_email": email,
+      "shipping": shipping,
+      "desc": desc,
+      "path": "order/v2/pi",
+      "type": "post",
+      "customer_details": customerDetails,
+    };
+    Map<String, dynamic>? payloadRsp =
+        await _apiProvider.post("/order/v2/pi", payload);
+
     _printLog(payloadRsp.toString());
     return payloadRsp;
   }

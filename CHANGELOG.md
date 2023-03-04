@@ -1,4 +1,9 @@
-## [3.2.3] - 2022-02-22
+## [3.3.0] - 2022-03-04
+
+* New endpoint for Stripe Payment Intents.
+* Pubspec.yaml dependency updates.
+
+* ## [3.2.3] - 2022-02-22
 
 * Flutter version bump
 
