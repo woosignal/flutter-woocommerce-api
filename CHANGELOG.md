@@ -3,11 +3,11 @@
 * New endpoint for Stripe Payment Intents.
 * Pubspec.yaml dependency updates.
 
-* ## [3.2.3] - 2022-02-22
+## [3.2.3] - 2022-02-22
 
 * Flutter version bump
 
-* ## [3.2.2] - 2022-02-20
+## [3.2.2] - 2022-02-20
 
 * Add logo to package
 * Pubspec.yaml dependency updates.
