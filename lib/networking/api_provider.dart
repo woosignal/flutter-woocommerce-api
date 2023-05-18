@@ -49,7 +49,7 @@ class ApiProvider {
       _deviceMeta = {
         "model": iosDeviceInfo.model,
         "brand":
-            iosDeviceInfo.name?.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+            iosDeviceInfo.name.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
         "manufacturer": "Apple",
         "version": iosDeviceInfo.systemVersion,
         "uuid": uuid,

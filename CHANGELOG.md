@@ -1,6 +1,7 @@
 ## [3.4.0] - 2023-05-18
 
 * Add new attributes to `Product` class
+* Pubspec.yaml dependency updates.
 
 * ## [3.3.0] - 2023-03-04
 
