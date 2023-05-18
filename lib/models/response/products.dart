@@ -76,6 +76,7 @@ class Product {
   final List<int>? groupedProducts;
   final int? menuOrder;
   final List<MetaData> metaData;
+  final String? dateCreated, dateCreatedGMT;
 
   Product(
       this.id,
@@ -134,7 +135,9 @@ class Product {
       this.variations,
       this.groupedProducts,
       this.menuOrder,
-      this.metaData);
+      this.metaData,
+      this.dateCreated,
+      this.dateCreatedGMT);
 
   Product.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -206,6 +209,8 @@ class Product {
         variations = json['variations'].cast<int>(),
         groupedProducts = json['grouped_products'].cast<int>(),
         menuOrder = json['menu_order'],
+        dateCreated = json['date_created'],
+        dateCreatedGMT = json['date_created_gmt'],
         metaData = (json['meta_data'] as List)
             .map((i) => MetaData.fromJson(i))
             .toList();
