@@ -48,8 +48,7 @@ class ApiProvider {
       IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
       _deviceMeta = {
         "model": iosDeviceInfo.model,
-        "brand":
-            iosDeviceInfo.name.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
+        "brand": iosDeviceInfo.name.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
         "manufacturer": "Apple",
         "version": iosDeviceInfo.systemVersion,
         "uuid": uuid,
