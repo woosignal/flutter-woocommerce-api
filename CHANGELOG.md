@@ -1,3 +1,8 @@
+## [3.5.0] - 2023-05-28
+
+* Refactor products.dart to product.dart
+* Pubspec.yaml dependency updates.
+
 ## [3.4.0] - 2023-05-18
 
 * Add new attributes to `Product` class

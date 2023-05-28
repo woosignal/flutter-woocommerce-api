@@ -178,9 +178,7 @@ class Product {
         backordersAllowed = json['backorders_allowed'],
         backordered = json['backordered'],
         soldIndividually = json['sold_individually'],
-        weight = (json['weight'] is double
-            ? json['weight'].toString()
-            : json['weight']),
+        weight = json['weight'].toString(),
         dimensions = Dimension.fromJson(json['dimensions']),
         shippingRequired = json['shipping_required'],
         shippingTaxable = json['shipping_taxable'],

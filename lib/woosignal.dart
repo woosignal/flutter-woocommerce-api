@@ -29,7 +29,7 @@ import 'package:woosignal/models/response/customer_batch.dart';
 import 'package:woosignal/models/response/reports.dart';
 import 'package:woosignal/models/response/woosignal_app.dart';
 import 'package:woosignal/networking/api_provider.dart';
-import 'package:woosignal/models/response/products.dart';
+import 'package:woosignal/models/response/product.dart';
 import 'package:woosignal/models/response/product_review.dart';
 import 'package:woosignal/models/response/product_category.dart';
 import 'package:woosignal/models/response/customer.dart';
@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.3.0";
+const String wooSignalVersion = "3.4.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
