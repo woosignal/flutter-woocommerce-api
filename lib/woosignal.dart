@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.6.0";
+const String wooSignalVersion = "3.6.1";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -257,7 +257,7 @@ class WooSignal {
     return await _wooSignalRequest<List<ProductVariation>>(
           method: "get",
           payload: payload,
-          path: "products/" + productId.toString() + "/variations",
+          path: "products/$productId/variations",
           jsonResponse: (json) =>
               (json as List).map((i) => ProductVariation.fromJson(i)).toList(),
         ) ??
@@ -304,7 +304,7 @@ class WooSignal {
     return await _wooSignalRequest<List<ProductAttributeTerm>>(
           method: "get",
           payload: payload,
-          path: "products/attributes/" + attributeId.toString() + "/terms",
+          path: "products/attributes/$attributeId/terms",
           jsonResponse: (json) => (json as List)
               .map((i) => ProductAttributeTerm.fromJson(i))
               .toList(),
@@ -645,7 +645,7 @@ class WooSignal {
 
     return await _wooSignalRequest<Order?>(
       method: "get",
-      path: "orders/" + id.toString(),
+      path: "orders/$id",
       payload: payload,
       jsonResponse: (json) => Order.fromJson(json),
     );
@@ -656,7 +656,7 @@ class WooSignal {
       {required Map<String, dynamic> data}) async {
     return await _wooSignalRequest<Order?>(
       method: "put",
-      path: "orders/" + id.toString(),
+      path: "orders/$id",
       payload: data,
       jsonResponse: (json) => Order.fromJson(json),
     );
@@ -737,7 +737,7 @@ class WooSignal {
   Future<ShippingZone?> retrieveShippingZone(int id) async {
     return await _wooSignalRequest<ShippingZone?>(
       method: "get",
-      path: "shipping/zones/" + id.toString(),
+      path: "shipping/zones/$id",
       jsonResponse: (json) => ShippingZone.fromJson(json),
     );
   }
@@ -1046,8 +1046,9 @@ class WooSignal {
     if (minimumAmount != null) payload['minimum_amount'] = minimumAmount;
     if (usageLimit != null) payload['usage_limit'] = usageLimit;
     if (productIds != null) payload['product_ids'] = productIds;
-    if (emailRestrictions != null)
+    if (emailRestrictions != null) {
       payload['email_restrictions'] = emailRestrictions;
+    }
     if (description != null) payload['description'] = description;
 
     return await _wooSignalRequest<Coupon?>(
@@ -1063,7 +1064,7 @@ class WooSignal {
       {required Map<String, dynamic> data}) async {
     return await _wooSignalRequest<Coupon?>(
       method: "put",
-      path: "coupons/" + id.toString(),
+      path: "coupons/$id",
       payload: data,
       jsonResponse: (json) => Coupon.fromJson(json),
     );
@@ -1073,7 +1074,7 @@ class WooSignal {
   Future<Coupon?> deleteCoupon(int id, {bool force = false}) async {
     return await _wooSignalRequest<Coupon?>(
       method: "delete",
-      path: "coupons/" + id.toString(),
+      path: "coupons/$id",
       payload: {'force': force},
       jsonResponse: (json) => Coupon.fromJson(json),
     );
@@ -1140,7 +1141,7 @@ class WooSignal {
       {required Map<String, dynamic> data}) async {
     return await _wooSignalRequest<Customers?>(
       method: "put",
-      path: "customers/" + id.toString(),
+      path: "customers/$id",
       payload: data,
       jsonResponse: (json) => Customers.fromJson(json),
     );
@@ -1152,7 +1153,7 @@ class WooSignal {
 
     return await _wooSignalRequest<Customers?>(
       method: "delete",
-      path: "customers/" + id.toString(),
+      path: "customers/$id",
       payload: payload,
       jsonResponse: (json) => Customers.fromJson(json),
     );
@@ -1296,7 +1297,7 @@ class WooSignal {
     Map<String, dynamic> payload = {'force': force};
     return await _wooSignalRequest<ob.Orders?>(
       method: "delete",
-      path: "orders/" + id.toString(),
+      path: "orders/$id",
       payload: payload,
       jsonResponse: (json) => ob.Orders.fromJson(json),
     );
@@ -1389,7 +1390,7 @@ class WooSignal {
       {required Map<String, dynamic> data}) async {
     return await _wooSignalRequest<Product?>(
       method: "put",
-      path: "products/" + id.toString(),
+      path: "products/$id",
       payload: data,
       jsonResponse: (json) => Product.fromJson(json),
     );
@@ -1400,7 +1401,7 @@ class WooSignal {
     Map<String, dynamic> payload = {'force': force};
     return await _wooSignalRequest<Product?>(
       method: "delete",
-      path: "products/" + id.toString(),
+      path: "products/$id",
       payload: payload,
       jsonResponse: (json) => Product.fromJson(json),
     );
@@ -1437,7 +1438,7 @@ class WooSignal {
   Future<ProductTag?> retrieveProductTag(int id) async {
     return await _wooSignalRequest<ProductTag?>(
       method: "get",
-      path: "products/tags/" + id.toString(),
+      path: "products/tags/$id",
       jsonResponse: (json) => ProductTag.fromJson(json),
     );
   }
@@ -1485,7 +1486,7 @@ class WooSignal {
       {Map<String, dynamic>? data}) async {
     return await _wooSignalRequest<ProductTag?>(
       method: "put",
-      path: "products/tags/" + productTagId.toString(),
+      path: "products/tags/$productTagId",
       payload: data ?? {},
       jsonResponse: (json) => ProductTag.fromJson(json),
     );
@@ -1497,7 +1498,7 @@ class WooSignal {
     Map<String, dynamic> payload = {"force": force};
     return await _wooSignalRequest<ProductTag?>(
       method: "delete",
-      path: "products/tags/" + productTagId.toString(),
+      path: "products/tags/$productTagId",
       payload: payload,
       jsonResponse: (json) => ProductTag.fromJson(json),
     );

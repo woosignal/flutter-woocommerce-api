@@ -39,7 +39,7 @@ _storeUUID(String uuid) async {
 String _buildUUID() {
   var uuid = Uuid();
   String idD = uuid.v1();
-  return idD + "_" + _randomStr(5);
+  return "${idD}_${_randomStr(5)}";
 }
 
 String _randomStr(int strLen) {

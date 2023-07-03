@@ -1,3 +1,7 @@
+## [3.6.1] - 2023-07-03
+
+* Fix dart analysis `refer_interpolation_to_compose_strings` in project.
+ 
 ## [3.6.0] - 2023-07-03
 
 * Fix orderBy parameter for `getProducts()`.
