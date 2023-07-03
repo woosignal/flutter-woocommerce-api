@@ -1392,8 +1392,9 @@ class WooSignal {
     if (images != null) payload['images'] = images;
     if (metaData != null) payload['meta_data'] = metaData;
     if (featured != null) payload['featured'] = featured;
-    if (catalogVisibility != null)
+    if (catalogVisibility != null) {
       payload['catalog_visibility'] = catalogVisibility;
+    }
     if (sku != null) payload['sku'] = sku;
     if (salePrice != null) payload['sale_price'] = salePrice;
     if (downloadable != null) payload['downloadable'] = downloadable;
