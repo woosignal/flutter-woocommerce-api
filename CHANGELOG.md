@@ -1,3 +1,9 @@
+## [3.6.0] - 2023-07-03
+
+* Fix orderBy parameter for `getProducts()`.
+* Add transactionId in `OrderWC` class.
+* More parameters added for `createCoupon()`.
+
 ## [3.5.0] - 2023-05-28
 
 * Refactor products.dart to product.dart

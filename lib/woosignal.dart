@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.4.0";
+const String wooSignalVersion = "3.6.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -169,7 +169,7 @@ class WooSignal {
     if (after != null) payload["after"] = after;
     if (before != null) payload["before"] = before;
     if (order != null) payload["order"] = order;
-    if (orderBy != null) payload["order_by"] = orderBy;
+    if (orderBy != null) payload["orderby"] = orderBy;
     if (slug != null) payload["slug"] = slug;
     if (status != null) payload["status"] = status;
     if (type != null) payload["type"] = type;
@@ -592,6 +592,8 @@ class WooSignal {
       String? search,
       String? after,
       String? before,
+      String? modifiedAfter,
+      String? modifiedBefore,
       List<int>? exclude,
       List<int>? include,
       int? offset,
@@ -612,6 +614,8 @@ class WooSignal {
     if (search != null) payload["search"] = search;
     if (after != null) payload["after"] = after;
     if (before != null) payload["before"] = before;
+    if (modifiedAfter != null) payload["modified_after"] = modifiedAfter;
+    if (modifiedBefore != null) payload["modified_before"] = modifiedBefore;
     if (exclude != null) payload["exclude"] = exclude;
     if (include != null) payload["include"] = include;
     if (offset != null) payload["offset"] = offset;
@@ -1020,14 +1024,17 @@ class WooSignal {
   }
 
   /// https://woosignal.com/docs/api/1.0/coupons#create-a-coupon
-  Future<Coupon?> createCoupon({
-    required String? code,
-    required String? discountType,
-    required String? amount,
-    required bool? individualUse,
-    required bool? excludeSaleItems,
-    required String? minimumAmount,
-  }) async {
+  Future<Coupon?> createCoupon(
+      {required String? code,
+      required String? discountType,
+      required String? amount,
+      required bool? individualUse,
+      required bool? excludeSaleItems,
+      required String? minimumAmount,
+      int? usageLimit,
+      List<int>? productIds,
+      List<String>? emailRestrictions,
+      String? description}) async {
     Map<String, dynamic> payload = {};
     if (code != null) payload['code'] = code;
     if (discountType != null) payload['discount_type'] = discountType;
@@ -1037,6 +1044,11 @@ class WooSignal {
       payload['exclude_sale_items'] = excludeSaleItems;
     }
     if (minimumAmount != null) payload['minimum_amount'] = minimumAmount;
+    if (usageLimit != null) payload['usage_limit'] = usageLimit;
+    if (productIds != null) payload['product_ids'] = productIds;
+    if (emailRestrictions != null)
+      payload['email_restrictions'] = emailRestrictions;
+    if (description != null) payload['description'] = description;
 
     return await _wooSignalRequest<Coupon?>(
       method: "post",

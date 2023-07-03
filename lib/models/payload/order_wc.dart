@@ -29,6 +29,7 @@ class OrderWC {
   Shipping? shipping;
   List<LineItems>? lineItems;
   List<ShippingLines>? shippingLines;
+  String? transactionId;
 
   OrderWC(
       {this.paymentMethod,
@@ -45,7 +46,8 @@ class OrderWC {
       this.billing,
       this.shipping,
       this.lineItems,
-      this.shippingLines});
+      this.shippingLines,
+      this.transactionId});
 
   OrderWC.fromJson(Map<String, dynamic> json) {
     paymentMethod = json['payment_method'];
@@ -56,6 +58,9 @@ class OrderWC {
     customerId = json['customer_id'];
     if (json['customer_note'] != null) {
       customerNote = json['customer_note'];
+    }
+    if (json['transaction_id'] != null) {
+      transactionId = json['transaction_id'];
     }
     if (json['parent_id']) {
       parentId = json['parent_id'];
@@ -111,6 +116,9 @@ class OrderWC {
     }
     if (parentId != null) {
       data['parent_id'] = parentId;
+    }
+    if (transactionId != null) {
+      data['transaction_id'] = transactionId;
     }
     if (metaData != null) {
       data['meta_data'] = metaData!.map((v) => v.toJson()).toList();
