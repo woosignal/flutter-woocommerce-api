@@ -1,3 +1,7 @@
+## [3.7.1] - 2023-07-03
+
+* Update parameters for creating orders.
+
 ## [3.7.0] - 2023-07-03
 
 * Update parameters for creating orders.

@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.7.0";
+const String wooSignalVersion = "3.7.1";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -1363,8 +1363,19 @@ class WooSignal {
     required String name,
     String type = "simple", // simple, grouped, external and variable.
     required String regularPrice,
+    String? salePrice,
     String? description,
     String? shortDescription,
+    String? catalogVisibility,
+    String? sku,
+    String? taxStatus,
+    String? taxClass,
+    bool? virtual,
+    String? purchaseNote,
+    String? stockStatus,
+    bool? featured,
+    bool? downloadable,
+    int? stockQuantity,
     List<Map<String, dynamic>>? categories,
     List<Map<String, dynamic>>? images,
     List<Map<String, dynamic>>? metaData,
@@ -1380,6 +1391,18 @@ class WooSignal {
     if (categories != null) payload['categories'] = categories;
     if (images != null) payload['images'] = images;
     if (metaData != null) payload['meta_data'] = metaData;
+    if (featured != null) payload['featured'] = featured;
+    if (catalogVisibility != null)
+      payload['catalog_visibility'] = catalogVisibility;
+    if (sku != null) payload['sku'] = sku;
+    if (salePrice != null) payload['sale_price'] = salePrice;
+    if (downloadable != null) payload['downloadable'] = downloadable;
+    if (stockQuantity != null) payload['stock_quantity'] = stockQuantity;
+    if (purchaseNote != null) payload['purchase_note'] = purchaseNote;
+    if (stockStatus != null) payload['stock_status'] = stockStatus;
+    if (virtual != null) payload['virtual'] = virtual;
+    if (taxStatus != null) payload['tax_status'] = taxStatus;
+    if (taxClass != null) payload['tax_class'] = taxClass;
 
     return await _wooSignalRequest<Product?>(
       method: "post",
