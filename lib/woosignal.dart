@@ -53,7 +53,7 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.6.1";
+const String wooSignalVersion = "3.7.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -1363,19 +1363,23 @@ class WooSignal {
     required String name,
     String type = "simple", // simple, grouped, external and variable.
     required String regularPrice,
-    required String description,
-    required String shortDescription,
-    required Map<String, dynamic> categories,
-    required Map<String, dynamic> images,
+    String? description,
+    String? shortDescription,
+    List<Map<String, dynamic>>? categories,
+    List<Map<String, dynamic>>? images,
+    List<Map<String, dynamic>>? metaData,
   }) async {
     Map<String, dynamic> payload = {};
     payload['name'] = name;
     payload['type'] = type;
     payload['regular_price'] = regularPrice;
-    payload['description'] = description;
-    payload['short_description'] = shortDescription;
-    payload['categories'] = categories;
-    payload['images'] = images;
+    if (description != null) payload['description'] = description;
+    if (shortDescription != null) {
+      payload['short_description'] = shortDescription;
+    }
+    if (categories != null) payload['categories'] = categories;
+    if (images != null) payload['images'] = images;
+    if (metaData != null) payload['meta_data'] = metaData;
 
     return await _wooSignalRequest<Product?>(
       method: "post",
