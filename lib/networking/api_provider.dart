@@ -122,9 +122,9 @@ class ApiProvider {
   }
 
   /// HTTP GET request using a [url]
-  Future<dynamic> get(url) async {
+  Future<dynamic> get(url, {dynamic data}) async {
     try {
-      Response response = await _dio.get(url);
+      Response response = await _dio.get(url, data: data);
       return response.data;
     } catch (error, stacktrace) {
       _printLog("$error stackTrace: $stacktrace");

@@ -50,6 +50,9 @@ class WooSignalApp {
   Map<String, dynamic>? socialLinks;
   List<MenuLink> menuLinks = [];
   Map<String, dynamic>? themeColors;
+  Map<String, dynamic>? firebaseOptionsIos = {};
+  Map<String, dynamic>? firebaseOptionsAndroid = {};
+  bool? firebaseFcmIsEnabled;
 
   WooSignalApp(
       {this.appName,
@@ -82,7 +85,9 @@ class WooSignalApp {
       this.themeFont,
       this.socialLinks,
       this.menuLinks = const [],
-      this.themeColors});
+      this.themeColors,
+      this.firebaseOptionsIos = const {},
+      this.firebaseOptionsAndroid = const {}});
 
   WooSignalApp.fromJson(Map<String, dynamic> json) {
     appName = json['app_name'];
@@ -151,6 +156,26 @@ class WooSignalApp {
         json['theme_colors'] is Map<String, dynamic>?) {
       themeColors = json['theme_colors'];
     }
+
+    if (json.containsKey('firebase_config') &&
+        json['firebase_config'] is Map<String, dynamic>?) {
+      Map<String, dynamic> firebaseConfig = json['firebase_config'];
+      if (firebaseConfig.containsKey('firebase_options_ios') &&
+          firebaseConfig['firebase_options_ios'] != null) {
+        firebaseOptionsIos = firebaseConfig['firebase_options_ios'];
+      }
+
+      if (firebaseConfig.containsKey('firebase_options_android') &&
+          firebaseConfig['firebase_options_android'] != null) {
+        firebaseOptionsAndroid = firebaseConfig['firebase_options_android'];
+      }
+    }
+
+    if (json['firebase_fcm_enabled'] != null) {
+      firebaseFcmIsEnabled =
+          json['firebase_fcm_enabled'].toString() == "1" ? true : false;
+    }
+
     if (json.containsKey('menu_links')) {
       menuLinks = List.from(json['menu_links'])
           .map((bet) => MenuLink.fromJson(bet))
@@ -191,6 +216,14 @@ class WooSignalApp {
     data['theme_font'] = themeFont;
     data['social_links'] = socialLinks;
     data['theme_colors'] = themeColors;
+    if (firebaseOptionsIos != null) {
+      data['firebase_config']['firebase_options_ios'] = firebaseOptionsIos;
+    }
+    if (firebaseOptionsAndroid != null) {
+      data['firebase_config']['firebase_options_android'] =
+          firebaseOptionsAndroid;
+    }
+    data['fcm_enabled'] = firebaseFcmIsEnabled;
     return data;
   }
 }

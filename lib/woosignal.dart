@@ -15,6 +15,8 @@ library woosignal;
 // IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+import 'dart:convert';
+
 import 'package:woosignal/models/response/api_data.dart';
 import 'package:woosignal/models/response/continent.dart';
 import 'package:woosignal/models/response/currencies.dart';
@@ -51,9 +53,11 @@ import 'package:woosignal/models/response/system_status.dart';
 import 'package:woosignal/models/response/setting_option.dart';
 import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
+import 'package:encrypt/encrypt.dart' as enc;
+import 'package:encrypt/encrypt.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.7.1";
+const String wooSignalVersion = "3.8.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -61,14 +65,25 @@ class WooSignal {
 
   late ApiProvider _apiProvider;
   bool? _debugMode;
+  String? _encryptKey, _encryptSecret;
 
   /// Initialize the class
-  Future<void> init({required String? appKey, bool debugMode = false}) async {
+  Future<void> init(
+      {required String? appKey,
+      bool debugMode = false,
+      String? encryptKey,
+      String? encryptSecret}) async {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
     _apiProvider = ApiProvider(
         appKey: appKey!, debugMode: debugMode, version: wooSignalVersion);
     setDebugMode(debugMode);
+    if (encryptKey != null) {
+      _encryptKey = encryptKey;
+    }
+    if (encryptSecret != null) {
+      _encryptSecret = encryptSecret;
+    }
     await _apiProvider.init();
   }
 
@@ -121,14 +136,45 @@ class WooSignal {
     return model;
   }
 
+  String encrypt(String text) {
+    if (_encryptKey == null) {
+      return "";
+    }
+    if (_encryptSecret == null) {
+      return "";
+    }
+    final key = enc.Key.fromUtf8(_encryptKey!);
+    final iv = IV.fromUtf8(_encryptSecret!);
+    final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+    final encrypted = encrypter.encrypt(text, iv: iv);
+    return encrypted.base64;
+  }
+
+  String decrypt(String text) {
+    if (_encryptKey == null) {
+      return "";
+    }
+    if (_encryptSecret == null) {
+      return "";
+    }
+    final key = enc.Key.fromUtf8(_encryptKey!);
+    final iv = IV.fromUtf8(_encryptSecret!);
+    final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+    final decrypted = encrypter.decrypt(Encrypted.fromBase64(text), iv: iv);
+    return decrypted;
+  }
+
   /// Get app information from WooSignal
-  Future<WooSignalApp?> getApp() async {
-    dynamic response = await _apiProvider.get("/app");
+  Future<WooSignalApp?> getApp({bool encrypted = false}) async {
+    dynamic response =
+        await _apiProvider.get("/app", data: {"encrypted": encrypted});
     if (response == null) {
       return null;
     }
+    if (encrypted == true) {
+      response = jsonDecode(decrypt(response));
+    }
     WooSignalApp wooSignalApp = WooSignalApp.fromJson(response);
-
     _printLog(wooSignalApp.toString());
     return wooSignalApp;
   }
