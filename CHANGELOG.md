@@ -1,6 +1,6 @@
 ## [3.8.0] - 2023-07-12
 
-* Encrypted for app info response.
+* Encryption for app info response.
 * New Firebase config fields added to `WooSignalApp` class.
 * Pubspec.yaml dependency updates.
 
