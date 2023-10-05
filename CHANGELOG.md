@@ -1,3 +1,7 @@
+## [3.8.1] - 2023-10-05
+
+* Pubspec.yaml dependency updates.
+
 ## [3.8.0] - 2023-07-12
 
 * Encryption for app info response.
