@@ -1,6 +1,7 @@
 ## [3.8.2] - 2024-01-01
 
 * Update license date
+* Fix Dart analysis issues
 * Pubspec.yaml dependency updates.
 
 ## [3.8.1] - 2023-10-05
