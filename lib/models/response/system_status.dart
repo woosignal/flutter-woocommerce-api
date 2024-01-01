@@ -1,4 +1,4 @@
-// Copyright (c) 2023, WooSignal Ltd.
+// Copyright (c) 2024, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
