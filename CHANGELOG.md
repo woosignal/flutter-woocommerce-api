@@ -1,3 +1,7 @@
+## [3.9.0] - 2024-02-03
+
+* Add device_meta package the project
+
 ## [3.8.2] - 2024-01-01
 
 * Update license date
