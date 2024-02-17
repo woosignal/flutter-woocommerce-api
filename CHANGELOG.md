@@ -1,3 +1,7 @@
+## [3.9.1] - 2024-02-17
+
+* Pubspec.yaml dependency updates.
+
 ## [3.9.0] - 2024-02-03
 
 * Add device_meta package the project

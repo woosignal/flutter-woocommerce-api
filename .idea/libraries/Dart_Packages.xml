@@ -21,7 +21,7 @@
         <entry key="animate_do">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/animate_do-3.3.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/animate_do-3.3.3/lib" />
             </list>
           </value>
         </entry>
@@ -120,7 +120,7 @@
         <entry key="device_meta">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.5/lib" />
             </list>
           </value>
         </entry>
@@ -360,7 +360,7 @@
         <entry key="nylo_support">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.40.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.41.0/lib" />
             </list>
           </value>
         </entry>
@@ -784,7 +784,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-64.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/analyzer-6.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/analyzer-6.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/animate_do-3.3.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/animate_do-3.3.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/asn1lib-1.5.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.10.0/lib" />
@@ -799,7 +799,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dart_internal-0.2.9/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dio-5.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/encrypt-5.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/equatable-2.0.5/lib" />
@@ -831,7 +831,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.10.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mime-1.0.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/node_preamble-2.0.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.40.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.41.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_config-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/page_transition-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.8.3/lib" />
