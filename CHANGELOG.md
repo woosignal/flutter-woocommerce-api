@@ -1,3 +1,7 @@
+## [3.9.2] - 2024-02-28
+
+* Pubspec.yaml dependency updates.
+
 ## [3.8.2] - 2024-01-01
 
 * Update license date

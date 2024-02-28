@@ -14,10 +14,10 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'dart:convert';
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:device_meta/device_meta.dart';
 import 'package:dio/dio.dart';
-import 'package:woosignal/helpers/shared_pref.dart';
 import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ApiProvider {
   late Dio _dio;
@@ -28,34 +28,46 @@ class ApiProvider {
 
   /// Set the device meta
   Future<void> setDeviceMeta() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    DeviceMeta deviceMeta =
+    await DeviceMeta.init(storageKey: "woosignal_woocommerce");
 
-    String? uuid = await getUUID();
-
-    if (Platform.isAndroid) {
-      AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
+    if (kIsWeb) {
       _deviceMeta = {
-        "model": androidDeviceInfo.device,
-        "brand":
-            androidDeviceInfo.brand.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
-        "manufacturer": androidDeviceInfo.manufacturer,
-        "version": androidDeviceInfo.version.sdkInt.toString(),
-        "uuid": uuid,
-        "platform_type": "android",
-        "api_version": "$_version/v3"
+        "model": 'X Model',
+        "brand": 'X Brand',
+        "manufacturer": "X Manufacturer",
+        "version": 'X Version',
+        "uuid": '1234567890',
+        "platform_type": "web",
+        "api_version": "$_version/v1",
+        "sdk_name": "woosignal-woocommerce"
       };
-    } else if (Platform.isIOS) {
-      IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
-      _deviceMeta = {
-        "model": iosDeviceInfo.model,
-        "brand": iosDeviceInfo.name.replaceAll(RegExp('[^\u0001-\u007F]'), '_'),
-        "manufacturer": "Apple",
-        "version": iosDeviceInfo.systemVersion,
-        "uuid": uuid,
-        "platform_type": "ios",
-        "api_version": "$_version/v3"
-      };
+      return;
     }
+
+    if (Platform.environment.containsKey('FLUTTER_TEST')) {
+      _deviceMeta = {
+        "model": 'X Model',
+        "brand": 'X Brand',
+        "manufacturer": "X Manufacturer",
+        "version": 'X Version',
+        "uuid": '1234567890',
+        "platform_type": "testing",
+        "api_version": "$_version/v1",
+        "sdk_name": "woosignal-woocommerce"
+      };
+      return;
+    }
+    _deviceMeta = {
+      "model": deviceMeta.model,
+      "brand": deviceMeta.brand,
+      "manufacturer": deviceMeta.manufacturer,
+      "version": deviceMeta.version,
+      "uuid": deviceMeta.uuid,
+      "platform_type": deviceMeta.platformType,
+      "api_version": "$_version/v1",
+      "sdk_name": "woosignal-woocommerce"
+    };
   }
 
   /// set the FCM token
