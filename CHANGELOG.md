@@ -1,3 +1,8 @@
+## [3.10.0] - 2024-03-07
+
+* Added the ability to fetch the order of your product categories from WooSignal
+* Pubspec.yaml dependency updates.
+
 ## [3.9.2] - 2024-02-28
 
 * Pubspec.yaml dependency updates.

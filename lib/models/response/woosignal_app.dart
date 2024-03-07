@@ -14,6 +14,7 @@
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 import 'package:woosignal/models/menu_link.dart';
+import 'package:woosignal/models/response/product_category_collection.dart';
 
 class WooSignalApp {
   String? appName;
@@ -53,6 +54,7 @@ class WooSignalApp {
   Map<String, dynamic>? firebaseOptionsIos = {};
   Map<String, dynamic>? firebaseOptionsAndroid = {};
   bool? firebaseFcmIsEnabled;
+  List<ProductCategoryCollection> productCategoryCollections = [];
 
   WooSignalApp(
       {this.appName,
@@ -86,6 +88,7 @@ class WooSignalApp {
       this.socialLinks,
       this.menuLinks = const [],
       this.themeColors,
+        this.productCategoryCollections = const [],
       this.firebaseOptionsIos = const {},
       this.firebaseOptionsAndroid = const {}});
 
@@ -130,6 +133,11 @@ class WooSignalApp {
       showUpsellProducts = true;
     } else {
       showUpsellProducts = false;
+    }
+    if (json['collections'] != null) {
+      productCategoryCollections = List.from(json['collections'])
+          .map((collection) => ProductCategoryCollection.fromJson(collection))
+          .toList();
     }
     wpLoginBaseUrl = json['wp_login_base_url'];
     wpLoginForgotPasswordUrl = json['wp_login_forgot_password_url'];
