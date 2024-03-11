@@ -57,7 +57,7 @@ import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
 
 /// WooSignal Package version
-const String wooSignalVersion = "3.10.0";
+const String _wooSignalVersion = "3.11.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -66,6 +66,8 @@ class WooSignal {
   late ApiProvider _apiProvider;
   bool? _debugMode;
   String? _encryptKey, _encryptSecret;
+
+  String get version => _wooSignalVersion;
 
   /// Initialize the class
   Future<void> init(
@@ -76,7 +78,7 @@ class WooSignal {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
     _apiProvider = ApiProvider(
-        appKey: appKey!, debugMode: debugMode, version: wooSignalVersion);
+        appKey: appKey!, debugMode: debugMode, version: version);
     setDebugMode(debugMode);
     if (encryptKey != null) {
       _encryptKey = encryptKey;
@@ -90,6 +92,11 @@ class WooSignal {
   /// Set the FCM token for notifications
   void setFcmToken(String token) {
     _apiProvider.setFcmToken(token);
+  }
+
+  /// Set the Wp User ID for notifications
+  void setWpUserId(String userId) {
+    _apiProvider.setWpUserId(userId);
   }
 
   /// Enable debug mode for logging information

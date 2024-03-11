@@ -70,6 +70,12 @@ class ApiProvider {
     };
   }
 
+  /// set the WP user id
+  void setWpUserId(String wpUserId) {
+    _deviceMeta['wp_user_id'] = wpUserId;
+    _setDioHeaders();
+  }
+
   /// set the FCM token
   void setFcmToken(String token) {
     if (_deviceMeta.containsKey('fcm_token')) {

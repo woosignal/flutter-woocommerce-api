@@ -1,3 +1,7 @@
+## [3.11.0] - 2024-03-11
+
+* Ability to set the users WP User ID in the networking class
+
 ## [3.10.0] - 2024-03-07
 
 * Added the ability to fetch the order of your product categories from WooSignal
