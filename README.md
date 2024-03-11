@@ -15,7 +15,7 @@ In your flutter project add the dependency:
 ``` dart 
 dependencies:
   ...
-  woosignal: ^3.11.0
+  woosignal: ^3.11.1
 ```
 
 ### Usage example #

@@ -219,10 +219,8 @@ class Orders {
         "payment_method_title": paymentMethodTitle,
         "transaction_id": transactionId,
         "date_paid": datePaid?.toIso8601String(),
-        "date_paid_gmt":
-            datePaidGmt?.toIso8601String(),
-        "date_completed":
-            dateCompleted?.toIso8601String(),
+        "date_paid_gmt": datePaidGmt?.toIso8601String(),
+        "date_completed": dateCompleted?.toIso8601String(),
         "date_completed_gmt": dateCompletedGmt?.toIso8601String(),
         "cart_hash": cartHash,
         "meta_data": List<dynamic>.from(metaData!.map((x) => x.toJson())),

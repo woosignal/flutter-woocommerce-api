@@ -88,7 +88,7 @@ class WooSignalApp {
       this.socialLinks,
       this.menuLinks = const [],
       this.themeColors,
-        this.productCategoryCollections = const [],
+      this.productCategoryCollections = const [],
       this.firebaseOptionsIos = const {},
       this.firebaseOptionsAndroid = const {}});
 

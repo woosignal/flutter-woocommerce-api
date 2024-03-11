@@ -1,3 +1,7 @@
+## [3.11.1] - 2024-03-11
+
+* Dart format
+
 ## [3.11.0] - 2024-03-11
 
 * Ability to set the users WP User ID in the networking class

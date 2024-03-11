@@ -515,25 +515,18 @@ class Settings {
   Map<String, dynamic> toJson() => {
         "title": title!.toJson(),
         "instructions": instructions?.toJson(),
-        "enable_for_methods":
-            enableForMethods?.toJson(),
-        "enable_for_virtual":
-            enableForVirtual?.toJson(),
+        "enable_for_methods": enableForMethods?.toJson(),
+        "enable_for_virtual": enableForVirtual?.toJson(),
         "email": email?.toJson(),
         "advanced": advanced?.toJson(),
         "testmode": testmode?.toJson(),
         "debug": debug?.toJson(),
-        "ipn_notification":
-            ipnNotification?.toJson(),
-        "receiver_email":
-            receiverEmail?.toJson(),
-        "identity_token":
-            identityToken?.toJson(),
-        "invoice_prefix":
-            invoicePrefix?.toJson(),
+        "ipn_notification": ipnNotification?.toJson(),
+        "receiver_email": receiverEmail?.toJson(),
+        "identity_token": identityToken?.toJson(),
+        "invoice_prefix": invoicePrefix?.toJson(),
         "send_shipping": sendShipping?.toJson(),
-        "address_override":
-            addressOverride?.toJson(),
+        "address_override": addressOverride?.toJson(),
         "paymentaction": paymentaction?.toJson(),
         "page_style": pageStyle?.toJson(),
         "image_url": imageUrl?.toJson(),
@@ -541,19 +534,13 @@ class Settings {
         "api_username": apiUsername?.toJson(),
         "api_password": apiPassword?.toJson(),
         "api_signature": apiSignature?.toJson(),
-        "sandbox_api_username":
-            sandboxApiUsername?.toJson(),
-        "sandbox_api_password":
-            sandboxApiPassword?.toJson(),
-        "sandbox_api_signature":
-            sandboxApiSignature?.toJson(),
-        "account_settings":
-            accountSettings?.toJson(),
+        "sandbox_api_username": sandboxApiUsername?.toJson(),
+        "sandbox_api_password": sandboxApiPassword?.toJson(),
+        "sandbox_api_signature": sandboxApiSignature?.toJson(),
+        "account_settings": accountSettings?.toJson(),
         "environment": environment?.toJson(),
-        "api_credentials":
-            apiCredentials?.toJson(),
-        "api_certificate":
-            apiCertificate?.toJson(),
+        "api_credentials": apiCredentials?.toJson(),
+        "api_certificate": apiCertificate?.toJson(),
         "api_subject": apiSubject?.toJson(),
         "sandbox_api_credentials": sandboxApiCredentials?.toJson(),
         "sandbox_api_certificate": sandboxApiCertificate?.toJson(),
@@ -561,35 +548,25 @@ class Settings {
         "paypal_hosted_settings": paypalHostedSettings?.toJson(),
         "brand_name": brandName?.toJson(),
         "logo_image_url": logoImageUrl?.toJson(),
-        "header_image_url":
-            headerImageUrl?.toJson(),
+        "header_image_url": headerImageUrl?.toJson(),
         "landing_page": landingPage?.toJson(),
-        "require_billing":
-            requireBilling?.toJson(),
-        "require_phone_number":
-            requirePhoneNumber?.toJson(),
-        "instant_payments":
-            instantPayments?.toJson(),
+        "require_billing": requireBilling?.toJson(),
+        "require_phone_number": requirePhoneNumber?.toJson(),
+        "instant_payments": instantPayments?.toJson(),
         "subtotal_mismatch_behavior": subtotalMismatchBehavior?.toJson(),
-        "button_settings":
-            buttonSettings?.toJson(),
+        "button_settings": buttonSettings?.toJson(),
         "use_spb": useSpb?.toJson(),
         "button_color": buttonColor?.toJson(),
         "button_shape": buttonShape?.toJson(),
         "button_layout": buttonLayout?.toJson(),
         "button_size": buttonSize?.toJson(),
-        "hide_funding_methods":
-            hideFundingMethods?.toJson(),
-        "credit_enabled":
-            creditEnabled?.toJson(),
-        "cart_checkout_enabled":
-            cartCheckoutEnabled?.toJson(),
-        "mini_cart_settings":
-            miniCartSettings?.toJson(),
+        "hide_funding_methods": hideFundingMethods?.toJson(),
+        "credit_enabled": creditEnabled?.toJson(),
+        "cart_checkout_enabled": cartCheckoutEnabled?.toJson(),
+        "mini_cart_settings": miniCartSettings?.toJson(),
         "mini_cart_settings_toggle": miniCartSettingsToggle?.toJson(),
         "mini_cart_button_layout": miniCartButtonLayout?.toJson(),
-        "mini_cart_button_size":
-            miniCartButtonSize?.toJson(),
+        "mini_cart_button_size": miniCartButtonSize?.toJson(),
         "mini_cart_hide_funding_methods": miniCartHideFundingMethods?.toJson(),
         "mini_cart_credit_enabled": miniCartCreditEnabled?.toJson(),
         "single_product_settings": singleProductSettings?.toJson(),
@@ -603,33 +580,22 @@ class Settings {
         "single_product_credit_enabled": singleProductCreditEnabled?.toJson(),
         "mark_settings": markSettings?.toJson(),
         "mark_enabled": markEnabled?.toJson(),
-        "mark_settings_toggle":
-            markSettingsToggle?.toJson(),
-        "mark_button_layout":
-            markButtonLayout?.toJson(),
-        "mark_button_size":
-            markButtonSize?.toJson(),
+        "mark_settings_toggle": markSettingsToggle?.toJson(),
+        "mark_button_layout": markButtonLayout?.toJson(),
+        "mark_button_size": markButtonSize?.toJson(),
         "mark_hide_funding_methods": markHideFundingMethods?.toJson(),
-        "mark_credit_enabled":
-            markCreditEnabled?.toJson(),
+        "mark_credit_enabled": markCreditEnabled?.toJson(),
         "webhook": webhook?.toJson(),
-        "test_publishable_key":
-            testPublishableKey?.toJson(),
-        "test_secret_key":
-            testSecretKey?.toJson(),
-        "test_webhook_secret":
-            testWebhookSecret?.toJson(),
-        "publishable_key":
-            publishableKey?.toJson(),
+        "test_publishable_key": testPublishableKey?.toJson(),
+        "test_secret_key": testSecretKey?.toJson(),
+        "test_webhook_secret": testWebhookSecret?.toJson(),
+        "publishable_key": publishableKey?.toJson(),
         "secret_key": secretKey?.toJson(),
-        "webhook_secret":
-            webhookSecret?.toJson(),
+        "webhook_secret": webhookSecret?.toJson(),
         "inline_cc_form": inlineCcForm?.toJson(),
-        "statement_descriptor":
-            statementDescriptor?.toJson(),
+        "statement_descriptor": statementDescriptor?.toJson(),
         "capture": capture?.toJson(),
-        "payment_request":
-            paymentRequest?.toJson(),
+        "payment_request": paymentRequest?.toJson(),
         "payment_request_button_type": paymentRequestButtonType?.toJson(),
         "payment_request_button_theme": paymentRequestButtonTheme?.toJson(),
         "payment_request_button_height": paymentRequestButtonHeight?.toJson(),

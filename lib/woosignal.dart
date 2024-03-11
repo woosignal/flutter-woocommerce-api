@@ -57,7 +57,7 @@ import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
 
 /// WooSignal Package version
-const String _wooSignalVersion = "3.11.0";
+const String _wooSignalVersion = "3.11.1";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -77,8 +77,8 @@ class WooSignal {
       String? encryptSecret}) async {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
-    _apiProvider = ApiProvider(
-        appKey: appKey!, debugMode: debugMode, version: version);
+    _apiProvider =
+        ApiProvider(appKey: appKey!, debugMode: debugMode, version: version);
     setDebugMode(debugMode);
     if (encryptKey != null) {
       _encryptKey = encryptKey;

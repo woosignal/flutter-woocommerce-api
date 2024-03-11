@@ -29,7 +29,7 @@ class ApiProvider {
   /// Set the device meta
   Future<void> setDeviceMeta() async {
     DeviceMeta deviceMeta =
-    await DeviceMeta.init(storageKey: "woosignal_woocommerce");
+        await DeviceMeta.init(storageKey: "woosignal_woocommerce");
 
     if (kIsWeb) {
       _deviceMeta = {
