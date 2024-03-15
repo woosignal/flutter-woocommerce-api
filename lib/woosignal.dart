@@ -57,7 +57,7 @@ import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
 
 /// WooSignal Package version
-const String _wooSignalVersion = "3.12.0";
+const String _wooSignalVersion = "3.13.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -1583,5 +1583,22 @@ class WooSignal {
       payload: payload,
       jsonResponse: (json) => ProductTag.fromJson(json),
     );
+  }
+
+  /// Used for personalization of the app around the user's interests
+  Future<bool?> personalizationCategories(
+      {required List<int> categoryIds}) async {
+    Map<String, dynamic> payload = {
+      "category_ids": categoryIds,
+    };
+    Map<String, dynamic>? payloadRsp =
+        await _apiProvider.post("/personalization/categories", payload);
+
+    _printLog(payloadRsp.toString());
+    if (payloadRsp == null) {
+      return false;
+    }
+
+    return payloadRsp['status'] == 200;
   }
 }
