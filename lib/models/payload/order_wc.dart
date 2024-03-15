@@ -147,7 +147,7 @@ class OrderWC {
 
 class MetaData {
   String? key;
-  String? value;
+  dynamic value;
 
   MetaData({this.key, this.value});
 

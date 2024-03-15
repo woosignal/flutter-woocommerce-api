@@ -1,3 +1,8 @@
+## [3.12.0] - 2024-03-15
+
+* Fix shipping zone method
+* Change MetaData `value` to dynamic
+
 ## [3.11.1] - 2024-03-11
 
 * Dart format

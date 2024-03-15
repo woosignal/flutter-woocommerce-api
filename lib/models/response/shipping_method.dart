@@ -126,7 +126,9 @@ class FreeShipping {
     methodId = json['method_id'];
     cost = json['cost'];
     if (json['cost'] != null && json['cost'] == 'min_amount') {
-      minimumOrderAmount = json['kind']['min_amount'];
+      if (json['kind'] != null && json['kind'] != "") {
+        minimumOrderAmount = json['kind']['min_amount'];
+      }
     }
   }
 
