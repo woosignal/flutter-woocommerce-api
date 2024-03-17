@@ -1,3 +1,7 @@
+## [3.13.0] - 2024-03-17
+
+* Pubspec.yaml dependency updates.
+
 ## [3.13.0] - 2024-03-15
 
 * New network method `personalizationCategories` to store personalization categories
