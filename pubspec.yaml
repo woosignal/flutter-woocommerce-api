@@ -1,6 +1,6 @@
 name: woosignal
 description: WooCommerce REST API for dart, connect a WooCommerce store and start developing with our interface for their API endpoints.
-version: 3.13.2
+version: 3.13.3
 homepage: https://woosignal.com
 repository: https://github.com/woosignal/flutter-woocommerce-api
 issue_tracker: https://github.com/woosignal/flutter-woocommerce-api/issues
@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   dio: ^5.4.0
-  device_meta: ^1.1.15
+  device_meta: ^1.1.16
   encrypt: ^5.0.3
 
   flutter:
