@@ -121,7 +121,7 @@
         <entry key="device_meta">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.15/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.16/lib" />
             </list>
           </value>
         </entry>
@@ -395,7 +395,7 @@
         <entry key="nylo_support">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.56.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.57.0/lib" />
             </list>
           </value>
         </entry>
@@ -612,7 +612,7 @@
         <entry key="skeletonizer">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/skeletonizer-1.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/skeletonizer-1.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -828,7 +828,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dart_internal-0.2.10/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.15/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-1.1.16/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dio-5.4.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/encrypt-5.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/equatable-2.0.5/lib" />
@@ -864,7 +864,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.11.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mime-1.0.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/node_preamble-2.0.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.56.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-5.57.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_config-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/page_transition-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.0/lib" />
@@ -895,7 +895,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf_packages_handler-3.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf_static-1.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf_web_socket-1.0.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/skeletonizer-1.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/skeletonizer-1.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_maps-0.10.11/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.10.0/lib" />
