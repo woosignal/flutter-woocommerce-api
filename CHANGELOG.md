@@ -1,3 +1,8 @@
+## [3.14.10] - 2024-08-17
+
+* Merge @paolodellaquila PR to fix product_variation image
+* Update example
+ 
 ## [3.14.9] - 2024-08-17
 
 * Pubspec.yaml dependency updates.
