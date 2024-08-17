@@ -139,7 +139,8 @@ class ProductVariation {
             .toList(),
         metaData = (json['meta_data'] as List)
             .map((i) => MetaData.fromJson(i))
-            .toList();
+            .toList(),
+        image = Image.fromJson(json['image']);
 }
 
 class Category {
