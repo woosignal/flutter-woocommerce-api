@@ -1,3 +1,8 @@
+## [4.0.0] - 2024-11-06
+
+* Update project to use device_meta v2
+* Pubspect.yaml dependency updates.
+
 ## [3.14.10] - 2024-08-17
 
 * Merge @paolodellaquila PR to fix product_variation image
