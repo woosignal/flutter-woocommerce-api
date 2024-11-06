@@ -1,3 +1,4 @@
+// ignore: unnecessary_library_name
 library woosignal;
 
 // Copyright (c) 2024, WooSignal Ltd.
