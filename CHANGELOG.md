@@ -1,7 +1,11 @@
+## [4.0.1] - 2024-11-23
+
+* Pubspec.yaml dependency updates.
+
 ## [4.0.0] - 2024-11-06
 
 * Update project to use device_meta v2
-* Pubspect.yaml dependency updates.
+* Pubspec.yaml dependency updates.
 
 ## [3.14.10] - 2024-08-17
 
