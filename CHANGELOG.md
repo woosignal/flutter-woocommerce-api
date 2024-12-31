@@ -1,3 +1,9 @@
+## [4.1.0] - 2024-12-31
+
+* Update copyright year
+* Update example
+* Pubspec.yaml dependency updates.
+
 ## [4.0.3] - 2024-12-16
 
 * Pubspec.yaml dependency updates.

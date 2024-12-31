@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:woosignal/woosignal.dart';
 import 'package:woosignal/models/response/product.dart';
 
-void woosignalWoocommerceExample() => runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
