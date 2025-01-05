@@ -128,7 +128,7 @@
         <entry key="date_field">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/date_field-5.3.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/date_field-6.0.0/lib" />
             </list>
           </value>
         </entry>
@@ -156,7 +156,7 @@
         <entry key="device_meta">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-2.0.5/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-2.1.0/lib" />
             </list>
           </value>
         </entry>
@@ -493,7 +493,7 @@
         <entry key="nylo_support">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-6.10.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-6.14.0/lib" />
             </list>
           </value>
         </entry>
@@ -1002,11 +1002,11 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/coverage-1.7.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dart_internal-0.2.13/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/date_field-5.3.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/date_field-6.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dbus-0.7.10/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-11.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-2.0.5/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_meta-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dio-5.7.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dio_web_adapter-2.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/encrypt-5.0.3/lib" />
@@ -1051,7 +1051,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.15.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mime-1.0.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/node_preamble-2.0.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-6.10.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/nylo_support-6.14.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_config-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib" />
