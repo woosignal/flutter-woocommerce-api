@@ -58,7 +58,7 @@ import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
 
 /// WooSignal Package version
-const String _wooSignalVersion = "4.1.3";
+const String _wooSignalVersion = "4.1.4";
 
 class WooSignal {
   WooSignal._privateConstructor();
