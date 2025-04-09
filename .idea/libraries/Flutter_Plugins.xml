@@ -23,10 +23,10 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.12" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_local_notifications-18.0.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-11.2.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher-6.3.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_secure_storage-9.2.4" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_timezone-4.1.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-11.3.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
