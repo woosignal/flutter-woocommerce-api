@@ -13,6 +13,7 @@ dependencies:
   dio: ^5.8.0+1
   device_meta: ^2.1.7
   encrypt: ^5.0.3
+  intl: ^0.20.2
 
   flutter:
     sdk: flutter
