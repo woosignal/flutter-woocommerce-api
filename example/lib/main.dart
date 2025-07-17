@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _productName = "";
 
-  _incrementCounter() async {
+  Future<void> _incrementCounter() async {
     // CREATING AN INSTANCE FOR WOOSIGNAL
     await WooSignal.instance.init(appKey: "your app key");
 
