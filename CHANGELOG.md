@@ -1,3 +1,7 @@
+## [4.2.1] - 2025-07-17
+
+* Pubspec.yaml dependency updates.
+
 ## [4.2.0] - 2025-05-23
 
 * Add money formatter into library
