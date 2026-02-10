@@ -1,6 +1,63 @@
 // ignore: unnecessary_library_name
 library woosignal;
 
+// Response Models
+export 'package:woosignal/models/response/api_data.dart';
+export 'package:woosignal/models/response/continent.dart' hide State, EnumValues;
+export 'package:woosignal/models/response/countries.dart' hide State;
+export 'package:woosignal/models/response/coupon.dart';
+export 'package:woosignal/models/response/coupon_batch.dart';
+export 'package:woosignal/models/response/currencies.dart';
+export 'package:woosignal/models/response/customer.dart';
+export 'package:woosignal/models/response/customer_batch.dart';
+export 'package:woosignal/models/response/customer_download.dart';
+export 'package:woosignal/models/response/dimension.dart';
+export 'package:woosignal/models/response/order.dart' hide Billing, Shipping;
+export 'package:woosignal/models/response/order_batch.dart' hide Ing, Refund;
+export 'package:woosignal/models/response/order_notes.dart';
+export 'package:woosignal/models/response/payment_gateway.dart' hide EnumValues;
+export 'package:woosignal/models/response/product.dart';
+export 'package:woosignal/models/response/product_attribute_term.dart';
+export 'package:woosignal/models/response/product_attributes.dart';
+export 'package:woosignal/models/response/product_batch.dart'
+    hide Create, Category, Attribute, DefaultAttribute, Download;
+export 'package:woosignal/models/response/product_category.dart';
+export 'package:woosignal/models/response/product_category_collection.dart';
+export 'package:woosignal/models/response/product_review.dart';
+export 'package:woosignal/models/response/product_shipping_class.dart';
+export 'package:woosignal/models/response/product_tag.dart';
+export 'package:woosignal/models/response/product_variation.dart'
+    hide Category, Attribute, Download;
+export 'package:woosignal/models/response/refund.dart';
+export 'package:woosignal/models/response/reports.dart';
+export 'package:woosignal/models/response/sale_report.dart' hide Links, About;
+export 'package:woosignal/models/response/setting_option.dart';
+export 'package:woosignal/models/response/setting_option_batch.dart';
+export 'package:woosignal/models/response/shipping_method.dart';
+export 'package:woosignal/models/response/shipping_zone.dart';
+export 'package:woosignal/models/response/shipping_zone_location.dart';
+export 'package:woosignal/models/response/system_status.dart' hide Settings;
+export 'package:woosignal/models/response/tax_classes.dart';
+export 'package:woosignal/models/response/tax_rate.dart';
+export 'package:woosignal/models/response/top_seller_report.dart'
+    hide Links, About;
+export 'package:woosignal/models/response/woosignal_app.dart';
+
+// Payload Models
+export 'package:woosignal/models/payload/order_wc.dart'
+    hide Billing, Shipping, MetaData, LineItems, ShippingLines;
+
+// Base Models
+export 'package:woosignal/models/collection.dart';
+export 'package:woosignal/models/image.dart';
+export 'package:woosignal/models/links.dart';
+export 'package:woosignal/models/menu_link.dart';
+export 'package:woosignal/models/meta_data.dart';
+export 'package:woosignal/models/self.dart';
+
+// Money Formatter
+export 'package:woosignal/money_formatter/money_formatter.dart';
+
 // Copyright (c) 2025, WooSignal Ltd.
 // All rights reserved.
 //
@@ -58,7 +115,7 @@ import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
 
 /// WooSignal Package version
-const String _wooSignalVersion = "4.2.3";
+const String _wooSignalVersion = "4.3.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -194,6 +251,9 @@ class WooSignal {
       String? search,
       String? after,
       String? before,
+      String? modifiedAfter,
+      String? modifiedBefore,
+      bool? datesAreGmt,
       String? order,
       String? orderBy,
       String? slug,
@@ -215,13 +275,19 @@ class WooSignal {
       List<int>? parent,
       int? offset,
       bool? featured,
-      bool? onSale}) async {
+      bool? onSale,
+      bool? virtual,
+      bool? downloadable,
+      String? context}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
     if (search != null) payload["search"] = search;
     if (after != null) payload["after"] = after;
     if (before != null) payload["before"] = before;
+    if (modifiedAfter != null) payload["modified_after"] = modifiedAfter;
+    if (modifiedBefore != null) payload["modified_before"] = modifiedBefore;
+    if (datesAreGmt != null) payload["dates_are_gmt"] = datesAreGmt;
     if (order != null) payload["order"] = order;
     if (orderBy != null) payload["orderby"] = orderBy;
     if (slug != null) payload["slug"] = slug;
@@ -244,6 +310,9 @@ class WooSignal {
     if (offset != null) payload["offset"] = offset;
     if (featured != null) payload["featured"] = featured;
     if (onSale != null) payload["on_sale"] = onSale;
+    if (virtual != null) payload["virtual"] = virtual;
+    if (downloadable != null) payload["downloadable"] = downloadable;
+    if (context != null) payload["context"] = context;
 
     return await _wooSignalRequest<List<Product>>(
           method: "get",
@@ -271,6 +340,7 @@ class WooSignal {
       String? search,
       String? after,
       String? before,
+      bool? datesAreGmt,
       List<int>? exclude,
       List<int>? include,
       int? offset,
@@ -285,13 +355,17 @@ class WooSignal {
       bool? onSale,
       String? minPrice,
       String? maxPrice,
-      String? stockStatus}) async {
+      String? stockStatus,
+      bool? virtual,
+      bool? downloadable,
+      String? context}) async {
     Map<String, dynamic> payload = {};
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
     if (search != null) payload["search"] = search;
     if (after != null) payload["after"] = after;
     if (before != null) payload["before"] = before;
+    if (datesAreGmt != null) payload["dates_are_gmt"] = datesAreGmt;
     if (exclude != null) payload["exclude"] = exclude;
     if (include != null) payload["include"] = include;
     if (offset != null) payload["offset"] = offset;
@@ -307,6 +381,9 @@ class WooSignal {
     if (minPrice != null) payload["min_price"] = minPrice;
     if (maxPrice != null) payload["max_price"] = maxPrice;
     if (stockStatus != null) payload["stock_status"] = stockStatus;
+    if (virtual != null) payload["virtual"] = virtual;
+    if (downloadable != null) payload["downloadable"] = downloadable;
+    if (context != null) payload["context"] = context;
 
     return await _wooSignalRequest<List<ProductVariation>>(
           method: "get",
@@ -521,12 +598,9 @@ class WooSignal {
       int? offset,
       String? order,
       String? orderBy,
-      bool? hideEmpty,
-      int? parent,
-      int? product,
       String? email,
-      String? slug,
-      String? role}) async {
+      String? role,
+      String? context}) async {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
@@ -537,12 +611,9 @@ class WooSignal {
     if (offset != null) payload["offset"] = offset;
     if (order != null) payload["order"] = order;
     if (orderBy != null) payload["orderby"] = orderBy;
-    if (hideEmpty != null) payload["hide_empty"] = hideEmpty;
-    if (parent != null) payload["parent"] = parent;
-    if (product != null) payload["product"] = product;
     if (email != null) payload["email"] = email;
-    if (slug != null) payload["slug"] = slug;
     if (role != null) payload["role"] = role;
+    if (context != null) payload["context"] = context;
 
     return await _wooSignalRequest<List<Customer>>(
           method: "get",
@@ -594,6 +665,7 @@ class WooSignal {
       String? search,
       String? after,
       String? before,
+      bool? datesAreGmt,
       List<int>? exclude,
       List<int>? include,
       int? offset,
@@ -603,19 +675,21 @@ class WooSignal {
       List<int>? parentExclude,
       int? dp}) async {
     Map<String, dynamic> payload = {};
+    if (context != null) payload["context"] = context;
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
     if (search != null) payload["search"] = search;
     if (after != null) payload["after"] = after;
     if (before != null) payload["before"] = before;
+    if (datesAreGmt != null) payload["dates_are_gmt"] = datesAreGmt;
     if (exclude != null) payload["exclude"] = exclude;
     if (include != null) payload["include"] = include;
-    if (offset != null) payload["include"] = offset;
+    if (offset != null) payload["offset"] = offset;
     if (order != null) payload["order"] = order;
     if (orderby != null) payload["orderby"] = orderby;
-    if (parent != null) payload["code"] = parent;
-    if (parentExclude != null) payload["code"] = parentExclude;
-    if (dp != null) payload["code"] = dp;
+    if (parent != null) payload["parent"] = parent;
+    if (parentExclude != null) payload["parent_exclude"] = parentExclude;
+    if (dp != null) payload["dp"] = dp;
 
     return await _wooSignalRequest<List<Refund>>(
           method: "get",
@@ -648,6 +722,7 @@ class WooSignal {
       String? before,
       String? modifiedAfter,
       String? modifiedBefore,
+      bool? datesAreGmt,
       List<int>? exclude,
       List<int>? include,
       int? offset,
@@ -660,7 +735,9 @@ class WooSignal {
       ], // Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any.
       int? customer,
       int? product,
-      int? dp}) async {
+      int? dp,
+      String? createdVia,
+      String? context}) async {
     Map<String, dynamic> payload = {};
 
     if (page != null) payload["page"] = page;
@@ -670,6 +747,7 @@ class WooSignal {
     if (before != null) payload["before"] = before;
     if (modifiedAfter != null) payload["modified_after"] = modifiedAfter;
     if (modifiedBefore != null) payload["modified_before"] = modifiedBefore;
+    if (datesAreGmt != null) payload["dates_are_gmt"] = datesAreGmt;
     if (exclude != null) payload["exclude"] = exclude;
     if (include != null) payload["include"] = include;
     if (offset != null) payload["offset"] = offset;
@@ -681,6 +759,8 @@ class WooSignal {
     if (customer != null) payload["customer"] = customer;
     if (product != null) payload["product"] = product;
     if (dp != null) payload["dp"] = dp;
+    if (createdVia != null) payload["created_via"] = createdVia;
+    if (context != null) payload["context"] = context;
 
     return await _wooSignalRequest<List<Order>>(
           method: "get",
@@ -741,7 +821,7 @@ class WooSignal {
     if (offset != null) payload["offset"] = offset;
     if (order != null) payload["order"] = order;
     if (orderBy != null) payload["orderby"] = orderBy;
-    if (taxClass != null) payload["taxClass"] = taxClass;
+    if (taxClass != null) payload["class"] = taxClass;
 
     return await _wooSignalRequest<List<TaxRate>>(
           method: "get",
@@ -1049,20 +1129,29 @@ class WooSignal {
     String? search,
     String? after,
     String? before,
+    String? modifiedAfter,
+    String? modifiedBefore,
+    bool? datesAreGmt,
     List<int>? exclude,
     List<int>? include,
+    int? offset,
     String? order,
     String? orderby,
     String? code,
   }) async {
     Map<String, dynamic> payload = {};
+    if (context != null) payload["context"] = context;
     if (page != null) payload["page"] = page;
     if (perPage != null) payload["per_page"] = perPage;
     if (search != null) payload["search"] = search;
     if (after != null) payload["after"] = after;
     if (before != null) payload["before"] = before;
+    if (modifiedAfter != null) payload["modified_after"] = modifiedAfter;
+    if (modifiedBefore != null) payload["modified_before"] = modifiedBefore;
+    if (datesAreGmt != null) payload["dates_are_gmt"] = datesAreGmt;
     if (exclude != null) payload["exclude"] = exclude;
     if (include != null) payload["include"] = include;
+    if (offset != null) payload["offset"] = offset;
     if (order != null) payload["order"] = order;
     if (orderby != null) payload["orderby"] = orderby;
     if (code != null) payload["code"] = code;

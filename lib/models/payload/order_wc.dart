@@ -62,7 +62,7 @@ class OrderWC {
     if (json['transaction_id'] != null) {
       transactionId = json['transaction_id'];
     }
-    if (json['parent_id']) {
+    if (json['parent_id'] != null) {
       parentId = json['parent_id'];
     }
     if (json['meta_data'] != null) {
@@ -377,7 +377,7 @@ class LineItems {
     if (subtotal != null) {
       data['subtotal'] = subtotal;
     }
-    if (data['total'] != null) {
+    if (total != null) {
       data['total'] = total;
     }
     data['quantity'] = quantity;

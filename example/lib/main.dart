@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:woosignal/woosignal.dart';
-import 'package:woosignal/models/response/product.dart';
 
 void main() => runApp(MyApp());
 

@@ -1,3 +1,27 @@
+## [4.3.0] - 2026-02-10
+
+### Added
+- Barrel exports for all models in `woosignal.dart` (no more individual imports needed)
+- New parameters for `getProducts()`: `modifiedAfter`, `modifiedBefore`, `datesAreGmt`, `virtual`, `downloadable`, `context`
+- New parameters for `getProductVariations()`: `datesAreGmt`, `virtual`, `downloadable`, `context`
+- New parameters for `getOrders()`: `datesAreGmt`, `createdVia`, `context`
+- New parameters for `getRefunds()`: `context`, `datesAreGmt`
+- New parameters for `getCoupons()`: `modifiedAfter`, `modifiedBefore`, `datesAreGmt`, `offset`
+- New `context` parameter for `getCustomers()`
+- Comprehensive model unit tests
+
+### Fixed
+- `Refund` model null safety for `fromJson` and `toJson`
+- `OrderWC.fromJson()` parentId null check
+- `LineItems.toJson()` total field check
+- `getRefunds()` payload keys (offset, parent, parentExclude, dp were mapped incorrectly)
+- `getTaxRates()` taxClass parameter key
+
+### Changed
+- Remove invalid parameters from `getCustomers()` (`hideEmpty`, `parent`, `product`, `slug`)
+- Update `device_meta` dependency to ^3.0.0
+- Pubspec.yaml dependency updates
+
 ## [4.2.3] - 2025-12-13
 
 * Pubspec.yaml dependency updates.

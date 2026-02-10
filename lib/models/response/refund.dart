@@ -42,27 +42,48 @@ class Refund {
 
   factory Refund.fromJson(Map<String, dynamic> json) => Refund(
         id: json["id"],
-        dateCreated: DateTime.parse(json["date_created"]),
-        dateCreatedGmt: DateTime.parse(json["date_created_gmt"]),
+        dateCreated: json["date_created"] != null
+            ? DateTime.tryParse(json["date_created"])
+            : null,
+        dateCreatedGmt: json["date_created_gmt"] != null
+            ? DateTime.tryParse(json["date_created_gmt"])
+            : null,
         amount: json["amount"],
         reason: json["reason"],
         refundedBy: json["refunded_by"],
         refundedPayment: json["refunded_payment"],
-        metaData: List<dynamic>.from(json["meta_data"].map((x) => x)),
-        lineItems: List<dynamic>.from(json["line_items"].map((x) => x)),
-        links: Links.fromJson(json["_links"]),
+        metaData: json["meta_data"] != null
+            ? List<dynamic>.from(json["meta_data"].map((x) => x))
+            : null,
+        lineItems: json["line_items"] != null
+            ? List<dynamic>.from(json["line_items"].map((x) => x))
+            : null,
+        links:
+            json["_links"] != null ? Links.fromJson(json["_links"]) : null,
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "date_created": dateCreated!.toIso8601String(),
-        "date_created_gmt": dateCreatedGmt!.toIso8601String(),
-        "amount": amount,
-        "reason": reason,
-        "refunded_by": refundedBy,
-        "refunded_payment": refundedPayment,
-        "meta_data": List<dynamic>.from(metaData!.map((x) => x)),
-        "line_items": List<dynamic>.from(lineItems!.map((x) => x)),
-        "_links": links!.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (dateCreated != null) {
+      data['date_created'] = dateCreated!.toIso8601String();
+    }
+    if (dateCreatedGmt != null) {
+      data['date_created_gmt'] = dateCreatedGmt!.toIso8601String();
+    }
+    data['amount'] = amount;
+    data['reason'] = reason;
+    data['refunded_by'] = refundedBy;
+    data['refunded_payment'] = refundedPayment;
+    if (metaData != null) {
+      data['meta_data'] = List<dynamic>.from(metaData!.map((x) => x));
+    }
+    if (lineItems != null) {
+      data['line_items'] = List<dynamic>.from(lineItems!.map((x) => x));
+    }
+    if (links != null) {
+      data['_links'] = links!.toJson();
+    }
+    return data;
+  }
 }
