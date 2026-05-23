@@ -327,8 +327,8 @@ void main() {
   group('Nested Model Tests', () {
     group('Order Billing', () {
       test('Billing fromJson and toJson roundtrip', () {
-        final billing =
-            Billing.fromJson(sampleOrderJson['billing'] as Map<String, dynamic>);
+        final billing = Billing.fromJson(
+            sampleOrderJson['billing'] as Map<String, dynamic>);
         final json = billing.toJson();
 
         expect(json['first_name'], 'John');
@@ -358,8 +358,8 @@ void main() {
 
     group('Product Category', () {
       test('Category fromJson and toJson roundtrip', () {
-        final categoryData =
-            (sampleProductJson['categories'] as List).first as Map<String, dynamic>;
+        final categoryData = (sampleProductJson['categories'] as List).first
+            as Map<String, dynamic>;
         final category = Category.fromJson(categoryData);
         final json = category.toJson();
 
@@ -371,8 +371,8 @@ void main() {
 
     group('Line Items', () {
       test('LineItems fromJson and toJson roundtrip', () {
-        final lineItemData =
-            (sampleOrderJson['line_items'] as List).first as Map<String, dynamic>;
+        final lineItemData = (sampleOrderJson['line_items'] as List).first
+            as Map<String, dynamic>;
         final lineItem = LineItems.fromJson(lineItemData);
         final json = lineItem.toJson();
 
@@ -387,8 +387,8 @@ void main() {
 
     group('Shipping Lines', () {
       test('ShippingLines fromJson and toJson roundtrip', () {
-        final shippingLineData = (sampleOrderJson['shipping_lines'] as List).first
-            as Map<String, dynamic>;
+        final shippingLineData = (sampleOrderJson['shipping_lines'] as List)
+            .first as Map<String, dynamic>;
         final shippingLine = ShippingLines.fromJson(shippingLineData);
         final json = shippingLine.toJson();
 

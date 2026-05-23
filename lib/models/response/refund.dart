@@ -1,4 +1,4 @@
-// Copyright (c) 2025, WooSignal Ltd.
+// Copyright (c) 2026, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
@@ -58,8 +58,7 @@ class Refund {
         lineItems: json["line_items"] != null
             ? List<dynamic>.from(json["line_items"].map((x) => x))
             : null,
-        links:
-            json["_links"] != null ? Links.fromJson(json["_links"]) : null,
+        links: json["_links"] != null ? Links.fromJson(json["_links"]) : null,
       );
 
   Map<String, dynamic> toJson() {

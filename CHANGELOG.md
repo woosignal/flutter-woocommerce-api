@@ -1,3 +1,11 @@
+## [4.3.1] - 2026-05-23
+
+### Changed
+- Update `dio` dependency to ^5.9.2
+- Update `device_meta` dependency to ^3.0.2
+- Update `test` dev dependency to ^1.31.0
+- Bump copyright year to 2026
+
 ## [4.3.0] - 2026-02-10
 
 ### Added

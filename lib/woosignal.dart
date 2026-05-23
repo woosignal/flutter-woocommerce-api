@@ -3,7 +3,8 @@ library woosignal;
 
 // Response Models
 export 'package:woosignal/models/response/api_data.dart';
-export 'package:woosignal/models/response/continent.dart' hide State, EnumValues;
+export 'package:woosignal/models/response/continent.dart'
+    hide State, EnumValues;
 export 'package:woosignal/models/response/countries.dart' hide State;
 export 'package:woosignal/models/response/coupon.dart';
 export 'package:woosignal/models/response/coupon_batch.dart';
@@ -58,7 +59,7 @@ export 'package:woosignal/models/self.dart';
 // Money Formatter
 export 'package:woosignal/money_formatter/money_formatter.dart';
 
-// Copyright (c) 2025, WooSignal Ltd.
+// Copyright (c) 2026, WooSignal Ltd.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms are permitted
