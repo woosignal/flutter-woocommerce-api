@@ -1,3 +1,24 @@
+## [4.4.0] - 2026-09-12
+
+> 4.3.0 and 4.3.1 were tagged but never published to pub.dev. If you are upgrading from 4.2.3, this release also includes the changes listed under those versions.
+
+### Added
+- `apiBaseUrl` parameter for `WooSignal.init()` to use a custom API base URL (defaults to `https://api.woosignal.com/v3`)
+- `WooSignal.defaultApiBaseUrl` and `ApiProvider.defaultBaseUrl` constants
+
+### Changed
+- Debug logging now uses `debugPrint` instead of `print`
+- Update `dio` dependency to ^5.11.1
+- Update `device_meta` dependency to ^3.0.5
+- Update `intl` dependency to ^0.20.3
+- Add `vibe_check` ^1.0.1 dev dependency and adopt its analysis options
+- Remove unused `test` dev dependency
+- Add explicit type annotations to `EnumValues` maps, encryption helpers and tests
+- Example app: `const` constructors and updated dev dependencies
+
+### Fixed
+- `WooSignal.instance.version` (sent to the API as `api_version`) now matches the package version; 4.3.1 still reported `4.3.0`
+
 ## [4.3.1] - 2026-05-23
 
 ### Changed

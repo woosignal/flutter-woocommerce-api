@@ -1,0 +1,16 @@
+# This file configures the analyzer, which statically analyzes Dart code to
+# check for errors, warnings, and lints.
+
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+
+include: package:vibe_check/nylo.yaml
+plugins:
+  vibe_check:
+    version: ^1.0.1
+    diagnostics:
+      swallowed_exception: warning
+      redundant_null_check: true

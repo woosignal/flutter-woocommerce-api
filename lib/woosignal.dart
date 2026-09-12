@@ -114,13 +114,15 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 
 /// WooSignal Package version
-const String _wooSignalVersion = "4.3.0";
+const String _wooSignalVersion = "4.4.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
   static final WooSignal instance = WooSignal._privateConstructor();
+  static const String defaultApiBaseUrl = ApiProvider.defaultBaseUrl;
 
   late ApiProvider _apiProvider;
   bool? _debugMode;
@@ -132,12 +134,16 @@ class WooSignal {
   Future<void> init(
       {required String? appKey,
       bool debugMode = false,
+      String apiBaseUrl = defaultApiBaseUrl,
       String? encryptKey,
       String? encryptSecret}) async {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
-    _apiProvider =
-        ApiProvider(appKey: appKey!, debugMode: debugMode, version: version);
+    _apiProvider = ApiProvider(
+        appKey: appKey!,
+        apiBaseUrl: apiBaseUrl,
+        debugMode: debugMode,
+        version: version);
     setDebugMode(debugMode);
     if (encryptKey != null) {
       _encryptKey = encryptKey;
@@ -167,7 +173,7 @@ class WooSignal {
   /// Print to the console a [message]
   void _printLog(String message) {
     if (_debugMode == true) {
-      print("WooSignal LOG: $message");
+      debugPrint("WooSignal LOG: $message");
     }
   }
 
@@ -212,7 +218,7 @@ class WooSignal {
     final key = enc.Key.fromUtf8(_encryptKey!);
     final iv = IV.fromUtf8(_encryptSecret!);
     final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
-    final encrypted = encrypter.encrypt(text, iv: iv);
+    final Encrypted encrypted = encrypter.encrypt(text, iv: iv);
     return encrypted.base64;
   }
 
@@ -226,7 +232,8 @@ class WooSignal {
     final key = enc.Key.fromUtf8(_encryptKey!);
     final iv = IV.fromUtf8(_encryptSecret!);
     final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
-    final decrypted = encrypter.decrypt(Encrypted.fromBase64(text), iv: iv);
+    final String decrypted =
+        encrypter.decrypt(Encrypted.fromBase64(text), iv: iv);
     return decrypted;
   }
 

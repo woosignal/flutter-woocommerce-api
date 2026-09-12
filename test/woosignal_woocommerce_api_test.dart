@@ -62,7 +62,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final product = Product.fromJson(sampleProductJson);
-        final json = product.toJson();
+        final Map<String, dynamic> json = product.toJson();
 
         expect(json['id'], 123);
         expect(json['name'], 'Test Product');
@@ -138,7 +138,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final order = Order.fromJson(sampleOrderJson);
-        final json = order.toJson();
+        final Map<String, dynamic> json = order.toJson();
 
         expect(json['id'], 789);
         expect(json['status'], 'processing');
@@ -179,7 +179,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final customer = Customer.fromJson(sampleCustomerJson);
-        final json = customer.toJson();
+        final Map<String, dynamic> json = customer.toJson();
 
         expect(json['id'], 1);
         expect(json['email'], 'john@example.com');
@@ -207,7 +207,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final coupon = Coupon.fromJson(sampleCouponJson);
-        final json = coupon.toJson();
+        final Map<String, dynamic> json = coupon.toJson();
 
         expect(json['id'], 100);
         expect(json['code'], 'SAVE10');
@@ -228,7 +228,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final refund = Refund.fromJson(sampleRefundJson);
-        final json = refund.toJson();
+        final Map<String, dynamic> json = refund.toJson();
 
         expect(json['id'], 200);
         expect(json['amount'], '29.99');
@@ -250,7 +250,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final category = ProductCategory.fromJson(sampleCategoryJson);
-        final json = category.toJson();
+        final Map<String, dynamic> json = category.toJson();
 
         expect(json['id'], 1);
         expect(json['name'], 'Clothing');
@@ -274,7 +274,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final review = ProductReview.fromJson(sampleReviewJson);
-        final json = review.toJson();
+        final Map<String, dynamic> json = review.toJson();
 
         expect(json['id'], 50);
         expect(json['rating'], 5);
@@ -297,7 +297,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final taxRate = TaxRate.fromJson(sampleTaxRateJson);
-        final json = taxRate.toJson();
+        final Map<String, dynamic> json = taxRate.toJson();
 
         expect(json['id'], 1);
         expect(json['country'], 'US');
@@ -316,7 +316,7 @@ void main() {
 
       test('toJson produces correct output', () {
         final zone = ShippingZone.fromJson(sampleShippingZoneJson);
-        final json = zone.toJson();
+        final Map<String, dynamic> json = zone.toJson();
 
         expect(json['id'], 1);
         expect(json['name'], 'United States');
@@ -329,7 +329,7 @@ void main() {
       test('Billing fromJson and toJson roundtrip', () {
         final billing = Billing.fromJson(
             sampleOrderJson['billing'] as Map<String, dynamic>);
-        final json = billing.toJson();
+        final Map<String, dynamic> json = billing.toJson();
 
         expect(json['first_name'], 'John');
         expect(json['last_name'], 'Doe');
@@ -347,7 +347,7 @@ void main() {
       test('Shipping fromJson and toJson roundtrip', () {
         final shipping = Shipping.fromJson(
             sampleOrderJson['shipping'] as Map<String, dynamic>);
-        final json = shipping.toJson();
+        final Map<String, dynamic> json = shipping.toJson();
 
         expect(json['first_name'], 'John');
         expect(json['last_name'], 'Doe');
@@ -361,7 +361,7 @@ void main() {
         final categoryData = (sampleProductJson['categories'] as List).first
             as Map<String, dynamic>;
         final category = Category.fromJson(categoryData);
-        final json = category.toJson();
+        final Map<String, dynamic> json = category.toJson();
 
         expect(json['id'], 1);
         expect(json['name'], 'Uncategorized');
@@ -374,7 +374,7 @@ void main() {
         final lineItemData = (sampleOrderJson['line_items'] as List).first
             as Map<String, dynamic>;
         final lineItem = LineItems.fromJson(lineItemData);
-        final json = lineItem.toJson();
+        final Map<String, dynamic> json = lineItem.toJson();
 
         expect(json['id'], 1);
         expect(json['name'], 'Test Product');
@@ -390,7 +390,7 @@ void main() {
         final shippingLineData = (sampleOrderJson['shipping_lines'] as List)
             .first as Map<String, dynamic>;
         final shippingLine = ShippingLines.fromJson(shippingLineData);
-        final json = shippingLine.toJson();
+        final Map<String, dynamic> json = shippingLine.toJson();
 
         expect(json['id'], 1);
         expect(json['method_title'], 'Flat Rate');

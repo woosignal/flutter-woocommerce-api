@@ -10,8 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 dev_dependencies:
-  lints: ^1.0.0
-  test: ^1.16.0
+  vibe_check: ^1.0.1
   flutter_test:
     sdk: flutter
 

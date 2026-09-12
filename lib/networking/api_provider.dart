@@ -17,12 +17,15 @@ import 'dart:convert';
 import 'package:device_meta/device_meta.dart';
 import 'package:dio/dio.dart';
 import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
 
 class ApiProvider {
+  static const String defaultBaseUrl = "https://api.woosignal.com/v3";
+
   late Dio _dio;
   bool _debugMode;
   late final String _apiKey;
+  late final String _apiBaseUrl;
   late final String _version;
   Map<String, dynamic> _deviceMeta = {};
 
@@ -93,7 +96,7 @@ class ApiProvider {
 
   /// Init Dio class
   void _initDio() {
-    BaseOptions options = BaseOptions(baseUrl: "https://api.woosignal.com/v3");
+    BaseOptions options = BaseOptions(baseUrl: _apiBaseUrl);
     _dio = Dio(options);
   }
 
@@ -108,8 +111,12 @@ class ApiProvider {
 
   /// Constructor requires a [appKey] from WooSignal
   ApiProvider(
-      {required String appKey, required String version, bool debugMode = true})
+      {required String appKey,
+      String apiBaseUrl = defaultBaseUrl,
+      required String version,
+      bool debugMode = true})
       : _apiKey = appKey,
+        _apiBaseUrl = apiBaseUrl,
         _debugMode = debugMode,
         _version = version;
 
@@ -123,7 +130,7 @@ class ApiProvider {
   /// Print to the console with a [log] response
   void _printLog(String log) {
     if (_debugMode == true) {
-      print("WOOSIGNAL LOG: $log");
+      debugPrint("WOOSIGNAL LOG: $log");
     }
   }
 

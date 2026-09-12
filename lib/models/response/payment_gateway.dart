@@ -795,7 +795,7 @@ enum Placeholder {
   youYourEmailCom
 }
 
-final placeholderValues = EnumValues({
+final EnumValues<Placeholder> placeholderValues = EnumValues({
   "": Placeholder.empty,
   "Optional": Placeholder.optional,
   "Optional if you provide a certificate below":
@@ -816,7 +816,7 @@ enum Type {
   textarea
 }
 
-final typeValues = EnumValues({
+final EnumValues<Type> typeValues = EnumValues({
   "checkbox": Type.checkbox,
   "email": Type.email,
   "file": Type.file,
