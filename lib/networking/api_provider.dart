@@ -17,13 +17,19 @@ import 'dart:convert';
 import 'package:device_meta/device_meta.dart';
 import 'package:dio/dio.dart';
 import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
+import 'package:flutter/foundation.dart'
+    show debugPrint, kIsWeb, visibleForTesting;
 
 class ApiProvider {
   static const String defaultBaseUrl = "https://api.woosignal.com/v3";
 
+  /// HTTP header that carries the logged in customer's wp_json_api token.
+  static const String wpUserTokenHeader = "X-WS-User-Token";
+
   late Dio _dio;
+  bool _isDioReady = false;
   bool _debugMode;
+  String? _wpUserToken;
   late final String _apiKey;
   late final String _apiBaseUrl;
   late final String _version;
@@ -31,9 +37,6 @@ class ApiProvider {
 
   /// Set the device meta
   Future<void> setDeviceMeta() async {
-    DeviceMeta deviceMeta =
-        await DeviceMeta.init(storageKey: "woosignal_woocommerce");
-
     if (kIsWeb) {
       _deviceMeta = {
         "model": 'X Model',
@@ -61,6 +64,9 @@ class ApiProvider {
       };
       return;
     }
+
+    DeviceMeta deviceMeta =
+        await DeviceMeta.init(storageKey: "woosignal_woocommerce");
     _deviceMeta = {
       "model": deviceMeta.model,
       "brand": deviceMeta.brand,
@@ -78,6 +84,26 @@ class ApiProvider {
     _deviceMeta['wp_user_id'] = wpUserId;
     _setDioHeaders();
   }
+
+  /// Set the logged in customer's wp_json_api token.
+  ///
+  /// The token is sent in the [wpUserTokenHeader] header on every request so
+  /// WooSignal can verify which customer is asking. Pass null or an empty
+  /// string to clear it, e.g. when the customer logs out.
+  void setWpUserToken(String? token) {
+    String? trimmed = token?.trim();
+    _wpUserToken = (trimmed == null || trimmed.isEmpty) ? null : trimmed;
+    if (_isDioReady) {
+      _setDioHeaders();
+    }
+  }
+
+  /// Whether a customer's wp_json_api token is set.
+  bool get hasWpUserToken => _wpUserToken != null;
+
+  /// The underlying [Dio] client, exposed for tests.
+  @visibleForTesting
+  Dio get dio => _dio;
 
   /// set the FCM token
   void setFcmToken(String token) {
@@ -98,15 +124,21 @@ class ApiProvider {
   void _initDio() {
     BaseOptions options = BaseOptions(baseUrl: _apiBaseUrl);
     _dio = Dio(options);
+    _isDioReady = true;
   }
 
   /// Set the http headers for Dio
   void _setDioHeaders() {
-    _dio.options.headers = {
+    Map<String, dynamic> headers = {
       "Authorization": "Bearer $_apiKey",
       "Content-Type": "application/json",
       "X-DMETA": json.encode(_deviceMeta).toString()
     };
+    String? wpUserToken = _wpUserToken;
+    if (wpUserToken != null) {
+      headers[wpUserTokenHeader] = wpUserToken;
+    }
+    _dio.options.headers = headers;
   }
 
   /// Constructor requires a [appKey] from WooSignal

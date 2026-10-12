@@ -1,3 +1,13 @@
+## [4.6.0] - 2026-10-12
+
+### Added
+- `setWpUserToken` and a `wpUserToken` parameter for `WooSignal.init()`. When a customer is logged in, every request sends their wp_json_api token (`WPJsonAPI.wpUserToken()` in wp_json_api 5.x) in the `X-WS-User-Token` header so WooSignal can verify which customer is asking, e.g. to return only that customer's orders and to link the device to them for notifications. Pass null to clear it on logout
+- `ApiProvider.setWpUserToken`, `ApiProvider.hasWpUserToken` and the `ApiProvider.wpUserTokenHeader` constant
+
+### Changed
+- Debug logging hides `wp_user_token` values in request parameters (e.g. `redeemPoints`), and the token header is never logged
+- In tests and on web, `ApiProvider.init()` no longer reads device info it doesn't use
+
 ## [4.5.0] - 2026-10-12
 
 ### Added

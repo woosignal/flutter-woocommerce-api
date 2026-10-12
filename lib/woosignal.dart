@@ -114,29 +114,42 @@ import 'package:woosignal/models/response/setting_option_batch.dart';
 import 'package:woosignal/models/response/product_batch.dart';
 import 'package:encrypt/encrypt.dart' as enc;
 import 'package:encrypt/encrypt.dart';
-import 'package:flutter/foundation.dart' show debugPrint;
+import 'package:flutter/foundation.dart' show debugPrint, visibleForTesting;
 
 /// WooSignal Package version
-const String _wooSignalVersion = "4.5.0";
+const String _wooSignalVersion = "4.6.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
   static final WooSignal instance = WooSignal._privateConstructor();
   static const String defaultApiBaseUrl = ApiProvider.defaultBaseUrl;
 
+  /// Payload keys whose values are never written to the debug log.
+  static const Set<String> _redactedPayloadKeys = {"wp_user_token"};
+
   late ApiProvider _apiProvider;
+  bool _hasApiProvider = false;
   bool? _debugMode;
   String? _encryptKey, _encryptSecret;
+  String? _wpUserToken;
 
   String get version => _wooSignalVersion;
 
+  /// The [ApiProvider] used for requests, exposed for tests.
+  @visibleForTesting
+  ApiProvider get apiProvider => _apiProvider;
+
   /// Initialize the class
+  ///
+  /// [wpUserToken] is the logged in customer's wp_json_api token, see
+  /// [setWpUserToken].
   Future<void> init(
       {required String? appKey,
       bool debugMode = false,
       String apiBaseUrl = defaultApiBaseUrl,
       String? encryptKey,
-      String? encryptSecret}) async {
+      String? encryptSecret,
+      String? wpUserToken}) async {
     assert(appKey != null && appKey != "",
         "Provide a valid app key. Visit https://woosignal.com");
     _apiProvider = ApiProvider(
@@ -144,7 +157,12 @@ class WooSignal {
         apiBaseUrl: apiBaseUrl,
         debugMode: debugMode,
         version: version);
+    _hasApiProvider = true;
     setDebugMode(debugMode);
+    if (wpUserToken != null) {
+      _wpUserToken = wpUserToken;
+    }
+    _apiProvider.setWpUserToken(_wpUserToken);
     if (encryptKey != null) {
       _encryptKey = encryptKey;
     }
@@ -164,6 +182,21 @@ class WooSignal {
     _apiProvider.setWpUserId(userId);
   }
 
+  /// Set the logged in customer's wp_json_api token
+  /// (`WPJsonAPI.wpUserToken()` in wp_json_api 5.x).
+  ///
+  /// The token is sent in the `X-WS-User-Token` header on every request so
+  /// WooSignal can verify which customer is asking, e.g. to return only that
+  /// customer's orders and to link the device to them for notifications.
+  /// Pass null or an empty string to clear it when the customer logs out.
+  /// It can be called before [init].
+  void setWpUserToken(String? token) {
+    _wpUserToken = token;
+    if (_hasApiProvider) {
+      _apiProvider.setWpUserToken(token);
+    }
+  }
+
   /// Enable debug mode for logging information
   void setDebugMode(bool debugMode) {
     _debugMode = debugMode;
@@ -177,6 +210,15 @@ class WooSignal {
     }
   }
 
+  /// Copy of [payload] with sensitive values (e.g. tokens) hidden for logging.
+  dynamic _redactPayload(dynamic payload) {
+    if (payload is! Map) {
+      return payload;
+    }
+    return payload.map((key, value) => MapEntry(
+        key, _redactedPayloadKeys.contains(key) ? "[REDACTED]" : value));
+  }
+
   Map<String, dynamic> _standardPayload(String type, json, String path) =>
       {"type": type, "payload": json, "path": path};
 
@@ -187,7 +229,7 @@ class WooSignal {
       required String path,
       required T Function(dynamic json) jsonResponse,
       String postUrl = "/request"}) async {
-    _printLog("Parameters: $payload");
+    _printLog("Parameters: ${_redactPayload(payload)}");
     payload = _standardPayload(method, payload, path);
 
     dynamic json = await _apiProvider.post(postUrl, payload);
