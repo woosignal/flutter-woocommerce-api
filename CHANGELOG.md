@@ -1,3 +1,11 @@
+## [4.5.0] - 2026-10-12
+
+### Added
+- `redeemPoints` creates a Points and Rewards discount coupon for the logged in shopper. WooSignal checks the shopper's wp_json_api token (wp_json_api 5.0+, WP JSON API plugin 5.0+) and points balance with the store
+
+### Deprecated
+- `createCoupon`. WooSignal no longer lets apps create coupons; use `redeemPoints` for points redemption
+
 ## [4.4.0] - 2026-09-12
 
 > 4.3.0 and 4.3.1 were tagged but never published to pub.dev. If you are upgrading from 4.2.3, this release also includes the changes listed under those versions.

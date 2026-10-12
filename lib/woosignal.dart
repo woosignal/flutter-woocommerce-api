@@ -117,7 +117,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 
 /// WooSignal Package version
-const String _wooSignalVersion = "4.4.0";
+const String _wooSignalVersion = "4.5.0";
 
 class WooSignal {
   WooSignal._privateConstructor();
@@ -1174,7 +1174,31 @@ class WooSignal {
         [];
   }
 
+  /// Creates a WooCommerce Points and Rewards discount coupon for the
+  /// logged in shopper.
+  ///
+  /// [wpUserToken] is the shopper's wp_json_api token (wp_json_api 5.0+,
+  /// WP JSON API plugin 5.0+). WooSignal checks the token and the points
+  /// balance with the store, and works out the discount from the store's
+  /// points settings. The coupon can only be used once, by that shopper,
+  /// within a day.
+  ///
+  /// Returns null if the points can't be redeemed, e.g. the balance is too
+  /// low or the token has expired.
+  Future<Coupon?> redeemPoints(
+      {required String wpUserToken, required int points}) async {
+    return await _wooSignalRequest<Coupon?>(
+      method: "post",
+      path: "ws/points/redeem",
+      payload: {"wp_user_token": wpUserToken, "points": points},
+      postUrl: "/ws/points/redeem",
+      jsonResponse: (json) => Coupon.fromJson(json),
+    );
+  }
+
   /// https://woosignal.com/docs/api/1.0/coupons#create-a-coupon
+  @Deprecated(
+      'WooSignal no longer lets apps create coupons. For points redemption use redeemPoints.')
   Future<Coupon?> createCoupon(
       {required String? code,
       required String? discountType,
