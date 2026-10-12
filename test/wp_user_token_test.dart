@@ -211,4 +211,33 @@ void main() {
       expect(capture.requests.first.data.toString(), contains(_token));
     });
   });
+
+  group('failed requests', () {
+    setUp(() async {
+      await WooSignal.instance.init(appKey: "app_key", debugMode: false);
+    });
+
+    test('an error response gives an empty order list, not a crash', () async {
+      _CaptureInterceptor capture = _attach(WooSignal.instance.apiProvider.dio);
+      capture.responseData = {"error": "Please log in to see your orders."};
+
+      expect(await WooSignal.instance.getOrders(customer: 12), isEmpty);
+    });
+
+    test('a response of the wrong shape doesn\'t crash', () async {
+      _CaptureInterceptor capture = _attach(WooSignal.instance.apiProvider.dio);
+      capture.responseData = {"unexpected": true};
+
+      // Parsing a map as a list throws a TypeError, which used to escape
+      expect(await WooSignal.instance.getOrders(customer: 12), isEmpty);
+      await WooSignal.instance.retrieveOrder(5);
+    });
+
+    test('a network failure gives an empty order list, not a crash', () async {
+      _CaptureInterceptor capture = _attach(WooSignal.instance.apiProvider.dio);
+      capture.fail = true;
+
+      expect(await WooSignal.instance.getOrders(customer: 12), isEmpty);
+    });
+  });
 }

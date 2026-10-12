@@ -233,15 +233,17 @@ class WooSignal {
     payload = _standardPayload(method, payload, path);
 
     dynamic json = await _apiProvider.post(postUrl, payload);
-    if (json is Map<String, dynamic> && json.containsKey('error')) {
-      _printLog(json['error']);
+    if (json is Map && json.containsKey('error')) {
+      _printLog(json['error'].toString());
       return null;
     }
 
     T model;
     try {
       model = jsonResponse(json);
-    } on Exception catch (e) {
+    } catch (e) {
+      // Includes errors like a TypeError from an unexpected response shape,
+      // so a failed request returns null rather than crashing the app.
       _printLog(e.toString());
       return null;
     }

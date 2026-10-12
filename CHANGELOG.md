@@ -8,6 +8,9 @@
 - Debug logging hides `wp_user_token` values in request parameters (e.g. `redeemPoints`), and the token header is never logged
 - In tests and on web, `ApiProvider.init()` no longer reads device info it doesn't use
 
+### Fixed
+- A failed request (an error response, a network failure or an unexpected response) no longer throws an uncaught error. List methods such as `getOrders` return an empty list and other methods return null, as documented
+
 ## [4.5.0] - 2026-10-12
 
 ### Added
